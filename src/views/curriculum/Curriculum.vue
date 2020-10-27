@@ -1,13 +1,13 @@
 <template>
   <div>
       <!-- 标题 -->
-      <!-- <div class="curriculum_header">
+      <div class="curriculum_header">
           特色课
           <p class="curriculum_header_search">
               <img src="../../assets/curriculum/sousuo2.png" @click="gotoSearch">
           </p>
-      </div> -->
-        <NavTitle></NavTitle>
+      </div>
+        <!-- <NavTitle></NavTitle> -->
 
         <!-- 筛选处理 -->
         <Select></Select>

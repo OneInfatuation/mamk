@@ -3,9 +3,7 @@
     <div class="login_logo">
       <img
         class="login_logo_img"
-        src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019pILfAg7Avr1567732916.png"
-        alt=""
-      />
+        src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019pILfAg7Avr1567732916.png"/>
     </div>
     <div class="login_from">
       <van-form>
