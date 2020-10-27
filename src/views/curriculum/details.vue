@@ -6,6 +6,7 @@
       <p><img src="../../assets/curriculum/fenxiang.png" /></p>
     </div>
     <div class="details_content">
+        <div style="width:100%;height:1rem"></div>
       <!-- 主要数据 -->
       <div class="details_content_message">
         <h3>{{ title }}</h3>
@@ -69,11 +70,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .details_nav {
   width: 100%;
   height: 3rem;
-  margin: 0px 1rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -93,14 +93,17 @@ export default {
   margin: 0 auto;
   background: white;
 }
-.details_content_message p,h5{
+.details_content_message p,h3{
     margin: 10px 0px;
     border-top: 1px solid transparent;
 }
 .details_content_person{
     width: 90%;
     height: 10rem;
-    margin: 0px auto;
+    margin: 10px auto;
+}
+.details_content_person p{
+    margin: 10px 0px;
 }
 .enter{
     width: 100%;
@@ -116,5 +119,6 @@ export default {
     background: orange;
     color: white;
     font-size: 1.5rem;
+    border: none;
 }
 </style>

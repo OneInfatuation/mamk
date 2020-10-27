@@ -10,65 +10,86 @@
                 <!-- 年级分类 -->
                 <div class="selectBox">
                   <p>年级</p>
-                  <div>
-                    <van-tag class="tag" type="primary" size="large" color="#eee" text-color="black" 
-                      >初一</van-tag
+                  <div class="classiyTag">
+                    <div
+                      class="tag"
+                      v-for="(item, index) in taglist1"
+                      :key="index"
+                      :class="hmwActiveNum3 == index ? 'hmwSpanActive' : ''"
+                      span="6"
+                      @click="hmwActiveNum3 = index"
                     >
-                    <van-tag class="tag" type="primary" size="large" color="#eee" text-color="black" 
-                      >初二</van-tag
-                    >
-                    <van-tag class="tag" type="primary" size="large" color="#eee" text-color="black" 
-                      >初三</van-tag
-                    >
-                    <van-tag class="tag" type="primary" size="large" color="#eee" text-color="black" 
-                      >高一</van-tag
-                    >
-                    <van-tag class="tag" type="primary" size="large" color="#eee" text-color="black" 
-                      >高二</van-tag
-                    >
+                      <span>{{ item }}</span>
+                    </div>
                   </div>
                 </div>
                 <!-- 学科分类 -->
-                <div  class="selectBox">
+                <div class="selectBox">
                   <p>学科</p>
-                  <div>
-                    <van-tag class="tag" type="primary" size="large" color="#eee" text-color="black" 
-                      >语文</van-tag
+                  <div class="classiyTag">
+                    <div
+                      class="tag"
+                      v-for="(item, index) in taglist2"
+                      :key="index"
+                      :class="hmwActiveNum4 == index ? 'hmwSpanActive' : ''"
+                      span="6"
+                      @click="hmwActiveNum4 = index"
                     >
-                    <van-tag class="tag" type="primary" size="large" color="#eee" text-color="black" 
-                      >数学</van-tag
-                    >
-                    <van-tag class="tag" type="primary" size="large" color="#eee" text-color="black" 
-                      >英语</van-tag
-                    >
-                    <van-tag class="tag" type="primary" size="large" color="#eee" text-color="black" 
-                      >物理</van-tag
-                    >
-                    <van-tag class="tag" type="primary" size="large" color="#eee" text-color="black" 
-                      >化学</van-tag
-                    >
+                    <span>{{ item }}</span>
+                    </div>
                   </div>
                 </div>
                 <!-- 按钮 -->
                 <div>
-                    <van-button type="primary" class="selectBox_button" >重置</van-button>
-                    <van-button type="primary" class="selectBox_button">选择</van-button>
+                  <button class="selectBox_button">重置</button>
+                  <button
+                    class="selectBox_button"
+                    style="background: orange; color: white"
+                  >
+                    选择
+                  </button>
                 </div>
               </div>
             </template>
           </van-cell>
         </van-dropdown-item>
         <!-- 排序 -->
-        <van-dropdown-item v-model="value" :options="option"/>
+        <van-dropdown-item title="综合排序">
+          <van-cell center>
+            <template>
+              <div
+                v-for="(item, index) in option"
+                :key="index"
+                :class="hmwActiveNum2 == index ? 'hmwSpanActive' : ''"
+                span="6"
+                @click="hmwActiveNum2 = index"
+                style="
+                  width: 100%;
+                  height: 2rem;
+                  line-height: 2rem;
+                  text-align: center;
+                "
+              >
+                <span>{{ item.text }}</span>
+              </div>
+            </template>
+          </van-cell>
+        </van-dropdown-item>
         <!-- 筛选 -->
         <van-dropdown-item title="筛选" ref="item">
           <van-cell center>
             <template #right-icon>
               <div class="selectTag">
-                <div class="tag" type="primary" size="large"
-                  v-for="(item,index) in selectList" :key="index"
-                  
-                >{{item}}</div>
+                <div
+                  class="tag"
+                  v-for="(item, index) in selectList"
+                  :key="index"
+                  :class="hmwActiveNum1 == index ? 'hmwSpanActive' : ''"
+                  span="6"
+                  @click="hmwActiveNum1 = index"
+                >
+                  <span>{{ item }}</span>
+                </div>
               </div>
             </template>
           </van-cell>
@@ -76,16 +97,27 @@
       </van-dropdown-menu>
     </div>
 
+    <div style="width: 100%; height: 4rem"></div>
+
     <div class="curriculum_list">
-      <div v-for="(item,index) in list" :key="index" class="curriculum_list_content" @click="gotoDetials(item)">
-        <h3>{{item.title}}</h3>
-        <p><img src="../assets/curriculum/time.png"> {{item.date}} </p>
+      <div
+        v-for="(item, index) in list"
+        :key="index"
+        class="curriculum_list_content"
+        @click="gotoDetials(item)"
+      >
+        <p>
+          <b>{{ item.title }}</b>
+        </p>
+        <p><img src="../assets/curriculum/time.png" /> {{ item.date }}</p>
         <div class="curriculum_list_content_name">
-          <p style="display:inline-block;width:2rem;height:2rem;margin-top:1rem"><img :src="item.pic" width="100%"></p>
-          <p>{{item.name}}</p>
+          <p style="display: inline-block; width: 2rem; height: 2rem">
+            <img :src="item.pic" width="100%" />
+          </p>
+          <p>{{ item.name }}</p>
         </div>
-        <hr>
-        <p>{{item.number}}人已报名 <span class="free">免费</span></p>
+        <hr style="color: rgba(238, 238, 238, 0.835)" />
+        <p>{{ item.number }}人已报名 <span class="free">免费</span></p>
       </div>
     </div>
   </div>
@@ -103,35 +135,81 @@ export default {
         { text: "价格从低到高", value: 3 },
         { text: "价格从高到低", value: 4 },
       ],
-      list:[{title:"李老师16号到22号地理大课堂开课了",date:"03月26日 18:30 ~ 03月22日 15:00",details:"共8课时",name:"李青",number:134,pic:"http://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg"},
-          {title:"李老师16号到22号地理大课堂开课了",date:"03月26日 18:30 ~ 03月22日 15:00",details:"共8课时",name:"李青",number:134,pic:"http://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg"},
-          {title:"李老师16号到22号地理大课堂开课了",date:"03月26日 18:30 ~ 03月22日 15:00",details:"共8课时",name:"李青",number:134,pic:"http://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg"},
-          {title:"李老师16号到22号地理大课堂开课了",date:"03月26日 18:30 ~ 03月22日 15:00",details:"共8课时",name:"李青",number:134,pic:"http://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg"}
+      taglist1: ["初一", "初二", "初三", "高一", "高二"],
+      taglist2: ["语文", "数学", "英语", "物理", "化学"],
+      list: [
+        {
+          title: "李老师16号到22号地理大课堂开课了",
+          date: "03月26日 18:30 ~ 03月22日 15:00",
+          details: "共8课时",
+          name: "李青",
+          number: 134,
+          pic:
+            "http://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
+        },
+        {
+          title: "李老师16号到22号地理大课堂开课了",
+          date: "03月26日 18:30 ~ 03月22日 15:00",
+          details: "共8课时",
+          name: "李青",
+          number: 134,
+          pic:
+            "http://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
+        },
+        {
+          title: "李老师16号到22号地理大课堂开课了",
+          date: "03月26日 18:30 ~ 03月22日 15:00",
+          details: "共8课时",
+          name: "李青",
+          number: 134,
+          pic:
+            "http://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
+        },
+        {
+          title: "李老师16号到22号地理大课堂开课了",
+          date: "03月26日 18:30 ~ 03月22日 15:00",
+          details: "共8课时",
+          name: "李青",
+          number: 134,
+          pic:
+            "http://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
+        },
       ],
-      selectList:[
-        "全部","大班课","小班课","公开课","点播课","面授课","音频课",
-        "系统课","图文课","会员课"
-      ]
-
+      selectList: [
+        "全部",
+        "大班课",
+        "小班课",
+        "公开课",
+        "点播课",
+        "面授课",
+        "音频课",
+        "系统课",
+        "图文课",
+        "会员课",
+      ],
+      hmwActiveNum1: 0,
+      hmwActiveNum2: 0,
+      hmwActiveNum3: 0,
+      hmwActiveNum4: 0,
     };
   },
   methods: {
     onConfirm() {
       this.$refs.item.toggle();
     },
-    gotoDetials(item){
+    gotoDetials(item) {
       this.$router.push({
-        path:"/details",
-        query:{
-          title:item.title,
-          date:item.date,
-          name:item.name,
-          details:item.details,
-          number:item.number,
-          pic:item.pic
-        }
-      })
-    }
+        path: "/details",
+        query: {
+          title: item.title,
+          date: item.date,
+          name: item.name,
+          details: item.details,
+          number: item.number,
+          pic: item.pic,
+        },
+      });
+    },
   },
 };
 </script>
@@ -141,41 +219,44 @@ export default {
   width: 100%;
   margin-top: 3rem;
   position: fixed;
-  top: 0px;
+  top: -1rem;
   left: 0px;
   font-size: 1.5rem;
 }
 .curriculum_list {
   width: 100%;
   height: 100%;
-  background: #eee;
-    border: 1px solid transparent;
-    margin-top: 7rem;
+  background: rgba(238, 238, 238, 0.835);
+  border: 1px solid transparent;
+  margin: 1rem 0;
+  color: grey;
 }
-.curriculum_list_content{
+.curriculum_list_content {
   width: 90%;
-  height: 12rem;
-  margin: 10px auto;
+  height: 11rem;
+  margin: 5px auto;
   margin-bottom: 3rem;
   background: white;
-  border-radius: 10px;
+  border-radius: 3px;
   border: 1px solid transparent;
 }
-.curriculum_list_content>p,h3,hr{
+.curriculum_list_content > p,
+hr {
   width: 90%;
-  margin: 3px auto;
+  margin: 7px auto;
 }
-.curriculum_list_content_name{
+.curriculum_list_content_name {
   width: 90%;
+  height: 4rem;
   margin: 3px 1.5rem;
   display: inline-flex;
   justify-content: flex-start;
-  align-items:center ;
+  align-items: center;
 }
 /* .curriculum_list_content h4{
 
 } */
-.free{
+.free {
   float: right;
   color: green;
   font-size: 20px;
@@ -190,23 +271,39 @@ export default {
 .selectTag .tag {
   width: 4rem;
   height: 2rem;
-  margin: 10px 20px;
-  text-align:center;
-  background: #F5F5F5;
+  margin: 8px 15px;
+  text-align: center;
+  background: #f5f5f5;
 }
-.selectBox{
+.classiyTag {
+  width: 100%;
+  height: 6rem;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.selectBox {
   width: 90%;
   height: 8rem;
   border-bottom: 1px solid lightgrey;
   margin: 10px auto;
 }
-.selectBox .tag{
-  width: 30px;
-  height: 20px;
-  margin: 5px 20px;
+.selectBox .tag {
+  width: 4rem;
+  height: 1.5rem;
+  margin: 5px 10px;
+  background: #eee;
+  text-align: center;
 }
-.selectBox_button{
-  width: 40%;
-  margin: 10px;
+.selectBox_button {
+  width: 45%;
+  height: 2.4rem;
+  margin: 10px 5px;
+  border-radius: 5px;
+  border: none;
+}
+.hmwSpanActive span {
+  color: red;
 }
 </style>

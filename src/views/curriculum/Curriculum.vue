@@ -7,6 +7,7 @@
               <img src="../../assets/curriculum/sousuo2.png" @click="gotoSearch">
           </p>
       </div>
+        <!-- <NavTitle></NavTitle> -->
 
         <!-- 筛选处理 -->
         <Select></Select>
@@ -15,10 +16,12 @@
 </template>
 
 <script>
+import NavTitle from "../../components/navTitle/TitleSearch"; //引入导航子组件
 import Select from "../../components/Select"
 export default {
     components:{
-        Select
+        NavTitle,
+        Select,
     },
     methods:{
         gotoSearch(){
@@ -30,28 +33,29 @@ export default {
 <style lang='scss' scoped>
 .curriculum_header{
     width: 100%;
-    height: 3rem;
-    line-height: 3rem;
+    height: 2.3rem;
+    line-height: 2.3rem;
     border-bottom: 1px solid lightgrey;
     color: grey;
     background: white;
-    font-size: 2rem;
     text-align: center;
     position: fixed;
+    font-size: 1.2rem;
     top: 0px;
     left: 0px;
 }
 .curriculum_header_search{
-    width:2rem;
-    height: 2rem;
+    width:2.3rem;
+    height: 2.3rem;
     // background: red;
     position: absolute;
     right: 1rem;
     top: 0.3rem;
     margin: 0px;
+    color: grey;
 }
 .curriculum_header_search img{
-    width: 2rem;
-    height: 2rem;
+    width: 1rem;
+    height: 1rem;
 }
 </style>
