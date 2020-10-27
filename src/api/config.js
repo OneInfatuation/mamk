@@ -4,7 +4,9 @@ const urlType = {
         // 例如：
         // LOGIN:""
         // 轮播图
-       
+       Banner:"/api/app/banner",
+    //    获取首页数据
+       AppIndex:"/api/app/recommend/appIndex",
     },
     type:{
         GET:"get",
