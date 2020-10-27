@@ -11,7 +11,6 @@ const routes = [{
     path: '/',
     name: 'Main',
     component: () => import('../views/Main.vue'),
-
     children: [{
         path: "/",
         name: "Home",
@@ -100,7 +99,15 @@ const routes = [{
     meta: {
       navTitle: "习题收藏"
     }
-  }
+  },
+  {
+    path: "/study-calendar", //学习日历
+    name: "StudyCalendar",
+    component: () => import('../views/home/StudyCalendar.vue'),
+    meta: {
+      navTitle: "学习日历"
+    }
+  },
 ]
 const router = new VueRouter({
   mode: 'history',
