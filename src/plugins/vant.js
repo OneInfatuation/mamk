@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import Vant, { Locale } from 'vant'
+import Vant, { Locale, Overlay} from 'vant'
 import 'vant/lib/index.css'
 
 Vue.use(Vant)
+Vue.use(Overlay);

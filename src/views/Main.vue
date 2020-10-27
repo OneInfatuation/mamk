@@ -15,6 +15,10 @@
       <van-tabbar-item icon="comment" to="/practice">练习</van-tabbar-item>
       <van-tabbar-item icon="friends" to="/mine">我的</van-tabbar-item>
     </van-tabbar>
+
+    <div class="email" @click="gotoEmail">
+      <img src="../assets/curriculum/youjian.png" />
+    </div>
   </div>
 </template>
 <script>
@@ -29,11 +33,26 @@ export default {
       this.active = Number(a);
       sessionStorage.setItem("mainIndex", a);
     },
-  },
-};
+      gotoEmail(){
+        this.$router.push("/emails")
+      }
+    }
+}
 </script>
 <style lang='scss' scoped>
-.dyb_footer{
-  height: 100%;
+.email {
+  width: 3rem;
+  height: 3rem;
+  background: blue;
+  border-radius: 50px;
+  line-height: 4rem;
+  position: fixed;
+  bottom: 7rem;
+  right: 0.2rem;
+  text-align: center;
+}
+.email img {
+  width: 1.7rem;
+  height: 1.7rem;
 }
 </style>

@@ -25,10 +25,3 @@
     // DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完全加载。
     document.addEventListener('DOMContentLoaded',recalc,false);
 })(document,window)
-
-
-// function rem(){
-//     document.documentElement.style.fontSize=document.documentElement.clientWidth/3.2+'px'
-// }
-// rem()
-// window.onresize=rem

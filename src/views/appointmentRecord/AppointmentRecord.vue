@@ -27,7 +27,6 @@
 
     <van-empty
       class="custom-image"
-      description="描述文字"
     >
         <template #image>
             <div class="waw_empty_img">

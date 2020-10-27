@@ -12,17 +12,17 @@ const routes = [{
     name: 'Main',
     component: () => import('../views/Main.vue'),
     children: [{
-        path: "/",
+        path: "/", //首页
         name: "Home",
         component: () => import('../views/home/Home.vue')
       },
       {
-        path: "/curriculum",
+        path: "/curriculum", //课程
         name: "Curriculum",
-        component: () => import('../views/curriculum/Curriculum.vue')  // 课程
+        component: () => import('../views/curriculum/Curriculum.vue') // 课程
       },
       {
-        path: "/appointmentRecord",
+        path: "/appointmentRecord", //约课记录
         name: "AppointmentRecord",
         component: () => import('../views/appointmentRecord/AppointmentRecord.vue'),
         meta: {
@@ -30,7 +30,7 @@ const routes = [{
         }
       },
       {
-        path: "/practice",
+        path: "/practice", //练习
         name: "Practice",
         component: () => import('../views/practice/Practice.vue'),
         meta: {
@@ -38,7 +38,7 @@ const routes = [{
         }
       },
       {
-        path: "/mine",
+        path: "/mine", //我的
         name: "Mine",
         component: () => import('../views/mine/Mine.vue')
       }
@@ -108,6 +108,25 @@ const routes = [{
       navTitle: "学习日历"
     }
   },
+  {
+    path: "/emails", //邮件
+    name: "Emails",
+    component: () => import('../views/Emails.vue')
+  },
+  {
+    path: "/details", //习题收藏页面
+    name: "Details",
+    component: () => import('../views/curriculum/details.vue')
+  },
+  {
+    path: "/search", //习题收藏页面
+    name: "search",
+    component: () => import('../views/curriculum/search.vue'),
+    meta: {
+      navTitle: "习题收藏"
+    }
+  },
+
 ]
 const router = new VueRouter({
   mode: 'history',
