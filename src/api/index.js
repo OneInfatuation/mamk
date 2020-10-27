@@ -11,8 +11,13 @@ const ClientAPI = {
     banner(){
         return requset(urlType.type.GET,urlType.url.Banner)
     },
+    // 获取首页列表数据
     appindex(){
         return requset(urlType.type.GET,urlType.url.AppIndex)
+    },
+    // 获取课程详细信息
+    coursedetail(params){
+        return requset(urlType.type.GET,urlType.url.courseDetail,params)
     }
 }
 export default ClientAPI;

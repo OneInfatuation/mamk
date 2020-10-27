@@ -1,8 +1,31 @@
 <template>
-<div>讲师详情</div>
+  <div>
+    讲师详情
+  </div>
 </template>
+
+
 <script>
-export default {}
+export default {
+    name: '',
+    data () {
+        return {
+
+        }
+    },
+    created() {
+
+    },
+    mounted() {
+
+    },
+    
+    methods: {
+
+    }
+}
 </script>
-<style lang='scss' scoped>
+
+<style scoped lang>
+
 </style>

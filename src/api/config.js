@@ -1,16 +1,18 @@
 const urlType = {
     // 配置API路径
-    url:{
+    url: {
         // 例如：
         // LOGIN:""
         // 轮播图
-       Banner:"/api/app/banner",
-    //    获取首页数据
-       AppIndex:"/api/app/recommend/appIndex",
+        Banner: "/api/app/banner",
+        //    获取首页数据
+        AppIndex: "/api/app/recommend/appIndex",
+        //    获取课程详情数据
+        courseDetail: '/api/app/courseInfo/'
     },
-    type:{
-        GET:"get",
-        POST:"post"
+    type: {
+        GET: "get",
+        POST: "post"
     }
 }
 export default urlType;
