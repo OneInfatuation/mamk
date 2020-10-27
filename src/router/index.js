@@ -126,6 +126,21 @@ const routes = [{
       navTitle: "习题收藏"
     }
   },
+  {
+    path: "/logins", //登录页面
+    name: "Logins",
+    component: () => import('../views/login/Logins.vue'),
+  },
+  {
+    path: "/register", //注册页面
+    name: "Register",
+    component: () => import('../views/login/Register.vue'),
+  },
+  {
+    path: "/password", //注册页面
+    name: "Password",
+    component: () => import('../views/login/Password.vue'),
+  },
 
 ]
 const router = new VueRouter({

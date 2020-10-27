@@ -71,12 +71,13 @@ export default {
 
 <style>
 .details_nav {
-  width: 90%;
+  width: 100%;
   height: 3rem;
   margin: 0px 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  background: #eee;
   border-bottom: 1px solid #eee;
   position: fixed;
   top: 0px;
