@@ -1,12 +1,13 @@
 <template>
   <div>
       <!-- 标题 -->
-      <div class="curriculum_header">
+      <!-- <div class="curriculum_header">
           特色课
           <p class="curriculum_header_search">
               <img src="../../assets/curriculum/sousuo2.png" @click="gotoSearch">
           </p>
-      </div>
+      </div> -->
+        <NavTitle></NavTitle>
 
         <!-- 筛选处理 -->
         <Select></Select>
@@ -15,10 +16,12 @@
 </template>
 
 <script>
+import NavTitle from "../../components/navTitle/TitleSearch"; //引入导航子组件
 import Select from "../../components/Select"
 export default {
     components:{
-        Select
+        NavTitle,
+        Select,
     },
     methods:{
         gotoSearch(){

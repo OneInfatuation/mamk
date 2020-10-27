@@ -1,83 +1,82 @@
 <template>
   <div>
-       <div class="login_logo">
-      <img class="login_logo_img" src="../../../public/login/login.png" alt="">
-      </div>
-      <div class="register_from">
-          <van-form @submit="onSubmit">
-  <van-field
-    v-model="username"
-    name="用户名"
-   
-    placeholder="请输入手机号"
-    :rules="[{ required: true, message: '请填写用户名' }]"
-  />
-  <van-field
-    v-model="password"
-    type="password"
-    name="密码"
-    
-    placeholder="请输入短信验证码"
-    :rules="[{ required: true, message: '请填写密码' }]"
-  />
-  <div class="register_from_tiaozhuan">
-      <span >*未注册的手机号将自动注册</span>
-      <span  @click="toLogins">使用密码登录</span>
-  </div>
-  <div style="margin: 16px; margin-top: 70px;">
-    <van-button round block type="warning" native-type="submit">
-      提交
-    </van-button>
-  </div>
-</van-form>
-      </div>
+    <div class="login_logo">
+      <img
+        class="login_logo_img"
+        src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019pILfAg7Avr1567732916.png"
+      />
+    </div>
+    <div class="register_from">
+      <van-form @submit="onSubmit">
+        <van-field
+          v-model="username"
+          name="用户名"
+          placeholder="请输入手机号"
+          :rules="[{ required: true, message: '请填写用户名' }]"
+        />
+        <van-field
+          v-model="password"
+          type="password"
+          name="密码"
+          placeholder="请输入短信验证码"
+          :rules="[{ required: true, message: '请填写密码' }]"
+        />
+        <div class="register_from_tiaozhuan">
+          <span>*未注册的手机号将自动注册</span>
+          <span @click="toLogins">使用密码登录</span>
+        </div>
+        <div style="margin: 16px; margin-top: 70px">
+          <van-button round block type="warning" native-type="submit">
+            提交
+          </van-button>
+        </div>
+      </van-form>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-data() {
+  data() {
     return {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
     };
   },
   methods: {
     onSubmit(values) {
-      console.log('submit', values);
+      console.log("submit", values);
     },
-    toLogins(){
-        this.$router.push({
-            path:"/logins"
-        })
-    }
+    toLogins() {
+      this.$router.push({
+        path: "/logins",
+      });
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.login_logo{
+.login_logo {
+  width: 100%;
+  height: 6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  .login_logo_img {
     width: 80%;
-    height: 6rem;
-  margin-left: 2.8rem;
-    margin-top: 2.5rem;
-    .login_logo_img
-    {
-        width: 100%;
-        height: 100%;
-         
-    }
+    height: 80%;
+  }
 }
-.register_from_tiaozhuan
-{
-width: 100%;
-height:2rem;
-display: flex;
-justify-content: space-between;
-font-size: 0.4rem;
-color: rgb(196, 193, 193);
-span{
-   margin: 1rem; 
-}
+.register_from_tiaozhuan {
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.4rem;
+  color: rgb(196, 193, 193);
+  span {
+    margin: 1rem;
+  }
 }
 </style>

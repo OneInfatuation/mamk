@@ -19,7 +19,10 @@ const routes = [{
       {
         path: "/curriculum", //课程
         name: "Curriculum",
-        component: () => import('../views/curriculum/Curriculum.vue') // 课程
+        component: () => import('../views/curriculum/Curriculum.vue'),// 课程
+        meta:{
+          navTitle:"课程"
+        }
       },
       {
         path: "/appointmentRecord", //约课记录
