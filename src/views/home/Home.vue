@@ -3,30 +3,30 @@
   <div class="dyb_home">
     <!-- 轮播图 -->
     <div class="dyb_swipe">
-      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe class="my-swipe" :autoplay="1500" indicator-color="white">
         <van-swipe-item
           ><img
             src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019MGNW3BtiS91569839576.jpg"
             alt=""
-            style="width: 100%"
+            style="width: 100%;height:100%"
         /></van-swipe-item>
         <van-swipe-item
           ><img
             src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019LnKumseuhw1569839569.jpg"
             alt=""
-            style="width: 100%"
+            style="width: 100%;height:100%"
         /></van-swipe-item>
         <van-swipe-item
           ><img
             src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/20193KAjU2cB6h1569839562.jpg"
             alt=""
-            style="width: 100%"
+            style="width: 100%;height:100%"
         /></van-swipe-item>
         <van-swipe-item
           ><img
             src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/20197Cxc53hktC1569839552.jpg"
             alt=""
-            style="width: 100%"
+            style="width: 100%;height:100%"
         /></van-swipe-item>
       </van-swipe>
     </div>
