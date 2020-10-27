@@ -60,6 +60,8 @@ export default {
 .login_logo {
   width: 100%;
   height: 6rem;
+  // margin-left: 2.8rem;
+  // margin-top: 2.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
