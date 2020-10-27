@@ -16,9 +16,7 @@
       <van-tabbar-item icon="friends" to="/mine">我的</van-tabbar-item>
     </van-tabbar>
 
-    <div class="email" @click="gotoEmail">
-      <img src="../assets/curriculum/youjian.png" />
-    </div>
+
   </div>
 </template>
 <script>
@@ -33,26 +31,10 @@ export default {
       this.active = Number(a);
       sessionStorage.setItem("mainIndex", a);
     },
-      gotoEmail(){
-        this.$router.push("/emails")
-      }
+
   }
 }
 </script>
 <style lang='scss' scoped>
-.email {
-  width: 30px;
-  height: 30px;
-  background: blue;
-  border-radius: 50px;
-  line-height: 40px;
-  position: fixed;
-  bottom: 7rem;
-  right: 0.2rem;
-  text-align: center;
-}
-.email img {
-  width: 20px;
-  height: 20px;
-}
+
 </style>

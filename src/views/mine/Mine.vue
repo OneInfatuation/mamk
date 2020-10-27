@@ -153,7 +153,7 @@ export default {};
     text-align: center;
   }
   .main_title {
-    font-size: 1rem;
+    font-size: 0.65rem;
   }
   .main_text {
     color: rgb(187, 184, 184);

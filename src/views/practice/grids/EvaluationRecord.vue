@@ -31,7 +31,7 @@
                   ? 'waw_dropdown_box_active'
                   : 'waw_dropdown_box'
               "
-              @click="onClick(item.value)"
+              @click="onClickTime(item.value)"
             >
               {{ item.text }}
             </p>
@@ -57,7 +57,7 @@
   </div>
 </template>
 <script>
-import NavTitle from "../../../components/navTitle/TitleBack"; //引入导航子组件
+import NavTitle from "../../../components/navTitle/TitleOnlyBack"; //引入导航子组件
 export default {
   components: {
     NavTitle,
@@ -82,15 +82,17 @@ export default {
   methods: {
     onClick(value) {
       this.value1 = value;
-      this.value2 = value;
     },
+    onClickTime(value){
+      this.value2 = value;
+    }
   },
 };
 </script>
 <style lang='scss' scoped>
 .waw_dropdown_box {
   width: 100%;
-  height: 1.5rem;
+  height: 2.5rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -98,7 +100,7 @@ export default {
 .waw_dropdown_box_active {
   color: orange;
   width: 100%;
-  height: 1.5rem;
+  height: 2.5rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;

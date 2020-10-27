@@ -5,7 +5,7 @@
             <van-icon name="arrow-left" @click="onClickBack"/>
         </template>
       <template #right>
-        <van-icon name="search" size="18" />
+        <van-icon name="search" size="18" @click="onClickSearch"/>
       </template>
     </van-nav-bar>
   </div>
@@ -15,6 +15,9 @@ export default {
     methods: {
         onClickBack(){//点击返回上一页
             this.$router.go(-1)
+        },
+        onClickSearch(){//点击进入搜索页面
+            this.$router.push("/search")
         }
     },
 };

@@ -2,7 +2,7 @@ import axios from "axios";//引入axios模块
 import urlType from "./config";
 // 创建实例
 const instance = axios.create({
-    baseURL: '',//公用路径
+    baseURL: 'http://120.53.31.103:84',//公用路径
     timeout: 6000,//设置超时时间
     headers: {'X-Custom-Header': 'foobar'}//设置请求头
   });

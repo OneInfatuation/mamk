@@ -42,8 +42,29 @@
     <!--  -->
     <div style="width: 100%; height: 1rem; background: #eee"></div>
 
-    <div style="width: 100%; height: 4rem"></div>
+    <div style="width: 100%; height: 4rem">
+        <p style="width:90%;margin:0.3rem auto;height:3rem">课程介绍</p>
+    </div>
 
+    <!--  -->
+    <div style="width: 100%; height: 1rem; background: #eee"></div>
+
+    <div style="width: 100%; height: 20rem">
+        <p style="width:90%;margin:0.3rem auto;height:3rem">课程大纲</p>
+
+        <ul class="details_mune">
+            <li></li>
+        </ul>
+    </div>
+
+    <!--  -->
+    <div style="width: 100%; height: 1rem; background: #eee"></div>
+
+    <div style="width: 100%; height: 30rem">
+        <p style="width:90%;margin:0.3rem auto;height:3rem">课程评论</p>
+    </div>
+
+    <div style="width: 100%; height: 3.5rem;"></div>
     <!-- 立即报名 -->
     <div class="enter">
       <button @click="setenter">立即报名</button>
@@ -146,5 +167,12 @@ h4 {
   width: 120px;
   height: 120px;
   background-color: #fff;
+}
+
+
+.details_mune{
+    width: 96%;
+    height: 12rem;
+    margin: 0.3rem auto;
 }
 </style>

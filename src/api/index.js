@@ -7,6 +7,12 @@ const ClientAPI = {
     // Login(params){
     //    return requset(urlType.type.GET,urlType.url.LOGIN,params) 
     // }
-    
+    // 轮播图
+    banner(){
+        return requset(urlType.type.GET,urlType.url.Banner)
+    },
+    appindex(){
+        return requset(urlType.type.GET,urlType.url.AppIndex)
+    }
 }
 export default ClientAPI;

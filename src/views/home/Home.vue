@@ -8,25 +8,25 @@
           ><img
             src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019MGNW3BtiS91569839576.jpg"
             alt=""
-            style="width: 100%;height:100%"
+            style="width: 100%; height: 100%"
         /></van-swipe-item>
         <van-swipe-item
           ><img
             src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019LnKumseuhw1569839569.jpg"
             alt=""
-            style="width: 100%;height:100%"
+            style="width: 100%; height: 100%"
         /></van-swipe-item>
         <van-swipe-item
           ><img
             src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/20193KAjU2cB6h1569839562.jpg"
             alt=""
-            style="width: 100%;height:100%"
+            style="width: 100%; height: 100%"
         /></van-swipe-item>
         <van-swipe-item
           ><img
             src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/20197Cxc53hktC1569839552.jpg"
             alt=""
-            style="width: 100%;height:100%"
+            style="width: 100%; height: 100%"
         /></van-swipe-item>
       </van-swipe>
     </div>
@@ -69,81 +69,74 @@
       <section>
         <!-- 名师阵容 -->
         <ul class="dyb_ming">
-          <p class="dyb_section_title">名师阵容</p>
-          <li>
-            <img
-              src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png"
-              alt=""
-            />
+          <p class="dyb_section_title">{{ homeArr[4].channel_info.name }}</p>
+          <li v-for="(item, index) in homeArr[4].list" :key="index">
+            <img :src="item.teacher_avatar" alt="" />
             <div>
-              <p class="dyb_title">杨德胜</p>
+              <p class="dyb_title">{{ item.teacher_name }}</p>
               <p class="dyb_text">
-                　杨老师,特级教师.多次被中国数学会评为全国高中数学竞联赛优秀教练员。长期从事名校理科班的数学教学和数学竞赛辅导工作。辅导学生参加全国高中数学联赛有数百人次获全国高中数学联赛一、二、三等奖，数十人被免试保送到清华大学、北京大学等名牌大学学习。十多人获CMO获一、二、三等奖，一人获IMO金牌。
-                　　特别是近年来大学试行自主招生，有很多同学通过上他的竞赛辅导课进入清华大学、北京大学、上海交通大学等。
-              </p>
-            </div>
-          </li>
-          <li>
-            <img
-              src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png"
-              alt=""
-            />
-            <div>
-              <p class="dyb_title">杨德胜</p>
-              <p class="dyb_text">
-                　杨老师,特级教师.多次被中国数学会评为全国高中数学竞联赛优秀教练员。长期从事名校理科班的数学教学和数学竞赛辅导工作。辅导学生参加全国高中数学联赛有数百人次获全国高中数学联赛一、二、三等奖，数十人被免试保送到清华大学、北京大学等名牌大学学习。十多人获CMO获一、二、三等奖，一人获IMO金牌。
-                　　特别是近年来大学试行自主招生，有很多同学通过上他的竞赛辅导课进入清华大学、北京大学、上海交通大学等。
-              </p>
-            </div>
-          </li>
-          <li>
-            <img
-              src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png"
-              alt=""
-            />
-            <div>
-              <p class="dyb_title">杨德胜</p>
-              <p class="dyb_text">
-                　杨老师,特级教师.多次被中国数学会评为全国高中数学竞联赛优秀教练员。长期从事名校理科班的数学教学和数学竞赛辅导工作。辅导学生参加全国高中数学联赛有数百人次获全国高中数学联赛一、二、三等奖，数十人被免试保送到清华大学、北京大学等名牌大学学习。十多人获CMO获一、二、三等奖，一人获IMO金牌。
-                　　特别是近年来大学试行自主招生，有很多同学通过上他的竞赛辅导课进入清华大学、北京大学、上海交通大学等。
+                {{ item.introduction }}
               </p>
             </div>
           </li>
         </ul>
         <!-- 精品课程 -->
-        <p class="dyb_section_title">精品课程</p>
         <ul class="dyb_jing">
-          <li>
+          <p class="dyb_section_title">{{ homeArr[1].channel_info.name }}</p>
+          <li v-for="(item,index) in homeArr[1].list" :key="index">
             <p class="dyb_title">
-              每时每课特级教师-自主招生冲刺讲座6-多元方程组与可转化为多元方程组问题
+              {{item.title}}
             </p>
-            <p class="dyb_time">共一课时</p>
+            <p class="dyb_time">共{{item.sales_base}}课时</p>
             <div class="dyb_thear">
               <img
-                src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png"
+                :src="item.teachers_list[0].teacher_avatar"
                 alt=""
               />
-              <span>杨德胜</span>
+              <span>{{item.teachers_list[0].teacher_name}}</span>
             </div>
             <div class="dyb_info">
-              <span>150人报名</span>
-              <p style="color: green; font-size: 0.14rem">免费</p>
+              <span>{{item.sales_num}}人报名</span>
+              <p style="color: green; font-size: 0.14rem" v-if="item.underlined_price==0">免费</p>
+              <p style="color: red; font-size: 0.14rem" v-if="item.underlined_price>0">{{item.underlined_price}}.00</p>
+            </div>
+            <img
+              :src="item.cover_img"
+              alt=""
+            />
+          </li>
+        </ul>
+        <!-- 推荐课程 -->
+        <ul class="dyb_jing">
+          <p class="dyb_section_title">{{ homeArr[3].channel_info.name }}</p>
+          <li v-for="(item,index) in homeArr[3].list" :key="index">
+            <p class="dyb_title">
+              {{item.title}}
+            </p>
+            <p class="dyb_time">共{{item.sales_base}}课时</p>
+            <div class="dyb_thear">
+              <img
+                :src="item.teachers_list[0].teacher_avatar"
+                alt=""
+              />
+              <span>{{item.teachers_list[0].teacher_name}}</span>
+            </div>
+            <div class="dyb_info">
+              <span>{{item.sales_num}}人报名</span>
+              <p style="color: green; font-size: 0.14rem" v-if="item.underlined_price==0">免费</p>
+              <p style="color: red; font-size: 0.14rem" v-if="item.underlined_price>0">{{item.underlined_price}}.00</p>
             </div>
           </li>
         </ul>
         <!-- 明星讲师 -->
-        <p class="dyb_section_title">明星讲师</p>
         <ul class="dyb_xing">
-          <li>
-            <img
-              src="https://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg"
-              alt=""
-            />
+          <p class="dyb_section_title">{{ homeArr[0].channel_info.name }}</p>
+          <li v-for="(item, index) in homeArr[0].list" :key="index">
+            <img :src="item.teacher_avatar" alt="" />
             <div>
-              <div>杨老师<span>M10</span></div>
+              <div>{{ item.teacher_name }}<span>M10</span></div>
               <p>
-                中学一级教师，16年教学经验。学校骨干教师，有丰富的教学经验及毕业班经验。擅长阅读写作教学，针对中考题型有独到的答题技巧和系统的作文教学。
-                6年网课教学经验，课中能很好的跟学生沟通互动，把握学生上课情况。
+                {{ item.introduction }}
               </p>
             </div>
           </li>
@@ -158,16 +151,28 @@
 export default {
   name: "",
   data() {
-    return {};
+    return {
+      // 首页数据
+      homeArr: [],
+    };
   },
   created() {},
   mounted() {
-    axios.get('http://120.53.31.103:84/api/app/recommend/appIndex').then(res=>{
-      console.log(res);
-    })
-    
+    this.banner(); // 获取轮播图
+    this.appIndex(); // 获取首页数据
   },
-  methods: {},
+  methods: {
+    // 获取轮播图
+    async banner() {
+      let { data: res } = await this.$ClientAPI.banner();
+    },
+    // 获取数据
+    async appIndex() {
+      let { data: res } = await this.$ClientAPI.appindex();
+      this.homeArr = res.data;
+      console.log(res);
+    },
+  },
 };
 </script>
 
@@ -236,7 +241,7 @@ section {
 }
 .dyb_ming {
   padding: 0 0.5rem;
-  height: 12.5rem;
+  min-height: 12.5rem;
 }
 .dyb_section_title {
   text-indent: 0.5rem;
@@ -275,6 +280,7 @@ section {
   font-size: 0.7rem;
 }
 .dyb_jing {
+  min-height: 10rem;
   padding: 0 0.6rem;
 }
 .dyb_jing li {
@@ -285,14 +291,23 @@ section {
   margin-top: 0.6rem;
   border-radius: 0.5rem;
 }
+.dyb_jing li > img {
+  position: absolute;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 50%;
+  top: 13.33333vw;
+  right: 4vw;
+}
 .dyb_jing li .dyb_title {
   padding-top: 1rem;
   font-size: 0.7rem;
+  height: 2rem;
 }
 .dyb_jing li .dyb_time {
   font-size: 0.6rem;
   height: 1.25rem;
-  line-height:1.25rem;
+  line-height: 1.25rem;
   color: #666;
 }
 .dyb_jing li .dyb_thear {
@@ -322,7 +337,8 @@ section {
   color: rgba(0, 0, 0, 0.45);
 }
 .dyb_xing {
-  padding: 0.25rem 0.40rem 0.85rem 0.4rem;
+  padding: 0.25rem 0.4rem 0.85rem 0.4rem;
+  min-height: 10rem;
 }
 .dyb_xing li {
   height: 3.5rem;
@@ -331,6 +347,7 @@ section {
   display: flex;
   align-items: center;
   padding: 0 0.7rem;
+  margin-bottom: 0.5rem;
 }
 .dyb_xing li > div {
   width: 10.17rem;
