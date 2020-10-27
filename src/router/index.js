@@ -12,34 +12,35 @@ const routes = [
     path: '/',
     name: 'Main',
     component: () => import('../views/Main.vue'),
-    children:[
+    children: [
       {
-        path:"/",
-        name:"Home",
-        component: () => import('../views/home/Home.vue')
+        path: "/",
+        name: "Home",
+        component: () => import('../views/home/Home.vue'),     // 首页
       },
       {
-        path:"/curriculum",
-        name:"Curriculum",
-        component: () => import('../views/curriculum/Curriculum.vue')
+        path: "/curriculum",
+        name: "Curriculum",
+        component: () => import('../views/curriculum/Curriculum.vue')  // 课程
       },
       {
-        path:"/appointmentRecord",
-        name:"AppointmentRecord",
-        component: () => import('../views/appointmentRecord/AppointmentRecord.vue')
+        path: "/appointmentRecord",
+        name: "AppointmentRecord",
+        component: () => import('../views/appointmentRecord/AppointmentRecord.vue') // 约课记录
       },
       {
-        path:"/practice",
-        name:"Practice",
-        component: () => import('../views/practice/Practice.vue')
+        path: "/practice",
+        name: "Practice",
+        component: () => import('../views/practice/Practice.vue')  // 练习
       },
       {
-        path:"/mine",
-        name:"Mine",
-        component: () => import('../views/mine/Mine.vue')
+        path: "/mine",
+        name: "Mine",
+        component: () => import('../views/mine/Mine.vue') // 底部组件
       }
     ]
-  }
+  },
+  {path:'/study-calendar',name:"StudyCalendar",component:()=>import ('../views/home/StudyCalendar.vue')}
 ]
 const router = new VueRouter({
   mode: 'history',

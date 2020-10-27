@@ -13,6 +13,18 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+*{
+  margin: 0;
+  padding: 0;
+}
+html,body{
+  height: 100%;
+}
+body{
+  font-size: 16px;
+}
+#app{
+  margin-bottom: 0.5rem;
+}
 </style>

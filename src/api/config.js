@@ -3,10 +3,12 @@ const urlType = {
     url:{
         // 例如：
         // LOGIN:""
+        // 轮播图
+       
     },
     type:{
         GET:"get",
-    POST:"post"
+        POST:"post"
     }
 }
 export default urlType;
