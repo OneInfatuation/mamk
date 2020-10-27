@@ -1,6 +1,8 @@
 <template>
   <div>
     <div class="curriculum_nav">
+
+
       <van-dropdown-menu>
         <!-- 分类 -->
         <van-dropdown-item title="分类">
@@ -76,9 +78,11 @@
       </van-dropdown-menu>
     </div>
 
+      <div style="width:100%;height:4rem"></div>
+
     <div class="curriculum_list">
       <div v-for="(item,index) in list" :key="index" class="curriculum_list_content" @click="gotoDetials(item)">
-        <h3>{{item.title}}</h3>
+        <p><b>{{item.title}}</b></p>
         <p><img src="../assets/curriculum/time.png"> {{item.date}} </p>
         <div class="curriculum_list_content_name">
           <p style="display:inline-block;width:2rem;height:2rem;margin-top:1rem"><img :src="item.pic" width="100%"></p>
@@ -141,7 +145,7 @@ export default {
   width: 100%;
   margin-top: 3rem;
   position: fixed;
-  top: 0px;
+  top: -1rem;
   left: 0px;
   font-size: 1.5rem;
 }
@@ -149,8 +153,8 @@ export default {
   width: 100%;
   height: 100%;
   background: #eee;
-    border: 1px solid transparent;
-    margin-top: 7rem;
+  border: 1px solid transparent;
+  margin: 2rem 0;
 }
 .curriculum_list_content{
   width: 90%;

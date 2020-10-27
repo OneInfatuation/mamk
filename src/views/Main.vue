@@ -36,24 +36,23 @@ export default {
       gotoEmail(){
         this.$router.push("/emails")
       }
-    }
   }
 }
 </script>
 <style lang='scss' scoped>
 .email {
-  width: 3rem;
-  height: 3rem;
+  width: 30px;
+  height: 30px;
   background: blue;
   border-radius: 50px;
-  line-height: 4rem;
+  line-height: 40px;
   position: fixed;
   bottom: 7rem;
   right: 0.2rem;
   text-align: center;
 }
 .email img {
-  width: 1.7rem;
-  height: 1.7rem;
+  width: 20px;
+  height: 20px;
 }
 </style>
