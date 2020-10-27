@@ -75,9 +75,9 @@ export default {
   width: 100%;
   height: 3rem;
   display: flex;
-  background: #eee;
   justify-content: space-around;
   align-items: center;
+  background: #eee;
   border-bottom: 1px solid #eee;
   position: fixed;
   top: 0px;

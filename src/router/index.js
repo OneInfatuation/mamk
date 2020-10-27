@@ -11,7 +11,6 @@ const routes = [{
     path: '/',
     name: 'Main',
     component: () => import('../views/Main.vue'),
-
     children: [{
         path: "/", //首页
         name: "Home",
@@ -102,6 +101,14 @@ const routes = [{
     }
   },
   {
+    path: "/study-calendar", //学习日历
+    name: "StudyCalendar",
+    component: () => import('../views/home/StudyCalendar.vue'),
+    meta: {
+      navTitle: "学习日历"
+    }
+  },
+  {
     path: "/emails", //邮件
     name: "Emails",
     component: () => import('../views/Emails.vue')
@@ -118,6 +125,21 @@ const routes = [{
     meta: {
       navTitle: "习题收藏"
     }
+  },
+  {
+    path: "/logins", //登录页面
+    name: "Logins",
+    component: () => import('../views/login/logins.vue'),
+  },
+  {
+    path: "/register", //注册页面
+    name: "Register",
+    component: () => import('../views/login/register.vue'),
+  },
+  {
+    path: "/password", //注册页面
+    name: "Password",
+    component: () => import('../views/login/password.vue'),
   },
 
 ]

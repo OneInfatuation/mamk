@@ -3,30 +3,30 @@
   <div class="dyb_home">
     <!-- 轮播图 -->
     <div class="dyb_swipe">
-      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe class="my-swipe" :autoplay="1500" indicator-color="white">
         <van-swipe-item
           ><img
             src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019MGNW3BtiS91569839576.jpg"
             alt=""
-            style="width: 100%"
+            style="width: 100%;height:100%"
         /></van-swipe-item>
         <van-swipe-item
           ><img
             src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019LnKumseuhw1569839569.jpg"
             alt=""
-            style="width: 100%"
+            style="width: 100%;height:100%"
         /></van-swipe-item>
         <van-swipe-item
           ><img
             src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/20193KAjU2cB6h1569839562.jpg"
             alt=""
-            style="width: 100%"
+            style="width: 100%;height:100%"
         /></van-swipe-item>
         <van-swipe-item
           ><img
             src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/20197Cxc53hktC1569839552.jpg"
             alt=""
-            style="width: 100%"
+            style="width: 100%;height:100%"
         /></van-swipe-item>
       </van-swipe>
     </div>
@@ -161,12 +161,17 @@ export default {
     return {};
   },
   created() {},
-  mounted() {},
+  mounted() {
+    axios.get('http://120.53.31.103:84/api/app/recommend/appIndex').then(res=>{
+      console.log(res);
+    })
+    
+  },
   methods: {},
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .dyb_home {
   width: 100%;
   height: 100%;
@@ -174,12 +179,12 @@ export default {
 }
 .dyb_swipe {
   width: 100%;
-  height: 1.7rem;
+  height: 8.5rem;
 }
 .my-swipe .van-swipe-item {
-  height: 1.7rem;
+  height: 8.5rem;
   color: #fff;
-  font-size: 20px;
+  font-size: 1rem;
   text-align: center;
   background-color: #39a9ed;
 }
@@ -206,19 +211,19 @@ export default {
   width: 29vw;
   height: 100%;
   background: #fff;
-  border-radius: 0.1rem;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .dyb_nav > div > div > p {
-  width: 0.15rem;
-  height: 0.15rem;
-  margin-bottom: 0.1rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 .dyb_nav > div > div > span {
-  font-size: 0.12rem;
+  font-size: 0.6rem;
   color: #8c8c8c;
 }
 .dyb_nav > div > div > p > img {
@@ -227,127 +232,127 @@ export default {
 }
 section {
   width: 100%;
-  min-height: 5rem;
+  min-height: 25rem;
 }
 .dyb_ming {
-  padding: 0 0.1rem;
-  height: 2.54rem;
+  padding: 0 0.5rem;
+  height: 12.5rem;
 }
 .dyb_section_title {
-  text-indent: 0.1rem;
-  font-size: 0.14rem;
-  border-left: 0.03rem solid #eb6100;
+  text-indent: 0.5rem;
+  font-size: 0.7rem;
+  border-left: 0.15rem solid #eb6100;
   color: #595959;
-  margin: 0.1rem 0;
+  margin: 0.5rem 0;
 }
 .dyb_ming > li {
   width: 100%;
-  height: 0.69rem;
+  height: 3.5rem;
   background: #fff;
   display: flex;
   align-items: center;
-  margin-top: 0.1rem;
-  border-radius: 0.05rem;
+  margin-top: 0.5rem;
+  border-radius: 0.25rem;
 }
 .dyb_ming > li > img {
-  width: 0.34rem;
-  height: 0.34rem;
+  width: 1.7rem;
+  height: 1.7rem;
   border-radius: 50%;
-  margin-left: 0.15rem;
+  margin-left: 0.75rem;
 }
 .dyb_ming > li > div {
-  width: 2.34rem;
-  margin-left: 0.1rem;
+  width: 11.7rem;
+  margin-left: 0.5rem;
 }
 .dyb_ming > li > div > .dyb_text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.12rem;
+  font-size: 0.6rem;
   color: #b7b7b7;
 }
 .dyb_ming > li > div > .dyb_title {
-  font-size: 0.14rem;
+  font-size: 0.7rem;
 }
 .dyb_jing {
-  padding: 0 0.12rem;
+  padding: 0 0.6rem;
 }
 .dyb_jing li {
   background: #fff;
-  height: 1.8rem;
+  height: 9rem;
   position: relative;
-  padding: 0 0.11rem;
-  margin-top: 0.12rem;
-  border-radius: 0.1rem;
+  padding: 0 0.55rem;
+  margin-top: 0.6rem;
+  border-radius: 0.5rem;
 }
 .dyb_jing li .dyb_title {
-  padding-top: 0.2rem;
-  font-size: 0.14rem;
+  padding-top: 1rem;
+  font-size: 0.7rem;
 }
 .dyb_jing li .dyb_time {
-  font-size: 0.12rem;
-  height: 0.256rem;
-  line-height: 0.256rem;
+  font-size: 0.6rem;
+  height: 1.25rem;
+  line-height:1.25rem;
   color: #666;
 }
 .dyb_jing li .dyb_thear {
   display: flex;
   align-items: center;
-  height: 0.556rem;
+  height: 2.6rem;
 }
 .dyb_jing li .dyb_thear span {
   color: rgba(0, 0, 0, 0.45);
-  font-size: 0.12rem;
-  margin-left: 0.1rem;
+  font-size: 0.6rem;
+  margin-left: 0.5rem;
 }
 .dyb_jing li .dyb_thear img {
-  width: 0.23rem;
-  height: 0.23rem;
+  width: 1.15rem;
+  height: 1.15rem;
   border-radius: 50%;
 }
 .dyb_jing li .dyb_info {
-  border-top: 0.01rem solid #eee;
+  border-top: 0.05rem solid #eee;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 0.37rem;
+  height: 1.75rem;
 }
 .dyb_jing li .dyb_info span {
-  font-size: 0.12rem;
+  font-size: 0.6rem;
   color: rgba(0, 0, 0, 0.45);
 }
 .dyb_xing {
-  padding: 0.05rem 0.08rem 0.17rem 0.08rem;
+  padding: 0.25rem 0.40rem 0.85rem 0.4rem;
 }
 .dyb_xing li {
-  height: 0.69rem;
-  border-radius: 0.05rem;
+  height: 3.5rem;
+  border-radius: 0.25rem;
   background: #fff;
   display: flex;
   align-items: center;
-  padding: 0 0.128rem;
+  padding: 0 0.7rem;
 }
 .dyb_xing li > div {
-  width: 2.34rem;
+  width: 10.17rem;
 }
 .dyb_xing li > div > p {
   color: #b7b7b7;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.12rem;
+  font-size: 0.6rem;
 }
 .dyb_xing li > img {
-  width: 0.34rem;
-  height: 0.34rem;
+  width: 1.7rem;
+  height: 1.7rem;
   border-radius: 50%;
-  margin-right: 0.1rem;
+  margin-right: 0.5rem;
 }
 .dyb_xing li > div {
-  font-size: 0.14rem;
+  font-size: 0.7rem;
 }
 .dyb_xing li > div > div > span {
-  margin-left: 0.1rem;
+  margin-left: 0.5rem;
   color: #ea7a2f;
 }
 </style>

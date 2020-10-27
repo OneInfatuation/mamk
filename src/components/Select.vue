@@ -158,8 +158,8 @@ export default {
 }
 .curriculum_list_content{
   width: 90%;
-  height: 12rem;
-  margin: 10px auto;
+  height: 9.7rem;
+  margin: 5px auto;
   margin-bottom: 3rem;
   background: white;
   border-radius: 10px;
