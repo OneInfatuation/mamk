@@ -117,12 +117,12 @@ const routes = [{
     component: () => import('../views/Emails.vue')
   },
   {
-    path: "/details", //习题收藏页面
+    path: "/details", //详情页面
     name: "Details",
     component: () => import('../views/curriculum/details.vue')
   },
   {
-    path: "/search", //习题收藏页面
+    path: "/search", //搜索页面
     name: "search",
     component: () => import('../views/curriculum/search.vue'),
     meta: {

@@ -15,7 +15,6 @@
       <van-tabbar-item icon="comment" to="/practice">练习</van-tabbar-item>
       <van-tabbar-item icon="friends" to="/mine">我的</van-tabbar-item>
     </van-tabbar>
-   
   </div>
 </template>
 <script>

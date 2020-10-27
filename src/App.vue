@@ -16,17 +16,18 @@ export default {
 </script>
 
 <style>
-*{
+* {
   margin: 0;
   padding: 0;
 }
-html,body{
+html,
+body {
   height: 100%;
 }
-#app{
+#app {
   margin-bottom: 2.5rem;
 }
-body{
+body {
   font-size: 16px;
 }
 </style>
