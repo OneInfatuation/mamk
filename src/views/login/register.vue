@@ -4,10 +4,7 @@
       <img
         class="login_logo_img"
         src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019pILfAg7Avr1567732916.png"
-<<<<<<< HEAD
-=======
         alt=""
->>>>>>> b63895da7403ec88acca911299d1723bbd0cbff9
       />
     </div>
     <div class="register_from">
@@ -64,11 +61,8 @@ export default {
 .login_logo {
   width: 100%;
   height: 6rem;
-<<<<<<< HEAD
-=======
   // margin-left: 2.8rem;
   // margin-top: 2.5rem;
->>>>>>> b63895da7403ec88acca911299d1723bbd0cbff9
   display: inline-flex;
   align-items: center;
   justify-content: center;

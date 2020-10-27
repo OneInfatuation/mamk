@@ -227,23 +227,22 @@ export default {
   width: 100%;
   height: 100%;
   background: rgba(238, 238, 238, 0.835);
-  border: 1px solid transparent;
+  border-top: 1px solid transparent;
   margin: 1rem 0;
   color: grey;
 }
 .curriculum_list_content {
   width: 90%;
   height: 11rem;
-  margin: 5px auto;
-  margin-bottom: 3rem;
+  margin: 3px auto;
+  margin-bottom: 1rem;
   background: white;
   border-radius: 3px;
-  border: 1px solid transparent;
 }
 .curriculum_list_content > p,
 hr {
-  width: 90%;
-  margin: 7px auto;
+  width: 95%;
+  margin: 0.3rem auto;
 }
 .curriculum_list_content_name {
   width: 90%;
