@@ -2,7 +2,7 @@
   <div>
     <NavTitle></NavTitle>
     <van-dropdown-menu>
-      <van-dropdown-item title="类型不限" v-model="value1">
+      <van-dropdown-item title="类型不限" v-model="value1" @change="onChange">
           <template #default>
               <div>
                   <p v-for="(item,index) in option1" :key="index"
@@ -47,6 +47,9 @@ export default {
     };
   },
   methods: {
+      onChange(value){
+          console.log(value);
+      }
   },
 };
 </script>
