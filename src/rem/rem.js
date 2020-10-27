@@ -1,5 +1,5 @@
 // // rem配置
-(function(document,window){
+function rem(document,window){
     var document = document.documentElement;//声明变量 获取HTML根元素
     // orientationchange 事件是在用户水平或者垂直翻转设备（即方向发生变化）时触发的事件
     // onresize 事件会在窗口或框架被调整大小时发生
@@ -24,4 +24,7 @@
     // 当初始的 HTML 文档被完全加载和解析完成之后，
     // DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完全加载。
     document.addEventListener('DOMContentLoaded',recalc,false);
-})(document,window)
+}
+rem(document,window)
+window.onresize=rem
+
