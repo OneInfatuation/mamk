@@ -40,19 +40,17 @@
       </van-dropdown-item>
     </van-dropdown-menu>
     <!-- https://wap.365msmk.com/img/empty.0d284c2e.png -->
-    <van-empty
-      class="custom-image"
-    >
-        <template #image>
-            <div class="waw_empty_img">
-                <img src="https://wap.365msmk.com/img/empty.0d284c2e.png">
-            </div>
-        </template>
-        <template #description>
-            <div>
-                <p><small>该时段您没有留下测评记录哦！</small></p>
-            </div>
-        </template>
+    <van-empty class="custom-image">
+      <template #image>
+        <div class="waw_empty_img">
+          <img src="https://wap.365msmk.com/img/empty.0d284c2e.png" />
+        </div>
+      </template>
+      <template #description>
+        <div>
+          <p><small>该时段您没有留下测评记录哦！</small></p>
+        </div>
+      </template>
     </van-empty>
   </div>
 </template>
@@ -83,9 +81,9 @@ export default {
     onClick(value) {
       this.value1 = value;
     },
-    onClickTime(value){
+    onClickTime(value) {
       this.value2 = value;
-    }
+    },
   },
 };
 </script>
