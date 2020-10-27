@@ -17,9 +17,8 @@
     </van-tabbar>
 
     <div class="email" @click="gotoEmail">
-        <img src="../assets/curriculum/youjian.png">
+      <img src="../assets/curriculum/youjian.png" />
     </div>
-
   </div>
 </template>
 <script>
@@ -34,7 +33,6 @@ export default {
       this.active = Number(a);
       sessionStorage.setItem("mainIndex", a);
     },
-    methods:{
       gotoEmail(){
         this.$router.push("/emails")
       }
@@ -42,7 +40,7 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-.email{
+.email {
   width: 3rem;
   height: 3rem;
   background: blue;
@@ -53,9 +51,8 @@ export default {
   right: 0.2rem;
   text-align: center;
 }
-.email img{
+.email img {
   width: 1.7rem;
   height: 1.7rem;
 }
-
 </style>
