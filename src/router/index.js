@@ -39,6 +39,22 @@ const routes = [
         component: () => import('../views/mine/Mine.vue')
       }
     ]
+  },
+  // 搜索页面路由
+  {
+    path:"/search",
+    name:"Search",
+    component: ()=> import("../views/curriculum/search")
+  },
+  {
+    path:"/emails",
+    name:"Emails",
+    component: ()=> import("../views/Emails")
+  },
+  {
+    path:"/details",
+    name:"details",
+    component: ()=> import("../views/curriculum/details")
   }
 ]
 const router = new VueRouter({
