@@ -7,5 +7,7 @@ const ClientAPI = {
     // Login(params){
     //    return requset(urlType.type.GET,urlType.url.LOGIN,params) 
     // }
+
+    
 }
 export default ClientAPI;
