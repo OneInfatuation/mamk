@@ -233,17 +233,17 @@ export default {
 }
 .curriculum_list_content {
   width: 90%;
-  height: 11rem;
-  margin: 5px auto;
-  margin-bottom: 3rem;
+  height: 9rem;
+  margin:0.2rem auto;
+  margin-bottom: 1rem;
   background: white;
-  border-radius: 3px;
+  border-radius: 0.5rem;
   border: 1px solid transparent;
 }
 .curriculum_list_content > p,
 hr {
-  width: 90%;
-  margin: 7px auto;
+  width: 95%;
+  margin: 0 auto;
 }
 .curriculum_list_content_name {
   width: 90%;

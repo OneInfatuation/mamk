@@ -33,7 +33,7 @@ export default {
             console.log("111`1")
         },  
         goto(){
-            this.$router.push("/curriculum")
+            this.$router.go(-1)
         }
     }
 }

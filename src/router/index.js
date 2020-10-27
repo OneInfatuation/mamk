@@ -132,12 +132,12 @@ const routes = [{
   {
     path: "/logins", //登录页面
     name: "Logins",
-    component: () => import('../views/login/Logins.vue'),
+    component: () => import('../views/login/logins.vue'),
   },
   {
     path: "/register", //注册页面
     name: "Register",
-    component: () => import('../views/login/Register.vue'),
+    component: () => import('../views/login/register.vue'),
   },
   {
     path: "/password", //注册页面
