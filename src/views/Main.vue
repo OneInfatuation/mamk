@@ -39,7 +39,7 @@ export default {
         this.$router.push("/emails")
       }
     }
-};
+}
 </script>
 <style lang='scss' scoped>
 .email{
