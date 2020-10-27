@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="search_header">
-          <p  @click="goto"><img src="../../assets/curriculum/fanhui.png"></p>
+          <p @click="goto"><img src="../../assets/curriculum/fanhui.png"></p>
           <p class="search_header_input"><input placeholder="请输入内容" v-model="kw" @input="change"></p>
           <p @click="goto" v-if="isShow">取消</p>
           <p @click="search" v-if="!isShow">搜索</p>
@@ -50,7 +50,7 @@ export default {
     font-size: 1rem;
 }
 .search_header p{
-    margin: 0px 20px;
+    margin: 0px 15px;
 }
 .search_header img{
     width: 1.5rem;

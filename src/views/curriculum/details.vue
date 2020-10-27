@@ -6,6 +6,7 @@
       <p><img src="../../assets/curriculum/fenxiang.png" /></p>
     </div>
     <div class="details_content">
+        <div style="width:100%;height:1rem"></div>
       <!-- 主要数据 -->
       <div class="details_content_message">
         <h3>{{ title }}</h3>
@@ -73,7 +74,6 @@ export default {
 .details_nav {
   width: 100%;
   height: 3rem;
-  margin: 0px 1rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -116,5 +116,6 @@ export default {
     background: orange;
     color: white;
     font-size: 1.5rem;
+    border: none;
 }
 </style>
