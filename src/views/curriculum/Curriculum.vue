@@ -49,6 +49,7 @@ export default {
     right: 1rem;
     top: 0.3rem;
     margin: 0px;
+    color: grey;
 }
 .curriculum_header_search img{
     width: 1rem;
