@@ -10,103 +10,44 @@
                 <!-- 年级分类 -->
                 <div class="selectBox">
                   <p>年级</p>
-                  <div>
-                    <van-tag
+                  <div class="classiyTag">
+                    <div
                       class="tag"
-                      type="primary"
-                      size="large"
-                      color="#eee"
-                      text-color="black"
-                      >初一</van-tag
+                      v-for="(item, index) in taglist1"
+                      :key="index"
+                      :class="hmwActiveNum3 == index ? 'hmwSpanActive' : ''"
+                      span="6"
+                      @click="hmwActiveNum3 = index"
                     >
-                    <van-tag
-                      class="tag"
-                      type="primary"
-                      size="large"
-                      color="#eee"
-                      text-color="black"
-                      >初二</van-tag
-                    >
-                    <van-tag
-                      class="tag"
-                      type="primary"
-                      size="large"
-                      color="#eee"
-                      text-color="black"
-                      >初三</van-tag
-                    >
-                    <van-tag
-                      class="tag"
-                      type="primary"
-                      size="large"
-                      color="#eee"
-                      text-color="black"
-                      >高一</van-tag
-                    >
-                    <van-tag
-                      class="tag"
-                      type="primary"
-                      size="large"
-                      color="#eee"
-                      text-color="black"
-                      >高二</van-tag
-                    >
+                      <span>{{ item }}</span>
+                    </div>
                   </div>
                 </div>
                 <!-- 学科分类 -->
                 <div class="selectBox">
                   <p>学科</p>
-                  <div>
-                    <van-tag
+                  <div class="classiyTag">
+                    <div
                       class="tag"
-                      type="primary"
-                      size="large"
-                      color="#eee"
-                      text-color="black"
-                      >语文</van-tag
+                      v-for="(item, index) in taglist2"
+                      :key="index"
+                      :class="hmwActiveNum4 == index ? 'hmwSpanActive' : ''"
+                      span="6"
+                      @click="hmwActiveNum4 = index"
                     >
-                    <van-tag
-                      class="tag"
-                      type="primary"
-                      size="large"
-                      color="#eee"
-                      text-color="black"
-                      >数学</van-tag
-                    >
-                    <van-tag
-                      class="tag"
-                      type="primary"
-                      size="large"
-                      color="#eee"
-                      text-color="black"
-                      >英语</van-tag
-                    >
-                    <van-tag
-                      class="tag"
-                      type="primary"
-                      size="large"
-                      color="#eee"
-                      text-color="black"
-                      >物理</van-tag
-                    >
-                    <van-tag
-                      class="tag"
-                      type="primary"
-                      size="large"
-                      color="#eee"
-                      text-color="black"
-                      >化学</van-tag
-                    >
+                    <span>{{ item }}</span>
+                    </div>
                   </div>
                 </div>
                 <!-- 按钮 -->
                 <div>
-                  <van-button type="primary" class="selectBox_button"
-                    >重置</van-button
+                  <button class="selectBox_button">重置</button>
+                  <button
+                    class="selectBox_button"
+                    style="background: orange; color: white"
                   >
-                  <van-button type="primary" class="selectBox_button"
-                    >选择</van-button
-                  >
+                    选择
+                  </button>
                 </div>
               </div>
             </template>
@@ -175,7 +116,7 @@
           </p>
           <p>{{ item.name }}</p>
         </div>
-        <hr />
+        <hr style="color: rgba(238, 238, 238, 0.835)" />
         <p>{{ item.number }}人已报名 <span class="free">免费</span></p>
       </div>
     </div>
@@ -194,6 +135,8 @@ export default {
         { text: "价格从低到高", value: 3 },
         { text: "价格从高到低", value: 4 },
       ],
+      taglist1: ["初一", "初二", "初三", "高一", "高二"],
+      taglist2: ["语文", "数学", "英语", "物理", "化学"],
       list: [
         {
           title: "李老师16号到22号地理大课堂开课了",
@@ -246,7 +189,8 @@ export default {
       ],
       hmwActiveNum1: 0,
       hmwActiveNum2: 0,
-      // hmwActiveNum3: 0,
+      hmwActiveNum3: 0,
+      hmwActiveNum4: 0,
     };
   },
   methods: {
@@ -282,25 +226,24 @@ export default {
 .curriculum_list {
   width: 100%;
   height: 100%;
-  background: #eee;
+  background: rgba(238, 238, 238, 0.835);
   border: 1px solid transparent;
-  margin: 2rem 0;
+  margin: 1rem 0;
   color: grey;
 }
 .curriculum_list_content {
   width: 90%;
-  height: 9.7rem;
+  height: 11rem;
   margin: 5px auto;
   margin-bottom: 3rem;
   background: white;
-  border-radius: 10px;
+  border-radius: 3px;
   border: 1px solid transparent;
 }
 .curriculum_list_content > p,
-h3,
 hr {
   width: 90%;
-  margin: 3px auto;
+  margin: 7px auto;
 }
 .curriculum_list_content_name {
   width: 90%;
@@ -332,6 +275,14 @@ hr {
   text-align: center;
   background: #f5f5f5;
 }
+.classiyTag {
+  width: 100%;
+  height: 6rem;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
 .selectBox {
   width: 90%;
   height: 8rem;
@@ -339,13 +290,18 @@ hr {
   margin: 10px auto;
 }
 .selectBox .tag {
-  width: 30px;
-  height: 20px;
-  margin: 5px 20px;
+  width: 4rem;
+  height: 1.5rem;
+  margin: 5px 10px;
+  background: #eee;
+  text-align: center;
 }
 .selectBox_button {
-  width: 40%;
-  margin: 10px;
+  width: 45%;
+  height: 2.4rem;
+  margin: 10px 5px;
+  border-radius: 5px;
+  border: none;
 }
 .hmwSpanActive span {
   color: red;

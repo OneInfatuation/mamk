@@ -70,7 +70,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .details_nav {
   width: 100%;
   height: 3rem;
@@ -93,14 +93,17 @@ export default {
   margin: 0 auto;
   background: white;
 }
-.details_content_message p,h5{
+.details_content_message p,h3{
     margin: 10px 0px;
     border-top: 1px solid transparent;
 }
 .details_content_person{
     width: 90%;
     height: 10rem;
-    margin: 0px auto;
+    margin: 10px auto;
+}
+.details_content_person p{
+    margin: 10px 0px;
 }
 .enter{
     width: 100%;
