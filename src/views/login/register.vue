@@ -4,6 +4,7 @@
       <img
         class="login_logo_img"
         src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019pILfAg7Avr1567732916.png"
+        alt=""
       />
     </div>
     <div class="register_from">

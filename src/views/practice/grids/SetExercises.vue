@@ -7,7 +7,13 @@
           <div>
             <van-row>
               <van-col span="6">
-                
+                <van-sidebar v-model="activeKey">
+                  <van-sidebar-item
+                    v-for="(item, index) in option1"
+                    :key="index"
+                    :title="item.text"
+                  />
+                </van-sidebar>
               </van-col>
               <van-col span="18"></van-col>
             </van-row>
@@ -33,6 +39,19 @@
         </template>
       </van-dropdown-item>
     </van-dropdown-menu>
+    <!-- https://wap.365msmk.com/img/empty.0d284c2e.png -->
+    <van-empty class="custom-image">
+      <template #image>
+        <div class="waw_empty_img">
+          <img src="https://wap.365msmk.com/img/empty.0d284c2e.png" />
+        </div>
+      </template>
+      <template #description>
+        <div>
+          <p><small>请稍等，套卷正在赶来的路上啦</small></p>
+        </div>
+      </template>
+    </van-empty>
   </div>
 </template>
 <script>
@@ -43,14 +62,14 @@ export default {
   },
   data() {
     return {
-      
+      activeKey: 1,
       value1: 1,
       value2: "a",
       option1: [
-        { text: "全部", value: 1 },
-        { text: "中考真题", value: 2 },
-        { text: "化学", value: 3 },
-        { text: "英语", value: 4 },
+        { text: "全部", value: 0 },
+        { text: "中考真题", value: 1 },
+        { text: "化学", value: 2 },
+        { text: "英语", value: 3 },
       ],
       option2: [
         { text: "全部", value: "a" },

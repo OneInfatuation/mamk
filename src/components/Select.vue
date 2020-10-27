@@ -107,7 +107,7 @@
         @click="gotoDetials(item)"
       >
         <p>
-          <b>{{ item.title }}</b>
+          <b style="color:black">{{ item.title }}</b>
         </p>
         <p><img src="../assets/curriculum/time.png" /> {{ item.date }}</p>
         <div class="curriculum_list_content_name">
@@ -227,7 +227,7 @@ export default {
   width: 100%;
   height: 100%;
   background: rgba(238, 238, 238, 0.835);
-  border: 1px solid transparent;
+  border-top: 1px solid transparent;
   margin: 1rem 0;
   color: grey;
 }
@@ -246,7 +246,7 @@ hr {
   margin: 0 auto;
 }
 .curriculum_list_content_name {
-  width: 90%;
+  width: 100%;
   height: 4rem;
   margin: 3px 1.5rem;
   display: inline-flex;
