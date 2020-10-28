@@ -132,7 +132,7 @@ const routes = [{
   {
     path: "/logins", //登录页面
     name: "Logins",
-    component: () => import('../views/login/logins.vue'),
+    component: () => import('../views/login/Login.vue'),
   },
   {
     path: "/register", //注册页面

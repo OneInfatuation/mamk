@@ -25,7 +25,8 @@ const ClientAPI = {
     // 特色课分类
     // courseClassify(){
     //     return requset(urlType.type.GET,urlType.url.courseClassify)
-    // },
+    // }
+    },
     // 特色课数据获取
     courseBasis(){
         return requset(urlType.type.GET,urlType.url.courseBasis)
