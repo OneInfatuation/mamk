@@ -17,7 +17,9 @@ const urlType = {
     LOGIN:"/api/app/login",    
     // contentCollect:"/api/app/myStudy/2" 
     // 课程详情数据获取
-    courseInfo:"/api/app/courseInfo"
+    courseInfo:"/api/app/courseInfo",
+    // 关注老师数据接收
+    Guanzhu:"/api/app/collect"
 
     },
     type: {

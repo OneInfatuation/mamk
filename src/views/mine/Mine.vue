@@ -17,17 +17,17 @@
                 <span v-show="user.length > 0">{{ user }}</span>
               </div>
             </div>
-            <button class="button">去约课</button>
+            <button class="button" @click="toyueke">去约课</button>
           </div>
           <van-grid clickable :column-num="3">
-            <van-grid-item to="/">
+            <van-grid-item to="/curriculum">
               <template #default>
                 <p class="main_cant">0.00</p>
                 <p class="main_title">我的特色课</p>
                 <p class="main_text">已购特色课程的学习</p>
               </template>
             </van-grid-item>
-            <van-grid-item to="/">
+            <van-grid-item to="/coaching">
               <template #default>
                 <p class="main_cant">0.00</p>
                 <p class="main_title">一对一辅导</p>
@@ -45,7 +45,7 @@
         </div>
       </div>
       <!--  -->
-      <div class="main_noticeBar_container">
+      <div class="main_noticeBar_container" @click="popup">
         <div class="main_noticeBar_wrapper">
           <div class="main_noticeBar_wrapper_icon">
             <div class="noticeBar_icon">
@@ -67,12 +67,12 @@
           <p>课程相关</p>
         </div>
         <van-grid>
-          <van-grid-item icon="friends-o" text="关注的老师" />
+          <van-grid-item icon="friends-o" text="关注的老师" @click="toguanzhu"/>
           <van-grid-item icon="star-o" text="我的收藏" />
         </van-grid>
         <div class="list_title"><p>订单相关</p></div>
         <van-grid>
-          <van-grid-item icon="notes-o" text="课程订单" />
+          <van-grid-item icon="notes-o" text="课程订单" @click="tokecheng"/>
           <van-grid-item icon="notes-o" text="会员订单" @click="toHuiyuan" />
           <van-grid-item icon="notes-o" text="约课订单" @click="toYueke" />
         </van-grid>
@@ -90,6 +90,7 @@
           <van-grid-item icon="setting-o" text="设置" @click="toshezhi" />
         </van-grid>
       </div>
+      <van-popup v-model="show"><img class="popup" src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2020OPv5ksBfFx1603875973.png" alt=""></van-popup>
       <div class="wei"></div>
     </div>
   </div>
@@ -103,35 +104,61 @@ export default {
         path: "/huiyuan",
       });
     },
+    // 点击进入约课订单页面
     toYueke() {
       this.$router.push({
         path: "/yueke",
       });
     },
+    // 点击进入优惠券页面
     toYuiquan() {
       this.$router.push({
         path: "/youhuiquan",
       });
     },
+    // 点击进入客服页面
     tokefu() {
       this.$router.push({
         path: "/emails",
       });
     },
+    // 点击进入学习卡页面
     toXuexika() {
       this.$router.push({
         path: "/xuexika",
       });
     },
+    // 点击进入意见反馈页面
     toyijian() {
       this.$router.push({
         path: "/yijian",
       });
     },
+    // 点击进入设置页面
     toshezhi() {
       this.$router.push({
         path: "/shezhi",
       });
+    },
+    // 点击进入课程订单页面
+    tokecheng() {
+      this.$router.push({
+        path: "/kechengdd",
+      });
+    },
+     toguanzhu() {
+      this.$router.push({
+        path: "/guanzhu",
+      });
+    },
+ toyueke(){
+    this.$router.push({
+        path: "/coaching",
+      });
+ },
+    // 弹出框显示
+    popup(){
+      this.show=!this.show
     },
     onClickLogin() {
       //点击注册/登录
@@ -146,6 +173,7 @@ export default {
   data() {
     return {
       user: "", //显示的用户名（手机号）
+      show:false,
     };
   },
   mounted() {
@@ -291,5 +319,9 @@ export default {
     width: 100%;
     background: rgb(221, 220, 220);
   }
+}
+.popup{
+  width: 90vw;
+  height: 90vh;
 }
 </style>

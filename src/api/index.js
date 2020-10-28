@@ -31,5 +31,8 @@ const ClientAPI = {
     courseInfo(params){
         return requset(urlType.type.GET,urlType.url.courseInfo,params)
     },  
+    guanzhus(params){
+        return requset(urlType.type.GET,urlType.url.Guanzhu,{params})
+    }
 }
 export default ClientAPI;

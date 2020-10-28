@@ -3,7 +3,19 @@
 <NavTitle></NavTitle>
 <div class="shezhi_box">
 <div class="shezhimm">
+<van-cell >
+  <!-- 使用 title 插槽来自定义标题 -->
+  <template #title>
+    <span class="custom-title">设置密码</span>
 
+  </template>
+   <template #right-icon>
+    <van-icon name="arrow" class="search-icon" />
+  </template>
+</van-cell>
+</div>
+<div class="box-button">
+<van-button type="warning" size="large">警告按钮</van-button>
 </div>
 </div>
   </div>
@@ -19,15 +31,10 @@ components:{
 </script>
 
 <style lang='scss' scoped>
-.shezhi_box{
-    background: rgb(221, 220, 220);
-    width: 100%;
-    height: 91.5vh;
-    .shezhimm{
-     width: 100%;
-     height:6rem;
-     background: rgb(255, 253, 253);
-     padding-top: 4rem;
-    }
+.box-button{
+  width: 90%;
+margin: 0 auto;
+margin-top: 4rem;
 }
+
 </style>
