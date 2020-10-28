@@ -13,8 +13,8 @@
                 src="https://img.yzcdn.cn/vant/cat.jpeg"
               />
               <div @click="onClickLogin">
-                <span v-show = "user.length<=0">登录 / 注册</span>
-                <span v-show = "user.length>0">{{user}}</span>
+                <span v-show="user.length <= 0">登录 / 注册</span>
+                <span v-show="user.length > 0">{{ user }}</span>
               </div>
             </div>
             <button class="button">去约课</button>
@@ -85,9 +85,9 @@
         <div class="list_title"><p>自助服务</p></div>
         <van-grid>
           <van-grid-item icon="volume-o" text="我的消息" />
-          <van-grid-item icon="envelop-o" text="意见反馈"  @click="toyijian"/>
+          <van-grid-item icon="envelop-o" text="意见反馈" @click="toyijian" />
           <van-grid-item icon="friends-o" text="在线客服" @click="tokefu" />
-          <van-grid-item icon="setting-o" text="设置" @click="toshezhi"/>
+          <van-grid-item icon="setting-o" text="设置" @click="toshezhi" />
         </van-grid>
       </div>
       <div class="wei"></div>
@@ -128,43 +128,43 @@ export default {
         path: "/yijian",
       });
     },
-    toshezhi(){
-       this.$router.push({
+    toshezhi() {
+      this.$router.push({
         path: "/shezhi",
       });
+    },
+    onClickLogin() {
+      //点击注册/登录
+      var token = localStorage.getItem("token");
+      if (token) {
+        this.$router.push("/personalInformation");
+      } else {
+        this.$router.push("/login");
+      }
     },
   },
   data() {
     return {
-      user:"",//显示的用户名（手机号）
-    }
+      user: "", //显示的用户名（手机号）
+    };
   },
   mounted() {
     //读取用户名
-      var users = localStorage.getItem("user");
-      if(users){
-        this.user =users;
-      }
-  },
-  methods: {
-    onClickLogin(){//点击注册/登录
-      var token = localStorage.getItem("token");
-        if(token){
-          this.$router.push("/personalInformation");
-        }else{
-          this.$router.push("/login");
-        }
+    var users = localStorage.getItem("user");
+    if (users) {
+      this.user = users;
     }
   },
-  beforeRouteEnter (to, from, next) {//组件级路由守卫
+  beforeRouteEnter(to, from, next) {
+    //组件级路由守卫
     var token = localStorage.getItem("token");
     // console.log(token);
-    if(token){
-      next()
-    }else{
-      next("/login")
+    if (token) {
+      next();
+    } else {
+      next("/login");
     }
-  }
+  },
 };
 </script>
 <style lang='scss' scoped>

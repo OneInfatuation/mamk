@@ -100,14 +100,11 @@
               >
                 免费
               </p>
-              <p
-                style="color: red; font-size: 0.14rem"
-                v-if="item.price > 0"
-              >
+              <p style="color: red; font-size: 0.14rem" v-if="item.price > 0">
                 {{ item.price }}.00
               </p>
             </div>
-            <img :src="item.cover_img" alt="" />
+            <img :src="item.cover_img" alt="" v-if="token?true:false" />
           </li>
         </ul>
         <!-- 推荐课程 -->
@@ -116,9 +113,7 @@
           <li
             v-for="(item, index) in homeArr[3].list"
             :key="index"
-            @click="
-              $router.push(`/course-detail?id=${item.id}`)
-            "
+            @click="$router.push(`/course-detail?id=${item.id}`)"
           >
             <p class="dyb_title">
               {{ item.title }}
@@ -133,13 +128,8 @@
               <p
                 style="color: green; font-size: 0.14rem"
                 v-if="item.price == 0"
-              >
-                
-              </p>
-              <p
-                style="color: red; font-size: 0.14rem"
-                v-if="item.price > 0"
-              >
+              >免费</p>
+              <p style="color: red; font-size: 0.14rem" v-if="item.price > 0">
                 {{ item.price }}.00
               </p>
             </div>
@@ -171,6 +161,8 @@ export default {
     return {
       // 首页数据
       homeArr: [],
+      // 获取token
+      token:localStorage.getItem('token')
     };
   },
   created() {},
@@ -202,6 +194,7 @@ export default {
   width: 100%;
   height: 100%;
   background: #f0f2f5;
+  margin-bottom: 2.5rem;
 }
 .dyb_swipe {
   width: 100%;
@@ -393,8 +386,7 @@ section {
   margin-left: 0.5rem;
   color: #ea7a2f;
 }
-#app{
+#app {
   margin-bottom: 2.5rem;
 }
-
 </style>
