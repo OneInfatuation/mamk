@@ -73,21 +73,21 @@
         <div class="list_title"><p>订单相关</p></div>
         <van-grid>
           <van-grid-item icon="notes-o" text="课程订单" />
-          <van-grid-item icon="notes-o" text="会员订单" />
-          <van-grid-item icon="notes-o" text="约课订单" />
+          <van-grid-item icon="notes-o" text="会员订单" @click="toHuiyuan" />
+          <van-grid-item icon="notes-o" text="约课订单" @click="toYueke" />
         </van-grid>
         <div class="list_title"><p>我的账户</p></div>
         <van-grid>
-          <van-grid-item icon="coupon-o" text="优惠券" />
-          <van-grid-item icon="credit-pay" text="学习卡" />
+          <van-grid-item icon="coupon-o" text="优惠券" @click="toYuiquan" />
+          <van-grid-item icon="credit-pay" text="学习卡" @click="toXuexika" />
           <van-grid-item icon="diamond-o" text="会员" />
         </van-grid>
         <div class="list_title"><p>自助服务</p></div>
         <van-grid>
           <van-grid-item icon="volume-o" text="我的消息" />
-          <van-grid-item icon="envelop-o" text="意见反馈" />
-          <van-grid-item icon="friends-o" text="在线客服" />
-          <van-grid-item icon="setting-o" text="设置" />
+          <van-grid-item icon="envelop-o" text="意见反馈"  @click="toyijian"/>
+          <van-grid-item icon="friends-o" text="在线客服" @click="tokefu" />
+          <van-grid-item icon="setting-o" text="设置" @click="toshezhi"/>
         </van-grid>
       </div>
       <div class="wei"></div>
@@ -96,6 +96,44 @@
 </template>
 <script>
 export default {
+  methods: {
+    // 跳转至会员订单页
+    toHuiyuan() {
+      this.$router.push({
+        path: "/huiyuan",
+      });
+    },
+    toYueke() {
+      this.$router.push({
+        path: "/yueke",
+      });
+    },
+    toYuiquan() {
+      this.$router.push({
+        path: "/youhuiquan",
+      });
+    },
+    tokefu() {
+      this.$router.push({
+        path: "/emails",
+      });
+    },
+    toXuexika() {
+      this.$router.push({
+        path: "/xuexika",
+      });
+    },
+    toyijian() {
+      this.$router.push({
+        path: "/yijian",
+      });
+    },
+    toshezhi(){
+       this.$router.push({
+        path: "/shezhi",
+      });
+    },
+  },
   data() {
     return {
       user:"",//显示的用户名（手机号）
@@ -114,10 +152,19 @@ export default {
         if(token){
           this.$router.push("/personalInformation");
         }else{
-          this.$router.push("/logins");
+          this.$router.push("/login");
         }
     }
   },
+  beforeRouteEnter (to, from, next) {//组件级路由守卫
+    var token = localStorage.getItem("token");
+    // console.log(token);
+    if(token){
+      next()
+    }else{
+      next("/login")
+    }
+  }
 };
 </script>
 <style lang='scss' scoped>
@@ -148,7 +195,7 @@ export default {
       border-radius: 5px;
       position: absolute;
       top: 3rem;
-      left: 1rem;
+      left: 0.8rem;
       .toxian {
         width: 100%;
         height: 45%;
@@ -190,12 +237,13 @@ export default {
     height: 4.5rem;
     // background: #000;
     .main_noticeBar_wrapper {
+      margin: 0 auto;
       width: 90%;
       height: 3.5rem;
       background: rgb(236, 123, 16);
       border-radius: 25px;
       margin-top: 0.7rem;
-      margin-left: 1.5rem;
+      // margin-left: 1.5rem;
       .main_noticeBar_wrapper_icon {
         display: flex;
         justify-content: space-between;
@@ -211,7 +259,7 @@ export default {
           display: inline-flex;
           flex-wrap: wrap;
           align-items: center;
-          p{
+          p {
             width: 100%;
           }
         }

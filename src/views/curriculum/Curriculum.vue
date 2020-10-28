@@ -1,33 +1,34 @@
 <template>
   <div>
-      <!-- 标题 -->
-      <div class="curriculum_header">
-          特色课
-          <p class="curriculum_header_search">
-              <img src="../../assets/curriculum/sousuo2.png" @click="gotoSearch">
-          </p>
-      </div>
-        <!-- <NavTitle></NavTitle> -->
+    <!-- 标题 -->
+    <div class="curriculum_header">
+    <van-nav-bar title="特色课">
+      <template #right>
+        <van-icon name="search" size="18" @click="gotoSearch" />
+      </template>
+    </van-nav-bar>
+    </div>
 
-        <!-- 筛选处理 -->
-        <Select></Select>
+    <!-- <NavTitle></NavTitle> -->
 
+    <!-- 筛选处理 -->
+    <Select></Select>
   </div>
 </template>
 
 <script>
 import NavTitle from "../../components/navTitle/TitleSearch"; //引入导航子组件
-import Select from "../../components/Select"
+import Select from "../../components/Select";
 export default {
-    components:{
-        NavTitle,
-        Select,
+  components: {
+    NavTitle,
+    Select,
+  },
+  methods: {
+    gotoSearch() {
+      this.$router.push("/search");
     },
-    methods:{
-        gotoSearch(){
-            this.$router.push("/search")
-        }
-    }
+  },
 };
 </script>
 <style lang='scss' scoped>
@@ -43,19 +44,20 @@ export default {
     font-size: 1.2rem;
     top: 0px;
     left: 0px;
+    margin-bottom: 0.2rem;
 }
-.curriculum_header_search{
-    width:2.3rem;
-    height: 2.3rem;
-    // background: red;
-    position: absolute;
-    right: 1rem;
-    top: 0.3rem;
-    margin: 0px;
-    color: grey;
+.curriculum_header_search {
+  width: 2.3rem;
+  height: 2.3rem;
+  // background: red;
+  position: absolute;
+  right: 1rem;
+  top: 0.3rem;
+  margin: 0px;
+  color: grey;
 }
-.curriculum_header_search img{
-    width: 1rem;
-    height: 1rem;
+.curriculum_header_search img {
+  width: 1rem;
+  height: 1rem;
 }
 </style>

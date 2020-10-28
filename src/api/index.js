@@ -26,13 +26,20 @@ const ClientAPI = {
     // 特色课分类
     // courseClassify(){
     //     return requset(urlType.type.GET,urlType.url.courseClassify)
+    // }
     // },
     // 特色课数据获取
     courseBasis(){
         return requset(urlType.type.GET,urlType.url.courseBasis)
     },
-    contentCollect(){
-        return requset(urlType.type.GET,urlType.url.contentCollect)
-    }
+    // 课程详情数据获取
+    courseInfo(params){
+        return requset(urlType.type.GET,urlType.url.courseInfo,params)
+    },  
+    // 课程内容获取（无效）
+    // contentCollect(){
+    //     return requset(urlType.type.GET,urlType.url.contentCollect)
+    // },
+
 }
 export default ClientAPI;
