@@ -4,7 +4,7 @@
     <!-- 顶部 -->
     <div class="dyb_header">
       <van-icon name="arrow-left" class="left" @click="$router.go(-1)" />
-      <div class="dyb_title">课程精选</div>
+      <div class="dyb_title">课程详情</div>
       <van-icon name="more-o" class="right" @click="showShare = true" />
     </div>
     <!--   分享面板 -->
@@ -128,26 +128,8 @@ export default {
   height: 5.1rem;
   padding: 0.7rem;
   background: #fff;
-  position: relative;}
-  .info_title {
-    font-size: 4.26667vw;
-    font-weight: 400;
-    padding-right: 1.9rem;
-  }
-   .info-price {
-    font-size: 4.53333vw;
-    font-weight: 500;
-    color: #ee1f1f;
-    line-height: 8.53333vw;
-  }
-  div {
-    font-size: 4vw;
-    font-weight: 400;
-    color: rgba(0, 0, 0, 0.45);
-    line-height: 0.8rem;
-    line-height: 8vw;
-  }
-   i {
+  position: relative;
+  i {
     position: absolute;
     right: 2.66667vw;
     top: 1.33333vw;
@@ -157,7 +139,25 @@ export default {
       no-repeat 50%;
     background-size: 4.8vw 4.8vw;
   }
-
+}
+.info_title {
+  font-size: 4.26667vw;
+  font-weight: 400;
+  padding-right: 1.9rem;
+}
+.info-price {
+  font-size: 4.53333vw;
+  font-weight: 500;
+  color: #ee1f1f;
+  line-height: 8.53333vw;
+}
+> div {
+  font-size: 4vw;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.45);
+  line-height: 0.8rem;
+  line-height: 8vw;
+}
 .dyb_header {
   display: flex;
   align-items: center;

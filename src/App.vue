@@ -26,7 +26,7 @@ body {
   height: 100%;
 }
 #app {
-  margin-bottom: 2.5rem;
+  height: 100%;
 }
 body {
   font-size: 16px;
