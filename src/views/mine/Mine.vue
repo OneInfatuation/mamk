@@ -114,10 +114,19 @@ export default {
         if(token){
           this.$router.push("/personalInformation");
         }else{
-          this.$router.push("/logins");
+          this.$router.push("/login");
         }
     }
   },
+  beforeRouteEnter (to, from, next) {
+    var token = localStorage.getItem("token");
+    console.log(token);
+    if(token){
+      next()
+    }else{
+      next("/login")
+    }
+  }
 };
 </script>
 <style lang='scss' scoped>

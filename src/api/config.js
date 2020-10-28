@@ -12,8 +12,9 @@ const urlType = {
     // 特色课数据获取
     courseBasis:"/api/app/courseBasis?page=1&limit=10&",
         //特色课内容获取
-    contentCollect:"/api/app/myStudy/2" 
-
+    contentCollect:"/api/app/myStudy/2",
+    // 登录接口
+    LOGIN:"/api/app/login",    
     },
     type: {
         GET: "get",

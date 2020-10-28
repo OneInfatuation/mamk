@@ -1,14 +1,16 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <Drag></Drag>
   </div>
 </template>
 
 <script>
+import Drag from "./components/drag/WebDrag";//引入拖拽
 export default {
   name: 'app',
   components: {
-
+    Drag,
   }
 }
 </script>
