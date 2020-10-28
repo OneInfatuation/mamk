@@ -26,7 +26,7 @@
           <span>*未注册的手机号将自动注册</span>
           <span @click="toLogins">使用密码登录</span>
         </div>
-        <div style="margin: 16px; margin-top: 70px">
+        <div style="margin: 0.8rem; margin-top: 1rem">
           <van-button round block type="warning" native-type="submit">
             提交
           </van-button>
@@ -60,15 +60,13 @@ export default {
 <style lang="scss" scoped>
 .login_logo {
   width: 100%;
-  height: 6rem;
-  // margin-left: 2.8rem;
-  // margin-top: 2.5rem;
+  height: 30vh;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   .login_logo_img {
     width: 80%;
-    height: 80%;
+    height: 50%;
   }
 }
 .register_from_tiaozhuan {

@@ -33,7 +33,7 @@
     placeholder="请输入密码"
     :rules="[{ validator: asyncValidator, message: '请输入正确内容' }]"
   />
-  <div style="margin: 16px;margin-top: 70px;">
+  <div style="margin: 0.8rem;margin-top:1rem;">
     <van-button round block type="warning" native-type="submit">
      确定
     </van-button>

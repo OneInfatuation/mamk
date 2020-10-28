@@ -8,7 +8,9 @@ const urlType = {
         //    获取首页数据
         AppIndex: "/api/app/recommend/appIndex",
         //    获取课程详情数据
-        courseDetail: '/api/app/courseInfo/'
+        courseDetail: '/api/app/courseInfo/',
+        // 登录接口
+        LOGIN:"/api/app/login",
     },
     type: {
         GET: "get",

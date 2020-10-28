@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="login_container">
     <div class="login_logo">
       <img
         class="login_logo_img"
-        src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019pILfAg7Avr1567732916.png"/>
+        src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019pILfAg7Avr1567732916.png"
+      />
     </div>
     <div class="login_from">
       <van-form>
@@ -24,7 +25,7 @@
           <span @click="toPassword">找回密码</span>
           <span @click="toRegister">注册/验证码登录</span>
         </div>
-        <div style="margin: 16px; margin-top: 70px">
+        <div style="margin: 0.8rem; margin-top: 1rem">
           <van-button round block type="warning" @click="onSubmit">
             登录
           </van-button>
@@ -35,6 +36,9 @@
 </template>
 
 <script>
+import Vue from "vue";
+import { Toast } from "vant"; //引入文字提示
+Vue.use(Toast);
 export default {
   data() {
     return {
@@ -44,14 +48,51 @@ export default {
   },
   methods: {
     onSubmit(values) {
-      console.log("submit", values);
+      //点击登录
+      // console.log("submit", values);
+      if (this.username.length == 0 || this.password == 0) {
+        Toast({
+          message: "输入的手机号或密码不能为空！！！",
+          position: "top",
+        });
+        return;
+      }
+      var obj = {
+        mobile: this.username,
+        password: this.password,
+        type: 1,
+      };
+      // 请求登录接口并传递参数
+      this.$ClientAPI
+        .loginGetToken(obj)
+        .then((res) => {
+          console.log(res.data.data);
+          var token = res.data.data.remember_token; //读取token
+          var user = res.data.data.mobile; //读取手机号
+          localStorage.setItem("user", user); //保存手机号，用于我的页面显示
+          localStorage.setItem("token", token); //保存token
+          Toast.success({
+            message: "登录成功",
+            position: "top",
+          });
+          this.$router.push("/mine"); //跳转到我的页面
+        })
+        .catch((err) => {
+          console.log(err);
+          Toast.fail({
+            message: "登录失败",
+            position: "top",
+          });
+        });
     },
     toPassword() {
+      //点击跳转找回密码页面
       this.$router.push({
         path: "/password",
       });
     },
     toRegister() {
+      //点击跳转注册页面
       this.$router.push({
         path: "/register",
       });
@@ -61,24 +102,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.login_container {
+  width: 100%;
+  height: 100vh;
+}
 .login_logo {
   width: 100%;
-  height: 6rem;
+  height: 30vh;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   .login_logo_img {
     width: 80%;
-    height: 80%;
+    height: 50%;
   }
 }
-.login_from {
-  margin-top: 2.5rem;
-}
+
 .login_from_tiaozhuan {
   width: 100%;
   height: 2rem;
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   justify-content: space-between;
   font-size: 0.4rem;
   color: rgb(196, 193, 193);

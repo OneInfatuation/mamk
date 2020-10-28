@@ -89,10 +89,10 @@ export default {
     margin-top:0px !important;
     line-height: 0px !important;
 }
-.waw_empty_img{
+/* .waw_empty_img{
     width: 100%;
     height: 100%;
-}
+} */
 .waw_empty_img img{
     margin-top: 20%;
     width: 100%;
