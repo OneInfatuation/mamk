@@ -15,6 +15,10 @@ const urlType = {
     contentCollect:"/api/app/myStudy/2",
     // 登录接口
     LOGIN:"/api/app/login",    
+    // contentCollect:"/api/app/myStudy/2" 
+    // 课程详情数据获取
+    courseInfo:"/api/app/courseInfo"
+
     },
     type: {
         GET: "get",

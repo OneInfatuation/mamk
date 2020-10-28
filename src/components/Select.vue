@@ -174,10 +174,10 @@ export default {
       this.messageList = res.data.data.list 
       console.log(this.messageList)
     })
-    this.$ClientAPI.contentCollect().then((res)=>{
-      this.list = res.data
-      console.log(this.list)
-    })
+    // this.$ClientAPI.contentCollect().then((res)=>{
+    //   this.list = res.data
+    //   console.log(this.list)
+    // })
 
   },
   methods: {
