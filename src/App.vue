@@ -24,6 +24,9 @@ html,
 body {
   height: 100%;
 }
+#app {
+  height: 100%;
+}
 body {
   font-size: 16px;
 }
