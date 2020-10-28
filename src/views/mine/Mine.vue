@@ -12,7 +12,10 @@
                 height="3rem"
                 src="https://img.yzcdn.cn/vant/cat.jpeg"
               />
-              <span>用户名</span>
+              <div @click="onClickLogin">
+                <span v-show = "user.length<=0">登录 / 注册</span>
+                <span v-show = "user.length>0">{{user}}</span>
+              </div>
             </div>
             <button class="button">去约课</button>
           </div>
@@ -92,7 +95,30 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      user:"",//显示的用户名（手机号）
+    }
+  },
+  mounted() {
+    //读取用户名
+      var users = localStorage.getItem("user");
+      if(users){
+        this.user =users;
+      }
+  },
+  methods: {
+    onClickLogin(){//点击注册/登录
+      var token = localStorage.getItem("token");
+        if(token){
+          this.$router.push("/personalInformation");
+        }else{
+          this.$router.push("/logins");
+        }
+    }
+  },
+};
 </script>
 <style lang='scss' scoped>
 * {

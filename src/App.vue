@@ -21,6 +21,8 @@ export default {
 html,body{
   height: 100%;
 }
+
+
 body{
   font-size: 16px;
 }

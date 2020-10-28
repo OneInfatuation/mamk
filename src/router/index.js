@@ -153,6 +153,11 @@ const routes = [{
     path:"/course-detail",//课程详情
     name:"Course-detail",
     component: () => import('../views/home/Course-detail.vue'),
+  },
+  {
+    path:"/personalInformation",//个人信息
+    name:"PersonalInformation",
+    component: () => import('../views/mine/PersonalInformation.vue'),
   }
 
 ]
