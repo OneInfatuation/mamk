@@ -96,15 +96,15 @@
               <span>{{ item.sales_num }}人报名</span>
               <p
                 style="color: green; font-size: 0.14rem"
-                v-if="item.underlined_price == 0"
+                v-if="item.price == 0"
               >
                 免费
               </p>
               <p
                 style="color: red; font-size: 0.14rem"
-                v-if="item.underlined_price > 0"
+                v-if="item.price > 0"
               >
-                {{ item.underlined_price }}.00
+                {{ item.price }}.00
               </p>
             </div>
             <img :src="item.cover_img" alt="" />
@@ -132,15 +132,15 @@
               <span>{{ item.sales_num }}人报名</span>
               <p
                 style="color: green; font-size: 0.14rem"
-                v-if="item.underlined_price == 0"
+                v-if="item.price == 0"
               >
                 免费
               </p>
               <p
                 style="color: red; font-size: 0.14rem"
-                v-if="item.underlined_price > 0"
+                v-if="item.price > 0"
               >
-                {{ item.underlined_price }}.00
+                {{ item.price }}.00
               </p>
             </div>
           </li>
