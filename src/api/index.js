@@ -22,6 +22,9 @@ const ClientAPI = {
     // 特色课数据获取
     courseBasis(){
         return requset(urlType.type.GET,urlType.url.courseBasis)
+    },
+    contentCollect(){
+        return requset(urlType.type.GET,urlType.url.contentCollect)
     }
 }
 export default ClientAPI;
