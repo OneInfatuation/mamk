@@ -134,7 +134,7 @@
                 style="color: green; font-size: 0.14rem"
                 v-if="item.underlined_price == 0"
               >
-                免费
+                
               </p>
               <p
                 style="color: red; font-size: 0.14rem"
