@@ -130,13 +130,10 @@ const routes = [{
     }
   },
   {
-<<<<<<< HEAD
+
     path: "/login", //登录页面
     name: "Login",
-=======
-    path: "/logins", //登录页面
-    name: "Logins",
->>>>>>> a214cbc9c76a69780f3116ffa13116cd936af2b2
+
     component: () => import('../views/login/Login.vue'),
   },
   {
@@ -195,7 +192,7 @@ const routes = [{
     meta: {
       navTitle: "学习卡兑换"
     }
-  },  {
+  }, {
     path: "/yijian", //学习卡兑换
     name: "yijian",
     component: () => import('../views/mine/yijian.vue'),
@@ -212,8 +209,8 @@ const routes = [{
     }
   },
   {
-    path:"/personalInformation",//个人信息
-    name:"PersonalInformation",
+    path: "/personalInformation", //个人信息
+    name: "PersonalInformation",
     component: () => import('../views/mine/PersonalInformation.vue'),
   },
 
