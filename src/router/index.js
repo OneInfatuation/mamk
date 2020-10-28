@@ -352,6 +352,31 @@ const routes = [{
     name: "PersonalInformation",
     component: () => import('../views/mine/PersonalInformation.vue'),
   },
+  {
+    path: "/xueximoney", //学习币
+    name: "xuexiMoney",
+    component: () => import('../views/mine/money/xuexiMoney.vue'),
+  },
+  {
+    path: "/mymoney", //余额
+    name: "myMoney",
+    component: () => import('../views/mine/money/myMoney.vue'),
+  },
+  {
+    path: "/member", //会员页
+    name: "Member",
+    component: () => import('../views/mine/member/Member.vue'),
+  },
+  {
+    path: "/collection", //收藏页
+    name: "Collection",
+    component: () => import('../views/mine/collection/collection.vue'),
+  },
+  {
+    path: "/message", // 消息页
+    name: "Message",
+    component: () => import('../views/mine/Message/message.vue'),
+  },
 
 ]
 const router = new VueRouter({

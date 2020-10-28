@@ -1,6 +1,8 @@
 <template>
   <div>
+    <!-- 引入标题 -->
     <NavTitle></NavTitle>
+
     <div class="waw_practice_container">
       <div class="waw_hidden"></div>
       <div class="waw_grid_container">

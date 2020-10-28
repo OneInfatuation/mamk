@@ -1,6 +1,7 @@
 <template>
   <div class="dyb_footer">
     <router-view></router-view>
+    <!-- 底部tab栏 -->
     <van-tabbar
       v-model="active"
       active-color="orange"
