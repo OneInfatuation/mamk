@@ -68,7 +68,7 @@
         </div>
         <van-grid>
           <van-grid-item icon="friends-o" text="关注的老师" />
-          <van-grid-item icon="star-o" text="我的收藏" />
+          <van-grid-item icon="star-o" text="我的收藏" @click="gotoCollection"/>
         </van-grid>
         <div class="list_title"><p>订单相关</p></div>
         <van-grid>
@@ -84,7 +84,7 @@
         </van-grid>
         <div class="list_title"><p>自助服务</p></div>
         <van-grid>
-          <van-grid-item icon="volume-o" text="我的消息" />
+          <van-grid-item icon="volume-o" text="我的消息"  @click="gotoMessage"/>
           <van-grid-item icon="envelop-o" text="意见反馈" @click="toyijian" />
           <van-grid-item icon="friends-o" text="在线客服" @click="tokefu" />
           <van-grid-item icon="setting-o" text="设置" @click="toshezhi" />
@@ -143,6 +143,14 @@ export default {
     gotoVIP(){
       this.$router.push("/member")
     },
+    // 跳转收藏页
+    gotoCollection(){
+      this.$router.push("/collection")
+    },
+    //跳转消息
+    gotoMessage(){
+      this.$router.push("/message")
+    },
     onClickLogin() {
       //点击注册/登录
       var token = localStorage.getItem("token");
@@ -152,6 +160,7 @@ export default {
         this.$router.push("/login");
       }
     },
+    
   },
   data() {
     return {

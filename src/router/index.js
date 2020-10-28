@@ -363,9 +363,19 @@ const routes = [{
     component: () => import('../views/mine/money/myMoney.vue'),
   },
   {
-    path: "/member", //余额
+    path: "/member", //会员页
     name: "Member",
     component: () => import('../views/mine/member/Member.vue'),
+  },
+  {
+    path: "/collection", //收藏页
+    name: "Collection",
+    component: () => import('../views/mine/collection/collection.vue'),
+  },
+  {
+    path: "/message", // 消息页
+    name: "Message",
+    component: () => import('../views/mine/Message/message.vue'),
   },
 
 ]
