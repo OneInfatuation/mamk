@@ -75,7 +75,7 @@ data() {
     // 跳转至登录页
     toLogins(){
 this.$router.push({
-    path:"/logins"
+    path:"/login"
 })
     }
   },

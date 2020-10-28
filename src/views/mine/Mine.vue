@@ -96,12 +96,15 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      
+    }
+  },
   methods: {
     // 跳转至会员订单页
     toHuiyuan() {
-      this.$router.push({
-        path: "/huiyuan",
-      });
+      this.$router.push("/huiyuan");
     },
     toYueke() {
       this.$router.push({
@@ -145,14 +148,14 @@ export default {
   },
   data() {
     return {
-      user: "", //显示的用户名（手机号）
+      user: "", //显示的用户名（昵称）
     };
   },
   mounted() {
     //读取用户名
-    var users = localStorage.getItem("user");
-    if (users) {
-      this.user = users;
+    var values = localStorage.getItem("value");
+    if (values) {
+      this.user = values;
     }
   },
   beforeRouteEnter(to, from, next) {

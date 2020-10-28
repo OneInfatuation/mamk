@@ -35,7 +35,12 @@ import NavTitle from '../../components/navTitle/TitleOnlyBack'
 export default {
 components:{
     NavTitle
-}
+},
+data() {
+  return {
+    active:0
+  }
+},
 }
 
 </script>
