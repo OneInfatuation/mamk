@@ -6,7 +6,7 @@
       <p>课程详情</p>
       <p>
         <!-- 分享遮罩层 -->
-        <van-button @click="show = true">
+        <van-button @click="show = true" style="border:none">
           <template>
             <img src="../../assets/curriculum/fenxiang.png" />
           </template>
@@ -133,7 +133,7 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: #eee;
+  background: white;
   border-bottom: 1px solid #eee;
   position: fixed;
   top: 0px;
