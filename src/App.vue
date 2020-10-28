@@ -6,13 +6,13 @@
 </template>
 
 <script>
-import Drag from "./components/drag/WebDrag";//拖拽
+import Drag from "./components/drag/WebDrag"; //拖拽
 export default {
-  name: 'app',
+  name: "app",
   components: {
     Drag,
-  }
-}
+  },
+};
 </script>
 
 <style>
@@ -25,9 +25,7 @@ html,
 body {
   height: 100%;
 }
-#app {
-  margin-bottom: 2.5rem;
-}
+
 body {
   font-size: 16px;
 }

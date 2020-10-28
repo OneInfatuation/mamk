@@ -48,6 +48,57 @@ const routes = [{
     ]
   },
   {
+    path: "/simulationTest", //仿真模考页面
+    name: "SimulationTest",
+    component: () => import('../views/practice/grids/SimulationTest.vue'),
+    meta: {
+      navTitle: "仿真模考"
+    }
+  },
+  {
+    path: "/login", //登录页面
+    name: "Login",
+    component: () => import('../views/login/Login.vue'),
+  },
+  {
+    path: "/register", //注册页面
+    name: "Register",
+    component: () => import('../views/login/register.vue'),
+  },
+  {
+    path: "/pass", //注册页面
+    name: "Pass",
+    component: () => import('../views/login/Pass.vue'),
+  },
+  {
+    path: "/huiyuan", //会员订单
+    name: "huiyuan",
+    component: () => import('../views/mine/huiyuan.vue'),
+    meta: {
+      navTitle: "会员订单"
+    }
+  },
+  {
+    path: "/xuexika", //学习卡
+    name: "xuexika",
+    component: () => import('../views/mine/xuexika.vue'),
+  },
+  {
+    path: "/duihuan", //学习卡兑换
+    name: "duihuan",
+    component: () => import('../views/mine/duihuan.vue'),
+    meta: {
+      navTitle: "学习卡兑换"
+    }
+  }, {
+    path: "/yijian", //意见反馈
+    name: "yijian",
+    component: () => import('../views/mine/yijian.vue'),
+    meta: {
+      navTitle: "意见反馈"
+    }
+  },
+  {
     path: "/coaching", //一对一辅导页面
     name: "Coaching",
     component: () => import('../views/appointmentRecord/Coaching.vue'),
@@ -69,14 +120,6 @@ const routes = [{
     component: () => import('../views/practice/grids/SetExercises.vue'),
     meta: {
       navTitle: "套卷练习"
-    }
-  },
-  {
-    path: "/simulationTest", //仿真模考页面
-    name: "SimulationTest",
-    component: () => import('../views/practice/grids/SimulationTest.vue'),
-    meta: {
-      navTitle: "仿真模考"
     }
   },
   {
@@ -130,18 +173,6 @@ const routes = [{
     }
   },
   {
-
-    path: "/login", //登录页面
-    name: "Login",
-
-    component: () => import('../views/login/Login.vue'),
-  },
-  {
-    path: "/register", //注册页面
-    name: "Register",
-    component: () => import('../views/login/register.vue'),
-  },
-  {
     path: "/password", //注册页面
     name: "Password",
     component: () => import('../views/login/password.vue'),
@@ -155,14 +186,6 @@ const routes = [{
     path: "/course-detail", //课程详情
     name: "Course-detail",
     component: () => import('../views/home/Course-detail.vue'),
-  },
-  {
-    path: "/huiyuan", //会员订单
-    name: "huiyuan",
-    component: () => import('../views/mine/huiyuan.vue'),
-    meta: {
-      navTitle: "会员订单"
-    }
   },
   {
     path: "/yueke", //约课订单
@@ -181,27 +204,7 @@ const routes = [{
     }
   },
   {
-    path: "/xuexika", //学习卡
-    name: "xuexika",
-    component: () => import('../views/mine/xuexika.vue'),
-  },
-  {
-    path: "/duihuan", //学习卡兑换
-    name: "duihuan",
-    component: () => import('../views/mine/duihuan.vue'),
-    meta: {
-      navTitle: "学习卡兑换"
-    }
-  }, {
-    path: "/yijian", //意见反馈页面
-    name: "yijian",
-    component: () => import('../views/mine/yijian.vue'),
-    meta: {
-      navTitle: "意见反馈"
-    }
-  },
-  {
-    path: "/shezhi", //设置页面
+    path: "/shezhi", //学习卡兑换
     name: "shezhi",
     component: () => import('../views/mine/shezhi.vue'),
     meta: {
@@ -212,6 +215,52 @@ const routes = [{
     path: "/personalInformation", //个人信息
     name: "PersonalInformation",
     component: () => import('../views/mine/PersonalInformation.vue'),
+    meta:{
+      navTitle: "个人信息"
+    }
+  },
+  {
+    path: "/nickname", //修改个人信息页面(昵称)
+    name: "Nickname",
+    component: () => import('../views/mine/person/Nickname.vue'),
+    meta:{
+      navTitle: "个人信息"
+    }
+  },
+  {
+    path: "/sex", //修改个人信息页面（性别）
+    name: "Sex",
+    component: () => import('../views/mine/person/Sex.vue'),
+  },
+  {
+    path: "/subject", //修改个人信息页面（学科）
+    name: "Subject",
+    component: () => import('../views/mine/person/Subject.vue'),
+  },
+  {
+    path: "/xueximoney", //学习币
+    name: "xuexiMoney",
+    component: () => import('../views/mine/money/xuexiMoney.vue'),
+  },
+  {
+    path: "/mymoney", //余额
+    name: "myMoney",
+    component: () => import('../views/mine/money/myMoney.vue'),
+  },
+  {
+    path: "/member", //会员页
+    name: "Member",
+    component: () => import('../views/mine/member/Member.vue'),
+  },
+  {
+    path: "/collection", //收藏页
+    name: "Collection",
+    component: () => import('../views/mine/collection/collection.vue'),
+  },
+  {
+    path: "/message", // 消息页
+    name: "Message",
+    component: () => import('../views/mine/Message/message.vue'),
   },
   {
     path: "/kechengdd", //设置页面

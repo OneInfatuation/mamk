@@ -68,9 +68,10 @@ export default {
         .then((res) => {
           console.log(res.data.data);
           var token = res.data.data.remember_token; //读取token
-          var user = res.data.data.mobile; //读取手机号
-          localStorage.setItem("user", user); //保存手机号，用于我的页面显示
+          var mobile = res.data.data.mobile;
+          localStorage.setItem("mobile",mobile);
           localStorage.setItem("token", token); //保存token
+          localStorage.setItem("value","admin");
           Toast.success({
             message: "登录成功",
             position: "top",
@@ -88,7 +89,7 @@ export default {
     toPassword() {
       //点击跳转找回密码页面
       this.$router.push({
-        path: "/password",
+        path: "/pass",
       });
     },
     toRegister() {

@@ -34,7 +34,7 @@
                 <p class="main_text">我的一对一老师辅导</p>
               </template>
             </van-grid-item>
-            <van-grid-item to="/">
+            <van-grid-item to="/xueximoney">
               <template #default>
                 <p class="main_cant">0.00</p>
                 <p class="main_title">剩余学习币</p>
@@ -68,7 +68,7 @@
         </div>
         <van-grid>
           <van-grid-item icon="friends-o" text="关注的老师" @click="toguanzhu"/>
-          <van-grid-item icon="star-o" text="我的收藏" />
+          <van-grid-item icon="star-o" text="我的收藏" @click="gotoCollection"/>
         </van-grid>
         <div class="list_title"><p>订单相关</p></div>
         <van-grid>
@@ -80,11 +80,11 @@
         <van-grid>
           <van-grid-item icon="coupon-o" text="优惠券" @click="toYuiquan" />
           <van-grid-item icon="credit-pay" text="学习卡" @click="toXuexika" />
-          <van-grid-item icon="diamond-o" text="会员" />
+          <van-grid-item icon="diamond-o" text="会员"  @click="gotoVIP"/>
         </van-grid>
         <div class="list_title"><p>自助服务</p></div>
         <van-grid>
-          <van-grid-item icon="volume-o" text="我的消息" />
+          <van-grid-item icon="volume-o" text="我的消息"  @click="gotoMessage"/>
           <van-grid-item icon="envelop-o" text="意见反馈" @click="toyijian" />
           <van-grid-item icon="friends-o" text="在线客服" @click="tokefu" />
           <van-grid-item icon="setting-o" text="设置" @click="toshezhi" />
@@ -97,44 +97,53 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      
+    }
+  },
   methods: {
     // 跳转至会员订单页
     toHuiyuan() {
-      this.$router.push({
-        path: "/huiyuan",
-      });
+      this.$router.push("/huiyuan");
     },
     // 点击进入约课订单页面
+    // 跳转约课页
     toYueke() {
       this.$router.push({
         path: "/yueke",
       });
     },
     // 点击进入优惠券页面
+    // 跳转优惠券页面
     toYuiquan() {
       this.$router.push({
         path: "/youhuiquan",
       });
     },
     // 点击进入客服页面
+    // 跳转邮件页面 
     tokefu() {
       this.$router.push({
         path: "/emails",
       });
     },
     // 点击进入学习卡页面
+    // 跳转学习卡页面
     toXuexika() {
       this.$router.push({
         path: "/xuexika",
       });
     },
     // 点击进入意见反馈页面
+    // 跳转意见反馈页面
     toyijian() {
       this.$router.push({
         path: "/yijian",
       });
     },
     // 点击进入设置页面
+    // 跳转设置页面
     toshezhi() {
       this.$router.push({
         path: "/shezhi",
@@ -159,6 +168,18 @@ export default {
     // 弹出框显示
     popup(){
       this.show=!this.show
+    // 跳转会员页
+    },
+    gotoVIP(){
+      this.$router.push("/member")
+    },
+    // 跳转收藏页
+    gotoCollection(){
+      this.$router.push("/collection")
+    },
+    //跳转消息
+    gotoMessage(){
+      this.$router.push("/message")
     },
     onClickLogin() {
       //点击注册/登录
@@ -169,18 +190,20 @@ export default {
         this.$router.push("/login");
       }
     },
+    
   },
   data() {
     return {
       user: "", //显示的用户名（手机号）
       show:false,
+      user: "", //显示的用户名（昵称）
     };
   },
   mounted() {
     //读取用户名
-    var users = localStorage.getItem("user");
-    if (users) {
-      this.user = users;
+    var values = localStorage.getItem("value");
+    if (values) {
+      this.user = values;
     }
   },
   beforeRouteEnter(to, from, next) {
