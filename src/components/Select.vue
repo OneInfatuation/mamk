@@ -111,7 +111,9 @@
           <b style="color:black">{{ item.title }}</b>
         </p>
         <!-- 时间 -->
-        <p><img src="../assets/curriculum/time.png" style="width:0.8rem;height:0.8rem" /> {{ item.end_play_date }}</p>
+        <p><img src="../assets/curriculum/time.png" style="width:0.8rem;height:0.8rem" />
+         {{ item.start_play_date | timefn }} ~ {{item.end_play_date | timefn}}
+         </p>
         <!-- 老师 -->
         <div class="curriculum_list_content_name" v-for="(message,index) in item.teachers_list" :key="index">
           <p style="display: inline-block; width: 2rem;height: 2rem;margin-right:1rem">
@@ -122,8 +124,9 @@
         <!-- 报名 -->
         <p class="newEnter">{{ item.browse_num }}人已报名 <span class="free">免费</span></p>
       </div>
+          <div style="width:100%;height:0.5rem;background:rgba(238, 238, 238, 0.835);"></div>
     </div>
-    <div style="width:100%;height:0.2rem;background:rgba(238, 238, 238, 0.835);"></div>
+
   </div>
 </template>
 
@@ -164,22 +167,21 @@ export default {
     };
   },
   mounted(){
-    // 分类获取端口数据
-    // this.$ClientAPI.courseClassify().then((res)=>{
-    //   this.classList =res.data.data.attrclassify
-    //   console.log(this.classList)
-    // })
     // 特色课数据获取
     this.$ClientAPI.courseBasis().then((res)=>{
       this.messageList = res.data.data.list 
       console.log(this.messageList)
     })
-    // this.$ClientAPI.contentCollect().then((res)=>{
-    //   this.list = res.data
-    //   console.log(this.list)
-    // })
-
   },
+  // filters:{
+  //   timeFilters(ms){
+  //     var y = ms.getFullYear();
+  //     var m = ms.getMonth()+1;
+  //     var d = ms.getDate();
+  //     return y+"年"+m+"月"+d+"日"
+  //   }  
+    
+  // },
   methods: {
     onConfirm() {
       this.$refs.item.toggle();
@@ -188,16 +190,9 @@ export default {
       this.$router.push({
         path: "/details",
         query: {
-          // title: item.title,
-          // date: item.end_play_date,
-          // name: item.teachers_list.teacher_name,
-          // // details: item.details,
-          // number: item.browse_num,
-          // pic: item.teachers_list.teacher_avatar,
           id:id
         },
       });
-      // console.log(id)
     },
   },
 };
@@ -219,7 +214,7 @@ export default {
   border-top: 1px solid transparent;
   margin: 1rem 0;
   color: lightgrey;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 .curriculum_list_content {
   width: 90%;
