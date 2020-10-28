@@ -2,16 +2,11 @@
     
   <div class="dyb_course_deatail">
     <!-- 顶部 -->
-    <van-nav-bar
-      title="课程详情"
-      left-arrow
-      @click-left="$router.go(-1)"
-      @click-right="showShare = true"
-    >
-      <template #right>
-        <van-icon name="share-o" size="18" />
-      </template>
-    </van-nav-bar>
+    <div class="dyb_header">
+      <van-icon name="arrow-left" class="left" @click="$router.go(-1)" />
+      <div class="dyb_title">课程精选</div>
+      <van-icon name="more-o" class="right" @click="showShare = true" />
+    </div>
     <!--   分享面板 -->
     <van-share-sheet
       v-model="showShare"
@@ -26,6 +21,65 @@
       <i class="info-collect"></i>
       <p class="info-price">1.00</p>
       <div>共1课时 | 127人已报名</div>
+    </div>
+    <!-- 教学团队 -->
+    <div class="dyb_teachers">
+      <p class="cd_title">教学团队</p>
+      <ul>
+        <li>
+          <img
+            src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png"
+            alt=""
+          />
+          <span>杨德胜</span>
+        </li>
+      </ul>
+    </div>
+    <!-- 课程介绍 -->
+    <div class="dyb_tro_com">
+      <p class="cd_title">课程介绍</p>
+      <div><p>自主招生冲刺讲座8-二次函数2--根的分布</p></div>
+    </div>
+    <!-- 课程大纲 -->
+    <div class="cd_list">
+      <p class="cd_title">课程大纲</p>
+      <ul>
+        <li>自主招生冲刺讲座8-二次函数2--根的分布</li>
+      </ul>
+    </div>
+    <!-- 评论 -->
+    <div class="cd_comment">
+      <p class="cd_title">精彩评论</p>
+      <ul>
+        <li>
+          <div>
+            <img
+              src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/avatar.jpg"
+              alt=""
+            />
+            <div>
+              <!-- 评论时间，用户，级别 -->
+              <div class="user_rate">
+                <div>
+                  <span>11111</span>
+                  <van-rate
+                    v-model="rate"
+                    allow-half
+                    void-icon="star"
+                    void-color="#eee"
+                    size="0.5rem"
+                    color="#ffd21e"
+                    readonly
+                  />
+                  <p>2020-03-03 11:16</p>
+                </div>
+              </div>
+              <!-- 评论的具体内容 -->
+              <p class="text_rate">太棒了</p>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -47,6 +101,8 @@ export default {
         { name: "分享海报", icon: "poster" },
         { name: "二维码", icon: "qrcode" },
       ],
+      // 评分
+      rate: 2.5,
     };
   },
   created() {},
@@ -73,7 +129,7 @@ export default {
   padding: 0.7rem;
   background: #fff;
   position: relative;
-  >.info_title {
+  > .info_title {
     font-size: 4.26667vw;
     font-weight: 400;
     padding-right: 1.9rem;
@@ -91,14 +147,131 @@ export default {
     line-height: 0.8rem;
     line-height: 8vw;
   }
-  >i{
+  > i {
     position: absolute;
     right: 2.66667vw;
     top: 1.33333vw;
     width: 6.66667vw;
     height: 6.66667vw;
-    background: url(data:image/png;base64,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) no-repeat 50%;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAFzUlEQVRYR71Ya2xUVRD+5u6ulSpaX7E2AfFFf/hIpMorAq0BTHlENFm557SQolh8BjGIiaCBBIxoBFQQUw2U0r3nNktMfZCI0RCRGBET+YO2SNQ/IkSiCEik3D1jpjnblGVbult0kk323nl9Z86ZOTOXMAiqqqpKVFZWzrPWTiOiEgC7oyhan06n/yrWLBWrWF1dHa+oqNjOzFNzbHQCmGSMOVKM7aIBKaWeA/Cqc2qZmYTcszHG6P8N0Jw5cy6JougXAFcz8+FYLHY3gMustXsAXArAep53eyqV+r5QUEVFyPf9RUS0Rpwx87NhGK6V/1rr15h5sfwnoq1BEMz9zwHV1taWlJWV/QSgAsDvQ4cOHdHU1HRKHNfX11+XyWSEdzEzR57nVQZBIM8DpoIjpJRaAOAdF4WlQRC83NubUmoDgCccvykIApEfMBUESDKrvLz8ABHdAOBYFEUjclNca309M/8IIMHMpzOZzE3pdPrXgSIqCJDWei4zb3HGVxljluVzpLXezMwNjveGMeaZCwZo1qxZZaWlpSOttaOIaCWAqwD8DWCEMeZoPkf19fWVmUxmP4AYgDNEtFyKJjN3nq8+9UTIHdaJAO4AUNnrd20ep8uMMav6W7XWej0zP5lHRqp4JxF1CkAA+6Mo2pnd+m5AWuvJbiskc/qjDDOvDcNwiWR8f4KNjY2JEydOvAXgUQDeeeyeZOaFYRhuIq31LdbafURUmqN0MrsSa+0BAB2ZTGZ3IQdU7CWTyeHxeHwiEY1k5mzkRwIYkuPPAphOSql1ABYKk5k3EtG2KIo6C3U80EPr5CQQw4mokpkXMPOD7v0uAfQ5gHsBnDTGXC5lv0DjgxLXWl/BzH84I8cEUBuAh5hZzkRVGIbfDcpDgcpa62nMvN3t0EGaPXv2/Z7ntTs7R6y1NW1tbT8UaLcocd/3xxPRJwCGigEiWtGdZUqpdwHMdygPE1GNMaajKC8DVFJKjQMgYC5zKl9FUVTTDWj58uVeZ2enVOB6x/wtFovVtLa2Sp244FRXVzfWWrujF5g9URTdJ7WopzAmk8lYIpHYwsx1DsGhRCJR09LSIil/wcj3/TFEJGAkgYS+iaJo6lmFMevNgWph5my3d4iIJhTaQvSFXmtdxcyS1d1giGjvqVOnpra3tx/L6pxzuQqoeDzeCsDPKgVBMHqwIUomk0Pi8bgcgWHO1rclJSVTmpube8B0+8vnyIH6EMA04XueNy6VSn09GFC+788motDZ6CCi8UEQ/Jlrs8/2o66uboa19iOn0GCMybYdReHSWr/AzN0XMhG9GASBdA7nUJ+AlFJSBqQcSIRmplKpj4tC4pRyOs0NQRA8VSggady7G6t4PH7j1q1bfx4koHsAfOlsfGGMqS4U0KcApkgzZoyRStpvu3E+sDl31lFjzDWFApI+uIKZ94ZhOOgsE+dKqW6bDkh5vu4x7xnKWc1mY8zD/UWgsbGxtKuryzY3N//Tn5zWekd29GbmyWEYSk06i/IC8n1/AhHtcpKLjTGv53OktU4y8/MARkmzQES7rbUr29raZLvPIa31GmZe5DJtYRAEbw4U0GNEtNEJ1xpj5BLsIaXUJACrAYzpIyKfMfOS3FbG9/1HiOg90WHmpjAMz5nZ8kZIKfUSgBVuJXcGQbDPnYFbiegVZp6RA0T4cufNAnCR40mjZ5h5WRiG8h0Avu9XE9FOx283xjwwoAgppeYB2OSEWzzP28jM892sJaNNlmRMlglEKjAnk8mb4/H4KmZOZr+EyLDoed7b1to2IloKYKaL0PowDJ8eEKCGhoay06dPy4rzpiaAozKjnTlzZmM6ne7KNaq1Hs3MsqV5aw2ADBHdlY18b/3+KrUUsg8AXJlVYGb5qLAuFoutTqVSx/s4Pz2vfd+fLlsM4LZesl3M/LiMPPn0+x2lXfpL0zbMWnvQ87z3+5pW+wInzV9HR0et53ljmfl4FEXb0ul0n1X/X3aekNJzvTGgAAAAAElFTkSuQmCC)
+      no-repeat 50%;
     background-size: 4.8vw 4.8vw;
+  }
+}
+.dyb_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  background: #fff;
+  height: 1.8rem;
+  font-size: 4.8vw;
+  border: 0.05rem solid #eee;
+}
+.dyb_teachers {
+  height: 6rem;
+  margin-top: 0.6rem;
+  background: #fff;
+  padding: 0.4rem;
+  > ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    > li {
+      padding: 2.66667vw 0;
+      width: 20%;
+      height: 24vw;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      box-sizing: border-box;
+      > img {
+        width: 10.4vw;
+        height: 10.4vw;
+        border-radius: 50%;
+      }
+      > span {
+        font-weight: 400;
+        color: #595959;
+        padding-top: 2.13333vw;
+        font-size: 3.2vw;
+      }
+    }
+  }
+}
+.cd_title {
+  padding-top: 2.66667vw;
+  font-size: 4vw;
+}
+.dyb_tro_com {
+  margin-top: 4vw;
+  background: #fff;
+  padding: 1.33333vw 2.66667vw;
+  > div {
+    padding: 4vw 1.33333vw;
+    font-size: 3.73333vw;
+  }
+}
+.cd_list {
+  margin-top: 4vw;
+  background: #fff;
+  padding: 1.33333vw 2.66667vw;
+  > ul {
+    padding: 2.66667vw 0 0 0;
+    list-style-type: disc;
+    > li {
+      font-weight: 400;
+      color: #595959;
+      font-size: 3.2vw;
+      line-height: 8vw;
+      padding-left: 4vw;
+    }
+  }
+}
+.cd_comment {
+  margin-top: 4vw;
+  background: #fff;
+  padding: 1.33333vw 2.66667vw;
+  > ul {
+    > li {
+      padding: 2.66667vw 2.66667vw;
+      > div {
+        display: flex;
+        > img {
+          width: 6.66667vw;
+          height: 6.66667vw;
+          border-radius: 50%;
+        }
+        > div {
+          flex: 1;
+          padding-left: 2.66667vw;
+          > .user_rate {
+            > div {
+              display: flex;
+              align-items: center;
+              > span {
+                font-size: 3.73333vw;
+                font-weight: 400;
+                color: #333;
+              }
+              > p {
+                flex: 1;
+                font-size: 0.29333rem;
+                font-weight: 400;
+                color: #999;
+                text-align: right;
+              }
+            }
+          }
+          > .text_rate {
+            padding-top: 1.33333vw;
+            line-height: 6.4vw;
+            color: #999;
+            font-size: 3.2vw;
+          }
+        }
+      }
+    }
   }
 }
 </style>

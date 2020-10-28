@@ -98,28 +98,32 @@
     </div>
 
     <div style="width: 100%; height: 4rem"></div>
-
+<!-- 数据 -->
     <div class="curriculum_list">
       <div
-        v-for="(item, index) in list"
+        v-for="(item, index) in messageList"
         :key="index"
         class="curriculum_list_content"
-        @click="gotoDetials(item)"
+        @click="gotoDetials(item.id)"
       >
         <p>
+          <!-- 标题 -->
           <b style="color:black">{{ item.title }}</b>
         </p>
-        <p><img src="../assets/curriculum/time.png" /> {{ item.date }}</p>
-        <div class="curriculum_list_content_name">
-          <p style="display: inline-block; width: 2rem; height: 2rem">
-            <img :src="item.pic" width="100%" />
+        <!-- 时间 -->
+        <p><img src="../assets/curriculum/time.png" style="width:0.8rem;height:0.8rem" /> {{ item.end_play_date }}</p>
+        <!-- 老师 -->
+        <div class="curriculum_list_content_name" v-for="(message,index) in item.teachers_list" :key="index">
+          <p style="display: inline-block; width: 2rem;height: 2rem;margin-right:1rem">
+            <img :src="message.teacher_avatar" width="100%" />
           </p>
-          <p>{{ item.name }}</p>
+          <p>{{ message.teacher_name }}</p>
         </div>
-        <hr style="color: rgba(238, 238, 238, 0.835)" />
-        <p>{{ item.number }}人已报名 <span class="free">免费</span></p>
+        <!-- 报名 -->
+        <p class="newEnter">{{ item.browse_num }}人已报名 <span class="free">免费</span></p>
       </div>
     </div>
+    <div style="width:100%;height:0.2rem;background:rgba(238, 238, 238, 0.835);"></div>
   </div>
 </template>
 
@@ -127,6 +131,7 @@
 export default {
   data() {
     return {
+      classList:[],
       value: 0,
       option: [
         { text: "综合排序", value: 0 },
@@ -137,44 +142,6 @@ export default {
       ],
       taglist1: ["初一", "初二", "初三", "高一", "高二"],
       taglist2: ["语文", "数学", "英语", "物理", "化学"],
-      list: [
-        {
-          title: "李老师16号到22号地理大课堂开课了",
-          date: "03月26日 18:30 ~ 03月22日 15:00",
-          details: "共8课时",
-          name: "李青",
-          number: 134,
-          pic:
-            "http://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
-        },
-        {
-          title: "李老师16号到22号地理大课堂开课了",
-          date: "03月26日 18:30 ~ 03月22日 15:00",
-          details: "共8课时",
-          name: "李青",
-          number: 134,
-          pic:
-            "http://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
-        },
-        {
-          title: "李老师16号到22号地理大课堂开课了",
-          date: "03月26日 18:30 ~ 03月22日 15:00",
-          details: "共8课时",
-          name: "李青",
-          number: 134,
-          pic:
-            "http://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
-        },
-        {
-          title: "李老师16号到22号地理大课堂开课了",
-          date: "03月26日 18:30 ~ 03月22日 15:00",
-          details: "共8课时",
-          name: "李青",
-          number: 134,
-          pic:
-            "http://baijiayun-wangxiao.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpg",
-        },
-      ],
       selectList: [
         "全部",
         "大班课",
@@ -191,24 +158,46 @@ export default {
       hmwActiveNum2: 0,
       hmwActiveNum3: 0,
       hmwActiveNum4: 0,
+
+      messageList:[],
+      list:[]
     };
+  },
+  mounted(){
+    // 分类获取端口数据
+    // this.$ClientAPI.courseClassify().then((res)=>{
+    //   this.classList =res.data.data.attrclassify
+    //   console.log(this.classList)
+    // })
+    // 特色课数据获取
+    this.$ClientAPI.courseBasis().then((res)=>{
+      this.messageList = res.data.data.list 
+      console.log(this.messageList)
+    })
+    this.$ClientAPI.contentCollect().then((res)=>{
+      this.list = res.data
+      console.log(this.list)
+    })
+
   },
   methods: {
     onConfirm() {
       this.$refs.item.toggle();
     },
-    gotoDetials(item) {
+    gotoDetials(id) {
       this.$router.push({
         path: "/details",
         query: {
-          title: item.title,
-          date: item.date,
-          name: item.name,
-          details: item.details,
-          number: item.number,
-          pic: item.pic,
+          // title: item.title,
+          // date: item.end_play_date,
+          // name: item.teachers_list.teacher_name,
+          // // details: item.details,
+          // number: item.browse_num,
+          // pic: item.teachers_list.teacher_avatar,
+          id:id
         },
       });
+      // console.log(id)
     },
   },
 };
@@ -229,7 +218,8 @@ export default {
   background: rgba(238, 238, 238, 0.835);
   border-top: 1px solid transparent;
   margin: 1rem 0;
-  color: grey;
+  color: lightgrey;
+  font-size: 0.7rem;
 }
 .curriculum_list_content {
   width: 90%;
@@ -305,5 +295,9 @@ hr {
 }
 .hmwSpanActive span {
   color: red;
+}
+
+.newEnter{
+  border-top: 1px solid lightgrey;
 }
 </style>

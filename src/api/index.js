@@ -22,6 +22,16 @@ const ClientAPI = {
     // 获取登录接口的token
     loginGetToken(params){
         return requset(urlType.type.POST,urlType.url.LOGIN,params);
+    // 特色课分类
+    // courseClassify(){
+    //     return requset(urlType.type.GET,urlType.url.courseClassify)
+    // },
+    // 特色课数据获取
+    courseBasis(){
+        return requset(urlType.type.GET,urlType.url.courseBasis)
+    },
+    contentCollect(){
+        return requset(urlType.type.GET,urlType.url.contentCollect)
     }
 }
 export default ClientAPI;
