@@ -111,8 +111,8 @@
         position: relative;
     }
     .xuanfu {
-        height: 4rem; /* rem = 20px */
-        width: 4rem;
+        height: 3rem; /* rem = 20px */
+        width: 3rem;
         /*1.3  如果碰到滑动问题，请检查 z-index。z-index需比web大一级*/
         z-index: 99999999999;
         position: fixed;

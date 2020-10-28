@@ -34,7 +34,7 @@
                 <p class="main_text">我的一对一老师辅导</p>
               </template>
             </van-grid-item>
-            <van-grid-item to="/">
+            <van-grid-item to="/xueximoney">
               <template #default>
                 <p class="main_cant">0.00</p>
                 <p class="main_title">剩余学习币</p>
