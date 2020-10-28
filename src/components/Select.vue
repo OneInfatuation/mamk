@@ -201,7 +201,7 @@ export default {
 <style>
 .curriculum_nav {
   width: 100%;
-  margin-top: 3rem;
+  margin-top: 3.5rem;
   position: fixed;
   top: -1rem;
   left: 0px;
@@ -212,7 +212,7 @@ export default {
   height: 100%;
   background: rgba(238, 238, 238, 0.835);
   border-top: 1px solid transparent;
-  margin: 1rem 0;
+  margin: 2rem 0;
   color: lightgrey;
   font-size: 0.8rem;
 }

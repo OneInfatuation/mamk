@@ -128,26 +128,26 @@ export default {
   height: 5.1rem;
   padding: 0.7rem;
   background: #fff;
-  position: relative;
-  > .info_title {
+  position: relative;}
+  .info_title {
     font-size: 4.26667vw;
     font-weight: 400;
     padding-right: 1.9rem;
   }
-  > .info-price {
+   .info-price {
     font-size: 4.53333vw;
     font-weight: 500;
     color: #ee1f1f;
     line-height: 8.53333vw;
   }
-  > div {
+  div {
     font-size: 4vw;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.45);
     line-height: 0.8rem;
     line-height: 8vw;
   }
-  > i {
+   i {
     position: absolute;
     right: 2.66667vw;
     top: 1.33333vw;
@@ -157,7 +157,7 @@ export default {
       no-repeat 50%;
     background-size: 4.8vw 4.8vw;
   }
-}
+
 .dyb_header {
   display: flex;
   align-items: center;
@@ -173,11 +173,11 @@ export default {
   margin-top: 0.6rem;
   background: #fff;
   padding: 0.4rem;
-  > ul {
+  ul {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    > li {
+    li {
       padding: 2.66667vw 0;
       width: 20%;
       height: 24vw;
@@ -185,12 +185,12 @@ export default {
       align-items: center;
       flex-direction: column;
       box-sizing: border-box;
-      > img {
+      img {
         width: 10.4vw;
         height: 10.4vw;
         border-radius: 50%;
       }
-      > span {
+      span {
         font-weight: 400;
         color: #595959;
         padding-top: 2.13333vw;
@@ -207,7 +207,7 @@ export default {
   margin-top: 4vw;
   background: #fff;
   padding: 1.33333vw 2.66667vw;
-  > div {
+  div {
     padding: 4vw 1.33333vw;
     font-size: 3.73333vw;
   }
