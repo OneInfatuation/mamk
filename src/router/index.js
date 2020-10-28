@@ -139,11 +139,11 @@ const routes = [{
     name: "Register",
     component: () => import('../views/login/register.vue'),
   },
-  {
-    path: "/password", //注册页面
-    name: "Password",
-    component: () => import('../views/login/password.vue'),
-  },
+  // {
+  //   path: "/password", //注册页面
+  //   name: "Password",
+  //   component: () => import('../views/login/password.vue'),
+  // },
   {
     path:"/teacher",//讲师详情
     name:"Teacher",

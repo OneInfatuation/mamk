@@ -89,7 +89,7 @@
             </p>
             <p class="dyb_time">共{{ item.sales_base }}课时</p>
             <div class="dyb_thear">
-              <img :src="item.teachers_list[0].teacher_avatar" alt="" />
+              <img src="" alt="" />
               <span>{{ item.teachers_list[0].teacher_name }}</span>
             </div>
             <div class="dyb_info">
@@ -198,6 +198,7 @@ export default {
   width: 100%;
   height: 100%;
   background: #f0f2f5;
+  margin-bottom: 2.5rem;
 }
 .dyb_swipe {
   width: 100%;
