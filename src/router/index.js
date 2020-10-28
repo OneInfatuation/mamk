@@ -362,6 +362,11 @@ const routes = [{
     name: "myMoney",
     component: () => import('../views/mine/money/myMoney.vue'),
   },
+  {
+    path: "/member", //余额
+    name: "Member",
+    component: () => import('../views/mine/member/Member.vue'),
+  },
 
 ]
 const router = new VueRouter({

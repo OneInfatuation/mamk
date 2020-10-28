@@ -80,7 +80,7 @@
         <van-grid>
           <van-grid-item icon="coupon-o" text="优惠券" @click="toYuiquan" />
           <van-grid-item icon="credit-pay" text="学习卡" @click="toXuexika" />
-          <van-grid-item icon="diamond-o" text="会员" />
+          <van-grid-item icon="diamond-o" text="会员"  @click="gotoVIP"/>
         </van-grid>
         <div class="list_title"><p>自助服务</p></div>
         <van-grid>
@@ -103,35 +103,45 @@ export default {
         path: "/huiyuan",
       });
     },
+    // 跳转约课页
     toYueke() {
       this.$router.push({
         path: "/yueke",
       });
     },
+    // 跳转优惠券页面
     toYuiquan() {
       this.$router.push({
         path: "/youhuiquan",
       });
     },
+    // 跳转邮件页面 
     tokefu() {
       this.$router.push({
         path: "/emails",
       });
     },
+    // 跳转学习卡页面
     toXuexika() {
       this.$router.push({
         path: "/xuexika",
       });
     },
+    // 跳转意见反馈页面
     toyijian() {
       this.$router.push({
         path: "/yijian",
       });
     },
+    // 跳转设置页面
     toshezhi() {
       this.$router.push({
         path: "/shezhi",
       });
+    },
+    // 跳转会员页
+    gotoVIP(){
+      this.$router.push("/member")
     },
     onClickLogin() {
       //点击注册/登录
