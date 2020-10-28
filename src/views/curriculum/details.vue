@@ -1,12 +1,12 @@
 <template>
   <div>
-    <!-- 导航栏 -->
-    <div class="details_nav">
+    <!-- 导航栏1 -->
+    <div class="details_nav" v-show="!isShow">
       <p @click="back"><img src="../../assets/curriculum/fanhui.png" /></p>
       <p>课程详情</p>
       <p>
         <!-- 分享遮罩层 -->
-        <van-button @click="show = true" style="border:none">
+        <van-button @click="show = true" style="border: none">
           <template>
             <img src="../../assets/curriculum/fenxiang.png" />
           </template>
@@ -28,6 +28,19 @@
         </van-overlay>
       </p>
     </div>
+
+    <!-- 导航栏2 -->
+    <!-- <div class="details_nav" v-show="isShow">
+      <p @click="back"><img src="../../assets/curriculum/fanhui.png" /></p>
+      <div>
+      <van-tabs v-model="active" scrollspy sticky>
+        <van-tab v-for="index in 2" :title="'选项 ' + index">
+          内容 {{ index }}
+        </van-tab>
+      </van-tabs>        
+      </div>
+    </div> -->
+
     <div class="details_content">
       <!--  -->
       <div style="width: 100%; height: 1rem"></div>
@@ -97,6 +110,7 @@ export default {
       show: false,
       list: [],
       selectList: [],
+      isShow:false
     };
   },
   mounted() {
@@ -114,6 +128,10 @@ export default {
       });
       console.log(this.selectList);
     });
+
+    // this.$ClientAPI.courseInfo({params:{id}}).then((res)=>{
+    //     console.log(this.id)
+    // })
   },
   methods: {
     setenter() {

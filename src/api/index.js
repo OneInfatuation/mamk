@@ -23,8 +23,14 @@ const ClientAPI = {
     courseBasis(){
         return requset(urlType.type.GET,urlType.url.courseBasis)
     },
-    contentCollect(){
-        return requset(urlType.type.GET,urlType.url.contentCollect)
-    }
+    // 课程详情数据获取
+    courseInfo(params){
+        return requset(urlType.type.GET,urlType.url.courseInfo,params)
+    },  
+    // 课程内容获取（无效）
+    // contentCollect(){
+    //     return requset(urlType.type.GET,urlType.url.contentCollect)
+    // },
+
 }
 export default ClientAPI;
