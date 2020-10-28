@@ -131,8 +131,8 @@ const routes = [{
   },
   {
     path: "/logins", //登录页面
-    name: "logins",
-    component: () => import('../views/login/Logins.vue'),
+    name: "Logins",
+    component: () => import('../views/login/Login.vue'),
   },
   {
     path: "/register", //注册页面
@@ -206,6 +206,12 @@ const routes = [{
       navTitle: "设置"
     }
   },
+  {
+    path:"/personalInformation",//个人信息
+    name:"PersonalInformation",
+    component: () => import('../views/mine/PersonalInformation.vue'),
+  },
+
 ]
 const router = new VueRouter({
   mode: 'history',

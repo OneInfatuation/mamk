@@ -28,6 +28,7 @@
           <p class="waw_op_box"><small>暂无模考安排，敬请期待</small></p>
         </div>
       </div>
+      <div class="waw_hidden"></div>
     </div>
   </div>
 </template>
@@ -105,7 +106,7 @@ export default {
 <style lang='scss' scoped>
 .waw_practice_container {
   width: 100%;
-  height: 84vh;
+  // height: 84vh;
   background: whitesmoke;
 }
 .waw_grid_container {
@@ -115,11 +116,10 @@ export default {
 }
 .waw_hidden {
   width: 100%;
-  height: 0.5rem;
+  height: 0.8rem;
 }
 .waw_dry {
   width: 100%;
-  height: 12rem;
   background: white;
   .waw_dray_box {
     width: 96%;

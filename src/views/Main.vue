@@ -25,7 +25,7 @@ export default {
     };
   },
   methods: {
-    changetab(a) {
+    changetab(a) {//保存active，（保存底部tab标签栏的值）刷新的时候还在原来的状态
       this.active = Number(a);
       sessionStorage.setItem("mainIndex", a);
     },
