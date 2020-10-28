@@ -188,7 +188,7 @@ export default {
     },
     gotoDetials(id) {
       this.$router.push({
-        path: "/details",
+        path: "/course-detail",
         query: {
           id:id
         },

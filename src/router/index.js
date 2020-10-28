@@ -19,9 +19,9 @@ const routes = [{
       {
         path: "/curriculum", //课程
         name: "Curriculum",
-        component: () => import('../views/curriculum/Curriculum.vue'),// 课程
-        meta:{
-          navTitle:"课程"
+        component: () => import('../views/curriculum/Curriculum.vue'), // 课程
+        meta: {
+          navTitle: "课程"
         }
       },
       {
@@ -130,8 +130,13 @@ const routes = [{
     }
   },
   {
+<<<<<<< HEAD
+    path: "/login", //登录页面
+    name: "Login",
+=======
     path: "/logins", //登录页面
     name: "Logins",
+>>>>>>> a214cbc9c76a69780f3116ffa13116cd936af2b2
     component: () => import('../views/login/Login.vue'),
   },
   {
@@ -145,20 +150,72 @@ const routes = [{
     component: () => import('../views/login/password.vue'),
   },
   {
-    path:"/teacher",//讲师详情
-    name:"Teacher",
+    path: "/teacher", //讲师详情
+    name: "Teacher",
     component: () => import('../views/home/Teacher.vue'),
   },
   {
-    path:"/course-detail",//课程详情
-    name:"Course-detail",
+    path: "/course-detail", //课程详情
+    name: "Course-detail",
     component: () => import('../views/home/Course-detail.vue'),
+  },
+  {
+    path: "/huiyuan", //会员订单
+    name: "huiyuan",
+    component: () => import('../views/mine/huiyuan.vue'),
+    meta: {
+      navTitle: "会员订单"
+    }
+  },
+  {
+    path: "/yueke", //约课订单
+    name: "yueke",
+    component: () => import('../views/mine/yueke.vue'),
+    meta: {
+      navTitle: "约课订单"
+    }
+  },
+  {
+    path: "/youhuiquan", //约课订单
+    name: "youhuiquan",
+    component: () => import('../views/mine/youhuiquan.vue'),
+    meta: {
+      navTitle: "优惠券"
+    }
+  },
+  {
+    path: "/xuexika", //学习卡
+    name: "xuexika",
+    component: () => import('../views/mine/xuexika.vue'),
+  },
+  {
+    path: "/duihuan", //学习卡兑换
+    name: "duihuan",
+    component: () => import('../views/mine/duihuan.vue'),
+    meta: {
+      navTitle: "学习卡兑换"
+    }
+  },  {
+    path: "/yijian", //学习卡兑换
+    name: "yijian",
+    component: () => import('../views/mine/yijian.vue'),
+    meta: {
+      navTitle: "意见反馈"
+    }
+  },
+  {
+    path: "/shezhi", //学习卡兑换
+    name: "shezhi",
+    component: () => import('../views/mine/shezhi.vue'),
+    meta: {
+      navTitle: "设置"
+    }
   },
   {
     path:"/personalInformation",//个人信息
     name:"PersonalInformation",
     component: () => import('../views/mine/PersonalInformation.vue'),
-  }
+  },
 
 ]
 const router = new VueRouter({
@@ -166,5 +223,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
 
 export default router;
