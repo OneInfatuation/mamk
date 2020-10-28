@@ -118,9 +118,9 @@ export default {
         }
     }
   },
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter (to, from, next) {//组件级路由守卫
     var token = localStorage.getItem("token");
-    console.log(token);
+    // console.log(token);
     if(token){
       next()
     }else{
