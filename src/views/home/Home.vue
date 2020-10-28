@@ -162,7 +162,7 @@ export default {
       // 首页数据
       homeArr: [],
       // 获取token
-      token:localStorage.get('token')
+      token:localStorage.getItem('token')
     };
   },
   created() {},
