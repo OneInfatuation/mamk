@@ -11,6 +11,7 @@ const ClientAPI = {
     banner(){
         return requset(urlType.type.GET,urlType.url.Banner)
     },
+    // 获取首页列表数据
     appindex(){
         return requset(urlType.type.GET,urlType.url.AppIndex)
     },

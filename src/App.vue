@@ -30,4 +30,7 @@ body {
 body {
   font-size: 16px;
 }
+#app{
+  height: 100%;
+}
 </style>

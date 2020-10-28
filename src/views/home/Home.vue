@@ -83,48 +83,65 @@
         <!-- 精品课程 -->
         <ul class="dyb_jing">
           <p class="dyb_section_title">{{ homeArr[1].channel_info.name }}</p>
-          <li v-for="(item,index) in homeArr[1].list" :key="index">
+          <li v-for="(item, index) in homeArr[1].list" :key="index">
             <p class="dyb_title">
-              {{item.title}}
+              {{ item.title }}
             </p>
-            <p class="dyb_time">共{{item.sales_base}}课时</p>
+            <p class="dyb_time">共{{ item.sales_base }}课时</p>
             <div class="dyb_thear">
-              <img
-                :src="item.teachers_list[0].teacher_avatar"
-                alt=""
-              />
-              <span>{{item.teachers_list[0].teacher_name}}</span>
+              <img :src="item.teachers_list[0].teacher_avatar" alt="" />
+              <span>{{ item.teachers_list[0].teacher_name }}</span>
             </div>
             <div class="dyb_info">
-              <span>{{item.sales_num}}人报名</span>
-              <p style="color: green; font-size: 0.14rem" v-if="item.underlined_price==0">免费</p>
-              <p style="color: red; font-size: 0.14rem" v-if="item.underlined_price>0">{{item.underlined_price}}.00</p>
+              <span>{{ item.sales_num }}人报名</span>
+              <p
+                style="color: green; font-size: 0.14rem"
+                v-if="item.underlined_price == 0"
+              >
+                免费
+              </p>
+              <p
+                style="color: red; font-size: 0.14rem"
+                v-if="item.underlined_price > 0"
+              >
+                {{ item.underlined_price }}.00
+              </p>
             </div>
-            <img
-              :src="item.cover_img"
-              alt=""
-            />
+            <img :src="item.cover_img" alt="" />
           </li>
         </ul>
         <!-- 推荐课程 -->
         <ul class="dyb_jing">
           <p class="dyb_section_title">{{ homeArr[3].channel_info.name }}</p>
-          <li v-for="(item,index) in homeArr[3].list" :key="index">
+          <li
+            v-for="(item, index) in homeArr[3].list"
+            :key="index"
+            @click="
+              $router.push(`/course-detail?id=${item.id}`)
+            "
+          >
             <p class="dyb_title">
-              {{item.title}}
+              {{ item.title }}
             </p>
-            <p class="dyb_time">共{{item.sales_base}}课时</p>
+            <p class="dyb_time">共{{ item.sales_base }}课时</p>
             <div class="dyb_thear">
-              <img
-                :src="item.teachers_list[0].teacher_avatar"
-                alt=""
-              />
-              <span>{{item.teachers_list[0].teacher_name}}</span>
+              <img :src="item.teachers_list[0].teacher_avatar" alt="" />
+              <span>{{ item.teachers_list[0].teacher_name }}</span>
             </div>
             <div class="dyb_info">
-              <span>{{item.sales_num}}人报名</span>
-              <p style="color: green; font-size: 0.14rem" v-if="item.underlined_price==0">免费</p>
-              <p style="color: red; font-size: 0.14rem" v-if="item.underlined_price>0">{{item.underlined_price}}.00</p>
+              <span>{{ item.sales_num }}人报名</span>
+              <p
+                style="color: green; font-size: 0.14rem"
+                v-if="item.underlined_price == 0"
+              >
+                
+              </p>
+              <p
+                style="color: red; font-size: 0.14rem"
+                v-if="item.underlined_price > 0"
+              >
+                {{ item.underlined_price }}.00
+              </p>
             </div>
           </li>
         </ul>
@@ -372,4 +389,8 @@ section {
   margin-left: 0.5rem;
   color: #ea7a2f;
 }
+#app{
+  margin-bottom: 2.5rem;
+}
+
 </style>
