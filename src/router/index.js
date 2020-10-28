@@ -133,7 +133,6 @@ const routes = [{
 
     path: "/login", //登录页面
     name: "Login",
-
     component: () => import('../views/login/Login.vue'),
   },
   {
