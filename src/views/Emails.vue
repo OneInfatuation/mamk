@@ -1,8 +1,10 @@
 <template>
   <div>
+      <!-- 留言标题 -->
     <div class="emails_nav" @click="goto"> 
         <p>给我们留言 <span style="float:right"><img src="../assets/curriculum/down.png"></span></p>
     </div>
+    <!-- 留言内容 -->
     <div class="emails_content">
         <p>你好，很抱歉我们暂时无法为你提供服务，如需帮助
             ，请留言，我们将尽快联系并解决你的问题</p>
