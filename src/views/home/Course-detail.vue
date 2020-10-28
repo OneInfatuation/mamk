@@ -157,7 +157,7 @@ export default {
       no-repeat 50%;
     background-size: 4.8vw 4.8vw;
   }
-}
+
 .dyb_header {
   display: flex;
   align-items: center;

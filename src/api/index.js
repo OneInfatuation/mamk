@@ -23,11 +23,6 @@ const ClientAPI = {
     loginGetToken(params){
         return requset(urlType.type.POST,urlType.url.LOGIN,params);
     },
-    // 特色课分类
-    // courseClassify(){
-    //     return requset(urlType.type.GET,urlType.url.courseClassify)
-    // }
-    // },
     // 特色课数据获取
     courseBasis(){
         return requset(urlType.type.GET,urlType.url.courseBasis)
@@ -36,10 +31,5 @@ const ClientAPI = {
     courseInfo(params){
         return requset(urlType.type.GET,urlType.url.courseInfo,params)
     },  
-    // 课程内容获取（无效）
-    // contentCollect(){
-    //     return requset(urlType.type.GET,urlType.url.contentCollect)
-    // },
-
 }
 export default ClientAPI;
