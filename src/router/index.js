@@ -129,11 +129,11 @@ const routes = [{
       navTitle: "习题收藏"
     }
   },
-  {
-    path: "/logins", //登录页面
-    name: "Logins",
-    component: () => import('../views/login/logins.vue'),
-  },
+  // {
+  //   path: "/logins", //登录页面
+  //   name: "Logins",
+  //   component: () => import('../views/login/logins.vue'),
+  // },
   {
     path: "/register", //注册页面
     name: "Register",

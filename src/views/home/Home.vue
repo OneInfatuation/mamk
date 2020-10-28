@@ -89,7 +89,7 @@
             </p>
             <p class="dyb_time">共{{ item.sales_base }}课时</p>
             <div class="dyb_thear">
-              <img src="" alt="" />
+              <img :src="item.teachers_list[0].teacher_avatar" alt="" />
               <span>{{ item.teachers_list[0].teacher_name }}</span>
             </div>
             <div class="dyb_info">
@@ -100,14 +100,11 @@
               >
                 免费
               </p>
-              <p
-                style="color: red; font-size: 0.14rem"
-                v-if="item.price > 0"
-              >
+              <p style="color: red; font-size: 0.14rem" v-if="item.price > 0">
                 {{ item.price }}.00
               </p>
             </div>
-            <img :src="item.cover_img" alt="" />
+            <img :src="item.cover_img" alt="" v-if="token?true:false" />
           </li>
         </ul>
         <!-- 推荐课程 -->
@@ -116,9 +113,7 @@
           <li
             v-for="(item, index) in homeArr[3].list"
             :key="index"
-            @click="
-              $router.push(`/course-detail?id=${item.id}`)
-            "
+            @click="$router.push(`/course-detail?id=${item.id}`)"
           >
             <p class="dyb_title">
               {{ item.title }}
@@ -133,13 +128,8 @@
               <p
                 style="color: green; font-size: 0.14rem"
                 v-if="item.price == 0"
-              >
-                
-              </p>
-              <p
-                style="color: red; font-size: 0.14rem"
-                v-if="item.price > 0"
-              >
+              >免费</p>
+              <p style="color: red; font-size: 0.14rem" v-if="item.price > 0">
                 {{ item.price }}.00
               </p>
             </div>
@@ -171,6 +161,8 @@ export default {
     return {
       // 首页数据
       homeArr: [],
+      // 获取token
+      token:localStorage.get('token')
     };
   },
   created() {},
@@ -390,8 +382,7 @@ section {
   margin-left: 0.5rem;
   color: #ea7a2f;
 }
-#app{
+#app {
   margin-bottom: 2.5rem;
 }
-
 </style>
