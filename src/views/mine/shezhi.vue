@@ -3,7 +3,7 @@
 <NavTitle></NavTitle>
 <div class="shezhi_box">
 <div class="shezhimm">
-<van-cell >
+<van-cell @click="gotoPwdSet">
   <!-- 使用 title 插槽来自定义标题 -->
   <template #title>
     <span class="custom-title">设置密码</span>
@@ -15,7 +15,7 @@
 </van-cell>
 </div>
 <div class="box-button">
-<van-button type="warning" size="large">警告按钮</van-button>
+<van-button type="warning" size="large" @click="backLogin">退出登录</van-button>
 </div>
 </div>
   </div>
@@ -26,6 +26,18 @@ import NavTitle from '../../components/navTitle/TitleOnlyBack'
 export default {
 components:{
     NavTitle
+},
+methods:{
+  // 退出登录
+  backLogin(){
+    this.token = []
+    localStorage.token = JSON.stringify(this.token)
+    this.$router.push("/login")
+  },
+  // 跳转密码设置
+  gotoPwdSet(){
+    this.$router.push("/pwdset")
+  }
 }
 }
 </script>
