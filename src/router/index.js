@@ -283,7 +283,14 @@ const routes = [{
       navTitle: "我的关注"
     }
   },
-
+  {
+    path: "/ddxq", //关注老师页面
+    name: "Ddxq",
+    component: () => import('../views/mine/Ddxq.vue'),
+    meta: {
+      navTitle: "我的关注"
+    }
+  },
 ]
 const router = new VueRouter({
   mode: 'history',
