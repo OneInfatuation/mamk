@@ -33,6 +33,11 @@ const ClientAPI = {
     },  
     guanzhus(params){
         return requset(urlType.type.GET,urlType.url.Guanzhu,{params})
+    },
+    // 验证码
+    VerificationCode(params){
+        return requset(urlType.type.POST,urlType.url.Verification,params)
     }
+
 }
 export default ClientAPI;
