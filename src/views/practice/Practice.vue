@@ -25,7 +25,7 @@
             <span>时间</span>
           </div>
           <div class="waw_empty_img">
-            <img src="https://wap.365msmk.com/img/empty@2x.a2fa524d.png">
+            <img src="https://wap.365msmk.com/img/empty@2x.a2fa524d.png" />
           </div>
           <p class="waw_op_box"><small>暂无模考安排，敬请期待</small></p>
         </div>
@@ -80,6 +80,7 @@ export default {
     onClick(index) {
       //点击宫格跳转对应页面
       var path = "";
+      var token = localStorage.getItem("token");
       switch (index) {
         case 0:
           path = "/examinationPlace";
@@ -91,13 +92,25 @@ export default {
           path = "/simulationTest";
           break;
         case 3:
-          path = "/wrongExercises";
+          if (token) {
+            path = "/wrongExercises";
+          } else {
+            path = "/login";
+          }
           break;
         case 4:
-          path = "/evaluationRecord";
+          if (token) {
+            path = "/evaluationRecord";
+          } else {
+            path = "/login";
+          }
           break;
         case 5:
-          path = "/exerciseCollection";
+          if (token) {
+            path = "/exerciseCollection";
+          } else {
+            path = "/login";
+          }
           break;
       }
       this.$router.push(path);
@@ -146,18 +159,18 @@ export default {
         color: orange;
       }
     }
-    .waw_empty_img{
+    .waw_empty_img {
       width: 100%;
       height: 7rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      img{
+      img {
         width: 40%;
         height: 90%;
       }
     }
-    .waw_op_box{
+    .waw_op_box {
       width: 100%;
       height: 2rem;
       display: inline-flex;
