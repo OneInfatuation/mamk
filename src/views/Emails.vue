@@ -1,79 +1,101 @@
 <template>
   <div>
-      <!-- 留言标题 -->
-    <div class="emails_nav" @click="goto"> 
-        <p>给我们留言 <span style="float:right"><img src="../assets/curriculum/down.png"></span></p>
+    <!-- 留言标题 -->
+    <div class="emails_nav" @click="goto">
+      <p>
+        给我们留言
+        <span style="float: right"
+          ><img src="../assets/curriculum/down.png"
+        /></span>
+      </p>
     </div>
     <!-- 留言内容 -->
     <div class="emails_content">
-        <p>你好，很抱歉我们暂时无法为你提供服务，如需帮助
-            ，请留言，我们将尽快联系并解决你的问题</p>
-        <p>手机</p>
-        <input class="Iphone" placeholder="请输入" v-model="phone">
-        <p>留言信息</p>
-        <textarea class="Message" placeholder="请输入" v-model="talk"/>
-        <p><van-button type="info" style="width:100%" @click="submit">提交</van-button></p>
+      <p>
+        你好，很抱歉我们暂时无法为你提供服务，如需帮助
+        ，请留言，我们将尽快联系并解决你的问题
+      </p>
+      <p>手机</p>
+      <input
+        class="Iphone"
+        placeholder="请输入"
+        v-model="phone"
+        maxlength="11"
+      />
+      <p>留言信息</p>
+      <textarea class="Message" placeholder="请输入" v-model="talk" />
+      <p>
+        <van-button type="info" style="width: 100%" @click="submit"
+          >提交</van-button
+        >
+      </p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-    data(){
-        return {
-            phone:"",
-            talk:""
+  data() {
+    return {
+      phone: "",
+      talk: "",
+    };
+  },
+  methods: {
+    submit() {
+      if (this.phone === "" && this.talk === "") {
+        alert("至少要有一项数据");
+      } else {
+        var zz = /^1[3|4|5|7|8][0-9]{9}$/;
+        if (zz.test(this.phone) == false) {
+          alert("请正确填写手机号码!", { icon: 5, offset: "200px" });
+          return false;
+        } else {
+          alert("提交成功");
         }
+      }
     },
-    methods:{
-        submit(){
-            if(this.phone==="" && this.talk===""){
-                alert("至少要有一项数据")
-            }else{
-                alert("提交成功")
-            }
-        },
-        goto(){
-            window.history.back()
-        }
-    }
-}
+    goto() {
+      window.history.back();
+    },
+  },
+};
 </script>
 
 <style>
-.emails_nav{
-    width:100%;
-    height: 10vh;
-    background: blue;
-    margin: 0px auto;
-    line-height: 3rem;
-    color: white;
+.emails_nav {
+  width: 100%;
+  height: 10vh;
+  background: blue;
+  margin: 0px auto;
+  line-height: 3rem;
+  color: white;
 }
-.emails_nav p{
-    width: 90%;
-    height: 100%;
-    margin: 0px auto;
+.emails_nav p {
+  width: 90%;
+  height: 100%;
+  margin: 0px auto;
 }
-.emails_content{
-    width: 100%;
-    height: 90vh;
-    background: #eee;
-    border: 1px solid transparent;
+.emails_content {
+  width: 100%;
+  height: 90vh;
+  background: #eee;
+  border: 1px solid transparent;
 }
 .emails_content p {
-    width: 90%;
-    margin: 0.5rem auto;
+  width: 90%;
+  margin: 0.5rem auto;
 }
-.Iphone{
-    width: 100%;
-    height: 2.5rem;
-    padding-left: 1rem;
-    border: none;
+.Iphone {
+  width: 100%;
+  height: 2.5rem;
+  padding-left: 1rem;
+  border: none;
 }
-.Message{
-    width: 100%;
-    height: 3.5rem;
-    padding-left: 1rem;
-    border: none;
+.Message {
+  width: 100%;
+  height: 3.5rem;
+  padding-left: 1rem;
+  border: none;
 }
 </style>

@@ -28,9 +28,6 @@ const ClientAPI = {
         return requset(urlType.type.GET, urlType.url.courseBasis)
     },
     // 课程详情数据获取
-    courseInfo(params) {
-        return requset(urlType.type.GET, urlType.url.courseInfo, params)
-    },
     guanzhus(params) {
         return requset(urlType.type.GET, urlType.url.Guanzhu, { params })
     },
@@ -42,5 +39,18 @@ const ClientAPI = {
     okpsd(data){
         return requset(urlType.type.POST, urlType.url.okPsd,data)
     },
+    
+    courseInfo(params){
+        return requset(urlType.type.GET,urlType.url.courseInfo,params)
+    },  
+    // 验证码
+    VerificationCode(params){
+        return requset(urlType.type.POST,urlType.url.Verification,params)
+    },
+    // 设置密码
+    SetInitPassword(params){
+        return requset(urlType.type.POST,urlType.url.SetPassword,params)
+    }
+
 }
 export default ClientAPI;

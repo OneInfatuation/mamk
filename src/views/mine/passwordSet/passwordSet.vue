@@ -26,7 +26,7 @@
         <span
           style="float: right; color: orange; font-size: 0.7rem"
           v-show="!isShow"
-          >时间</span
+          >{{count}} s </span
         >
       </p>
       <p><input placeholder="请输入验证码" type="text" v-model="yzMessage"/></p>
@@ -44,7 +44,9 @@ export default {
       isShow: true,
       iphone: "",
       yzMessage:"",
-      password:""
+      password:"",
+      count:"",
+      timer: null
     };
   },
   methods: {
@@ -60,7 +62,22 @@ export default {
         alert("请正确填写手机号码!", { icon: 5, offset: "200px" });
         return false;
       } else {
-        this.isShow = false;
+        // 声明时间
+        const TIME_COUNT = 60
+        if(!this.timer){
+          this.count = TIME_COUNT;
+          this.isShow = false;
+          this.timer = setInterval(()=>{
+            if(this.count > 0 && this.count <= TIME_COUNT){
+              this.count --
+            }else{
+              this.isShow = true;
+              clearInterval(this.timer);
+              this.timer = null
+            }
+          },1000)
+        }
+        
       }
     },
     // 确认按钮
