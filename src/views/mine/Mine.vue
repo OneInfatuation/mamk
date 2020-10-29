@@ -264,10 +264,12 @@ export default {
         }
       }
       .button {
-        width: 5.5rem;
+        width: 4rem;
         height: 2rem;
         background: rgb(238, 110, 59);
         border: none;
+        font-size: 0.65rem;
+        color: white;
         border-radius: 25px 0px 0px 25px;
       }
     }

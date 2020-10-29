@@ -43,7 +43,7 @@ export default {
 <style>
 .emails_nav{
     width:100%;
-    height: 3rem;
+    height: 10vh;
     background: blue;
     margin: 0px auto;
     line-height: 3rem;
@@ -56,24 +56,24 @@ export default {
 }
 .emails_content{
     width: 100%;
-    height: 40rem;
+    height: 90vh;
     background: #eee;
     border: 1px solid transparent;
 }
 .emails_content p {
     width: 90%;
-    margin: 10px auto;
+    margin: 0.5rem auto;
 }
 .Iphone{
     width: 100%;
     height: 2.5rem;
-    padding-left: 20px;
+    padding-left: 1rem;
     border: none;
 }
 .Message{
     width: 100%;
-    height: 70px;
-    padding-left: 20px;
+    height: 3.5rem;
+    padding-left: 1rem;
     border: none;
 }
 </style>

@@ -66,7 +66,7 @@ const routes = [{
     component: () => import('../views/login/register.vue'),
   },
   {
-    path: "/pass", //注册页面
+    path: "/pass", //找回密码页面
     name: "Pass",
     component: () => import('../views/login/Pass.vue'),
   },
