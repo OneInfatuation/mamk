@@ -291,6 +291,14 @@ const routes = [{
       navTitle: "我的关注"
     }
   },
+  {
+    path: "/setPassword", //关注老师页面
+    name: "SetPassword",
+    component: () => import('../views/login/SetPassword.vue'),
+    meta: {
+      navTitle: "我的关注"
+    }
+  },
 ]
 const router = new VueRouter({
   mode: 'history',

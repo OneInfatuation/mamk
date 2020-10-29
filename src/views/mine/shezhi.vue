@@ -30,8 +30,7 @@ components:{
 methods:{
   // 退出登录
   backLogin(){
-    this.token = []
-    localStorage.token = JSON.stringify(this.token)
+    localStorage.removeItem("token");
     this.$router.push("/login")
   },
   // 跳转密码设置
