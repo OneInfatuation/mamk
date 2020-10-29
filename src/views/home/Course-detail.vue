@@ -81,6 +81,7 @@
         </li>
       </ul>
     </div>
+    <van-tabbar>立即报名</van-tabbar>
   </div>
 </template>
 
@@ -273,5 +274,14 @@ export default {
       }
     }
   }
+}
+.van-tabbar {
+  background: orangered;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4.5333vw;
+  height: 11.73333vw;
 }
 </style>
