@@ -47,10 +47,9 @@ const routes = [{
     path: "/mine", //我的
     name: "Mine",
     component: () => import('../views/mine/Mine.vue'),
-    meta:{
-      navTitle:"我的"
+    meta: {
+      navTitle: "我的"
     }
-<<<<<<< HEAD
   }
   ]
 },
@@ -342,18 +341,16 @@ const routes = [{
   meta: {
     navTitle: "修改密码"
   }
+},
+
+{
+  path: "/setPassword", //关注老师页面
+  name: "SetPassword",
+  component: () => import('../views/login/SetPassword.vue'),
+  meta: {
+    navTitle: "我的关注"
+  }
 }
-=======
-  },
-  {
-    path: "/setPassword", //关注老师页面
-    name: "SetPassword",
-    component: () => import('../views/login/SetPassword.vue'),
-    meta: {
-      navTitle: "我的关注"
-    }
-  },
->>>>>>> d2479ac9c6926002de114b63efb84e688d03ac9e
 ]
 const router = new VueRouter({
   mode: 'history',

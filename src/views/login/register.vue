@@ -8,25 +8,6 @@
       />
     </div>
     <div class="register_from">
-<<<<<<< HEAD
-      <van-form @submit="onSubmit">
-        <div class="get_reg">
-          <van-field
-            v-model="username"
-            name="手机号"
-            placeholder="请输入手机号"
-            :rules="[{ required: true, message: '请填写手机号' }]"
-          />
-          <font @click="getReg"
-            >获取验证码
-            <van-count-down
-              time="60000"
-              v-if="flag"
-              format="ss"
-              @change="rm_time"
-          /></font>
-        </div>
-=======
       <van-form>
         <van-field
           v-model="username"
@@ -46,20 +27,12 @@
             <span v-show="!show" class="count">{{ count }} s</span>
           </template>
         </van-field>
->>>>>>> d2479ac9c6926002de114b63efb84e688d03ac9e
         <van-field
           @click="gao(2)"
           :class="gaoShow == 2 ? 'van-field' : 'van-field-active'"
           v-model="password"
-<<<<<<< HEAD
-          type="password"
-          name="验证码"
-          placeholder="请输入短信验证码"
-          :rules="[{ required: true, message: '请填写验证码' }]"
-=======
           name="短信验证码"
           placeholder="请输入短信验证码"
->>>>>>> d2479ac9c6926002de114b63efb84e688d03ac9e
         />
         <div class="register_from_tiaozhuan">
           <span>*未注册的手机号将自动注册</span>
@@ -76,49 +49,15 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-import { Toast } from "vant";
-=======
 import Vue from "vue";
 import { Toast } from "vant"; //引入文字提示
 Vue.use(Toast);
->>>>>>> d2479ac9c6926002de114b63efb84e688d03ac9e
 export default {
   data() {
     return {
       // 手机号
       username: "",
       password: "",
-<<<<<<< HEAD
-      // 是否开启倒计时
-      flag: false,
-    };
-  },
-  methods: {
-    // 登录按钮
-    async onSubmit(values) {
-      let { data: res } = await axios.post(
-        "http://120.53.31.103:84/api/app/login",
-        {
-          mobile: this.username,
-          sms_code: this.password,
-          client: 1,
-          type: "2",
-        }
-      );
-      console.log(res);
-      if (res.code != 200) {
-        Toast(res.msg);
-      } else {
-        Toast("登录成功");
-        localStorage.setItem("token", res.data.remember_token);
-        if (res.data.is_new == 1) {
-          this.$router.push("/setpass");
-          return false;
-        }
-        this.$router.push("/");
-      }
-=======
       show: true,
       count: "",
       timer: null,
@@ -165,7 +104,6 @@ export default {
             position: "top",
           });
         });
->>>>>>> d2479ac9c6926002de114b63efb84e688d03ac9e
     },
     // 回到账号密码登录
     toLogins() {
@@ -174,32 +112,6 @@ export default {
         path: "/login",
       });
     },
-<<<<<<< HEAD
-    // 获取验证码
-    async getReg() {
-      let { data: res } = await axios.post(
-        "http://120.53.31.103:84/api/app/smsCode",
-        {
-          mobile: this.username,
-          sms_type: "login",
-        }
-      );
-      console.log(res);
-      if (res.code != 200) {
-        Toast(res.msg);
-      } else {
-        this.flag = true;
-        Toast("获取验证码成功，注意查收短信");
-      }
-    },
-    // 在倒计时期间移除点击事件
-    rm_time() {
-      let font = document.getElementsByTagName("font")[0];
-      font.style.color = "#eee";
-      document.getElementsByClassName("van-count-down")[0].style.color = "#eee";
-    },
-    // 在倒计时结束后恢复
-=======
     getCode() {
       //点击发送验证码
       var phone = /^[1]([3-9])[0-9]{9}$/;
@@ -239,7 +151,6 @@ export default {
           });
       }
     },
->>>>>>> d2479ac9c6926002de114b63efb84e688d03ac9e
   },
 };
 </script>
@@ -272,25 +183,6 @@ export default {
     margin: 1rem;
   }
 }
-<<<<<<< HEAD
-.register_from {
-  .get_reg {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 0.5rem;
-    font {
-      font-size: 0.7rem;
-      color: orange;
-      padding-right: 0.5rem;
-      width: 5rem;
-      .van-count-down {
-        color: orange;
-        display: inline;
-      }
-    }
-  }
-=======
 .waw_button {
   color: orange;
   border: none;
@@ -300,6 +192,5 @@ export default {
 }
 .van-field-active {
   border-bottom: 0px;
->>>>>>> d2479ac9c6926002de114b63efb84e688d03ac9e
 }
 </style>
