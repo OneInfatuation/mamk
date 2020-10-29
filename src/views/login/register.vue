@@ -65,8 +65,8 @@ export default {
   align-items: center;
   justify-content: center;
   .login_logo_img {
-    width: 80%;
-    height: 50%;
+    width: 70%;
+    height: 40%;
   }
 }
 .register_from_tiaozhuan {

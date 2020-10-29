@@ -69,7 +69,7 @@ export default {
         if(this.token.length>0){
             this.$router.push("/coaching")
         }else{
-            this.$router.push("/logins");
+            this.$router.push("/login");
         }
       }
   },

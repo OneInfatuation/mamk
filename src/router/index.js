@@ -66,7 +66,7 @@ const routes = [{
     component: () => import('../views/login/register.vue'),
   },
   {
-    path: "/pass", //注册页面
+    path: "/pass", //找回密码页面
     name: "Pass",
     component: () => import('../views/login/Pass.vue'),
   },
@@ -283,7 +283,14 @@ const routes = [{
       navTitle: "我的关注"
     }
   },
-
+  {
+    path: "/ddxq", //关注老师页面
+    name: "Ddxq",
+    component: () => import('../views/mine/Ddxq.vue'),
+    meta: {
+      navTitle: "我的关注"
+    }
+  },
 ]
 const router = new VueRouter({
   mode: 'history',

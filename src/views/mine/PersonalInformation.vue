@@ -18,7 +18,9 @@
         <div class="waw_person">
           <div>昵称</div>
           <div class="waw_user_box">
-            <span>{{ nickName }}</span>
+            <div>
+              <span>{{ nickName }}</span>
+            </div>
             <van-icon
               name="arrow"
               color="lightgray"
@@ -51,7 +53,7 @@
         <div class="waw_person">
           <div>所在城市</div>
           <div class="waw_address_box">
-            <span>{{ Address }}</span>
+            <div><span>{{ Address }}</span></div>
             <van-icon
               name="arrow"
               color="lightgray"
@@ -62,7 +64,11 @@
         <div class="waw_person">
           <div>学科</div>
           <div class="waw_subject_box">
-            <div>化学</div>
+            <div>
+              <span v-for="(item, index) in subject" :key="index">{{
+                item
+              }}</span>
+            </div>
             <van-icon name="arrow" color="lightgray" @click="onClickSubject" />
           </div>
         </div>
@@ -115,7 +121,6 @@
 
     <!-- 学校弹出层 -->
     <van-popup v-model="showClass" position="bottom" :style="{ height: '45%' }">
-     
     </van-popup>
   </div>
 </template>
@@ -129,10 +134,11 @@ export default {
     return {
       nickName: "", //昵称
       user: "", //手机号
-      sex: "", //性别
+      sex: localStorage.getItem("sex") || "男", //性别
       time: localStorage.getItem("time") || "2000-10-10", //日期
       Address:
         localStorage.getItem("Address") || "内蒙古自治区 呼和浩特市 武川县", //地址
+      subject: JSON.parse(localStorage.getItem("result")) || ["语文"],
       showImg: false, //图片修改（默认隐藏）
       showTime: false, //日期修改（默认隐藏）
       showAddress: false, //修改地址（默认隐藏）
@@ -175,10 +181,10 @@ export default {
     if (mobile) {
       this.user = mobile;
     }
-    var sex = localStorage.getItem("sex"); //读取性别
-    if (sex) {
-      this.sex = sex;
-    }
+    // var sex = localStorage.getItem("sex"); //读取性别
+    // if (sex) {
+    //   this.sex = sex;
+    // }
   },
   methods: {
     onClickChangeImg() {
@@ -239,7 +245,6 @@ export default {
       //点击从选年级
       this.showClass = true;
     },
-    
   },
 };
 </script>
@@ -294,14 +299,20 @@ export default {
   border-bottom: 1px solid lightgray;
 }
 .waw_user_box {
-  width: 30%;
+  // background: red;
+  width: 80%;
   height: 100%;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
+  div{
+    width: 90%;
+    display: inline-flex;
+    justify-content: flex-end;
+  }
 }
 .waw_mobile {
-  margin-right: 5%;
+  margin-right: 8%;
 }
 .waw_sex_box {
   width: 10%;
@@ -311,25 +322,39 @@ export default {
   align-items: center;
 }
 .waw_time_box {
-  width: 27%;
+  width: 28%;
   height: 100%;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
 }
 .waw_address_box {
-  width: 65%;
+  width: 90%;
   height: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
+  div{
+    width: 90%;
+    display: inline-flex;
+    justify-content: flex-end;
+  }
 }
 .waw_subject_box {
-  width: 15%;
+  // background: red;
+  width: 80%;
   height: 100%;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
+  div {
+    width: 90%;
+    display: inline-flex;
+    justify-content: flex-end;
+    span {
+      margin-left: 2%;
+    }
+  }
 }
 .waw_class_box {
   width: 27%;

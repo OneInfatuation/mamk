@@ -23,7 +23,7 @@ export default {
   },
   data() {
       return {
-          num:0,
+          num:localStorage.getItem("num") || 0,
           sex:localStorage.getItem("sex") || "男",
       }
   },
@@ -35,6 +35,7 @@ export default {
             }else{
                 this.sex = "女"
             }
+            localStorage.setItem("num",this.num);
             // localStorage.setItem("sex",this.sex);
       },
       onClickChangeSex(){
