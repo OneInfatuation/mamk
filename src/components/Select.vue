@@ -244,7 +244,7 @@ hr {
 .free {
   float: right;
   color: green;
-  font-size: 20px;
+  font-size: 0.8rem;
 }
 .selectTag {
   width: 100%;
