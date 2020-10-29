@@ -120,7 +120,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .dyb_course_deatail {
   height: 100%;
   background: #f0f2f5;

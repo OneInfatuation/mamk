@@ -7,7 +7,6 @@
   <!-- 使用 title 插槽来自定义标题 -->
   <template #title>
     <span class="custom-title">设置密码</span>
-
   </template>
    <template #right-icon>
     <van-icon name="arrow" class="search-icon" />
@@ -30,13 +29,12 @@ components:{
 methods:{
   // 退出登录
   backLogin(){
-    this.token = []
-    localStorage.token = JSON.stringify(this.token)
+    localStorage.removeItem('token')
     this.$router.push("/login")
   },
   // 跳转密码设置
   gotoPwdSet(){
-    this.$router.push("/pwdset")
+    this.$router.push("/updatapwd")
   }
 }
 }

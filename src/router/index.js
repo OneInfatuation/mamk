@@ -14,7 +14,10 @@ const routes = [{
   children: [{
     path: "/", //首页
     name: "Home",
-    component: () => import('../views/home/Home.vue')
+    component: () => import('../views/home/Home.vue'),
+    meta: {
+      navTitle: "每时每刻"
+    },
   },
   {
     path: "/curriculum", //课程
@@ -43,7 +46,10 @@ const routes = [{
   {
     path: "/mine", //我的
     name: "Mine",
-    component: () => import('../views/mine/Mine.vue')
+    component: () => import('../views/mine/Mine.vue'),
+    meta:{
+      navTitle:"我的"
+    }
   }
   ]
 },
@@ -59,16 +65,25 @@ const routes = [{
   path: "/login", //登录页面
   name: "Login",
   component: () => import('../views/login/Login.vue'),
+  meta: {
+    navTitle: "登录页面"
+  }
 },
 {
   path: "/register", //注册页面
   name: "Register",
   component: () => import('../views/login/register.vue'),
+  meta: {
+    navTitle: "注册页面"
+  }
 },
 {
   path: "/pass", //注册页面
   name: "Pass",
   component: () => import('../views/login/Pass.vue'),
+  meta: {
+    navTitle: "注册页面"
+  }
 },
 {
   path: "/huiyuan", //会员订单
@@ -82,6 +97,9 @@ const routes = [{
   path: "/xuexika", //学习卡
   name: "xuexika",
   component: () => import('../views/mine/xuexika.vue'),
+  meta: {
+    navTitle: "学习卡"
+  }
 },
 {
   path: "/duihuan", //学习卡兑换
@@ -176,16 +194,25 @@ const routes = [{
   path: "/password", //注册页面
   name: "Password",
   component: () => import('../views/login/password.vue'),
+  meta: {
+    navTitle: "注册"
+  }
 },
 {
   path: "/teacher", //讲师详情
   name: "Teacher",
   component: () => import('../views/home/Teacher.vue'),
+  meta: {
+    navTitle: "讲师详情"
+  }
 },
 {
   path: "/course-detail", //课程详情
   name: "Course-detail",
   component: () => import('../views/home/Course-detail.vue'),
+  meta: {
+    navTitle: "课程详情"
+  }
 },
 {
   path: "/yueke", //约课订单
@@ -231,36 +258,57 @@ const routes = [{
   path: "/sex", //修改个人信息页面（性别）
   name: "Sex",
   component: () => import('../views/mine/person/Sex.vue'),
+  meta: {
+    navTitle: "性别"
+  }
 },
 {
   path: "/subject", //修改个人信息页面（学科）
   name: "Subject",
   component: () => import('../views/mine/person/Subject.vue'),
+  meta: {
+    navTitle: "学科"
+  }
 },
 {
   path: "/xueximoney", //学习币
   name: "xuexiMoney",
   component: () => import('../views/mine/money/xuexiMoney.vue'),
+  meta: {
+    navTitle: "学习币"
+  }
 },
 {
   path: "/mymoney", //余额
   name: "myMoney",
   component: () => import('../views/mine/money/myMoney.vue'),
+  meta: {
+    navTitle: "余额"
+  }
 },
 {
   path: "/member", //会员页
   name: "Member",
   component: () => import('../views/mine/member/Member.vue'),
+  meta: {
+    navTitle: "会员"
+  }
 },
 {
   path: "/collection", //收藏页
   name: "Collection",
   component: () => import('../views/mine/collection/collection.vue'),
+  meta: {
+    navTitle: "收藏"
+  }
 },
 {
   path: "/message", // 消息页
   name: "Message",
   component: () => import('../views/mine/Message/message.vue'),
+  meta: {
+    navTitle: "消息"
+  }
 },
 {
   path: "/kechengdd", //设置页面
@@ -278,7 +326,22 @@ const routes = [{
     navTitle: "我的关注"
   }
 },
-
+{
+  path: "/setpass",    //  第一次登录设置密码
+  name: "Setpass",
+  component: () => import('../views/login/Setpass'),
+  mate: {
+    navTitle: "设置密码"
+  }
+},
+{
+  path: '/updatapwd',    // 修改密码
+  name: "修改密码",
+  component: () => import('../views/login/Updatapsd'),
+  meta: {
+    navTitle: "修改密码"
+  }
+}
 ]
 const router = new VueRouter({
   mode: 'history',
