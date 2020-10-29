@@ -26,6 +26,11 @@ import NavTitle from '../../components/navTitle/TitleOnlyBack'
 export default {
 components:{
     NavTitle
+},
+data(){
+  return {
+    message:""
+  }
 }
 }
 
