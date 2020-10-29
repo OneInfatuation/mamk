@@ -22,6 +22,8 @@ const urlType = {
     Guanzhu:"/api/app/collect",
     // 点击获取验证码
     Verification:"/api/app/smsCode",
+    // 设置密码
+    SetPassword:"/api/app/password"
     },
     type: {
         GET: "get",

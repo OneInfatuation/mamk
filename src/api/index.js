@@ -37,6 +37,10 @@ const ClientAPI = {
     // 验证码
     VerificationCode(params){
         return requset(urlType.type.POST,urlType.url.Verification,params)
+    },
+    // 设置密码
+    SetInitPassword(params){
+        return requset(urlType.type.POST,urlType.url.SetPassword,params)
     }
 
 }
