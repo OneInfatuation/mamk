@@ -263,6 +263,11 @@ const routes = [{
     component: () => import('../views/mine/Message/message.vue'),
   },
   {
+    path: "/pwdset", // 密码设置
+    name: "Pwdset",
+    component: () => import('../views/mine/passwordSet/passwordSet.vue'),
+  },
+  {
     path: "/kechengdd", //设置页面
     name: "Kechengdd",
     component: () => import('../views/mine/Kechengdd.vue'),
