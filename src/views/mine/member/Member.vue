@@ -107,7 +107,7 @@ export default {
 <style>
 .member_html {
   width: 100%;
-  height: 50rem;
+  height: 100vh;
   background: rgba(238, 238, 238, 0.671);
 }
 .member {

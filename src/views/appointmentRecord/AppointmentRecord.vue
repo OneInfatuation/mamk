@@ -40,6 +40,8 @@
             </div>
              <div v-show="token.length>0">
                 <p><small>还没有待上课记录哦</small></p>
+                <!-- <p><small>还没有上课记录哦</small></p>
+                <p><small>还没有取消上课记录哦</small></p> -->
                 <div class="waw_button_box"><van-button color="#EB6100" @click="onClickLogin">立即约课</van-button></div>
             </div>
         </template>
@@ -67,7 +69,7 @@ export default {
   methods: {
       onClickLogin(){//点击判断去登录页面还是去约课页面
         if(this.token.length>0){
-            this.$router.push("/coaching")
+            this.$router.push("/coaching");
         }else{
             this.$router.push("/login");
         }
