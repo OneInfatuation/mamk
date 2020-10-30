@@ -2,11 +2,22 @@ import axios from "axios";//引入axios模块
 import urlType from "./config";
 // import Vue from 'vue';
 import { Toast } from 'vant';
+import {Guid} from "./guid";
+
+var id = localStorage.getItem("deviceid");
+let deviceid = null;
+if(id){
+  deviceid = id
+}else{
+  deviceid = Guid.NewGuid().ToString("D");
+}
+localStorage.setItem("deviceid",deviceid)
+
 // 创建实例
 const instance = axios.create({
   baseURL: 'http://120.53.31.103:84',//公用路径
   timeout: 6000,//设置超时时间
-  headers: { 'X-Custom-Header': 'foobar' }//设置请求头
+  // headers: { 'X-Custom-Header': 'foobar' }//设置请求头
 });
 
 
@@ -19,6 +30,12 @@ instance.interceptors.request.use(function (config) {
       message: '加载中...',
       forbidClick: true,
     });
+    var token = localStorage.getItem("token");
+    if(token){
+      config.headers.authorization = `Bearer ${token}`;
+    }
+    config.headers.deviceid = deviceid;
+    config.headers.devicetype = "H5";
     return config;
   }, function (error) {
     // 对请求错误做些什么

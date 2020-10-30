@@ -14,7 +14,12 @@ export default {
   },
   watch:{
     $route(to){
-      document.title=to.meta.navTitle
+      if(to.meta.navTitle){
+        document.title=to.meta.navTitle
+      } else{
+        document.title="每时每课"
+      }
+      
     }
   }
 };

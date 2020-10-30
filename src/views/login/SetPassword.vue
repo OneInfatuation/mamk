@@ -17,7 +17,7 @@
         placeholder="请再次输入密码"
       />
       <div style="margin: 16px">
-        <van-button round native-type="submit" @click="onLogin">
+        <van-button round @click="onLogin">
           提交
         </van-button>
       </div>
@@ -72,16 +72,12 @@ export default {
         return;
       }
     },
-    onLogin() {
-        var obj ={
-            mobile:localStorage.getItem("mobile"),
-            password:this.password
-        }
-        this.$ClientAPI.SetInitPassword(obj).then(res=>{
-            console.log(res);
-        }).catch(err=>{
-            console.log(err);
-        })
+    onLogin() {//点击提交跳到首页页面
+        this.$router.push("/");
+         Toast.success({
+          message: "登录成功",
+          position: "center",
+        });
     },
     onClickLeft() {
       //点击返回上一页

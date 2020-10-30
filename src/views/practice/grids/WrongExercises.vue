@@ -1,94 +1,71 @@
 <template>
-    
   <div>
     <!-- 头部 -->
-    <header>
-      <div class="left" @click="$router.go(-1)">
-        <van-icon name="arrow-left" />
-      </div>
-      <h3>错题练习</h3>
-      <div class="right" @click="$router.push('/search')">
-        <van-icon name="search" />
-      </div>
-    </header>
-    <div class="header"></div>
-    <div class="nav">
-      <div class="left">
+    <TitleBack></TitleBack>
+    <!-- 导航栏 -->
+    <div class="err_nav">
+      <!-- 分类 -->
+      <div>
         <van-dropdown-menu>
-          <van-dropdown-item v-model="value" :options="option" />
+          <van-dropdown-item v-model="value1" :options="option1" />
         </van-dropdown-menu>
       </div>
-      <div class="right">
-        <div class="error1"></div>
-        <div class="error2"></div>
+      <!-- 巩固错题 -->
+      <div><img src="../../../assets/fuxigonggu.png" /> 巩固全部错题</div>
+      <!-- 移除错题 -->
+      <div style="color: red" @click="delError">
+        <img src="../../../assets/shanchuwenjian.png" /> 移除错题
       </div>
     </div>
   </div>
 </template>
 
-
 <script>
+import { Dialog , Toast} from "vant";
+import TitleBack from "../../../components/navTitle/TitleBack";
 export default {
-  name: "",
   data() {
     return {
-      value: 0,
-      option: [
-        { text: "全部", value: 0 },
+      value1: 0,
+      option1: [
+        { text: "类型不限", value: 0 },
         { text: "套卷练习", value: 1 },
         { text: "考点专练", value: 2 },
         { text: "仿真模考", value: 3 },
       ],
     };
   },
-  created() {},
-  mounted() {},
+  components: {
+    TitleBack,
+  },
   methods: {
-    onConfirm() {
-      // this.$refs.item.toggle();
+    delError() {
+      Dialog.confirm({
+        message: "是否做对题目后自动移除该错题",
+      })
+        .then(() => {
+          // loading加载
+          Toast.loading({
+            duration: 0,
+            message: "加载中...",
+            forbidClick: true,
+          });
+        })
+        .catch(() => {
+          // on cancel
+        });
     },
   },
 };
 </script>
 
-<style scoped lang="scss">
-header {
-  height: 11.73333vw;
-  position: fixed;
-  z-index: 999;
-  width: 100%;
-  background: #fff;
-  display: flex;
+<style>
+.err_nav {
+  width: 99.99%;
+  height: 2.5rem;
+  display: inline-flex;
+  justify-content: space-around;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 0.05rem solid #eee;
-  > .left {
-    padding-left: 1rem;
-    font-size: 1rem;
-    color: #000;
-  }
-  > h3 {
-    font-size: 1rem;
-  }
-  > .right {
-    padding-right: 1rem;
-    font-size: 1rem;
-  }
-}
-.header {
-  height: 11.73333vw;
-}
-.nav {
-  height: 11.73333vw;
-  display: flex;
-  > .left {
-    width: 33.33333vw;
-  }
-  > .right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    
-  }
+  font-size: 0.8rem;
 }
 </style>

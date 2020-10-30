@@ -127,38 +127,6 @@ const routes = [{
     },
   },
   {
-    path: "/curriculum", //课程
-    name: "Curriculum",
-    component: () => import('../views/curriculum/Curriculum.vue'), // 课程
-    meta: {
-      navTitle: "课程"
-    }
-  },
-  {
-    path: "/appointmentRecord", //约课记录
-    name: "AppointmentRecord",
-    component: () => import('../views/appointmentRecord/AppointmentRecord.vue'),
-    meta: {
-      navTitle: "约课记录"
-    }
-  },
-  {
-    path: "/practice", //练习
-    name: "Practice",
-    component: () => import('../views/practice/Practice.vue'),
-    meta: {
-      navTitle: "练习"
-    }
-  },
-  {
-    path: "/mine", //我的
-    name: "Mine",
-    component: () => import('../views/mine/Mine.vue'),
-    meta: {
-      navTitle: "我的"
-    }
-  },
-  {
     path: "/study-calendar", //学习日历
     name: "StudyCalendar",
     component: () => import('../views/home/StudyCalendar.vue'),
@@ -296,7 +264,7 @@ const routes = [{
     }
   },
   {
-    path: "/ddxq", //关注老师页面
+    path: "/ddxq", //登录详情页面
     name: "Ddxq",
     component: () => import('../views/mine/Ddxq.vue'),
     meta: {
@@ -304,29 +272,70 @@ const routes = [{
     }
   },
   {
-    path: "/setPassword", //关注老师页面
-    name: "SetPassword",
-    component: () => import('../views/login/SetPassword.vue'),
+    path: "/setexercises", //套卷练习页面
+    name: "SetExercises",
+    component: () => import('../views/practice/grids/SetExercises.vue'),
     meta: {
-      navTitle: "我的关注"
+      navTitle: "套卷练习"
     }
   },
+  {
+    path: "/examinationplace", //考点专练页面
+    name: "ExaminationPlace",
+    component: () => import('../views/practice/grids/ExaminationPlace.vue'),
+    meta: {
+      navTitle: "考点专练"
+    }
+  },
+  {
+    path: "/exercisecollection", //习题收藏页面
+    name: "ExerciseCollection",
+    component: () => import('../views/practice/grids/ExerciseCollection.vue'),
+    meta: {
+      navTitle: "习题收藏"
+    }
+  },
+  {
+    path: "/wrongexercises", //错题练习页面
+    name: "WrongExercises",
+    component: () => import('../views/practice/grids/WrongExercises.vue'),
+    meta: {
+      navTitle: "错题练习"
+    }
+  },
+  {
+    path: "/evaluationRecord", //测评记录页面
+    name: "EvaluationRecord",
+    component: () => import('../views/practice/grids/EvaluationRecord.vue'),
+    meta: {
+      navTitle: "测评记录"
+    }
+  },
+    {
+    path: "/simulationtest", //仿真模考页面
+    name: "SimnlationTest",
+    component: () => import('../views/practice/grids/SimulationTest.vue'),
+    meta: {
+      navTitle: "仿真模考"
+    }
+  },
+  
 ]
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
-// 全局路由守卫
-router.beforeEach((to, from, next) => {
-  if (to.meta.navTitle) {
-    document.title = to.meta.navTitle;
-    next();
-  }else{
-    document.title = "每时每课";
-    next();
-  }
+// // 全局路由守卫
+// router.beforeEach((to, from, next) => {
+//   if (to.meta.navTitle) {
+//     document.title = to.meta.navTitle;
+//     next();
+//   }else{
+//     document.title = "每时每课";
+//     next();
+//   }
 
-})
+// })
 
 export default router;
