@@ -25,21 +25,12 @@ const ClientAPI = {
     },
     // 特色课数据获取
     courseBasis() {
-        return requset(urlType.type.GET, urlType.url.courseBasis)
+        return requset(urlType.type.GET, urlType.url.courseBasis);
     },
     // 课程详情数据获取
     guanzhus(params) {
         return requset(urlType.type.GET, urlType.url.Guanzhu, { params })
     },
-    // 获取修改密码的验证码
-    get_sms(data) {
-        return requset(urlType.type.POST, urlType.url.getSms, data)
-    },
-    // 确认修改密码
-    okpsd(data){
-        return requset(urlType.type.POST, urlType.url.okPsd,data)
-    },
-    
     courseInfo(params){
         return requset(urlType.type.GET,urlType.url.courseInfo,params)
     },  

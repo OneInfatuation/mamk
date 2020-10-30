@@ -54,19 +54,7 @@
             </p>
             <span>一对一辅导</span>
           </div>
-          <div
-            @click="$router.push('/study-calendar')"
-            v-if="token ? true : false"
-          >
-            <p>
-              <img
-                src="data:image/png;base64,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"
-                alt=""
-              />
-            </p>
-            <span>学习日历</span>
-          </div>
-          <div v-if="token ? false : true" @click="study">
+          <div @click="study">
             <p>
               <img
                 src="data:image/png;base64,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"
@@ -79,132 +67,116 @@
       </div>
       <!-- 数据列表 -->
       <section>
-        <!-- 名师阵容 -->
-        <ul class="dyb_ming">
-          <p class="dyb_section_title">{{ homeArr[4].channel_info.name }}</p>
-          <li
-            v-for="(item, index) in homeArr[4].list"
-            :key="index"
-            v-show="token?true:false"
-            @click="$router.push(`/teacher?id=${item.teacher_id}`)"
-          >
-            <img :src="item.teacher_avatar" alt="" />
-            <div>
-              <p class="dyb_title">{{ item.teacher_name }}</p>
-              <p class="dyb_text">
-                {{ item.introduction }}
-              </p>
-            </div>
-          </li>
-          <li
-            v-for="(item, index) in homeArr[4].list"
-            :key="index"
-            v-show="token?false:true"
-            @click="study"
-          >
-            <img :src="item.teacher_avatar" alt="" />
-            <div>
-              <p class="dyb_title">{{ item.teacher_name }}</p>
-              <p class="dyb_text">
-                {{ item.introduction }}
-              </p>
-            </div>
-          </li>
-        </ul>
+        <p class="home_op"><span class="Home_probably_P"></span>名师推荐</p>
+        <div
+          v-for="(item, index) in probably.slice(0, 3)"
+          :key="index + 'a'"
+          @click="Onclick(item)"
+        >
+          <div class="Home_teacher">
+            <ul>
+              <li>
+                <img :src="item.teacher_avatar" alt="" />
+                <p class="Home_teacher_title">{{ item.teacher_name }}</p>
+                <p class="Home_teacher_p">{{ item.introduction }}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
         <!-- 精品课程 -->
-        <ul class="dyb_jing">
-          <p class="dyb_section_title">{{ homeArr[1].channel_info.name }}</p>
-          <li
-            v-for="(item, index) in homeArr[1].list"
-            :key="index"
-            @click="$router.push(`/course-detail?id=${item.id}`)"
-          >
-            <p class="dyb_title">
-              {{ item.title }}
-            </p>
-            <p class="dyb_time">共{{ item.sales_base }}课时</p>
-            <div class="dyb_thear">
-              <img :src="item.teachers_list[0].teacher_avatar" alt="" />
-              <span>{{ item.teachers_list[0].teacher_name }}</span>
-            </div>
-            <div class="dyb_info">
-              <span>{{ item.sales_num }}人报名</span>
-              <p
-                style="color: green; font-size: 0.14rem"
-                v-if="item.price == 0"
-              >
-                免费
+        <p class="home_op"><span class="Home_probably_P"></span>精品课程</p>
+        <div
+          class="hmwJP"
+          v-for="(item, index) in course"
+          :key="index + 'b'"
+          @click="hmwJumpXQ(item)"
+        >
+          <div class="Home_course">
+            <div class="Home_course_box">
+              <p class="hmwTitleJP">
+                每时每课特级教师-自主招生冲刺讲座知识点总结————{{ item.title }}
               </p>
-              <p style="color: red; font-size: 0.14rem" v-if="item.price > 0">
-                {{ item.price }}.00
+              <div>
+                <img :src="item.cover_img" alt="" class="Home_course_img" />
+                <p>{{ courseTitle }}</p>
+              </div>
+
+              <p class="hmwJPfoot">
+                <span class="Home_course_title"
+                  >{{ item.sales_num }}人已报名
+                  <span class="Home_course_p_title"
+                    >￥{{ item.total_periods }}</span
+                  ></span
+                >
               </p>
             </div>
-            <img :src="item.cover_img" alt="" v-if="token ? true : false" />
-          </li>
-        </ul>
+          </div>
+        </div>
         <!-- 推荐课程 -->
-        <ul class="dyb_jing">
-          <p class="dyb_section_title">{{ homeArr[3].channel_info.name }}</p>
-          <li
-            v-for="(item, index) in homeArr[3].list"
-            :key="index"
-            @click="$router.push(`/course-detail?id=${item.id}`)"
-          >
-            <p class="dyb_title">
-              {{ item.title }}
-            </p>
-            <p class="dyb_time">共{{ item.sales_base }}课时</p>
-            <div class="dyb_thear">
-              <img :src="item.teachers_list[0].teacher_avatar" alt="" />
-              <span>{{ item.teachers_list[0].teacher_name }}</span>
-            </div>
-            <div class="dyb_info">
-              <span>{{ item.sales_num }}人报名</span>
-              <p
-                style="color: green; font-size: 0.14rem"
-                v-if="item.price == 0"
-              >
-                免费
+        <p class="home_op"><span class="Home_probably_P"></span>推荐课程</p>
+        <div
+          v-for="(item, index) in courses"
+          :key="index + 'c'"
+          @click="hmwJumpXQ(item)"
+        >
+          <div class="Home_course">
+            <div class="Home_course_box">
+              <p class="hmwTitleJP">
+                每时每课特级教师-自主招生冲刺讲座知识点总结————{{ item.title }}
               </p>
-              <p style="color: red; font-size: 0.14rem" v-if="item.price > 0">
-                {{ item.price }}.00
+              <div>
+                <img :src="coursesImg" alt="" class="Home_course_img" />
+                <p>{{ courseTitle }}</p>
+              </div>
+
+              <p class="hmwJPfoot">
+                <span class="Home_course_title"
+                  >{{ item.sales_num }}人已报名
+                  <span class="Home_course_p_title"
+                    >￥{{ item.total_periods }}</span
+                  ></span
+                >
               </p>
             </div>
-          </li>
-        </ul>
+          </div>
+        </div>
         <!-- 明星讲师 -->
-        <ul class="dyb_xing">
-          <p class="dyb_section_title">{{ homeArr[0].channel_info.name }}</p>
-          <li
-            v-for="(item, index) in homeArr[0].list"
-            :key="index"
-            v-show="token?false:true"
-            @click="study"
-          >
-            <img :src="item.teacher_avatar" alt="" />
-            <div>
-              <div>{{ item.teacher_name }}<span>M10</span></div>
-              <p>
-                {{ item.introduction }}
-              </p>
-            </div>
-          </li>
-          <li
-            v-for="(item, index) in homeArr[0].list"
-            :key="index"
-            v-show="token?true:false"
-            @click="$router.push(`/teacher?id=${item.teacher_id}`)"
-          >
-            <img :src="item.teacher_avatar" alt="" />
-            <div>
-              <div>{{ item.teacher_name }}<span>M10</span></div>
-              <p>
-                {{ item.introduction }}
-              </p>
-            </div>
-          </li>
-        </ul>
+        <p class="home_op"><span class="Home_probably_P"></span>明星讲师</p>
+        <div
+          v-for="(item, index) in probably.slice(0, 3)"
+          :key="index"
+          @click="Onclick(item)"
+        >
+          <div class="Home_teacher">
+            <ul>
+              <li>
+                <img :src="item.teacher_avatar" alt="" />
+                <p class="Home_teacher_title">{{ item.teacher_name }}</p>
+                <p class="Home_teacher_p">{{ item.introduction }}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
+      <!-- 如果没有token显示内容 -->
+      <van-popup v-model="show" closeable class="Home_Prpup">
+        <img
+          src="https://wap.365msmk.com/img/feiji.decaf161.png"
+          alt=""
+          width="100%"
+        />
+        <p class="Home_Prpup_title">赶紧登录一下吧</p>
+        <p class="Home_Prpup_titles">立即预约一对一辅导，浏览更多视频教程~</p>
+        <van-button
+          round
+          type="info"
+          color="rgb(235, 97, 0)"
+          class="Home_Prpup_but"
+          @click="Onpath"
+          >立即登录</van-button
+        >
+      </van-popup>
+      <div class="home_hidden"></div>
     </div>
   </div>
 </template>
@@ -216,10 +188,13 @@ export default {
   name: "",
   data() {
     return {
-      // 首页数据
-      homeArr: [],
-      // 获取token
-      token: localStorage.getItem("token"),
+      probably: [], //名师推荐
+      course: [], //精品课程
+      courseTitle: [], //精品课程讲师名字
+      courses: [], //推荐课程
+      coursesImg: [], //推荐课程老师照片
+      teacher: [], //明星讲师
+      show: false,
     };
   },
   created() {},
@@ -235,7 +210,15 @@ export default {
     // 获取数据
     async appIndex() {
       let { data: res } = await this.$ClientAPI.appindex();
-      this.homeArr = res.data;
+      this.probably = res.data[0].list;
+      console.log(this.probably);
+      this.course = res.data[1].list;
+      this.courseTitle = res.data[1].list[0].teachers_list[0].teacher_name;
+      this.courses = res.data[3].list;
+      this.coursesImg = res.data[3].list[0].teachers_list[0].teacher_avatar;
+      this.teacher = res.data[4].list;
+      console.log(this.teacher);
+
       console.log(res);
     },
     //点击跳转特色课
@@ -245,15 +228,34 @@ export default {
     },
     // 跳转学习日历的时候未登录弹出登录弹框
     study() {
-      Dialog.confirm({
-        message: "未登录，请先登录",
-      })
-        .then(() => {
-          this.$router.push("/login");
-        })
-        .catch(() => {
-          // on cancel
+      var token = localStorage.getItem("token");
+      if (token) {
+        this.$router.push("/study-calendar");
+      } else {
+        this.show = true;
+      }
+    },
+    Onclick(item) {
+      //点击进入讲师详情
+      var token = localStorage.getItem("token");
+      if (token) {
+        this.$router.push({
+          path: "/teacher",
+          query: {
+            id: item.teacher_id,
+          },
         });
+      } else {
+        this.show = true;
+      }
+    },
+    Onpath() {
+      //点击弹出图片里面的按钮立即登录
+      this.$router.push("/login");
+    },
+    // 跳转到详情页面
+    hmwJumpXQ(item) {
+      this.$router.push("/course-detail");
     },
   },
 };
@@ -321,142 +323,126 @@ export default {
 }
 section {
   width: 100%;
-  min-height: 25rem;
 }
-.dyb_ming {
-  padding: 0 0.5rem;
-  min-height: 12.5rem;
-}
-.dyb_section_title {
-  text-indent: 0.5rem;
-  font-size: 0.7rem;
-  border-left: 0.15rem solid #eb6100;
-  color: #595959;
-  margin: 0.5rem 0;
-}
-.dyb_ming > li {
+.home_op {
   width: 100%;
-  height: 3.5rem;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  margin-top: 0.5rem;
-  border-radius: 0.25rem;
-}
-.dyb_ming > li > img {
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 50%;
-  margin-left: 0.75rem;
-}
-.dyb_ming > li > div {
-  width: 11.7rem;
-  margin-left: 0.5rem;
-}
-.dyb_ming > li > div > .dyb_text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 0.6rem;
-  color: #b7b7b7;
-}
-.dyb_ming > li > div > .dyb_title {
-  font-size: 0.7rem;
-}
-.dyb_jing {
-  min-height: 10rem;
-  padding: 0 0.6rem;
-}
-.dyb_jing li {
-  background: #fff;
-  height: 9rem;
-  position: relative;
-  padding: 0 0.55rem;
-  margin-top: 0.6rem;
-  border-radius: 0.5rem;
-}
-.dyb_jing li > img {
-  position: absolute;
-  width: 2.3rem;
-  height: 2.3rem;
-  border-radius: 50%;
-  top: 13.33333vw;
-  right: 4vw;
-}
-.dyb_jing li .dyb_title {
-  padding-top: 1rem;
-  font-size: 0.7rem;
   height: 2rem;
-}
-.dyb_jing li .dyb_time {
-  font-size: 0.6rem;
-  height: 1.25rem;
-  line-height: 1.25rem;
-  color: #666;
-}
-.dyb_jing li .dyb_thear {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  height: 2.6rem;
 }
-.dyb_jing li .dyb_thear span {
-  color: rgba(0, 0, 0, 0.45);
-  font-size: 0.6rem;
-  margin-left: 0.5rem;
-}
-.dyb_jing li .dyb_thear img {
-  width: 1.15rem;
-  height: 1.15rem;
-  border-radius: 50%;
-}
-.dyb_jing li .dyb_info {
-  border-top: 0.05rem solid #eee;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 1.75rem;
-}
-.dyb_jing li .dyb_info span {
-  font-size: 0.6rem;
-  color: rgba(0, 0, 0, 0.45);
-}
-.dyb_xing {
-  padding: 0.25rem 0.4rem 0.85rem 0.4rem;
-  min-height: 10rem;
-}
-.dyb_xing li {
-  height: 3.5rem;
-  border-radius: 0.25rem;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  padding: 0 0.7rem;
-  margin-bottom: 0.5rem;
-}
-.dyb_xing li > div {
-  width: 10.17rem;
-}
-.dyb_xing li > div > p {
-  color: #b7b7b7;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 0.6rem;
-}
-.dyb_xing li > img {
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 50%;
+.Home_probably_P {
+  width: 0.2rem;
+  height: 1.5rem;
+  background: rgb(235, 97, 0);
+  margin-left: 1rem;
   margin-right: 0.5rem;
+  float: left;
 }
-.dyb_xing li > div {
+.Home_teacher {
+  width: 90%;
+  height: 5rem;
+  margin-left: 5%;
+  background: #fff;
+  border-radius: 0.6rem;
+}
+.Home_teacher li {
+  margin-top: 0.5rem;
+}
+.Home_teacher ul li img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin-top: 1rem;
+  float: left;
+}
+.Home_teacher_title {
+  font-size: 1rem;
+  line-height: 2.5rem;
+  margin-left: 4rem;
+}
+.Home_teacher_p {
+  color: gray;
+  margin-left: 4rem;
+  font-size: 0.8rem;
+}
+/* 精品课程 */
+.Home_course {
+  /* box-sizing: border-box; */
+  width: 81%;
+  height: 7.2rem;
+  background: #fff;
+  margin-left: 5%;
+  margin-top: 1rem;
+  border-radius: 0.3rem;
+  padding: 1rem;
+}
+.Home_course_img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 5rem;
+  margin-top: 1rem;
+}
+.Home_course_title {
+  color: gray;
   font-size: 0.7rem;
 }
-.dyb_xing li > div > div > span {
-  margin-left: 0.5rem;
-  color: #ea7a2f;
+.Home_course_p_title {
+  font-size: 0.8rem;
+  color: red;
+  float: right;
 }
-#app {
-  margin-bottom: 2.5rem;
+.Home_title {
+  font-size: 0.6rem;
+}
+.img {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  width: 1.5rem;
+}
+.Home_advice li div {
+  color: gray;
+  font-size: 0.5rem;
+}
+.Home_Prpup {
+  width: 18rem;
+  height: 20rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+.Home_Prpup img {
+  width: 100%;
+  height: 10rem;
+}
+.Home_Prpup_title {
+  font-size: 0.9rem;
+}
+.Home_Prpup_titles {
+  font-size: 0.7rem;
+  color: gray;
+}
+.Home_Prpup_but {
+  margin-top: 1rem;
+  width: 80%;
+}
+/* 精品课程样式 */
+/* 标题 */
+.hmwTitleJP {
+  margin: 0.5rem 0;
+  font-size: 4.26667vw;
+  color: #333;
+}
+/* 图文部分 */
+.Home_course_box > div {
+  display: flex;
+  align-items: center;
+}
+.Home_course_box > div p {
+  margin: 0.8rem 0 0 0.5rem;
+  font-size: 3.2vw;
+  color: #b7b7b7;
+}
+.home_hidden {
+  width: 100%;
+  height: 3vh;
 }
 </style>

@@ -127,38 +127,6 @@ const routes = [{
     },
   },
   {
-    path: "/curriculum", //课程
-    name: "Curriculum",
-    component: () => import('../views/curriculum/Curriculum.vue'), // 课程
-    meta: {
-      navTitle: "课程"
-    }
-  },
-  {
-    path: "/appointmentRecord", //约课记录
-    name: "AppointmentRecord",
-    component: () => import('../views/appointmentRecord/AppointmentRecord.vue'),
-    meta: {
-      navTitle: "约课记录"
-    }
-  },
-  {
-    path: "/practice", //练习
-    name: "Practice",
-    component: () => import('../views/practice/Practice.vue'),
-    meta: {
-      navTitle: "练习"
-    }
-  },
-  {
-    path: "/mine", //我的
-    name: "Mine",
-    component: () => import('../views/mine/Mine.vue'),
-    meta: {
-      navTitle: "我的"
-    }
-  },
-  {
     path: "/study-calendar", //学习日历
     name: "StudyCalendar",
     component: () => import('../views/home/StudyCalendar.vue'),
@@ -358,16 +326,16 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-// 全局路由守卫
-router.beforeEach((to, from, next) => {
-  if (to.meta.navTitle) {
-    document.title = to.meta.navTitle;
-    next();
-  }else{
-    document.title = "每时每课";
-    next();
-  }
+// // 全局路由守卫
+// router.beforeEach((to, from, next) => {
+//   if (to.meta.navTitle) {
+//     document.title = to.meta.navTitle;
+//     next();
+//   }else{
+//     document.title = "每时每课";
+//     next();
+//   }
 
-})
+// })
 
 export default router;
