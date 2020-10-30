@@ -350,6 +350,11 @@ const routes = [{
   meta: {
     navTitle: "我的关注"
   }
+},
+{
+  path:"/ddxq",//订单详情
+  name:"Ddxq",
+  component: () =>import("../views/mine/Ddxq.vue")
 }
 ]
 const router = new VueRouter({
