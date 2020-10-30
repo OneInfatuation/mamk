@@ -39,7 +39,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 body{
   height: 100%;
   background: rgba(211, 211, 211, 0.486);
