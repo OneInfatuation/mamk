@@ -55,6 +55,7 @@ Vue.use(Toast);
 export default {
   data() {
     return {
+      // 手机号
       username: "",
       password: "",
       show: true,
@@ -104,6 +105,7 @@ export default {
           });
         });
     },
+    // 回到账号密码登录
     toLogins() {
       //点击跳转登录页面
       this.$router.push({
@@ -177,6 +179,7 @@ export default {
   justify-content: space-between;
   font-size: 0.4rem;
   color: rgb(196, 193, 193);
+  position: relative;
   span {
     margin: 1rem;
   }

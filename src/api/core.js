@@ -4,10 +4,10 @@ import urlType from "./config";
 import { Toast } from 'vant';
 // 创建实例
 const instance = axios.create({
-    baseURL: 'http://120.53.31.103:84',//公用路径
-    timeout: 6000,//设置超时时间
-    headers: {'X-Custom-Header': 'foobar'}//设置请求头
-  });
+  baseURL: 'http://120.53.31.103:84',//公用路径
+  timeout: 6000,//设置超时时间
+  headers: { 'X-Custom-Header': 'foobar' }//设置请求头
+});
 
 
 //   拦截器
@@ -36,22 +36,22 @@ instance.interceptors.response.use(function (response) {
   });
 
 //   判断是get请求还是post请求
-export function requset(type,url,params){
-    switch (type){
-        case urlType.type.GET:
-            return get(url,params);
-        case urlType.type.POST:
-            return post(url,params);
-    }
+export function requset(type, url, params) {
+  switch (type) {
+    case urlType.type.GET:
+      return get(url, params);
+    case urlType.type.POST:
+      return post(url, params);
+  }
 }
 
-  
+
 //   封装get请求
-  function get(url,params){
-    return instance.get(url,params);
-  }
+function get(url, params) {
+  return instance.get(url, params);
+}
 
 // 封装post请求
-function post(url,params){
-    return instance.post(url,params);
+function post(url, params) {
+  return instance.post(url, params);
 }

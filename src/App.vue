@@ -12,6 +12,11 @@ export default {
   components: {
     Drag,
   },
+  watch:{
+    $route(to){
+      document.title=to.meta.navTitle
+    }
+  }
 };
 </script>
 

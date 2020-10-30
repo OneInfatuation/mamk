@@ -123,39 +123,39 @@ const routes = [{
     name: "ExaminationPlace",
     component: () => import('../views/practice/grids/ExaminationPlace.vue'),
     meta: {
-      navTitle: "考点专练"
+      navTitle: "每时每刻"
+    },
+  },
+  {
+    path: "/curriculum", //课程
+    name: "Curriculum",
+    component: () => import('../views/curriculum/Curriculum.vue'), // 课程
+    meta: {
+      navTitle: "课程"
     }
   },
   {
-    path: "/setExercises", //套卷练习页面
-    name: "SetExercises",
-    component: () => import('../views/practice/grids/SetExercises.vue'),
+    path: "/appointmentRecord", //约课记录
+    name: "AppointmentRecord",
+    component: () => import('../views/appointmentRecord/AppointmentRecord.vue'),
     meta: {
-      navTitle: "套卷练习"
+      navTitle: "约课记录"
     }
   },
   {
-    path: "/wrongExercises", //错题练习页面
-    name: "WrongExercises",
-    component: () => import('../views/practice/grids/WrongExercises.vue'),
+    path: "/practice", //练习
+    name: "Practice",
+    component: () => import('../views/practice/Practice.vue'),
     meta: {
-      navTitle: "错题练习"
+      navTitle: "练习"
     }
   },
   {
-    path: "/evaluationRecord", //测评记录页面
-    name: "EvaluationRecord",
-    component: () => import('../views/practice/grids/EvaluationRecord.vue'),
+    path: "/mine", //我的
+    name: "Mine",
+    component: () => import('../views/mine/Mine.vue'),
     meta: {
-      navTitle: "测评记录"
-    }
-  },
-  {
-    path: "/exerciseCollection", //习题收藏页面
-    name: "ExerciseCollection",
-    component: () => import('../views/practice/grids/ExerciseCollection.vue'),
-    meta: {
-      navTitle: "习题收藏"
+      navTitle: "我的"
     }
   },
   {
