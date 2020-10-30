@@ -119,14 +119,6 @@ const routes = [{
     }
   },
   {
-    path: "/examinationPlace", //考点专练页面
-    name: "ExaminationPlace",
-    component: () => import('../views/practice/grids/ExaminationPlace.vue'),
-    meta: {
-      navTitle: "每时每刻"
-    },
-  },
-  {
     path: "/study-calendar", //学习日历
     name: "StudyCalendar",
     component: () => import('../views/home/StudyCalendar.vue'),
@@ -153,14 +145,20 @@ const routes = [{
     }
   },
   {
-    path: "/password", //注册页面
-    name: "Password",
-    component: () => import('../views/login/password.vue'),
-  },
-  {
     path: "/teacher", //讲师详情
     name: "Teacher",
     component: () => import('../views/home/Teacher.vue'),
+    meta:{
+      navTitle:"讲师详情"
+    }
+  },
+  {
+    path: "/bookingCourses", //讲师详情
+    name: "BookingCourses",
+    component: () => import('../views/home/BookingCourses.vue'),
+    meta:{
+      navTitle:"讲师详情"
+    }
   },
   {
     path: "/course-detail", //课程详情
@@ -328,11 +326,14 @@ const router = new VueRouter({
 })
 // // 全局路由守卫
 // router.beforeEach((to, from, next) => {
-//   if (to.meta.navTitle) {
-//     document.title = to.meta.navTitle;
-//     next();
+//   var token = localStorage.getItem("token");
+//   if (to.path == "/mine") {
+//       if(token){
+//         next();
+//       }else{
+//         next("/login");
+//       }
 //   }else{
-//     document.title = "每时每课";
 //     next();
 //   }
 

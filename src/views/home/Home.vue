@@ -270,10 +270,10 @@ export default {
 }
 .dyb_swipe {
   width: 100%;
-  height: 8.5rem;
+  height: 30vh;
 }
 .my-swipe .van-swipe-item {
-  height: 8.5rem;
+  height: 30vh;
   color: #fff;
   font-size: 1rem;
   text-align: center;

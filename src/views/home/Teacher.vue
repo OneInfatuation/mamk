@@ -73,7 +73,11 @@
         </van-tab>
       </van-tabs>
     </div>
-    <van-tabbar>立即预约</van-tabbar>
+    <div class="waw_hidden"></div>
+    <div class="button_bottom">
+      <van-button type="danger" @click="onClickBooking">立即预约</van-button>
+    </div>
+
   </div>
 </template>
 
@@ -88,11 +92,20 @@ export default {
   mounted() {
     this.teacher_id = this.$route.query.id;
   },
-  methods: {},
+  methods: {
+    onClickBooking() {
+      //点击立即预约跳转
+      this.$router.push("/bookingCourses");
+    },
+  },
 };
 </script>
 
-<style scoped lang="scss">
+<style  lang="scss" scoped>
+.waw_hidden{
+  width: 100%;
+  height: 4rem;
+}
 .teacher {
   height: 100%;
   background: #eee;
@@ -278,6 +291,17 @@ export default {
         font-size: 4.26667vw;
       }
     }
+  }
+}
+.button_bottom{
+  width: 100%;
+  height: 4rem;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  .van-button{
+    width: 100%;
+    height: 100%;
   }
 }
 </style>
