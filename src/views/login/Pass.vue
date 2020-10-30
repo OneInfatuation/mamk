@@ -85,13 +85,19 @@ export default {
       //点击提交修改密码成功
       var obj = {
         mobile: this.value1,
-        password: this.value2,
-        sms_code:Number(this.value3)
+        password: this.value3,
+        sms_code:Number(this.value2)
       };
       this.$ClientAPI
         .SetInitPassword(obj)
         .then((res) => {
           console.log(res);
+          console.log(res.data);
+          console.log(res.data.code);
+            var code = res.data.code;
+            if(code==200){
+              this.$router.push("/mine");
+            }
           
         })
         .catch((err) => {

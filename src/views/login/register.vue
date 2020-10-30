@@ -90,11 +90,11 @@ export default {
             this.$router.push("/setPassword");
           } else if (newMesg == 2) {
             this.$router.push("/mine");
+            Toast.success({
+              message: "登录成功",
+              position: "top",
+            });
           }
-          Toast.success({
-            message: "登录成功",
-            position: "top",
-          });
         })
         .catch((err) => {
           console.log(err);
@@ -120,6 +120,7 @@ export default {
         });
         return;
       } else {
+        
       }
       const TIME_COUNT = 60;
       if (!this.timer) {
