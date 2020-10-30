@@ -9,17 +9,21 @@
     <div class="login_from">
       <van-form>
         <van-field
+          @click="gao(1)"
+          :class="shiw == 1 ? 'van-field' : 'van-field-active'"
           v-model="username"
-          name="用户名"
-          placeholder="用户名"
-          :rules="[{ required: true, message: '请输入手机号' }]"
-        />
+          name="手机号"
+          placeholder="请输入手机号"
+        >
+         
+        </van-field>
         <van-field
+          @click="gao(2)"
+          :class="shiw == 2 ? 'van-field' : 'van-field-active'"
           v-model="password"
           type="password"
           name="密码"
-          placeholder="密码"
-          :rules="[{ required: true, message: '请输入密码' }]"
+          placeholder="请输入密码"
         />
         <div class="login_from_tiaozhuan">
           <span @click="toPassword">找回密码</span>
@@ -36,7 +40,7 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 import { Toast } from "vant"; //引入文字提示
 Vue.use(Toast);
 export default {
@@ -44,9 +48,13 @@ export default {
     return {
       username: "",
       password: "",
+      shiw: 0,
     };
   },
   methods: {
+    gao(i) {
+      this.shiw = i;
+    },
     onSubmit(values) {
       //点击登录
       // console.log("submit", values);
@@ -69,9 +77,9 @@ export default {
           console.log(res.data.data);
           var token = res.data.data.remember_token; //读取token
           var mobile = res.data.data.mobile;
-          localStorage.setItem("mobile",mobile);
+          localStorage.setItem("mobile", mobile);
           localStorage.setItem("token", token); //保存token
-          localStorage.setItem("value","admin");
+          localStorage.setItem("value", "admin");
           Toast.success({
             message: "登录成功",
             position: "top",
@@ -118,7 +126,10 @@ export default {
     height: 40%;
   }
 }
-
+.login_from {
+  width: 95%;
+  margin: 0 auto;
+}
 .login_from_tiaozhuan {
   width: 100%;
   height: 2rem;
@@ -131,5 +142,11 @@ export default {
   span {
     margin: 1rem;
   }
+}
+.van-field {
+  border-bottom: 1px solid orange;
+}
+.van-field-active {
+  border-bottom: 0px;
 }
 </style>

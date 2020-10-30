@@ -201,7 +201,7 @@ export default {
 <style>
 .curriculum_nav {
   width: 100%;
-  margin-top: 3.5rem;
+  margin-top: 3.9rem;
   position: fixed;
   top: -1rem;
   left: 0px;

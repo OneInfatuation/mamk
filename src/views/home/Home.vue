@@ -82,7 +82,26 @@
         <!-- 名师阵容 -->
         <ul class="dyb_ming">
           <p class="dyb_section_title">{{ homeArr[4].channel_info.name }}</p>
-          <li v-for="(item, index) in homeArr[4].list" :key="index" @click="$router.push(`/teacher?id=${item.teacher_id}`)">
+          <li
+            v-for="(item, index) in homeArr[4].list"
+            :key="index"
+            v-show="token?true:false"
+            @click="$router.push(`/teacher?id=${item.teacher_id}`)"
+          >
+            <img :src="item.teacher_avatar" alt="" />
+            <div>
+              <p class="dyb_title">{{ item.teacher_name }}</p>
+              <p class="dyb_text">
+                {{ item.introduction }}
+              </p>
+            </div>
+          </li>
+          <li
+            v-for="(item, index) in homeArr[4].list"
+            :key="index"
+            v-show="token?false:true"
+            @click="study"
+          >
             <img :src="item.teacher_avatar" alt="" />
             <div>
               <p class="dyb_title">{{ item.teacher_name }}</p>
@@ -93,7 +112,7 @@
           </li>
         </ul>
         <!-- 精品课程 -->
-        <ul class="dyb_jing"> 
+        <ul class="dyb_jing">
           <p class="dyb_section_title">{{ homeArr[1].channel_info.name }}</p>
           <li
             v-for="(item, index) in homeArr[1].list"
@@ -156,7 +175,26 @@
         <!-- 明星讲师 -->
         <ul class="dyb_xing">
           <p class="dyb_section_title">{{ homeArr[0].channel_info.name }}</p>
-          <li v-for="(item, index) in homeArr[0].list" :key="index" @click="$router.push(`/teacher?id=${item.teacher_id}`)">
+          <li
+            v-for="(item, index) in homeArr[0].list"
+            :key="index"
+            v-show="token?false:true"
+            @click="study"
+          >
+            <img :src="item.teacher_avatar" alt="" />
+            <div>
+              <div>{{ item.teacher_name }}<span>M10</span></div>
+              <p>
+                {{ item.introduction }}
+              </p>
+            </div>
+          </li>
+          <li
+            v-for="(item, index) in homeArr[0].list"
+            :key="index"
+            v-show="token?true:false"
+            @click="$router.push(`/teacher?id=${item.teacher_id}`)"
+          >
             <img :src="item.teacher_avatar" alt="" />
             <div>
               <div>{{ item.teacher_name }}<span>M10</span></div>
@@ -205,13 +243,17 @@ export default {
       sessionStorage.setItem("mainIndex", 1);
       this.$router.push("/curriculum");
     },
-    // 未登录弹出登录弹框
+    // 跳转学习日历的时候未登录弹出登录弹框
     study() {
-      Dialog.alert({
-        message: "未登录，请前往登录账号",
-      }).then(() => {
-        this.$router.push("/login");
-      });
+      Dialog.confirm({
+        message: "未登录，请先登录",
+      })
+        .then(() => {
+          this.$router.push("/login");
+        })
+        .catch(() => {
+          // on cancel
+        });
     },
   },
 };

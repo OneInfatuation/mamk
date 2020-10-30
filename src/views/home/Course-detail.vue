@@ -81,6 +81,7 @@
         </li>
       </ul>
     </div>
+    <van-tabbar>立即报名</van-tabbar>
   </div>
 </template>
 
@@ -119,7 +120,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .dyb_course_deatail {
   height: 100%;
   background: #f0f2f5;
@@ -273,5 +274,14 @@ export default {
       }
     }
   }
+}
+.van-tabbar {
+  background: orangered;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4.5333vw;
+  height: 11.73333vw;
 }
 </style>
