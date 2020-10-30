@@ -122,7 +122,6 @@ export default {
         });
         return;
       } else {
-        
       }
       const TIME_COUNT = 60;
       if (!this.timer) {
@@ -131,6 +130,7 @@ export default {
         this.timer = setInterval(() => {
           if (this.count > 0 && this.count <= TIME_COUNT) {
             this.count--;
+
           } else {
             this.show = true;
             clearInterval(this.timer);
@@ -146,6 +146,18 @@ export default {
           .VerificationCode(obj)
           .then((res) => {
             console.log(res);
+            var code = res.data.code;
+            console.log(code);
+            if (code == 200) {
+              Toast.success({
+                message: "验证码已发送",
+                position: "center",
+              });
+            }else{
+              Toast(`${res.data.msg}`);
+              this.show = true
+              return;
+            }
           })
           .catch((err) => {
             console.log(err);

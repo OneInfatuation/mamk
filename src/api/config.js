@@ -19,14 +19,6 @@ const urlType = {
         courseInfo: "/api/app/courseInfo",
         // 关注老师数据接收
         Guanzhu: "/api/app/collect",
-        // 获取修改密码的验证码
-        getSms: "/api/app/smsCode",
-        // 确认修改密码
-        okPsd: "/api/app/password",
-        // 课程详情数据获取
-        courseInfo: "/api/app/courseInfo",
-        // 关注老师数据接收
-        Guanzhu: "/api/app/collect",
         // 点击获取验证码
         Verification: "/api/app/smsCode",
         // 设置密码
