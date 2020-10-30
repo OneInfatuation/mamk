@@ -103,7 +103,7 @@ export default {
   },
 };
 </script>
-
+  
 <style>
 .member_html {
   width: 100%;
