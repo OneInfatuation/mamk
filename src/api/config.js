@@ -14,15 +14,18 @@ const urlType = {
         contentCollect: "/api/app/myStudy/2",
         // 登录接口
         LOGIN: "/api/app/login",
-        // contentCollect:"/api/app/myStudy/2" 
         // 课程详情数据获取
-        courseInfo: "/api/app/courseInfo",
+        courseInfo: "/api/app/courseInfo/basis_id=",
         // 关注老师数据接收
         Guanzhu: "/api/app/collect",
         // 点击获取验证码
         Verification: "/api/app/smsCode",
         // 设置密码
-        SetPassword: "/api/app/password"
+        SetPassword: "/api/app/password",
+        // 讲师详情
+        TEACHERS:"/api/app/teacher/",
+        // 详情页评价接口
+        PINJIA:"/api/app/teacher/comment",
     },
     type: {
         GET: "get",

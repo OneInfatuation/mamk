@@ -81,7 +81,9 @@
         </li>
       </ul>
     </div>
-    <van-tabbar>立即报名</van-tabbar>
+    <div class="button_bottom">
+      <van-button type="danger" @click="onClickStudy">立即报名</van-button>
+    </div>
   </div>
 </template>
 
@@ -116,6 +118,9 @@ export default {
       this.c_id = this.$route.query.id;
       // let { data: res } = await this.$ClientAPI.coursedetail({ basis_id: this.c_id });
     },
+    onClickStudy(){//点击跳转页面
+      this.$router.push("/studyDetails")
+    }
   },
 };
 </script>
@@ -275,13 +280,15 @@ export default {
     }
   }
 }
-.van-tabbar {
-  background: orangered;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4.5333vw;
-  height: 11.73333vw;
+.button_bottom{
+  width: 100%;
+  height: 4rem;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  .van-button{
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>

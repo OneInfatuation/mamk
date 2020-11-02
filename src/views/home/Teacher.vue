@@ -12,14 +12,18 @@
     <div class="teacher_info">
       <div class="ti_base">
         <img
-          src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png"
-          alt=""
+          :src="teacherList.avatar"
         />
         <div>
-          <p><span>杨德胜</span><font>M10</font></p>
+          <p><span>{{teacherList.real_name}}</span><font>M10</font></p>
           <p>男<span>30教龄</span></p>
         </div>
-        <p>已关注</p>
+        <p @click="onClickShow" v-show="isShow">
+          <van-button class="vant_button_box" round type="info">关注</van-button>
+        </p>
+        <p @click="onClickShow" v-show="!isShow">
+          <span>已关注</span>
+        </p>
       </div>
       <div class="ti_lable"></div>
     </div>
@@ -83,20 +87,42 @@
 
 
 <script>
+import Vue from 'vue'
+import { Toast } from "vant"; //引入文字提示
+Vue.use(Toast);
 export default {
   name: "",
   data() {
-    return {};
+    return {
+      isShow:true,
+      teacherList:[],//讲师数据
+    };
   },
   created() {},
   mounted() {
-    this.teacher_id = this.$route.query.id;
+    // var obj = {
+    //   id:this.$route.query.id
+    // }
+    this.$ClientAPI.Teacher(this.$route.query.id).then(res=>{
+      console.log(res.data.data.teacher);
+      this.teacherList = res.data.data.teacher;
+    }).catch(err=>{
+      console.log(err);
+    })
   },
   methods: {
     onClickBooking() {
       //点击立即预约跳转
       this.$router.push("/bookingCourses");
     },
+    onClickShow(){//点击关注/取消关注
+      this.isShow=!this.isShow;
+      if(this.isShow == true){
+        Toast("取消关注")
+      }else if(this.isShow == false){
+        Toast("已关注")
+      }
+    }
   },
 };
 </script>
@@ -109,6 +135,14 @@ export default {
 .teacher {
   height: 100%;
   background: #eee;
+}
+.vant_button_box{
+  width: 100%;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  background: whitesmoke;
+  color: orange;
+  border:none;
 }
 .dyb_header {
   height: 26.66667vw;
