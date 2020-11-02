@@ -31,8 +31,10 @@ const ClientAPI = {
     guanzhus(params) {
         return requset(urlType.type.GET, urlType.url.Guanzhu, { params })
     },
+    // 课程详情(首页)
     courseInfo(params){
-        return requset(urlType.type.GET,urlType.url.courseInfo,params)
+        console.log(urlType.url.courseInfo+Number(params));
+        return requset(urlType.type.GET,urlType.url.courseInfo+params);
     },  
     // 验证码
     VerificationCode(params){
@@ -41,6 +43,14 @@ const ClientAPI = {
     // 设置密码
     SetInitPassword(params){
         return requset(urlType.type.POST,urlType.url.SetPassword,params)
+    },
+    // 讲师详情
+    Teacher(params){
+        return requset(urlType.type.GET,urlType.url.TEACHERS+params);
+    },
+    // 详情页面评价
+    PINGJIA(params){
+        return requset(urlType.type.POST,urlType.url.PINJIA,params)
     }
 
 }

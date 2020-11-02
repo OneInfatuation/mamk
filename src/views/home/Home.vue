@@ -4,29 +4,8 @@
     <!-- 轮播图 -->
     <div class="dyb_swipe">
       <van-swipe class="my-swipe" :autoplay="1500" indicator-color="white">
-        <van-swipe-item
-          ><img
-            src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019MGNW3BtiS91569839576.jpg"
-            alt=""
-            style="width: 100%; height: 100%"
-        /></van-swipe-item>
-        <van-swipe-item
-          ><img
-            src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019LnKumseuhw1569839569.jpg"
-            alt=""
-            style="width: 100%; height: 100%"
-        /></van-swipe-item>
-        <van-swipe-item
-          ><img
-            src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/20193KAjU2cB6h1569839562.jpg"
-            alt=""
-            style="width: 100%; height: 100%"
-        /></van-swipe-item>
-        <van-swipe-item
-          ><img
-            src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/20197Cxc53hktC1569839552.jpg"
-            alt=""
-            style="width: 100%; height: 100%"
+        <van-swipe-item v-for="(item, index) in swiperData" :key="index"
+          ><img :src="item.banner_img" style="width: 100%; height: 100%"
         /></van-swipe-item>
       </van-swipe>
     </div>
@@ -67,95 +46,129 @@
       </div>
       <!-- 数据列表 -->
       <section>
-        <p class="home_op"><span class="Home_probably_P"></span>名师推荐</p>
-        <div
-          v-for="(item, index) in probably.slice(0, 3)"
-          :key="index + 'a'"
-          @click="Onclick(item)"
-        >
-          <div class="Home_teacher">
-            <ul>
-              <li>
-                <img :src="item.teacher_avatar" alt="" />
-                <p class="Home_teacher_title">{{ item.teacher_name }}</p>
-                <p class="Home_teacher_p">{{ item.introduction }}</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- 精品课程 -->
-        <p class="home_op"><span class="Home_probably_P"></span>精品课程</p>
-        <div
-          class="hmwJP"
-          v-for="(item, index) in course"
-          :key="index + 'b'"
-          @click="hmwJumpXQ(item)"
-        >
-          <div class="Home_course">
-            <div class="Home_course_box">
-              <p class="hmwTitleJP">
-                每时每课特级教师-自主招生冲刺讲座知识点总结————{{ item.title }}
-              </p>
-              <div>
-                <img :src="item.cover_img" alt="" class="Home_course_img" />
-                <p>{{ courseTitle }}</p>
+        <div v-for="(item, index) in listData" :key="index">
+          <template
+            v-if="item.channel_info.type == 3 && item.channel_info.id == 19"
+          >
+            <p class="home_op">
+              <span class="Home_probably_P"></span>{{ item.channel_info.name }}
+            </p>
+            <div
+              v-for="(items, indexs) in item.list"
+              :key="indexs + 'a'"
+              @click="Onclick(items)"
+            >
+              <div class="Home_teacher">
+                <ul>
+                  <li>
+                    <img :src="items.teacher_avatar" alt="" />
+                    <p class="Home_teacher_title">{{ items.teacher_name }}</p>
+                    <p class="Home_teacher_p">{{ items.introduction }}</p>
+                  </li>
+                </ul>
               </div>
-
-              <p class="hmwJPfoot">
-                <span class="Home_course_title"
-                  >{{ item.sales_num }}人已报名
-                  <span class="Home_course_p_title"
-                    >￥{{ item.total_periods }}</span
-                  ></span
-                >
-              </p>
             </div>
-          </div>
-        </div>
-        <!-- 推荐课程 -->
-        <p class="home_op"><span class="Home_probably_P"></span>推荐课程</p>
-        <div
-          v-for="(item, index) in courses"
-          :key="index + 'c'"
-          @click="hmwJumpXQ(item)"
-        >
-          <div class="Home_course">
-            <div class="Home_course_box">
-              <p class="hmwTitleJP">
-                每时每课特级教师-自主招生冲刺讲座知识点总结————{{ item.title }}
-              </p>
-              <div>
-                <img :src="coursesImg" alt="" class="Home_course_img" />
-                <p>{{ courseTitle }}</p>
+          </template>
+          <!-- 精品课程 -->
+          <template
+            v-if="item.channel_info.type == 1 && item.channel_info.id == 15"
+          >
+            <p class="home_op">
+              <span class="Home_probably_P"></span>{{ item.channel_info.name }}
+            </p>
+            <div
+              class="hmwJP"
+              v-for="(ele, i) in item.list"
+              :key="i + 'b'"
+              @click="hmwJumpXQ(ele)"
+            >
+              <div class="Home_course">
+                <div class="Home_course_box">
+                  <p class="hmwTitleJP">
+                    每时每课特级教师-自主招生冲刺讲座知识点总结————{{
+                      ele.title
+                    }}
+                  </p>
+                  <div>
+                    <img :src="ele.cover_img" alt="" class="Home_course_img" />
+                    <p>{{ ele.teachers_list[0].teacher_name }}</p>
+                  </div>
+
+                  <p class="hmwJPfoot">
+                    <span class="Home_course_title"
+                      >{{ ele.sales_num }}人已报名
+                      <span class="Home_course_p_title"
+                        >￥{{ ele.total_periods }}</span
+                      ></span
+                    >
+                  </p>
+                </div>
               </div>
-
-              <p class="hmwJPfoot">
-                <span class="Home_course_title"
-                  >{{ item.sales_num }}人已报名
-                  <span class="Home_course_p_title"
-                    >￥{{ item.total_periods }}</span
-                  ></span
-                >
-              </p>
             </div>
-          </div>
-        </div>
-        <!-- 明星讲师 -->
-        <p class="home_op"><span class="Home_probably_P"></span>明星讲师</p>
-        <div
-          v-for="(item, index) in probably.slice(0, 3)"
-          :key="index"
-          @click="Onclick(item)"
-        >
-          <div class="Home_teacher">
-            <ul>
-              <li>
-                <img :src="item.teacher_avatar" alt="" />
-                <p class="Home_teacher_title">{{ item.teacher_name }}</p>
-                <p class="Home_teacher_p">{{ item.introduction }}</p>
-              </li>
-            </ul>
-          </div>
+          </template>
+          <!-- 推荐课程 -->
+          <template
+            v-if="item.channel_info.type == 1 && item.channel_info.id == 18"
+          >
+            <p class="home_op">
+              <span class="Home_probably_P"></span>{{ item.channel_info.name }}
+            </p>
+            <div
+              v-for="(element, x) in item.list"
+              :key="x + 'c'"
+              @click="hmwJumpXQ(element)"
+            >
+              <div class="Home_course">
+                <div class="Home_course_box">
+                  <p class="hmwTitleJP">
+                    每时每课特级教师-自主招生冲刺讲座知识点总结————{{
+                      element.title
+                    }}
+                  </p>
+                  <div>
+                    <img
+                      :src="element.cover_img"
+                      alt=""
+                      class="Home_course_img"
+                    />
+                    <p>{{ element.teachers_list[0].teacher_name }}</p>
+                  </div>
+
+                  <p class="hmwJPfoot">
+                    <span class="Home_course_title"
+                      >{{ element.sales_num }}人已报名
+                      <span class="Home_course_p_title"
+                        >￥{{ element.total_periods }}</span
+                      ></span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </template>
+          <!-- 明星讲师 -->
+          <template
+            v-if="item.channel_info.type == 3 && item.channel_info.id == 14"
+          >
+            <p class="home_op">
+              <span class="Home_probably_P"></span>{{ item.channel_info.name }}
+            </p>
+            <div
+              v-for="(eles, z) in item.list"
+              :key="z + 'd'"
+              @click="Onclick(eles)"
+            >
+              <div class="Home_teacher">
+                <ul>
+                  <li>
+                    <img :src="eles.teacher_avatar" alt="" />
+                    <p class="Home_teacher_title">{{ eles.teacher_name }}</p>
+                    <p class="Home_teacher_p">{{ eles.introduction }}</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </template>
         </div>
       </section>
       <!-- 如果没有token显示内容 -->
@@ -188,12 +201,8 @@ export default {
   name: "",
   data() {
     return {
-      probably: [], //名师推荐
-      course: [], //精品课程
-      courseTitle: [], //精品课程讲师名字
-      courses: [], //推荐课程
-      coursesImg: [], //推荐课程老师照片
-      teacher: [], //明星讲师
+      listData: [], //列表数据
+      swiperData: [], //轮播图数据
       show: false,
     };
   },
@@ -206,20 +215,14 @@ export default {
     // 获取轮播图
     async banner() {
       let { data: res } = await this.$ClientAPI.banner();
+      // console.log(res.data);
+      this.swiperData = res.data;
     },
     // 获取数据
     async appIndex() {
       let { data: res } = await this.$ClientAPI.appindex();
-      this.probably = res.data[0].list;
-      console.log(this.probably);
-      this.course = res.data[1].list;
-      this.courseTitle = res.data[1].list[0].teachers_list[0].teacher_name;
-      this.courses = res.data[3].list;
-      this.coursesImg = res.data[3].list[0].teachers_list[0].teacher_avatar;
-      this.teacher = res.data[4].list;
-      console.log(this.teacher);
-
-      console.log(res);
+      this.listData = res.data;
+      console.log(this.listData);
     },
     //点击跳转特色课
     onClickChange() {
@@ -238,6 +241,7 @@ export default {
     Onclick(item) {
       //点击进入讲师详情
       var token = localStorage.getItem("token");
+      console.log(item.teacher_id);
       if (token) {
         this.$router.push({
           path: "/teacher",
@@ -255,7 +259,15 @@ export default {
     },
     // 跳转到详情页面
     hmwJumpXQ(item) {
-      this.$router.push("/course-detail");
+      console.log(item);
+      sessionStorage.removeItem("teacherId");
+       sessionStorage.setItem("teacherId",item.teachers_list[0].id)
+      this.$router.push({
+        path: "/curriculumDetails",
+        query: {
+          id: item.teachers_list[0].course_basis_id,
+        },
+      });
     },
   },
 };

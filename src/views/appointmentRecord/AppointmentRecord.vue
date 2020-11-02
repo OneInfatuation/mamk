@@ -1,7 +1,7 @@
 <template>
   <div class="waw_record_container">
     <NavTitle></NavTitle>
-    <van-tabs v-model="active">
+    <van-tabs v-model="active" @change="onChange">
       <van-tab>
         <template #title>
           <div :class="active == 0 ? 'waw_title_active' : 'waw_title_normal'">
@@ -39,10 +39,10 @@
                 <div class="waw_button_box"><van-button color="#EB6100" @click="onClickLogin">登录/注册</van-button></div>
             </div>
              <div v-show="token.length>0">
-                <p><small>还没有待上课记录哦</small></p>
-                <!-- <p><small>还没有上课记录哦</small></p>
-                <p><small>还没有取消上课记录哦</small></p> -->
-                <div class="waw_button_box"><van-button color="#EB6100" @click="onClickLogin">立即约课</van-button></div>
+                <p v-show="active==0"><small>还没有待上课记录哦</small></p>
+                <p v-show="active==1"><small>还没有上课记录哦</small></p>
+                <p v-show="active==2"><small>还没有取消上课记录哦</small></p>
+                <div class="waw_button_box" v-show="active==0 || active==1"><van-button color="#EB6100" @click="onClickLogin">立即约课</van-button></div>
             </div>
         </template>
     </van-empty>
@@ -73,6 +73,10 @@ export default {
         }else{
             this.$router.push("/login");
         }
+      },
+      onChange(index){
+        console.log(index);
+        this.active = index;
       }
   },
 };
