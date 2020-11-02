@@ -85,20 +85,22 @@ export default {
       //点击提交修改密码成功
       var obj = {
         mobile: this.value1,
+        sms_code: this.value2,
         password: this.value3,
-        sms_code:Number(this.value2)
       };
       this.$ClientAPI
         .SetInitPassword(obj)
         .then((res) => {
-          console.log(res);
           console.log(res.data);
           console.log(res.data.code);
-            var code = res.data.code;
-            if(code==200){
-              this.$router.push("/mine");
-            }
-          
+          var code = res.data.code;
+          if (code == 200) {
+            Toast({
+              message: "找回密码成功",
+              position: "center",
+            });
+            this.$router.push("/mine");
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -137,11 +139,21 @@ export default {
         mobile: Number(this.value1),
         sms_type: "getPassword",
       };
-      console.log(obj.mobile);
+     
       this.$ClientAPI
         .VerificationCode(obj)
         .then((res) => {
-          console.log(res);
+          var code = res.data.code;
+          if (code == 200) {
+            Toast.success({
+              message: "验证码已发送",
+              position: "center",
+            });
+          } else {
+            Toast(`${res.data.msg}`);
+            this.show = true;
+            return;
+          }
         })
         .catch((err) => {
           console.log(err);

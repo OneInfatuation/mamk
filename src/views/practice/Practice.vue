@@ -161,12 +161,12 @@ export default {
     }
     .waw_empty_img {
       width: 100%;
-      height: 7rem;
+      height: 10rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       img {
-        width: 40%;
+        width: 30%;
         height: 90%;
       }
     }

@@ -44,8 +44,8 @@ const routes = [{
         path: "/mine", //我的
         name: "Mine",
         component: () => import('../views/mine/Mine.vue'),
-        meta:{
-          navTitle:"我的"
+        meta: {
+          navTitle: "我的"
         }
       }
     ]
@@ -54,6 +54,14 @@ const routes = [{
     path: "/simulationTest", //仿真模考页面
     name: "SimulationTest",
     component: () => import('../views/practice/grids/SimulationTest.vue'),
+    meta: {
+      navTitle: "仿真模考"
+    }
+  },
+  {
+    path: "/updatapwd", //仿真模考页面
+    name: "passwordSet",
+    component: () => import('../views/mine/passwordSet/passwordSet.vue'),
     meta: {
       navTitle: "仿真模考"
     }
@@ -119,14 +127,6 @@ const routes = [{
     }
   },
   {
-    path: "/examinationPlace", //考点专练页面
-    name: "ExaminationPlace",
-    component: () => import('../views/practice/grids/ExaminationPlace.vue'),
-    meta: {
-      navTitle: "每时每刻"
-    },
-  },
-  {
     path: "/study-calendar", //学习日历
     name: "StudyCalendar",
     component: () => import('../views/home/StudyCalendar.vue'),
@@ -153,19 +153,35 @@ const routes = [{
     }
   },
   {
-    path: "/password", //注册页面
-    name: "Password",
-    component: () => import('../views/login/password.vue'),
-  },
-  {
     path: "/teacher", //讲师详情
     name: "Teacher",
     component: () => import('../views/home/Teacher.vue'),
+    meta: {
+      navTitle: "讲师详情"
+    }
+  },
+  {
+    path: "/bookingCourses", //讲师详情
+    name: "BookingCourses",
+    component: () => import('../views/home/BookingCourses.vue'),
+    meta: {
+      navTitle: "讲师详情"
+    }
   },
   {
     path: "/course-detail", //课程详情
     name: "Course-detail",
     component: () => import('../views/home/Course-detail.vue'),
+  },
+  {
+    path: "/curriculumDetails", //课程详情
+    name: "CurriculumDetails",
+    component: () => import('../views/home/CurriculumDetails.vue'),
+  },
+  {
+    path: "/studyDetails", //课程详情
+    name: "StudyDetails",
+    component: () => import('../views/home/StudyDetails.vue'),
   },
   {
     path: "/yueke", //约课订单
@@ -311,7 +327,7 @@ const routes = [{
       navTitle: "测评记录"
     }
   },
-    {
+  {
     path: "/simulationtest", //仿真模考页面
     name: "SimnlationTest",
     component: () => import('../views/practice/grids/SimulationTest.vue'),
@@ -319,7 +335,7 @@ const routes = [{
       navTitle: "仿真模考"
     }
   },
-  
+
 ]
 const router = new VueRouter({
   mode: 'history',
@@ -328,11 +344,14 @@ const router = new VueRouter({
 })
 // // 全局路由守卫
 // router.beforeEach((to, from, next) => {
-//   if (to.meta.navTitle) {
-//     document.title = to.meta.navTitle;
-//     next();
+//   var token = localStorage.getItem("token");
+//   if (to.path == "/mine") {
+//       if(token){
+//         next();
+//       }else{
+//         next("/login");
+//       }
 //   }else{
-//     document.title = "每时每课";
 //     next();
 //   }
 
