@@ -51,6 +51,14 @@ const ClientAPI = {
     // 详情页面评价
     PINGJIA(params){
         return requset(urlType.type.POST,urlType.url.PINJIA,params)
+    },
+    // 取消收藏
+    CollectCancel(params){
+        return requset(urlType.type.POST,urlType.url.PINJIA,params)
+    },
+    // 课程收藏
+    ClassCollect(params){
+        return requset(urlType.type.POST,urlType.url.ClassCollect,params)
     }
 
 }

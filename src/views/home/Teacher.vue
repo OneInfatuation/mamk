@@ -43,8 +43,7 @@
             <li>
               <span>老师简介</span>
               <font
-                >　杨老师,特级教师.多次被中国数学会评为全国高中数学竞联赛优秀教练员。长期从事名校理科班的数学教学和数学竞赛辅导工作。辅导学生参加全国高中数学联赛有数百人次获全国高中数学联赛一、二、三等奖，数十人被免试保送到清华大学、北京大学等名牌大学学习。十多人获CMO获一、二、三等奖，一人获IMO金牌。
-                　　特别是近年来大学试行自主招生，有很多同学通过上他的竞赛辅导课进入清华大学、北京大学、上海交通大学等。</font
+                >　{{teacherList.introduction}}</font
               >
             </li>
           </ul>
@@ -104,7 +103,7 @@ export default {
     //   id:this.$route.query.id
     // }
     this.$ClientAPI.Teacher(this.$route.query.id).then(res=>{
-      console.log(res.data.data.teacher);
+      console.log(res.data);
       this.teacherList = res.data.data.teacher;
     }).catch(err=>{
       console.log(err);

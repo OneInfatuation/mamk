@@ -26,6 +26,10 @@ const urlType = {
         TEACHERS:"/api/app/teacher/",
         // 详情页评价接口
         PINJIA:"/api/app/teacher/comment",
+        // 取消课程收藏
+        CollectCancel:"/api/app/collect/cancel/",
+        // 课程收藏
+        ClassCollect:"/api/app/collect",
     },
     type: {
         GET: "get",
