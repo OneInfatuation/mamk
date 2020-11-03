@@ -14,11 +14,34 @@
       image="https://wap.365msmk.com/img/empty.0d284c2e.png"
       description="暂无收藏"
     />
+
+    <div>
+
+    </div>
+
+    
+
   </div>
 </template>
 
 <script>
 export default {
+  data(){
+    return{
+      list:[]
+    }
+  },
+  mounted(){
+      // 获取收藏数据
+      // this.$ClientAPI.ClassCollect().then((res)=>{
+      //   console.log(res)
+      // })
+
+      // this.$ClientAPI.CollectCancel().then((res)=>{
+      //     // this.list = res
+      //     console.log(res)
+      // })
+  },
   methods: {
     onClickLeft() {
       window.history.back();
@@ -27,7 +50,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+body{
+  background: rgba(238, 238, 238, 0.808);
+}
 .custom-image .van-empty__image {
   width: 90px;
   height: 90px;
