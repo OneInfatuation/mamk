@@ -38,8 +38,10 @@ const urlType = {
         // 个人信息修改
         UserChange:"/api/app/user",
         // 获取年级和学科数据
-        Attribute:"/app/module/attribute"
+        Attribute:"/app/module/attribute",
 
+        // 我的页面里面的取消关注
+        TeacherHide:"/api/app/collect/cancel/"
     },
     type: {
         GET: "get",

@@ -1,13 +1,17 @@
 <template>
   <div class="hmw">
     <!-- 这个是课程详情页面 -->
-    <van-popup v-model="show">
-      <p>分享</p>
-      <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAANVUlEQVR4Xu3dwZJbOYxE0fL/f3RPxKxG8oROZCcpy+r0FiQIJC5BvidZ9euff/7552f/psCXKPBrQH9JJZfG/yowoAfCVykwoL+qnEtmQI+Br1JgQH9VOZfMgB4DX6XAgP6qci6ZAT0GvkqBAf1V5VwyA3oMfJUCA/qryrlkBvQY+CoFBvRXlXPJDOgx8FUKDOivKueSqYH+9evXW1V8/vr28/qp/Tn4NB+tJ3E0X/Zn/6e/3p7qoXxlb+Mf0E8KpwVMgROA6QaVPwEke6qH/Mk+oJ9OCAEmwdICar20gAO6+w9U69Dr0C/3XLrBtYFlV8PR/ONAtwHpTpt2RI1P41WBP81fGk+qvwCTXSeS5v8Wb/t/Ck8HlAqaAtbGm66ngtz2N6BVARzRrYAD+lGBVM92w6b6h7j8Nvx4vOvQ2UPI7Y7avrU4Dggeuv9zQAsAFVAFkn/dodP1NT7tcGn88i/ATnd8xS+9VF/l8/Y79O2E5X9A373CSP8B/fRDTtrBEnRAD+ioy7fAtTt4QGdfPdiVA3j/aaD/9J1Su18nRGpP8xXAaf0U72k95O/r7tBpgXUiSECdCPLfApTmO6BV0Sd7WiC5VwdIC5Sup/ED+vE15209VI916CcFtEHSjrgO/RrBtmEJ8Ovf5bi9g+VfAkogAXoa+DSednx6wrZ6an7aYL6uQw/oDukB/WF36AE9oP+vArtyhDzoSNQGS68wYXjx8HXosEPHCl/2rwIq3hRYASx/6Z2zzU/PBNrQ0u+2/+sdOk3wesLlt8cEoPIVoOkGkL8WwNMb5Hp9//avjwqg0wIO6OzrtqrP6Q2zDh3+VbsB/R8DWjuytadHrDrA7I9fbpK+bf00v74inb5yKODWLsFnf/3RdKtPWz/NH9Dl73KsQ69DP2yy9k6pHXv7qX9AD+iUwbeOF6B666ENpPk6MhXfbXsb/1uL+S8Wq99y/Is1r04RECrogD77FuNqsf8f5wMav57adlxtoPYhLZ2fxvNuINv1BvSAfmBIG7gF7vb8GujTR/zphNXBPn29NP50vPIX4Kp/+tJA6yneAS2FQvttoATI7fXTK4viTZ9ZVI4BLYVC+22gBMjt9Qf0kwIqSMgPh58usBY8vV7qLx2f5vP1QEuQ9o6lO5U2iOa38Wu+7Iq/PZJT/4r3tL2tz28brP0uhxIc0K8VSoFLAUj9q56n7Wk+Wr++Q3OB8LsWaUdSwVrBtCGVv+yKP9VDVwLF8257W5916LBiAzoULBz+8UCnANzuUKG+P4pHBWjnq8OefujTCaB8Un0Vv/TVesevHAP69a+BpgWTnu8GTkDJPqCfFEqBkMDqiOpgp+fLn4BI81V+794wbX3XoZ8qqgJK8Hb+gO6+7XcdaHWAtqPoSJZ/Aaj56pjaAPLf2lt93r3BWr0GNL5tJ6AGdPfzuqcb3oAe0NqzD3Z1/NMnXhTcz8/PgB7QETNfD7R2pI7kSM1/MVjr686mAqYhpXrJfxrf3z6eerTf5UgLpPEKOLUP6EfFBjQIEqACKgU0Ha/116Ffvyb7tA2g+td36AEtiV93yPYp/9OAux2P1K6BTt9TMqDw23nqsOl6AkwFSzd4G18ar8YrHtX7tP84nvYOrQRT4FJgUv+KVwVJ45M/FUwbRP41/936Kd/Wvg4d/ozBgL57hRrQ4e87r0M/KrAOHb71kGBpx0vfWqRHrsanR/zteLVBtX7aEVt/mi9eFO8fv3IM6Oy7ECp4qqcASTew/A3o8q2HOq4EPl2gFrgB/boi69BPd3BtgLRjacPIrvV25Xh6SG1f293uOCqYCq741IHT+doQ6rCKJ7W38aTzNV7xt/rUHVoFV4JpAqk/xSeB0/lpfFq/tbfxpPM1XvmkPPzW8NahcScL/1CnCtoWTEC0J1o7X/kr/lafdejLryF1JVKBW7sAE0DpfI1XPopH82ugtaP10KME0iOfCZcdV/mkAAuAVB+tn67X6p+up/rJPqDxSaMK2hbs3fPT9ZQ/AQu/WiB/sg/oAf3AiE4gnRg6sXWCCFjZB/SAHtDaJTftOjLTDnD6SE07XLp+m7/mqwO38cp/y87xDt0GpPkqyIB+VEAb7LZe6QZQ/WUf0OFbD90RBVBq13oqsNYb0FLwsn0d+vWvmwpQ6acrQdpx0/EtPnWHVsASsC1AO18drLV/enzKT/HXAJYn5G8n2J/+6FuC3d4QKmhrb/Nr12/nK/4BDQVUAAmYztf41i4gtGHb9dv5il/1kF0nvOavQz8p0BZc8wXEgH58JtAdXoAfv0NrQQGQJpQCofj0ViGNL10vXb/NX/Pb+KXXx3doCTCgpdCjXQUXkClQWXQena6v8VpxHRoKCSgJ3Nq1/oB+agCn33KogOvQUmgdOlPoMNBaPO0gGp8+ZKVHWNoRT29Q6dnesaVHqr/i1Xqan9rrK4cWlEACQv41PxV0QGefRKb10fjWPqCfFBzQA/rlplqH7v7unjpWuwF1hdH6sqcnpPzJXndoCcoATn+WH/4RoPTKcnqDtusLGMWr+qT+lY+egRSP7AMav5zUFkhAyX9qP91xB3T487Zth28LmALTAqoOJT1kb/VQfPIvPVP/6si/xXP6PbR2dCpInNCuHA+SaQNKX9VTG0zry7/iuw50GkA6/t0dIC1IOl75t/40X+tL79Z+umMfv0NLoNYuAY8LFP6uhABKO1LrT/NVD+nd2o/X6/SVQwK1dgl4XKAB/fIKo3rIfrxeA/r1FlOHu12wdH09o6QNRfm19o8DOhVIgutIVoElUPoQo3j+dD7S/7ReWq+1p3offyhsExBgAkbrtx0kFfjd+Sj/AS2FDtvfDYDWk13pp/Nb4NJ4NF4NQPNbe9pA1qHLP0Kkgg1oKfTa/seBTjtMesc9Pb6T++fndL66UrUFbv2nG1T6nvZ3vEOfLrD8pUfibSBUQG3IFrh0/RSodLziOe1vQEtx2LXh5F4b7HrBw283no7ntL8BLeIG9IMCpwE87e860LoSyN4e0SWvP4pPdsWvDp92cK2XXmlS4JRPGl9bv+Pf5VDBZU8FSAWVYIpPdsWveAe0KvTaPqCf9BGwsg/o18Bpw3Y4//wM6AFd3Zl14miDtwBfv0MrAd3RJJB2uOa38aV3Uo0/HY8Akf5pvIo/9af6Mr/b37bTES37acHkry24CqINJz3knwUvX9vJv+JL89d669DlFUMd53RB0w0mAFJ/AlANQnql85nfOvTj72a0BR/Qr3+HRBtE+r0d6D99ZArIVNB0vDpSqo/yUYFbu9aXPun6A/rDfldjQKcIP44f0AO6Iwiz16FDwNJqpALriNdDiY5UdZTT8Wq9VE+NT+OXP9nb/N7+wUqakIBq/UlAFVTra/5pu+K5bU8biBpKGu+Axk+XCTgJrvmn7Yrntn1APyncCqIdL4DShzoBovVO2xXPbXtbP52Yin8deh1ajET2vx7oKNsLg9XhtOTpO3q6XtuRtJ5OHJ1o8i/9ZZf/1F536HTB0+NbwQb0Y0XSDSb9ZT/OQ/vR9+mAUn+tYAN6QKfMXR0/oDN5tYH/8x1aAmVye3T60KECpRsiHa87bJpPeudVvLftyj/NR4TUd+gBnf2VqxQgFbDdsGk82oBpPAMaH62nAqmg6jAqYDo/bRBaX/ndtiv/tF7a4OvQ5f/gEFAqqDqeCqj1bwMr/8r/44GWwCqQBBAAWr8tQOpf+Z72l66X6pHWR+MHdPltvrSA7fgUsBQA+RcwaX6Kr92gmq98j1852oBSwdKCvHu8CiC90jt1ul6qR1ofjdeGUz6/+W8/WGkFUcDyL7sETYFKxyu/0/7S9VL9Tuv51wGddpj0jiz/qT8B0doFUJqP4pE/zU/t2qDthlA8168cqaApgPKf+pNgrX1APyooPVK9B3T4t8lTgdOOlG5QxSN/mp/a16GfFEs7qgqW+ksLmI5XR0rz0fryp/mpfUBfBloPHSlg2iACIC24OrzWU/6aL33S+KRfrc/ttxxph0gTfrd/xSdA6oLhTzWfXn9Ah9+1UAeRoANaCD/a0w0l/dehob86oOwqr+a39nR9jU+Bkb8BDYW0g2930LbgbYF1wqTxKZ5U79Rfm4/Wkx7p/N/8/e13aAl0u2O1ALTz0xMl1UuAaYNJ/3b+gH5SQAW7DcCA/vUgQVqPAT2gHxTQlVCAtR22nf92oHXkyJ4mrPEqoOLREa+Oq/VvA6T80vg0XutJr3T+9Y++04B0xLcFbwswoF//xYO23qqv/A9oKYQrijZIuwHaDR6m93M6n3T9Af2k2K4cKUKP4wd0+VFsKv/pjqcO2Man+dqAaXxphxPAij9dT/nU/k6/h5YArX1AP77mah+qBjSO+BZYzR/QA/oVI8cfCgVkax/QA/oq0C2gmz8FTipQd+iTwczXFGgVGNCtgpv/UQoM6I8qx4JpFRjQrYKb/1EKDOiPKseCaRUY0K2Cm/9RCgzojyrHgmkVGNCtgpv/UQoM6I8qx4JpFRjQrYKb/1EKDOiPKseCaRUY0K2Cm/9RCgzojyrHgmkVGNCtgpv/UQoM6I8qx4JpFfgfLtRnAr0L9coAAAAASUVORK5CYII="
-        alt=""
-      />
-    </van-popup>
+    <!-- 二维码 -->
+    <van-overlay :show="show" @click="show = false">
+      <div class="wrapper">
+        <div class="block">
+          <p>分享</p>
+          <div class="waw_img_pop">
+            <img :src="imrUrl" />
+          </div>
+        </div>
+      </div>
+    </van-overlay>
     <!-- 吸顶试试 -->
     <van-sticky>
       <div class="hmw-top">
@@ -63,7 +67,9 @@
                 @click="onClickStart(listInfo.is_collect, listInfo.collect_id)"
               />
             </div>
-            <p class="hmwP2">{{listInfo.price==0?'免费':'￥'+listInfo.price}}</p>
+            <p class="hmwP2">
+              {{ listInfo.price == 0 ? "免费" : "￥" + listInfo.price }}
+            </p>
             <p class="hmwP3">
               共课{{ listInfo.is_free }}时 |
               {{ listInfo.real_sales_num }}人已报名
@@ -129,14 +135,14 @@
     <van-tabbar>
       <div class="hmw-foot">
         <van-button
-          v-show="listInfo.is_join_study==0"
+          v-show="listInfo.is_join_study == 0"
           type="primary"
           block
           @click="hmwStudyJump()"
           >立即报名</van-button
         >
         <van-button
-           v-show="listInfo.is_join_study==1"
+          v-show="listInfo.is_join_study == 1"
           type="primary"
           block
           @click="hmwStudyJump()"
@@ -151,6 +157,7 @@
 import Vue from "vue";
 import { Toast } from "vant";
 Vue.use(Toast);
+import QRCode from "qrcode";
 export default {
   // 组件参数 接收来自父组件的数据
   props: {},
@@ -171,7 +178,8 @@ export default {
       // 底部按钮状态（有没有登录）
       hmwBtnFlag: false,
       // 弹出层是否显示
-      show: false,
+      show: false, //判断是否让遮罩层出现
+      imrUrl: "", // 图片的地址
       // 是否收藏
       hmwSc: true,
       listDate: [], //详情数据
@@ -252,16 +260,27 @@ export default {
     },
     // 立即学习点击事件
     hmwStudyJump() {
-      if(this.listInfo.is_join_study==1){
+      if (this.listInfo.is_join_study == 1) {
         this.$router.push("/studyDetails");
-      }else{
-        this.listInfo.is_join_study=1;
+      } else {
+        this.listInfo.is_join_study = 1;
       }
       document.documentElement.scrollTop = 0;
     },
     // 二维码弹出事件
     showPopup() {
       this.show = true;
+      let url = location.href;
+      // console.log(url);
+      QRCode.toDataURL(url)
+        //在这里拿到地址，把它赋值给data里面定义的值imrUrl
+        .then((tpian) => {
+          // console.log(tpian);
+          this.imrUrl = tpian;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     },
     // 点击收藏
     onClickStart(id, collect_id) {
@@ -279,10 +298,10 @@ export default {
               this.getDetails();
             }
             var time = null;
-            tiem = setTimeout(()=>{
+            time = setTimeout(() => {
               Toast.success("收藏成功");
-              clearTimeout(time)
-            },1000)
+              clearTimeout(time);
+            }, 1000);
           })
           .catch((err) => {
             console.log(err);
@@ -296,10 +315,10 @@ export default {
               this.getDetails();
             }
             var strTime = null;
-            strTime = setTimeout(()=>{
+            strTime = setTimeout(() => {
               Toast.success("取消收藏");
-              clearTimeout(strTime)
-            },1000)
+              clearTimeout(strTime);
+            }, 1000);
           })
           .catch((err) => {
             console.log(err);
@@ -400,6 +419,36 @@ body > div,
   display: flex;
   flex-direction: column;
 }
+.van-overlay {
+  width: 100%;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.block {
+  width: 70%;
+  height: 40%;
+  background-color: #fff;
+}
+.block p {
+  width: 100%;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.waw_img_pop{
+  width: 80%;
+  margin-left: 10%;
+}
+  .waw_img_pop img{
+    width: 100%;
+    height: 100%;
+  }
 .waw_hmwtop {
   width: 100%;
   display: inline-flex;

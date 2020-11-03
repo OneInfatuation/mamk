@@ -19,12 +19,12 @@
           </p>
           <p class="waw_sex">男<span>30教龄</span></p>
         </div>
-        <p @click="onClickShow" v-show="isShow==1">
+        <p @click="onClickShow" v-show="isShow==2">
           <van-button class="vant_button_box" round type="info"
             >关注</van-button
           >
         </p>
-        <p @click="onClickShow" v-show="isShow==2">
+        <p @click="onClickShow" v-show="isShow==1">
           <span>已关注</span>
         </p>
       </div>
@@ -79,7 +79,6 @@
         </van-tab>
       </van-tabs>
     </div>
-    <div class="waw_hidden"></div>
     <div class="button_bottom">
       <van-button type="danger" @click="onClickBooking">立即预约</van-button>
     </div>
@@ -116,13 +115,13 @@ export default {
         .then((res) => {
           console.log(res.data);
           this.getTeacher();
-          if (res.data.data.flag == 1) {
+          if (res.data.data.flag == 2) {
             var tiem = null;
             tiem = setTimeout(()=>{
-               Toast("取消关注");
+              Toast("取消关注");
                clearTimeout(tiem)
             },1000)
-          } else if (res.data.data.flag == 2) {
+          } else if (res.data.data.flag == 1) {
            var strTiem = null;
             strTiem = setTimeout(()=>{
                Toast("已关注");
