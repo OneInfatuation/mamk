@@ -30,8 +30,16 @@ const urlType = {
         keChengShouCang:"/api/app/collect",
         //课程取消收藏
         KeChengHiden:"/api/app/collect/cancel/",
-        //老师关注与取消关注
+        //老师关注与取消关注    
         TeacherShowOrHiden:"/api/app/teacher/collect/",
+
+        // 个人信息获取
+        PersonMessage:"/api/app/userInfo",
+        // 个人信息修改
+        UserChange:"/api/app/user",
+        // 获取年级和学科数据
+        Attribute:"/app/module/attribute"
+
     },
     type: {
         GET: "get",

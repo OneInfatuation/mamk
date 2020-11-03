@@ -33,11 +33,11 @@ export default {
   },
   mounted(){
       // 获取收藏数据
-      // this.$ClientAPI.ClassCollect().then((res)=>{
+      // this.$ClientAPI.kechengShow().then((res)=>{
       //   console.log(res)
       // })
 
-      // this.$ClientAPI.CollectCancel().then((res)=>{
+      // this.$keChengHide.CollectCancel().then((res)=>{
       //     // this.list = res
       //     console.log(res)
       // })

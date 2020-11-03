@@ -5,9 +5,10 @@
     <div class="waw_person_container">
       <div class="waw_person_wrapper">
         <div class="waw_img">
+          <!--头像  -->
           <div class="waw_img_title">头像</div>
           <div class="waw_img_box">
-            <img src="https://img.yzcdn.cn/vant/cat.jpeg" />
+            <img :src="PersonMessage.avatar" />
             <van-icon
               name="arrow"
               color="lightgray"
@@ -15,11 +16,12 @@
             />
           </div>
         </div>
+        <!-- 名字 -->
         <div class="waw_person">
           <div>昵称</div>
           <div class="waw_user_box">
             <div>
-              <span>{{ nickName }}</span>
+              <span>{{ PersonMessage.nickname }}</span>
             </div>
             <van-icon
               name="arrow"
@@ -28,10 +30,12 @@
             />
           </div>
         </div>
+        <!-- 手机号 -->
         <div class="waw_person">
           <div>手机号</div>
-          <span class="waw_mobile">{{ user }}</span>
+          <span class="waw_mobile">{{ PersonMessage.mobile }}</span>
         </div>
+        <!-- 性别 -->
         <div class="waw_person">
           <div>性别</div>
           <div class="waw_sex_box">
@@ -43,6 +47,7 @@
             />
           </div>
         </div>
+        <!-- 出生日期 -->
         <div class="waw_person">
           <div>出生日期</div>
           <div class="waw_time_box">
@@ -50,10 +55,13 @@
             <van-icon name="arrow" color="lightgray" @click="onClickTime" />
           </div>
         </div>
+        <!-- 说在城市 -->
         <div class="waw_person">
           <div>所在城市</div>
           <div class="waw_address_box">
-            <div><span>{{ Address }}</span></div>
+            <div>
+              <span>{{ Address }}</span>
+            </div>
             <van-icon
               name="arrow"
               color="lightgray"
@@ -61,6 +69,7 @@
             />
           </div>
         </div>
+        <!-- 学科 -->
         <div class="waw_person">
           <div>学科</div>
           <div class="waw_subject_box">
@@ -72,6 +81,7 @@
             <van-icon name="arrow" color="lightgray" @click="onClickSubject" />
           </div>
         </div>
+        <!-- 年级 -->
         <div class="waw_person">
           <div>年级</div>
           <div class="waw_class_box">
@@ -132,8 +142,7 @@ export default {
   },
   data() {
     return {
-      nickName: "", //昵称
-      user: "", //手机号
+      PersonMessage: {}, //获取个人信息
       sex: localStorage.getItem("sex") || "男", //性别
       time: localStorage.getItem("time") || "2000-10-10", //日期
       Address:
@@ -173,6 +182,17 @@ export default {
     };
   },
   mounted() {
+    // 获取个人信息
+    this.$ClientAPI.PersonMessage().then((res) => {
+      // console.log(res.data.data)
+      this.PersonMessage = res.data.data;
+    });
+
+    // 获取年级与学科 
+    // this.$ClientAPI.Attribute().then((res)=>{
+    //   console.log(res)
+    // })
+
     var Nick = localStorage.getItem("value"); //读取昵称
     if (Nick) {
       this.nickName = Nick;
@@ -181,10 +201,10 @@ export default {
     if (mobile) {
       this.user = mobile;
     }
-    // var sex = localStorage.getItem("sex"); //读取性别
-    // if (sex) {
-    //   this.sex = sex;
-    // }
+    var sex = localStorage.getItem("sex"); //读取性别
+    if (sex) {
+      this.sex = sex;
+    }
   },
   methods: {
     onClickChangeImg() {
@@ -197,7 +217,9 @@ export default {
     },
     onClickChangeNickname() {
       //点击跳转修改昵称页面
-      this.$router.push("/nickname");
+      this.$router.push({ path: "/nickname", query:{
+        name:this.PersonMessage.nickname
+      }});
     },
     onClickChangeSex() {
       //点击跳转页面改变性别
@@ -305,7 +327,7 @@ export default {
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
-  div{
+  div {
     width: 90%;
     display: inline-flex;
     justify-content: flex-end;
@@ -334,7 +356,7 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  div{
+  div {
     width: 90%;
     display: inline-flex;
     justify-content: flex-end;
