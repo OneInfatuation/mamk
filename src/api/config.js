@@ -32,6 +32,8 @@ const urlType = {
         KeChengHiden:"/api/app/collect/cancel/",
         //老师关注与取消关注
         TeacherShowOrHiden:"/api/app/teacher/collect/",
+        // 我的页面里面的取消关注
+        TeacherHide:"/api/app/collect/cancel/"
     },
     type: {
         GET: "get",

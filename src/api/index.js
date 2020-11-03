@@ -28,6 +28,8 @@ const ClientAPI = {
         return requset(urlType.type.GET, urlType.url.courseBasis);
     },
     // 课程详情数据获取
+
+    // 我的页面的已关注数据
     guanzhus(params) {
         return requset(urlType.type.GET, urlType.url.Guanzhu, { params })
     },
@@ -61,8 +63,13 @@ const ClientAPI = {
         // console.log(urlType.url.KeChengHiden+params+"/1");
         return requset(urlType.type.PUT,urlType.url.KeChengHiden+params+"/1")
     },
+    //老师关注与取消关注
     TeacherShowHiden(params){
         return requset(urlType.type.GET,urlType.url.TeacherShowOrHiden+params)
+    },
+    // 我的页面里面的取消关注
+    TeacherGZHide(params){
+        return requset(urlType.type.PUT,urlType.url.TeacherHide+params+"/2")
     }
 }
 export default ClientAPI;

@@ -9,8 +9,6 @@
     </van-nav-bar>
     </div>
 
-    <!-- <NavTitle></NavTitle> -->
-
     <!-- 筛选处理 -->
     <Select></Select>
   </div>
