@@ -11,17 +11,20 @@
     <!-- 讲师信息 -->
     <div class="teacher_info">
       <div class="ti_base">
-        <img
-          :src="teacherList.avatar"
-        />
-        <div>
-          <p><span>{{teacherList.real_name}}</span><font>M10</font></p>
-          <p>男<span>30教龄</span></p>
+        <img :src="teacherList.avatar" />
+        <div class="waw_div_title">
+          <p>
+            <span class="span_title">{{ teacherList.real_name }}</span
+            ><font class="waw_jiaoling">M10</font>
+          </p>
+          <p class="waw_sex">男<span>30教龄</span></p>
         </div>
-        <p @click="onClickShow" v-show="isShow">
-          <van-button class="vant_button_box" round type="info">关注</van-button>
+        <p @click="onClickShow" v-show="isShow==1">
+          <van-button class="vant_button_box" round type="info"
+            >关注</van-button
+          >
         </p>
-        <p @click="onClickShow" v-show="!isShow">
+        <p @click="onClickShow" v-show="isShow==2">
           <span>已关注</span>
         </p>
       </div>
@@ -81,54 +84,76 @@
     <div class="button_bottom">
       <van-button type="danger" @click="onClickBooking">立即预约</van-button>
     </div>
-
   </div>
 </template>
 
 
 <script>
-import Vue from 'vue'
+import Vue from "vue";
 import { Toast } from "vant"; //引入文字提示
 Vue.use(Toast);
 export default {
   name: "",
   data() {
     return {
-      isShow:true,
-      teacherList:[],//讲师数据
+      isShow: "",
+      teacherList: [], //讲师数据
     };
   },
   created() {},
   mounted() {
-    // var obj = {
-    //   id:this.$route.query.id
-    // }
-    this.$ClientAPI.Teacher(this.$route.query.id).then(res=>{
-      console.log(res.data.data.teacher);
-      this.teacherList = res.data.data.teacher;
-    }).catch(err=>{
-      console.log(err);
-    })
+    this.getTeacher(); //获取讲师详情
   },
   methods: {
     onClickBooking() {
       //点击立即预约跳转
       this.$router.push("/bookingCourses");
     },
-    onClickShow(){//点击关注/取消关注
-      this.isShow=!this.isShow;
-      if(this.isShow == true){
-        Toast("取消关注")
-      }else if(this.isShow == false){
-        Toast("已关注")
-      }
-    }
+    onClickShow() {
+      //点击关注/取消关注
+      this.isShow = !this.isShow;
+      this.$ClientAPI
+        .TeacherShowHiden(this.$route.query.id)
+        .then((res) => {
+          console.log(res.data);
+          this.getTeacher();
+          if (res.data.data.flag == 1) {
+            var tiem = null;
+            tiem = setTimeout(()=>{
+               Toast("取消关注");
+               clearTimeout(tiem)
+            },1000)
+          } else if (res.data.data.flag == 2) {
+           var strTiem = null;
+            strTiem = setTimeout(()=>{
+               Toast("已关注");
+               clearTimeout(strTiem);
+            },1000)
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getTeacher() {
+      //获取讲师详情
+      this.$ClientAPI
+        .Teacher(this.$route.query.id)
+        .then((res) => {
+          console.log(res.data.data);
+          this.isShow = res.data.data.flag;
+          this.teacherList = res.data.data.teacher;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
 
 <style  lang="scss" scoped>
-.waw_hidden{
+.waw_hidden {
   width: 100%;
   height: 4rem;
 }
@@ -136,13 +161,13 @@ export default {
   height: 100%;
   background: #eee;
 }
-.vant_button_box{
+.vant_button_box {
   width: 100%;
   height: 1.5rem;
   line-height: 1.5rem;
   background: whitesmoke;
   color: orange;
-  border:none;
+  border: none;
 }
 .dyb_header {
   height: 26.66667vw;
@@ -182,13 +207,11 @@ export default {
   > .ti_base {
     height: 20.26667vw;
     display: flex;
+    justify-content: space-around;
     align-items: center;
     > img {
-      width: 10.66667vw;
-      height: 1.06667rem;
-      height: 10.66667vw;
-      margin-right: 0.32rem;
-      margin-right: 3.2vw;
+      width: 18%;
+      height: 3.6rem;
       border-radius: 50%;
       flex: none;
     }
@@ -327,15 +350,35 @@ export default {
     }
   }
 }
-.button_bottom{
+.button_bottom {
   width: 100%;
   height: 4rem;
   position: fixed;
   bottom: 0px;
   left: 0px;
-  .van-button{
+  .van-button {
     width: 100%;
     height: 100%;
   }
+}
+.span_title{
+  font-size: 0.7rem;
+  color: gray;
+}
+.waw_jiaoling{
+  font-size: 0.7rem;
+  color: orange;
+  margin-left: 5%;
+}
+.waw_sex{
+    font-size: 0.7rem;
+    color: gray;
+}
+.waw_sex span{
+  margin-left: 5%;
+}
+.waw_div_title{
+  width: 60%;
+  margin-left: 5%;
 }
 </style>

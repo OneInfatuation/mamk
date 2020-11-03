@@ -33,7 +33,7 @@ const ClientAPI = {
     },
     // 课程详情(首页)
     courseInfo(params){
-        console.log(urlType.url.courseInfo+Number(params));
+        // console.log(urlType.url.courseInfo+Number(params));
         return requset(urlType.type.GET,urlType.url.courseInfo+params);
     },  
     // 验证码
@@ -51,7 +51,18 @@ const ClientAPI = {
     // 详情页面评价
     PINGJIA(params){
         return requset(urlType.type.POST,urlType.url.PINJIA,params)
+    },
+    // 课程收藏
+    kechengShow(params){
+        return requset(urlType.type.POST,urlType.url.keChengShouCang,params)
+    },
+    // 课程取消收藏
+    keChengHide(params){
+        // console.log(urlType.url.KeChengHiden+params+"/1");
+        return requset(urlType.type.PUT,urlType.url.KeChengHiden+params+"/1")
+    },
+    TeacherShowHiden(params){
+        return requset(urlType.type.GET,urlType.url.TeacherShowOrHiden+params)
     }
-
 }
 export default ClientAPI;

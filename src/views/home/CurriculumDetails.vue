@@ -51,31 +51,31 @@
               </p>
               <van-icon
                 class="hmwNo"
-                v-show="hmwSc"
+                v-show="listInfo.is_collect == 0"
                 name="star-o"
-                @click="onClickStart"
+                @click="onClickStart(listInfo.is_collect, listInfo.collect_id)"
               />
               <van-icon
                 class="hmwNo"
-                v-show="!hmwSc"
+                v-show="listInfo.is_collect != 0"
                 color="orange"
                 name="star"
-                @click="onClickStart"
+                @click="onClickStart(listInfo.is_collect, listInfo.collect_id)"
               />
             </div>
-            <p class="hmwP2">免费</p>
+            <p class="hmwP2">{{listInfo.price==0?'免费':'￥'+listInfo.price}}</p>
             <p class="hmwP3">
               共课{{ listInfo.is_free }}时 |
               {{ listInfo.real_sales_num }}人已报名
             </p>
           </li>
           <!-- 教学团队 -->
-          <li class="hmwTD" v-for="(item,index) in listTeacher" :key="index">
+          <li class="hmwTD" v-for="(item, index) in listTeacher" :key="index">
             <p class="hmwP1">教学团队</p>
             <div>
-              <img :src="item.teacher_avatar" alt="" /><span
-                  >{{item.teacher_name }}</span
-                > 
+              <img :src="item.teacher_avatar" alt="" /><span>{{
+                item.teacher_name
+              }}</span>
             </div>
           </li>
           <!-- 课程介绍 -->
@@ -101,10 +101,13 @@
             <p class="hmwP1">课程评论</p>
             <ul>
               <li :key="index" v-for="(item, index) in 5">
-                <img src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png" alt="" />
+                <img
+                  src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png"
+                  alt=""
+                />
                 <div class="hmwPL-center">
                   <p class="hmwCP1">
-                    <span>admin{{index+1}}</span
+                    <span>admin{{ index + 1 }}</span
                     ><van-rate
                       :size="14"
                       v-model="startActive"
@@ -126,14 +129,14 @@
     <van-tabbar>
       <div class="hmw-foot">
         <van-button
-          v-if="!hmwBtnFlag"
+          v-show="listInfo.is_join_study==0"
           type="primary"
           block
           @click="hmwStudyJump()"
           >立即报名</van-button
         >
         <van-button
-          v-if="hmwBtnFlag"
+           v-show="listInfo.is_join_study==1"
           type="primary"
           block
           @click="hmwStudyJump()"
@@ -145,7 +148,9 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { Toast } from "vant";
+Vue.use(Toast);
 export default {
   // 组件参数 接收来自父组件的数据
   props: {},
@@ -156,7 +161,7 @@ export default {
     return {
       //    导航要求的--选中哪一个
       active: 2,
-      startActive:4,
+      startActive: 4,
       //   显示导航
       hmwFlag: false,
       // 导航选中了哪一个
@@ -170,8 +175,8 @@ export default {
       // 是否收藏
       hmwSc: true,
       listDate: [], //详情数据
-      listInfo: [],//详情标题
-      listTeacher:[],//老师数据
+      listInfo: [], //详情标题
+      listTeacher: [], //老师数据
     };
   },
   // 计算属性
@@ -247,7 +252,11 @@ export default {
     },
     // 立即学习点击事件
     hmwStudyJump() {
-      this.$router.push("/studyDetails");
+      if(this.listInfo.is_join_study==1){
+        this.$router.push("/studyDetails");
+      }else{
+        this.listInfo.is_join_study=1;
+      }
       document.documentElement.scrollTop = 0;
     },
     // 二维码弹出事件
@@ -255,12 +264,46 @@ export default {
       this.show = true;
     },
     // 点击收藏
-    onClickStart() {
-      this.hmwSc = !this.hmwSc;
-      if(this.hmwSc==false){
-          Toast.success("收藏成功");
-      }else{
-          Toast("取消收藏");
+    onClickStart(id, collect_id) {
+      // console.log(id);
+      if (id == 0) {
+        var obj = {
+          course_basis_id: this.$route.query.id,
+          type: 1,
+        };
+        this.$ClientAPI
+          .kechengShow(obj)
+          .then((res) => {
+            // console.log(res.data)
+            if (res.data.code == 200) {
+              this.getDetails();
+            }
+            var time = null;
+            tiem = setTimeout(()=>{
+              Toast.success("收藏成功");
+              clearTimeout(time)
+            },1000)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        this.$ClientAPI
+          .keChengHide(collect_id)
+          .then((res) => {
+            // console.log(res.data.code)
+            if (res.data.code == 200) {
+              this.getDetails();
+            }
+            var strTime = null;
+            strTime = setTimeout(()=>{
+              Toast.success("取消收藏");
+              clearTimeout(strTime)
+            },1000)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     },
     // 滚动监听器
@@ -296,6 +339,20 @@ export default {
     onClickLeft() {
       this.$router.go(-1);
     },
+    getDetails() {
+      // 获取详情页的数据
+      this.$ClientAPI
+        .courseInfo(this.$route.query.id)
+        .then((res) => {
+          // console.log(res.data.data);
+          this.listDate = res.data.data;
+          this.listInfo = res.data.data.info;
+          this.listTeacher = res.data.data.teachers;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
   mounted() {
     document.documentElement.scrollTop = 0;
@@ -303,32 +360,22 @@ export default {
     // 监听滚动事件
     window.addEventListener("scroll", this.onScroll, false);
     // 获取一下数据
-    // 获取详情页的数据
+    this.getDetails();
+
+    //   评价接口
+    var obj = {
+      teacher_id: sessionStorage.getItem("teacherId"),
+      limit: 10,
+      page: 1,
+    };
     this.$ClientAPI
-      .courseInfo(this.$route.query.id)
+      .PINGJIA(obj)
       .then((res) => {
-        console.log(res.data.data);
-        this.listDate = res.data.data;
-        this.listInfo = res.data.data.info;
-        this.listTeacher = res.data.data.teachers
+        // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-
-    //   评价接口
-    var obj = {
-        teacher_id:sessionStorage.getItem("teacherId"),
-        limit:10,
-        page:1,
-    }
-    this.$ClientAPI.PINGJIA(obj).then(res=>{
-        console.log(res.data);
-    }).catch(err=>{
-        console.log(err);
-    })
-
-
   },
   destroy() {
     // 必须移除监听器，不然当该vue组件被销毁了，监听器还在就会出错
@@ -353,10 +400,10 @@ body > div,
   display: flex;
   flex-direction: column;
 }
-.waw_hmwtop{
-    width: 100%;
-    display: inline-flex;
-    align-items: center;
+.waw_hmwtop {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
 }
 .hmw-top {
   height: 3rem;

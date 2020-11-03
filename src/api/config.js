@@ -16,7 +16,7 @@ const urlType = {
         LOGIN: "/api/app/login",
         // 课程详情数据获取
         courseInfo: "/api/app/courseInfo/basis_id=",
-        // 关注老师数据接收
+        // 已关注老师接口
         Guanzhu: "/api/app/collect",
         // 点击获取验证码
         Verification: "/api/app/smsCode",
@@ -26,10 +26,17 @@ const urlType = {
         TEACHERS:"/api/app/teacher/",
         // 详情页评价接口
         PINJIA:"/api/app/teacher/comment",
+        // 课程收藏
+        keChengShouCang:"/api/app/collect",
+        //课程取消收藏
+        KeChengHiden:"/api/app/collect/cancel/",
+        //老师关注与取消关注
+        TeacherShowOrHiden:"/api/app/teacher/collect/",
     },
     type: {
         GET: "get",
-        POST: "post"
+        POST: "post",
+        PUT:"put"
     }
 }
 export default urlType;

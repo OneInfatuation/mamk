@@ -59,6 +59,8 @@ export function requset(type, url, params) {
       return get(url, params);
     case urlType.type.POST:
       return post(url, params);
+    case urlType.type.PUT:
+      return put(url, params);  
   }
 }
 
@@ -71,4 +73,9 @@ function get(url, params) {
 // 封装post请求
 function post(url, params) {
   return instance.post(url, params);
+}
+
+//封装put请求
+function put(url,params){
+  return instance.put(url, params);
 }

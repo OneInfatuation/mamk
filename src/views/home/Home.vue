@@ -241,7 +241,7 @@ export default {
     Onclick(item) {
       //点击进入讲师详情
       var token = localStorage.getItem("token");
-      console.log(item.teacher_id);
+      // console.log(item.teacher_id);
       if (token) {
         this.$router.push({
           path: "/teacher",

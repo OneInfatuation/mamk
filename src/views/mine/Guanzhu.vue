@@ -27,13 +27,29 @@ export default {
       list:[{img:"https://img.yzcdn.cn/vant/cat.jpeg",name:"杨德胜",constructor:"杨老师，特级教师，多次被中...",level:"M20"}]
     };
   },
+  mounted() {
+    this.getGuanZhu();//调用封装
+  },
   methods:{
+
     offAbout(index){
       console.log(index)
       this.list.splice(index,1)
     },
     gotoTeacher(){
       this.$router.push("/teacher")
+    },
+    getGuanZhu(){//封装已关注老师的接口
+    var obj = {
+      page:1,
+      limit:10,
+      type:2
+    }
+      this.$ClientAPI.guanzhus(obj).then(res=>{
+        console.log(res);
+      }).catch(err=>{
+        console.log(err);
+      })
     }
   }
 };
