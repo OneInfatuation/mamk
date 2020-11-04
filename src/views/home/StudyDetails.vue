@@ -39,7 +39,7 @@
                 ><span class="waw_margin">开始时间：{{ item.start_play }}</span>
               </p>
               <p class="hmwJD">
-                <van-progress inactive :percentage="0" />
+                <van-progress inactive :percentage="item.progress_rate" />
                 <span>已观看0%</span>
               </p>
             </li>

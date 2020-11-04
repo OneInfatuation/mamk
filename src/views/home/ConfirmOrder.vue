@@ -16,13 +16,13 @@
       <van-list style="background: #f0f2f5">
         <!-- 中间顶部 -->
         <div class="hmwc-top">
-          <div>
+          <div class="hmwaw_title">
             <p class="hmwP1">
-              初中重点几何知识点——第八讲： 用描点法画二次函数y＝x^2的图象
+              {{ list.title }}
             </p>
-            <span>1.00</span>
+            <span>{{ list.order_price / 100 + ".00" }}</span>
           </div>
-          <p class="hmwP2">授课老师：马学斌</p>
+          <p class="hmwP2">授课老师：{{ list.teacher_name }}</p>
         </div>
         <ul>
           <li class="hmwLi1">
@@ -33,7 +33,9 @@
             <p>
               <span style="color: #969799">商品金额</span
               ><span class="hmwSpanNum"
-                ><van-icon color="orange" name="gold-coin" />&emsp;1.00</span
+                ><van-icon color="orange" name="gold-coin" />&emsp;{{
+                  list.order_price / 100 + ".00"
+                }}</span
               >
             </p>
             <p>
@@ -45,7 +47,9 @@
             <p>
               <span style="color: #969799">合计</span
               ><span class="hmwSpanNum" style="color: #eb6100"
-                ><van-icon color="orange" name="gold-coin" />&emsp;1.00</span
+                ><van-icon color="orange" name="gold-coin" />&emsp;{{
+                  list.order_price / 100 + ".00"
+                }}</span
               >
             </p>
           </li>
@@ -58,11 +62,33 @@
         <div>
           <span>实付价格</span>
           <van-icon color="orange" name="gold-coin" />
-          <p>1.00</p>
+          <p>{{ list.order_price / 100 + ".00" }}</p>
         </div>
-        <van-button type="primary" block color="#eb6100">提交订单</van-button>
+        <van-button type="primary" block color="#eb6100" @click="onClickOrder"
+          >提交订单</van-button
+        >
       </div>
     </van-tabbar>
+
+    <van-overlay :show="show">
+      <div class="wrapper">
+        <div class="block">
+          <div class="block_wapper">
+            <div class="waw_tishi">
+              <span>提示</span>
+              <span @click="show=false">X</span>
+            </div>
+            <div class="waw_title">
+                很抱歉。学习币余额不足，无法完成支付！
+            </div>
+            <div class="waw_button">
+                <van-button type="default" @click="show=false"  class="defaule_button">取消</van-button>
+                <van-button type="info" @click="onClickGoCz">去充值</van-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </van-overlay>
   </div>
 </template>
 
@@ -76,7 +102,13 @@ export default {
   components: {},
   // 组件状态值
   data() {
-    return {};
+    return {
+      list: [],
+      show: false, //默认隐藏
+    };
+  },
+  mounted() {
+    this.getDdan();
   },
   // 计算属性
   computed: {},
@@ -86,8 +118,31 @@ export default {
   methods: {
     //   返回的点击事件
     onClickLeft() {
-      this.$router.push("/detail");
+      this.$router.go(-1);
     },
+    getDdan() {
+      //确认订单
+      var obj = {
+        shop_id: this.$route.query.id,
+        type: 5,
+      };
+      this.$ClientAPI
+        .QueRenDdan(obj)
+        .then((res) => {
+          console.log(res.data.data.info);
+          this.list = res.data.data.info;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    onClickOrder() {
+      //点击提交订单
+      this.show = true;
+    },
+    onClickGoCz(){//点击跳转充值页面
+        this.$router.push("/xueximoney")
+    }
   },
 };
 </script> 
@@ -116,6 +171,12 @@ body,
   height: 11.73333vw;
   background: white;
   border-bottom: 1px solid #f5f5f5;
+}
+.hmwaw_title {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .hmw-center {
   flex: 1 !important;
@@ -220,5 +281,52 @@ ul > .hmwLi1 p {
   color: #8c8c8c;
   font-size: 0.75rem;
   padding-top: 0.5rem;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.block_wapper{
+    width: 90%;
+    margin-left: 5%;
+    height: 100%;
+}
+.block {
+  width: 60%;
+  height: 8rem;
+  background-color: #fff;
+}
+.waw_tishi {
+  width: 100%;
+  height: 20%;
+  /* background: red; */
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.6rem;
+}
+.waw_title{
+    width: 100%;
+    height: 60%;
+    font-size: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+}
+.waw_button{
+    width: 100%;
+    height: 20%;
+    font-size: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.waw_button .van-button{
+    padding: 0 0.5rem;
+    height: 1.4rem;
+}
+.defaule_button{
+    margin-right: 5%;
 }
 </style>

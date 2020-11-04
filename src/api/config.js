@@ -32,6 +32,8 @@ const urlType = {
         KeChengHiden:"/api/app/collect/cancel/",
         // 立即报名
         baoming:"/api/app/order/downOrder",
+        // 确认订单
+        querenorder:"/api/app/order/shopInfo",
         // 获取学习的记录
         xuexijilu:"/api/app/myStudy/course/",
         //老师关注与取消关注    
