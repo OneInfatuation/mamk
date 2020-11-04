@@ -30,9 +30,14 @@ const urlType = {
         keChengShouCang:"/api/app/collect",
         //课程取消收藏
         KeChengHiden:"/api/app/collect/cancel/",
+        // 立即报名
+        baoming:"/api/app/order/downOrder",
+        // 获取学习的记录
+        xuexijilu:"/api/app/myStudy/course/",
         //老师关注与取消关注    
         TeacherShowOrHiden:"/api/app/teacher/collect/",
-
+        // 我的学习评论
+        mycomment:"/api/app/myStudy/comment",
         // 个人信息获取
         PersonMessage:"/api/app/userInfo",
         // 个人信息修改

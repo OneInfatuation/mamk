@@ -69,7 +69,15 @@ const ClientAPI = {
     TeacherShowHiden(params){
         return requset(urlType.type.GET,urlType.url.TeacherShowOrHiden+params)
     },
-
+    // 立即报名
+    LIJIBAOMING(params){
+        console.log(urlType.type.POST,urlType.url.baoming,params);
+        return requset(urlType.type.POST,urlType.url.baoming,params)
+    },
+    // 我的学习记录
+    myStudentComment(params){
+        return requset(urlType.type.POST,urlType.url.mycomment,params);
+    },
     // 个人信息获取
     PersonMessage(){
         return requset(urlType.type.GET,urlType.url.PersonMessage)
@@ -89,7 +97,10 @@ const ClientAPI = {
     // 课程搜索
     ClassSearch(params){
         return requset(urlType.type.GET,urlType.url.ClassSearch,{params})
+    },
+    // 学习记录
+    myStudy(params){
+        return requset(urlType.type.GET,urlType.url.xuexijilu+params);
     }
-
 }
 export default ClientAPI;

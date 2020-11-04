@@ -23,27 +23,28 @@
       <van-list>
         <!-- 主题的上部分 -->
         <div class="hmwC-top">
-          <p>共8时</p>
+          <p>共{{ list.length }}时</p>
           <van-progress inactive :percentage="0" />
           <p>已学习0%</p>
         </div>
         <!-- 列表部分 -->
         <ul>
-            <div :key="index" v-for="(item, index) in 10">
-                <li>
-                <p>
-                  <span class="hmwS1" style="">[回放]</span
-                  ><span class="hmwS2">第二讲第一课时</span>
-                </p>
-                <p class="hmwP3"><span>李青</span><span>03月16日 18:30 - 19:30</span></p>
-                <p class="hmwJD">
-                    <van-progress inactive :percentage="0" />
-          <span>已观看0%</span>
-                </p>
-              </li>
-            </div>
-              
-            </ul>
+          <div :key="index" v-for="(item, index) in list">
+            <li>
+              <p>
+                <span class="hmwS2">{{ item.periods_title }}</span>
+              </p>
+              <p class="hmwP3">
+                <span>{{ item.teachers[0].teacher_name }}</span
+                ><span class="waw_margin">开始时间：{{ item.start_play }}</span>
+              </p>
+              <p class="hmwJD">
+                <van-progress inactive :percentage="0" />
+                <span>已观看0%</span>
+              </p>
+            </li>
+          </div>
+        </ul>
       </van-list>
     </div>
     <div class="home_hidden"></div>
@@ -53,7 +54,14 @@
         <p @click="hmwShow">
           <van-icon size="18" name="edit" /><span>写评论</span>
         </p>
-        <p @click="$router.push('/course-detail')">
+        <p
+          @click="
+            $router.push({
+              path: '/curriculumDetails',
+              query: { id: listID.course_id },
+            })
+          "
+        >
           <van-icon size="18" name="apps-o" /><span>课程详情</span>
         </p>
         <p @click="hmwDian">
@@ -62,15 +70,18 @@
       </div>
     </van-tabbar>
 
-
     <van-popup v-model="show">
-        <div class="home_pop">
-            <div class="home_rate"><span>星级：</span><van-rate v-model="value" /></div>
-            <div class="home_textarea"><span>内容：</span><textarea></textarea></div>
-            <div class="home_button">
-                <van-button type="warning">发布</van-button>
-            </div>
+      <div class="home_pop">
+        <div class="home_rate">
+          <span>星级：</span><van-rate v-model="value" />
         </div>
+        <div class="home_textarea">
+          <span>内容：</span><textarea v-model="PLvalue"></textarea>
+        </div>
+        <div class="home_button">
+          <van-button type="warning" @click="onClickFB">发布</van-button>
+        </div>
+      </div>
     </van-popup>
   </div>
 </template>
@@ -89,9 +100,15 @@ export default {
     return {
       //    底部导航
       active: 0,
-      show:false,//默认隐藏
-      value:5,//默认评星数
+      show: false, //默认隐藏
+      value: 5, //默认评星数
+      list: [], //学习内容
+      listID: [], //获取id
+      PLvalue:"",//评论内容
     };
+  },
+  mounted() {
+    this.getWatch();
   },
   // 计算属性
   computed: {},
@@ -100,20 +117,63 @@ export default {
   // 组件方法
   methods: {
     //   导航部分事件
-    onClickLeft() {//点击返回上一页
+    onClickLeft() {
+      //点击返回上一页
       this.$router.go(-1);
     },
-    onClickRight() {//点击跳转到日历页面
+    onClickRight() {
+      //点击跳转到日历页面
       this.$router.push("/study-calendar");
     },
-    hmwShow(){//点击显示弹出层
-        this.show = true;
+    hmwShow() {
+      //点击显示弹出层
+      this.show = true;
     },
-    hmwDian() {//点击移出列表
+    onClickFB() {
+      // //点击发布评论
+      // console.log(this.listID);
+      // console.log(this.listID.course_id);
+      var obj = {
+        content: this.PLvalue,
+        course_id: this.listID.course_id,
+        grade: this.value,
+        type: 1,
+      };
+      console.log(obj);
+      this.$ClientAPI
+        .myStudentComment(obj)
+        .then((res) => {
+          console.log(res.data.code);
+          if(res.data.code==200){
+            Toast.success("评论成功")
+          }else{
+            Toast(res.data.msg)
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    hmwDian() {
+      //点击移出列表
       Toast.success({
-          message:"成功",
-          position:"center"
-      })
+        message: "移出成功",
+        position: "center",
+      });
+    },
+    getWatch() {
+      //获取观看数据
+      this.$ClientAPI
+        .myStudy(this.$route.query.id)
+        .then((res) => {
+          console.log(res.data);
+          // console.log(res.data.data.periods);
+          this.list = res.data.data.periods;
+          this.listID = res.data.data.course;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
@@ -127,6 +187,9 @@ html,
 body,
 .hmwBox {
   height: 100%;
+}
+.waw_margin {
+  margin-left: 5%;
 }
 /* 大体布局 */
 .hmwBox {
@@ -154,33 +217,32 @@ body,
 }
 /* 主体部分----------------------------------------------------------------------------- */
 /* 主题的上半部分 */
-.hmwC-top{
-        font-size: 3.46667vw;
-    color: #595959;
-    height: 13.86667vw;
-    line-height: 13.86667vw;
-    border-bottom: 1px solid #f5f5f5;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.hmwC-top {
+  font-size: 3.46667vw;
+  color: #595959;
+  height: 13.86667vw;
+  line-height: 13.86667vw;
+  border-bottom: 1px solid #f5f5f5;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 /* 进度条 */
-.van-progress{
-    width: 14rem;
+.van-progress {
+  width: 14rem;
 }
 /* 列表部分 */
-.hmw-center ul  li {
+.hmw-center ul li {
   list-style: disc;
   color: #eb6100;
-  
 }
-.hmw-center ul>div{
+.hmw-center ul > div {
   margin: 0 1rem;
-margin-top: 1rem;
-  border: .53333vw solid #e9e9e9;
-    border-radius: 1.06667vw;
-    padding: 4vw 4vw 4vw 7vw;
-    /* width: 90%; */
+  margin-top: 1rem;
+  border: 0.53333vw solid #e9e9e9;
+  border-radius: 1.06667vw;
+  padding: 4vw 4vw 4vw 7vw;
+  /* width: 90%; */
 }
 /* span部分 */
 .hmwS1 {
@@ -205,19 +267,19 @@ margin-top: 1rem;
   color: rgba(0, 0, 0, 0.45);
 }
 /* 主体的进度条部分 */
-.hmwJD{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.hmwJD {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.hmwJD span{
-    color: #8c8c8c;
-    font-size: 0.2rem;
+.hmwJD span {
+  color: #8c8c8c;
+  font-size: 0.2rem;
 }
 /* 底部导航布局------------------------------------------------------------------------- */
-.hmw-foot{
-    width: 100%;
-    height: 100%;
+.hmw-foot {
+  width: 100%;
+  height: 100%;
 }
 .hmw-foot p {
   flex: 1;
@@ -238,42 +300,45 @@ margin-top: 1rem;
   display: inline-flex;
   align-items: center;
 }
-.home_hidden{
-    width: 100%;
-    height: 10vh;
+.home_hidden {
+  width: 100%;
+  height: 10vh;
 }
-.van-popup{
-    width: 100%;
-    height: 30vh;
+.van-popup {
+  width: 90%;
+  height: 30vh;
+  border-radius: 0.4rem;
 }
-.home_pop{
-    width: 100%;
-    height: 100vh;
+.home_pop {
+  width: 100%;
+  height: 100vh;
+  font-size: 0.7rem;
 }
-.home_rate{
-    width: 80%;
-    height: 10vh;
-    margin-left: 10%;
-    display: inline-flex;
-    align-items: center;
+.home_rate {
+  width: 80%;
+  height: 10vh;
+  margin-left: 10%;
+  display: inline-flex;
+  align-items: center;
 }
-.home_textarea{
-    width: 80%;
-    height: 10vh;
-    margin-left: 10%;
-    display: inline-flex;
-    align-items: center;
+.home_textarea {
+  width: 80%;
+  height: 10vh;
+  margin-left: 10%;
+  display: inline-flex;
+  align-items: center;
 }
-.home_button{
-    width: 100%;
-    height: 10vh;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+.home_button {
+  width: 100%;
+  height: 10vh;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
-.home_button .van-button{
-    width: 18%;
-    height: 2rem;
-    line-height: 2rem;
+.home_button .van-button {
+  width: 18%;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 0.7rem;
 }
 </style>

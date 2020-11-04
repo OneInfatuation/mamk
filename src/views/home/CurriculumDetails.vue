@@ -135,17 +135,17 @@
     <van-tabbar>
       <div class="hmw-foot">
         <van-button
-          v-show="listInfo.is_join_study == 0"
+          v-show="listInfo.is_buy == 0"
           type="primary"
           block
-          @click="hmwStudyJump()"
+          @click="hmwStudyJump"
           >立即报名</van-button
         >
         <van-button
-          v-show="listInfo.is_join_study == 1"
+          v-show="listInfo.is_buy == 1"
           type="primary"
           block
-          @click="hmwStudyJump()"
+          @click="hmwStudyJump"
           >立即学习</van-button
         >
       </div>
@@ -260,10 +260,38 @@ export default {
     },
     // 立即学习点击事件
     hmwStudyJump() {
-      if (this.listInfo.is_join_study == 1) {
-        this.$router.push("/studyDetails");
-      } else {
-        this.listInfo.is_join_study = 1;
+      if (this.listInfo.is_buy == 0 && this.listInfo.price == 0) {
+        this.$ClientAPI
+          .LIJIBAOMING({ shop_id: this.listInfo.id, type: 5 })
+          .then((res) => {
+            console.log(res);
+            if (res.data.code == 200) {
+              this.getDetails();
+            }
+            var time = null;
+            time = setTimeout(() => {
+              Toast.success(res.data.msg);
+              clearTimeout(time);
+            }, 1000);
+          }).catch(err=>{
+            console.log(err);
+          });
+      } else if (this.listInfo.is_buy == 1) {
+        this.$router.push({
+          path: "/studyDetails",
+          query: { id: this.listInfo.id },
+        });
+      }else if(this.listInfo.is_buy == 0 && this.listInfo.price != 0){
+        
+        this.$router.push({
+          path:"/confirmOrder",
+          query:{
+            id:this.listInfo.id
+          }
+        })
+        
+        
+        Toast.success("请先购买课程");
       }
       document.documentElement.scrollTop = 0;
     },
@@ -363,7 +391,7 @@ export default {
       this.$ClientAPI
         .courseInfo(this.$route.query.id)
         .then((res) => {
-          // console.log(res.data.data);
+          console.log(res.data.data);
           this.listDate = res.data.data;
           this.listInfo = res.data.data.info;
           this.listTeacher = res.data.data.teachers;
@@ -441,14 +469,14 @@ body > div,
   align-items: center;
   justify-content: center;
 }
-.waw_img_pop{
+.waw_img_pop {
   width: 80%;
   margin-left: 10%;
 }
-  .waw_img_pop img{
-    width: 100%;
-    height: 100%;
-  }
+.waw_img_pop img {
+  width: 100%;
+  height: 100%;
+}
 .waw_hmwtop {
   width: 100%;
   display: inline-flex;

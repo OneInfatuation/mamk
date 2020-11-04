@@ -179,6 +179,14 @@ const routes = [{
     component: () => import('../views/home/CurriculumDetails.vue'),
   },
   {
+    path: "/confirmOrder", //确认订单
+    name: "ConfirmOrder",
+    component: () => import('../views/home/ConfirmOrder.vue'),
+    meta:{
+      navTitle: "确认订单"
+    }
+  },
+  {
     path: "/studyDetails", //课程详情
     name: "StudyDetails",
     component: () => import('../views/home/StudyDetails.vue'),

@@ -259,7 +259,7 @@ export default {
     },
     // 跳转到详情页面
     hmwJumpXQ(item) {
-      console.log(item);
+      // console.log(item);
       sessionStorage.removeItem("teacherId");
        sessionStorage.setItem("teacherId",item.teachers_list[0].id)
       this.$router.push({
