@@ -7,9 +7,9 @@ const urlType = {
         //    获取首页数据
         AppIndex: "/api/app/recommend/appIndex",
         // 特色课分类
-        //    courseClassify:"/api/app/courseClassify",
+           courseClassify:"/api/app/courseClassify",
         // 特色课数据获取
-        courseBasis: "/api/app/courseBasis?page=1&limit=10&",
+        courseBasis: "/api/app/courseBasis",
         //特色课内容获取
         contentCollect: "/api/app/myStudy/2",
         // 登录接口
@@ -44,6 +44,7 @@ const urlType = {
         TeacherHide:"/api/app/collect/cancel/",
         // 课程搜索
         ClassSearch:"/api/app/courseBasis"
+
     },
     type: {
         GET: "get",

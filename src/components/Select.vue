@@ -13,13 +13,13 @@
                   <div class="classiyTag">
                     <div
                       class="tag"
-                      v-for="(item, index) in taglist1"
-                      :key="index"
-                      :class="hmwActiveNum3 == index ? 'hmwSpanActive' : ''"
+                      v-for="item in taglist1"
+                      :key="item.id"
+                      :class="hmwActiveNum3 == item.id ? 'hmwSpanActive' : ''"
                       span="6"
-                      @click="hmwActiveNum3 = index"
+                      @click="onClickClass(item.id)"
                     >
-                      <span>{{ item }}</span>
+                      <span>{{ item.title }}</span>
                     </div>
                   </div>
                 </div>
@@ -29,13 +29,13 @@
                   <div class="classiyTag">
                     <div
                       class="tag"
-                      v-for="(item, index) in taglist2"
-                      :key="index"
-                      :class="hmwActiveNum4 == index ? 'hmwSpanActive' : ''"
+                      v-for="item in taglist2"
+                      :key="item.id"
+                      :class="hmwActiveNum4 == item.id ? 'hmwSpanActive' : ''"
                       span="6"
-                      @click="hmwActiveNum4 = index"
+                      @click="onClickXk(item.id)"
                     >
-                    <span>{{ item }}</span>
+                      <span>{{ item.title }}</span>
                     </div>
                   </div>
                 </div>
@@ -45,8 +45,9 @@
                   <button
                     class="selectBox_button"
                     style="background: orange; color: white"
+                    @click="onSeacher"
                   >
-                    选择
+                    确认
                   </button>
                 </div>
               </div>
@@ -96,37 +97,6 @@
         </van-dropdown-item>
       </van-dropdown-menu>
     </div>
-
-    <div style="width: 100%; height: 4rem"></div>
-<!-- 数据 -->
-    <div class="curriculum_list">
-      <div
-        v-for="(item, index) in messageList"
-        :key="index"
-        class="curriculum_list_content"
-        @click="gotoDetials(item.id)"
-      >
-        <p>
-          <!-- 标题 -->
-          <b style="color:black">{{ item.title }}</b>
-        </p>
-        <!-- 时间 -->
-        <p><img src="../assets/curriculum/time.png" style="width:0.8rem;height:0.8rem" />
-         {{ item.start_play_date | timefn }} ~ {{item.end_play_date | timefn}}
-         </p>
-        <!-- 老师 -->
-        <div class="curriculum_list_content_name" v-for="(message,index) in item.teachers_list" :key="index">
-          <p style="display: inline-block; width: 2rem;height: 2rem;margin-right:1rem">
-            <img :src="message.teacher_avatar" width="100%" />
-          </p>
-          <p>{{ message.teacher_name }}</p>
-        </div>
-        <!-- 报名 -->
-        <p class="newEnter">{{ item.browse_num }}人已报名 <span class="free">免费</span></p>
-      </div>
-          <div style="width:100%;height:0.5rem;background:rgba(238, 238, 238, 0.835);"></div>
-    </div>
-
   </div>
 </template>
 
@@ -134,7 +104,6 @@
 export default {
   data() {
     return {
-      classList:[],
       value: 0,
       option: [
         { text: "综合排序", value: 0 },
@@ -143,8 +112,18 @@ export default {
         { text: "价格从低到高", value: 3 },
         { text: "价格从高到低", value: 4 },
       ],
-      taglist1: ["初一", "初二", "初三", "高一", "高二"],
-      taglist2: ["语文", "数学", "英语", "物理", "化学"],
+      taglist1: [
+        { title: "初一", id: 1 },
+        { title: "初二", id: 2 },
+        { title: "初三", id: 3 },
+        { title: "高一", id: 4 },
+        { title: "高二", id: 5 },
+      ],
+      taglist2: [{ title: "语文", id: 6 },
+      { title: "数学", id: 7 },
+      { title: "英语", id: 8 },
+      { title: "物理", id: 9 },
+      { title: "化学", id: 10},],
       selectList: [
         "全部",
         "大班课",
@@ -162,38 +141,46 @@ export default {
       hmwActiveNum3: 0,
       hmwActiveNum4: 0,
 
-      messageList:[],
-      list:[]
+      messageList: [],
+      list: [],
     };
   },
-  mounted(){
-    // 特色课数据获取
-    this.$ClientAPI.courseBasis().then((res)=>{
-      this.messageList = res.data.data.list 
-      console.log(this.messageList)
-    })
+  mounted() {
+    this.$ClientAPI
+      .selectKc()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
-  // filters:{
-  //   timeFilters(ms){
-  //     var y = ms.getFullYear();
-  //     var m = ms.getMonth()+1;
-  //     var d = ms.getDate();
-  //     return y+"年"+m+"月"+d+"日"
-  //   }  
-    
-  // },
   methods: {
     onConfirm() {
       this.$refs.item.toggle();
     },
-    gotoDetials(id) {
-      this.$router.push({
-        path: "/course-detail",
-        query: {
-          id:id
-        },
-      });
+    onClickClass(id){//点击年级
+      this.hmwActiveNum3 = id;
     },
+    onClickXk(id){//点击学科
+      this.hmwActiveNum4=id;
+    },
+    onSeacher(){//点击确认搜索数据
+      if(this.hmwActiveNum3==0){
+        this.hmwActiveNum3 = ""
+      }
+      if(this.hmwActiveNum4==0){
+        this.hmwActiveNum4 = ""
+      }
+      var obj = {
+        page: 1,
+        limit: 10,
+        course_type: 0,
+        classify_id:this.hmwActiveNum4,
+        attr_val_id: this.hmwActiveNum3,
+      }
+      
+    }
   },
 };
 </script>
@@ -219,7 +206,7 @@ export default {
 .curriculum_list_content {
   width: 90%;
   height: 9rem;
-  margin:0.2rem auto;
+  margin: 0.2rem auto;
   margin-bottom: 1rem;
   background: white;
   border-radius: 0.5rem;
@@ -292,7 +279,7 @@ hr {
   color: red;
 }
 
-.newEnter{
+.newEnter {
   border-top: 1px solid lightgrey;
 }
 </style>
