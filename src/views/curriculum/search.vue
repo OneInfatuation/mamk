@@ -14,6 +14,8 @@
             v-model="value"
             shape="round"
             placeholder="请输入搜索关键词"
+            @input="onSeacher"
+            @search="onSearch"
           />
         </div>
       </template>
@@ -28,14 +30,16 @@
       </template>
     </van-nav-bar>
 
-    <h4 class="history_search">
-      历史搜索
-      <span class="history_search_delete"
-        ><img src="../../assets/curriculum/shanchu.png"
-      /></span>
-    </h4>
-    <!-- 搜索历史 -->
-    <div></div>
+    <div>
+      <h4 class="history_search" v-show="value.length == 0">
+        历史搜索
+        <span class="history_search_delete"
+          ><img src="../../assets/curriculum/shanchu.png"
+        /></span>
+      </h4>
+      <!-- 搜索历史 -->
+      <div></div>
+    </div>
   </div>
 </template>
 
@@ -48,12 +52,12 @@ export default {
   },
   methods: {
     onSearch() {
-        if(this.value.length>0){
-            console.log(111);
-            this.value ="";
-        }else{
-            this.onClickBack();
-        }
+      if (this.value.length > 0) {
+        console.log(111);
+        this.value = "";
+      } else {
+        this.onClickBack();
+      }
     },
     onClickBack() {
       this.$router.go(-1);

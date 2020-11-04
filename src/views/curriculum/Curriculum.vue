@@ -10,7 +10,12 @@
     </div>
 
     <!-- 筛选处理 -->
-    <Select></Select>
+    <Select
+      @onSeacher="onSeacher"
+      @OnChangeSort="OnChangeSort"
+      @OnClickClass="OnClickClass"
+    >
+    </Select>
     <div style="width: 100%; height: 6rem; background: whitesmoke"></div>
     <!-- 展示数据 -->
     <div class="waw_vant_list">
@@ -19,7 +24,9 @@
         v-model="loading"
         :finished="finished"
         finished-text="没有更多了"
+        offset='0'
         @load="onLoad"
+        ref="vant_list"
       >
         <div class="waw_pop_item">
           <KeCItem
@@ -30,6 +37,7 @@
           ></KeCItem>
         </div>
       </van-list>
+      <div class="waw_hidden"></div>
     </div>
   </div>
 </template>
@@ -74,16 +82,40 @@ export default {
       // 特色课数据获取
       var obj = {
         page: this.page,
-        limit: 10,
+        limit: 3,
       };
       this.$ClientAPI.courseBasis(obj).then((res) => {
         this.list = res.data.data.list;
         this.num = this.list.length;
-        console.log(this.list);
+        // console.log(this.list);
       });
     },
     onLoad() {
-      // 异步更新数据
+      // // 异步更新数据
+      this.page++;
+      var obj = {
+        page: this.page,
+        limit: 3,
+      };
+      this.$ClientAPI.courseBasis(obj).then((res) => {
+        console.log(res);
+        var temp = res.data.data.list;
+        temp.forEach(ele=>{
+          this.list.push(ele);
+        })
+        this.num = this.list.length;
+        if (res.data.code == 200) {
+          // 加载状态结束
+          this.loading = false;
+        }
+        if(this.num>=8){
+          this.finished = true;
+        }
+
+      });
+
+
+
       // setTimeout 仅做示例，真实场景中一般为 ajax 请求
       // setTimeout(() => {
       //   for (let i = 0; i < 10; i++) {
@@ -96,12 +128,45 @@ export default {
       //     this.finished = true;
       //   }
       // }, 1000);
-      
+    },
+    onSeacher(obj) {
+      //点击搜索成功
+      this.list = [];
+      // console.log(obj);
+      this.$ClientAPI.courseBasis(obj).then((res) => {
+        console.log(res);
+        this.list = res.data.data.list;
+        this.num = this.list.length;
+      });
+    },
+    OnChangeSort(obj) {
+      //点击排序
+      this.list = [];
+      console.log(obj);
+      this.$ClientAPI.courseBasis(obj).then((res) => {
+        console.log(res);
+        this.list = res.data.data.list;
+        this.num = this.list.length;
+      });
+    },
+    OnClickClass(obj) {
+      //点击学科
+      this.list = [];
+      console.log(obj);
+      this.$ClientAPI.courseBasis(obj).then((res) => {
+        console.log(res);
+        this.list = res.data.data.list;
+        this.num = this.list.length;
+      });
     },
   },
 };
 </script>
 <style lang='scss' scoped>
+.waw_hidden{
+  width: 100%;
+  height: 4rem;
+}
 .curriculum_header {
   width: 100%;
   border-bottom: 1px solid lightgrey;
