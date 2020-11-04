@@ -29,7 +29,7 @@
         </div>
         <!-- 列表部分 -->
         <ul>
-          <div :key="index" v-for="(item, index) in list">
+          <div :key="index" v-for="(item, index) in list" @click="gotoVideo(item.video_id)">
             <li>
               <p>
                 <span class="hmwS2">{{ item.periods_title }}</span>
@@ -175,6 +175,15 @@ export default {
           console.log(err);
         });
     },
+    // 跳转视频页
+    gotoVideo(id){
+        this.$router.push({
+          path:"/studyvideo",
+          query:{
+            id:id
+          }
+        })
+    }
   },
 };
 </script>

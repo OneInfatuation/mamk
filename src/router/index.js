@@ -343,6 +343,11 @@ const routes = [{
       navTitle: "仿真模考"
     }
   },
+  {
+    path: "/studyvideo", //仿真模考页面
+    name: "StudyVideo",
+    component: () => import('../views/home/StudyVideo.vue'),
+  },
 
 ]
 const router = new VueRouter({
