@@ -85,8 +85,11 @@ const ClientAPI = {
     // 我的页面里面的取消关注
     TeacherGZHide(params){
         return requset(urlType.type.PUT,urlType.url.TeacherHide+params+"/2")
+    },
+    // 课程搜索
+    ClassSearch(params){
+        return requset(urlType.type.GET,urlType.url.ClassSearch,{params})
     }
-
 
 }
 export default ClientAPI;

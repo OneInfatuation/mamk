@@ -42,6 +42,8 @@ const urlType = {
 
         // 我的页面里面的取消关注
         TeacherHide:"/api/app/collect/cancel/",
+        // 课程搜索
+        ClassSearch:"/api/app/courseBasis"
 
     },
     type: {
