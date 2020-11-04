@@ -4,6 +4,7 @@
         v-for="(item, index) in selectList"
         :key="index"
         class="searchMessage"
+         @click="gotoDetails(item.id)"
       >
         <div class="searchMessage_main">
           <p>
@@ -57,6 +58,16 @@
 export default {
     props:{
         selectList:Array
+    },
+    methods:{
+        gotoDetails(id){
+            this.$router.push({
+                path:"/curriculumDetails",
+                query:{
+                    id:id
+                }
+            })
+        }
     }
 }
 </script>
