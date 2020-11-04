@@ -14,14 +14,20 @@ export default {
   components: {
     NavTitle,
   },
+  mounted() {
+    // 获取个人修改
+  },
   data() {
     return {
-      value: localStorage.getItem("value") || "admin", //昵称，默认为admin
+      value: this.$route.query.name, //昵称，默认为admin
     };
   },
   methods: {
-    onClickRight() { //点击保存更改昵称
-      localStorage.setItem("value", this.value);
+    onClickRight() {
+      //点击保存更改昵称
+      // this.$ClientAPI.UserChange().then((res) => {
+      //  });    
+       localStorage.setItem("value", this.value);
       this.$router.go(-1);
     },
   },

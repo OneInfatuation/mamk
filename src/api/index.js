@@ -69,9 +69,24 @@ const ClientAPI = {
     TeacherShowHiden(params){
         return requset(urlType.type.GET,urlType.url.TeacherShowOrHiden+params)
     },
+
+    // 个人信息获取
+    PersonMessage(){
+        return requset(urlType.type.GET,urlType.url.PersonMessage)
+    },
+    // 个人信息修改
+    UserChange(){
+        return requset(urlType.type.PUT,urlType.url.UserChange)
+    },
+    // 学科与年级数据获取
+    Attribute(){
+        return requset(urlType.type.GET,urlType.url.Attribute+"/1")
+    },   
     // 我的页面里面的取消关注
     TeacherGZHide(params){
         return requset(urlType.type.PUT,urlType.url.TeacherHide+params+"/2")
     }
+
+
 }
 export default ClientAPI;

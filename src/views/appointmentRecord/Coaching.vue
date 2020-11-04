@@ -37,7 +37,7 @@
           {{ item.constructor }}
         </p>
       </div>
-      <div><button class="btn" @click="OnAbout(index)">关注</button></div>
+      <div><button class="btn" @click="OnAbout(index)">预约</button></div>
     </div>
   </div>
 </template>

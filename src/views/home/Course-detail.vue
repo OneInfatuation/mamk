@@ -111,7 +111,7 @@ export default {
   created() {},
   mounted() {
     this.coursedetail();
-  },
+  },  
   methods: {
     // 获取课程详情信息
     async coursedetail() {
