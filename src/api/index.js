@@ -24,11 +24,13 @@ const ClientAPI = {
         return requset(urlType.type.POST, urlType.url.LOGIN, params);
     },
     // 特色课数据获取
-    courseBasis() {
-        return requset(urlType.type.GET, urlType.url.courseBasis);
+    courseBasis(params) {
+        return requset(urlType.type.GET, urlType.url.courseBasis,{params});
     },
-    // 课程详情数据获取
-
+    // 课程下拉数据
+    selectKc(){
+        return requset(urlType.type.GET, urlType.url.courseClassify);
+    },
     // 我的页面的已关注数据
     guanzhus(params) {
         return requset(urlType.type.GET, urlType.url.Guanzhu, { params })
@@ -67,9 +69,24 @@ const ClientAPI = {
     TeacherShowHiden(params){
         return requset(urlType.type.GET,urlType.url.TeacherShowOrHiden+params)
     },
+
+    // 个人信息获取
+    PersonMessage(){
+        return requset(urlType.type.GET,urlType.url.PersonMessage)
+    },
+    // 个人信息修改
+    UserChange(){
+        return requset(urlType.type.PUT,urlType.url.UserChange)
+    },
+    // 学科与年级数据获取
+    Attribute(){
+        return requset(urlType.type.GET,urlType.url.Attribute+"/1")
+    },   
     // 我的页面里面的取消关注
     TeacherGZHide(params){
         return requset(urlType.type.PUT,urlType.url.TeacherHide+params+"/2")
     }
+
+
 }
 export default ClientAPI;
