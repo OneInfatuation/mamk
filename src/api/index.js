@@ -24,11 +24,13 @@ const ClientAPI = {
         return requset(urlType.type.POST, urlType.url.LOGIN, params);
     },
     // 特色课数据获取
-    courseBasis() {
-        return requset(urlType.type.GET, urlType.url.courseBasis);
+    courseBasis(params) {
+        return requset(urlType.type.GET, urlType.url.courseBasis,{params});
     },
-    // 课程详情数据获取
-
+    // 课程下拉数据
+    selectKc(){
+        return requset(urlType.type.GET, urlType.url.courseClassify);
+    },
     // 我的页面的已关注数据
     guanzhus(params) {
         return requset(urlType.type.GET, urlType.url.Guanzhu, { params })

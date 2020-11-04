@@ -1,20 +1,14 @@
 <template>
   <div class="box_container">
-    <div class="box_wrapper" @click="onClick(item.course_id)">
+    <div class="box_wrapper" @click="onClick(item.teachers_list[0].course_basis_id)">
       <div class="box_title">
         {{ item.title }}
-        <van-icon
-          class="top_right"
-          name="star"
-          color="orange"
-          @click.stop="CancelCollection(item.collect_id)"
-        />
       </div>
       <p class="waw_op">共1节课时</p>
        <div class="user">
-        <img :src="item.teachersAvatar" />
+        <img :src="item.teachers_list[0].teacher_avatar" />
         <span>
-          {{ item.teachers }}
+          {{ item.teachers_list[0].teacher_name }}
         </span>
       </div>
       <div class="sy-pp">
@@ -35,11 +29,8 @@ export default {
         }
     },
     methods: {
-        CancelCollection(id){//点击取消收藏
-            this.$emit("onClickStart",id);
-        },
         onClick(id){//点击进入课程详情
-            this.$emit("onclick",id)
+            this.$emit("onclickItem",id)
         }
     },
 
