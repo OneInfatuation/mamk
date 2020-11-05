@@ -348,6 +348,11 @@ const routes = [{
     name: "StudyVideo",
     component: () => import('../views/home/StudyVideo.vue'),
   },
+  {
+    path: "/mystudylist", //仿真模考页面
+    name: "MystudyList",
+    component: () => import('../views/mine/mystudy/mystudyList.vue'),
+  },
 
 ]
 const router = new VueRouter({
