@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="curriculum_nav">
-      <van-dropdown-menu>
+      <van-dropdown-menu close-on-click-overlay close-on-click-outside>
         <!-- 分类 -->
-        <van-dropdown-item title="分类">
+        <van-dropdown-item title="分类" ref="fenlei">
           <van-cell>
             <template>
               <div>
@@ -41,7 +41,7 @@
                 </div>
                 <!-- 按钮 -->
                 <div>
-                  <button class="selectBox_button">重置</button>
+                  <button class="selectBox_button" @click="onClickRest">重置</button>
                   <button
                     class="selectBox_button"
                     style="background: orange; color: white"
@@ -55,15 +55,15 @@
           </van-cell>
         </van-dropdown-item>
         <!-- 排序 -->
-        <van-dropdown-item title="综合排序">
+        <van-dropdown-item title="排序" ref="sort">
           <van-cell center>
             <template>
               <div
-                v-for="(item, index) in option"
-                :key="index"
-                :class="hmwActiveNum2 == index ? 'hmwSpanActive' : ''"
+                v-for="item in option"
+                :key="item.value"
+                :class="hmwActiveNum2 == item.value ? 'hmwSpanActive' : ''"
                 span="6"
-                @click="hmwActiveNum2 = index"
+                @click="OnChangeSort(item.value)"
                 style="
                   width: 100%;
                   height: 2rem;
@@ -83,13 +83,13 @@
               <div class="selectTag">
                 <div
                   class="tag"
-                  v-for="(item, index) in selectList"
-                  :key="index"
-                  :class="hmwActiveNum1 == index ? 'hmwSpanActive' : ''"
+                  v-for="item in selectList"
+                  :key="item.id"
+                  :class="hmwActiveNum1 == item.id ? 'hmwSpanActive' : ''"
                   span="6"
-                  @click="hmwActiveNum1 = index"
+                  @click="OnClickClass(item.id)"
                 >
-                  <span>{{ item }}</span>
+                  <span>{{ item.title }}</span>
                 </div>
               </div>
             </template>
@@ -119,22 +119,22 @@ export default {
         { title: "高一", id: 4 },
         { title: "高二", id: 5 },
       ],
-      taglist2: [{ title: "语文", id: 6 },
-      { title: "数学", id: 7 },
-      { title: "英语", id: 8 },
-      { title: "物理", id: 9 },
-      { title: "化学", id: 10},],
+      taglist2: [{ title: "语文", id: 7 },
+      { title: "数学", id: 8 },
+      { title: "英语", id: 9 },
+      { title: "物理", id: 12 },
+      { title: "化学", id: 13},],
       selectList: [
-        "全部",
-        "大班课",
-        "小班课",
-        "公开课",
-        "点播课",
-        "面授课",
-        "音频课",
-        "系统课",
-        "图文课",
-        "会员课",
+        { title: "全部", id: 0},
+        { title: "大班课", id: 2},
+        { title: "小班课", id: 3},
+        { title: "公开课", id: 4},
+        { title: "点播课", id: 5},
+        { title: "面授课", id: 7},
+        { title: "音频课", id: 8},
+        { title: "系统课", id: 9},
+        { title: "图文课", id: 10},
+        { title: "会员课", id: 1},
       ],
       hmwActiveNum1: 0,
       hmwActiveNum2: 0,
@@ -156,9 +156,6 @@ export default {
       });
   },
   methods: {
-    onConfirm() {
-      this.$refs.item.toggle();
-    },
     onClickClass(id){//点击年级
       this.hmwActiveNum3 = id;
     },
@@ -172,14 +169,57 @@ export default {
       if(this.hmwActiveNum4==0){
         this.hmwActiveNum4 = ""
       }
+      var temp = "";
+      if(this.hmwActiveNum3>0 && this.hmwActiveNum3!=0 && this.hmwActiveNum4==0){
+        temp = this.hmwActiveNum3
+      }else if(this.hmwActiveNum3>0 && this.hmwActiveNum3!=0 && this.hmwActiveNum4>0){
+        temp = this.hmwActiveNum3+","+this.hmwActiveNum4
+      }
       var obj = {
         page: 1,
         limit: 10,
         course_type: 0,
-        classify_id:this.hmwActiveNum4,
-        attr_val_id: this.hmwActiveNum3,
+        classify_id:"",
+        order_by: "",
+        attr_val_id: temp,
+        is_vip: 0
       }
-      
+      this.$emit("onSeacher",obj);
+      this.$refs.fenlei.toggle()
+    },
+    onClickRest(){//点击重置
+      this.hmwActiveNum3 = 0;
+      this.hmwActiveNum4 = 0;
+      this.$refs.fenlei.toggle()
+    },
+    OnChangeSort(index){//排序
+      console.log(index);
+      this.hmwActiveNum2=index;
+      var obj = {
+        page: 1,
+        limit: 10,
+        course_type: 0,
+        classify_id:"",
+        order_by: this.hmwActiveNum2,
+        attr_val_id: "",
+        is_vip: 0
+      }
+      this.$emit("OnChangeSort",obj);
+      this.$refs.sort.toggle()
+    },
+    OnClickClass(id){//点击学科
+      this.hmwActiveNum1 = id;
+      var obj = {
+        page: 1,
+        limit: 10,
+        course_type: this.hmwActiveNum1==1?"":this.hmwActiveNum1,
+        classify_id:"",
+        order_by:"",
+        attr_val_id: "",
+        is_vip: this.hmwActiveNum1==1?this.hmwActiveNum1:0
+      }
+      this.$emit("OnClickClass",obj)
+      this.$refs.item.toggle();
     }
   },
 };

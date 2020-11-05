@@ -21,7 +21,7 @@
           <div>昵称</div>
           <div class="waw_user_box">
             <div>
-              <span>{{ PersonMessage.nickname }}</span>
+              <span>{{ nickName }}</span>
             </div>
             <van-icon
               name="arrow"
@@ -51,7 +51,7 @@
         <div class="waw_person">
           <div>出生日期</div>
           <div class="waw_time_box">
-            <span>{{ time }}</span>
+            <span>{{ time | timeYears }}</span>
             <van-icon name="arrow" color="lightgray" @click="onClickTime" />
           </div>
         </div>
@@ -98,8 +98,13 @@
     <van-popup v-model="showImg" position="bottom" :style="{ height: '30%' }">
       <div class="waw_popup_box">
         <div class="waw_popup_wrapper">
+<<<<<<< HEAD
           <p @click.stop="uploadHeadImg">拍照</p>
           <p @click.stop="uploadHeadImg">从手机相册选择</p>
+=======
+          <p>拍照</p>
+          <p @click="iphonePhoto">从手机相册选择</p>
+>>>>>>> 73834af059337585d28c218db7bc83f682236ed6
           <p @click="onClickHide">取消</p>
             <input type="file" accept="image/*" @change="handleFile" class="hiddenInput"/>
         </div>
@@ -126,7 +131,8 @@
       :style="{ height: '45%' }"
     >
       <van-area
-        :area-list="areaList"
+        :columns-placeholder="['请选择', '请选择', '请选择']"
+        :area-list="arealist"
         @cancel="onClickCancel"
         @confirm="onClickConfirm"
       />
@@ -134,7 +140,15 @@
 
     <!-- 学校弹出层 -->
     <van-popup v-model="showClass" position="bottom" :style="{ height: '45%' }">
+<<<<<<< HEAD
       <van-area title="标题" :area-list="areaList" />
+=======
+      <div class="Class_select_list">
+        <div>取消</div>
+        <div>确认</div>
+      </div>
+      <div class="Class_select_list_message"></div>
+>>>>>>> 73834af059337585d28c218db7bc83f682236ed6
     </van-popup>
   </div>
 </template>
@@ -147,10 +161,10 @@ export default {
   data() {
     return {
       PersonMessage: {}, //获取个人信息
+      nickName: "", //姓名
       sex: localStorage.getItem("sex") || "男", //性别
       time: localStorage.getItem("time") || "2000-10-10", //日期
-      Address:
-        localStorage.getItem("Address") || "内蒙古自治区 呼和浩特市 武川县", //地址
+      Address: localStorage.getItem("Address") || "黑龙江省 哈尔滨市 阿城区", //地址
       subject: JSON.parse(localStorage.getItem("result")) || ["语文"],
       showImg: false, //图片修改（默认隐藏）
       showTime: false, //日期修改（默认隐藏）
@@ -159,16 +173,21 @@ export default {
       minDate: new Date(1980, 0, 1),
       maxDate: new Date(2025, 10, 1),
       currentDate: new Date(1980, 0, 1),
-      areaList: {
+      area: [],
+      areaObj: {},
+      areaObj2: {},
+      arealist: {
         province_list: {
           110000: "北京市",
           120000: "天津市",
+          130000: "黑龙江省",
         },
         city_list: {
           110100: "北京市",
           110200: "县",
           120100: "天津市",
           120200: "县",
+          130100: "哈尔滨市",
         },
         county_list: {
           110101: "东城区",
@@ -180,6 +199,7 @@ export default {
           120103: "河西区",
           120104: "南开区",
           120105: "河北区",
+          130101: "阿城区",
           // ....
         },
       },
@@ -188,20 +208,43 @@ export default {
   mounted() {
     // 获取个人信息
     this.$ClientAPI.PersonMessage().then((res) => {
-      // console.log(res.data.data)
+      console.log(res.data.data);
       this.PersonMessage = res.data.data;
 
     });
 
-    // 获取年级与学科 
-    // this.$ClientAPI.Attribute().then((res)=>{
-    //   console.log(res)
-    // })
+    // 获取所在城市
+    let person = this.PersonMessage;
+    console.log(person);
+    // this.Address = `${person.province_name}
+    //                  ${person.city_name}
+    //                  ${person.district_name}`;
+    // localStorage.setItem("Address", this.Address);
+
+    this.$ClientAPI.sonArea().then((res) => {
+      this.area = res.data.data;
+      // console.log(res.data.data);
+      this.areaObj = { ...this.area };
+      console.log(this.areaObj);
+
+      for (var i = 0; i < this.areaObj.length; i++) {
+        let obj = {
+          index: i,
+          id: id,
+          province_list: {
+            id: area_name,
+          },
+        };
+        this.areaObj2.push(obj);
+      }
+      // console.log(this.areaObj2);
+    });
 
     var Nick = localStorage.getItem("value"); //读取昵称
     if (Nick) {
       this.nickName = Nick;
     }
+
     var mobile = localStorage.getItem("mobile"); //读取手机号
     if (mobile) {
       this.user = mobile;
@@ -209,6 +252,11 @@ export default {
     var sex = localStorage.getItem("sex"); //读取性别
     if (sex) {
       this.sex = sex;
+    }
+
+    var Time = localStorage.getItem("time"); //读取昵称
+    if (Time) {
+      this.time = Time;
     }
   },
   methods: {
@@ -244,9 +292,12 @@ console.log(res);
     },
     onClickChangeNickname() {
       //点击跳转修改昵称页面
-      this.$router.push({ path: "/nickname", query:{
-        name:this.PersonMessage.nickname
-      }});
+      this.$router.push({
+        path: "/nickname",
+        query: {
+          name: this.PersonMessage.nickname,
+        },
+      });
     },
     onClickChangeSex() {
       //点击跳转页面改变性别
@@ -294,6 +345,10 @@ console.log(res);
       //点击从选年级
       this.showClass = true;
     },
+    // 从手机相册选取
+    iphonePhoto(){
+
+    }
   },
 };
 </script>
@@ -435,5 +490,19 @@ console.log(res);
 }
 .van-picker__toolbar {
   width: 100%;
+}
+
+// 学校弹出层样式
+.Class_select_list {
+  width: 100vw;
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #eb6100;
+  border-bottom: 1px solid rgba(238, 238, 238, 0.5);
+}
+.Class_select_list div {
+  margin: 0.5rem 0.4rem;
 }
 </style>

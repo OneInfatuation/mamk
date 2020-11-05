@@ -69,10 +69,18 @@ const ClientAPI = {
     TeacherShowHiden(params){
         return requset(urlType.type.GET,urlType.url.TeacherShowOrHiden+params)
     },
-
+    // 立即报名
+    LIJIBAOMING(params){
+        console.log(urlType.type.POST,urlType.url.baoming,params);
+        return requset(urlType.type.POST,urlType.url.baoming,params)
+    },
+    // 我的学习记录
+    myStudentComment(params){
+        return requset(urlType.type.POST,urlType.url.mycomment,params);
+    },
     // 个人信息获取
-    PersonMessage(){
-        return requset(urlType.type.GET,urlType.url.PersonMessage)
+    PersonMessage(params){
+        return requset(urlType.type.GET,urlType.url.PersonMessage,params)
     },
     // 个人信息修改
     UserChange(){
@@ -80,12 +88,16 @@ const ClientAPI = {
     },
     // 学科与年级数据获取
     Attribute(){
-        return requset(urlType.type.GET,urlType.url.Attribute+"/1")
+        return requset(urlType.type.GET,urlType.url.Attribute)
     },   
+    sonArea(){
+        return requset(urlType.type.GET,urlType.url.sonArea)
+    },
     // 我的页面里面的取消关注
     TeacherGZHide(params){
         return requset(urlType.type.PUT,urlType.url.TeacherHide+params+"/2")
     },
+<<<<<<< HEAD
     // 立即报名
     baoming(params){
         return requset(urlType.type.POST,urlType.url.BAOMING,params)
@@ -104,5 +116,35 @@ const ClientAPI = {
     //     return requset(urlType.type.PUT,urlType.url.GRXX,params)
     // }
 
+=======
+    // 课程搜索
+    ClassSearch(params){
+        return requset(urlType.type.GET,urlType.url.ClassSearch,{params})
+    },
+    // 学习记录
+    myStudy(params){
+        return requset(urlType.type.GET,urlType.url.xuexijilu+params);
+    },
+    QueRenDdan(params){//确认订单
+        return requset(urlType.type.POST,urlType.url.querenorder,params);
+    },
+    // 学习视频
+    myStydyVideo(params,id){//
+        // console.log(urlType.url.studyVideo+params+"/course_id="+id);
+        return requset(urlType.type.POST,urlType.url.studyVideo+params+"course_id="+id);
+    },
+    myStyduQk(params){//我的学习
+        return requset(urlType.type.GET,urlType.url.contentCollect+params);
+    },
+    KCpingLun(params){//课程评论
+        return requset(urlType.type.POST,urlType.url.kechengPinLun,params);
+    },
+    GetMessage(){//消息通知
+        return requset(urlType.type.POST,urlType.url.msg);
+    },
+    getMessageSend(params){
+        return requset(urlType.type.POST,urlType.url.getMsg,params);
+    }
+>>>>>>> 73834af059337585d28c218db7bc83f682236ed6
 }
 export default ClientAPI;

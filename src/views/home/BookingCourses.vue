@@ -103,7 +103,7 @@ export default {
   },
   created() {
     this.$ClientAPI.appindex().then((res) => {
-      consoel.log(res)
+      console.log(res)
       this.HomedataImg =
         res.data.data[1].list[0].teachers_list[0].teacher_avatar;
       this.HomeTitle = res.data.data[1].list[0].teachers_list[0].teacher_name;

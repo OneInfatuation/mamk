@@ -105,26 +105,29 @@
           <!-- 课程评论 -->
           <li class="hmwPL hmwSroll">
             <p class="hmwP1">课程评论</p>
-            <ul>
-              <li :key="index" v-for="(item, index) in 5">
+            <div v-show="listPJData.length==0" class="waw_empty_img_box">
+              <img src="https://img.yzcdn.cn/vant/empty-image-default.png">
+              <p>暂没评论</p>
+            </div>
+            <ul v-show="listPJData.length>0">
+              <li :key="index" v-for="(item, index) in listPJData">
                 <img
-                  src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png"
-                  alt=""
+                  :src="item.avatar"
                 />
                 <div class="hmwPL-center">
                   <p class="hmwCP1">
-                    <span>admin{{ index + 1 }}</span
+                    <span>{{ item.nickname }}</span
                     ><van-rate
                       :size="14"
-                      v-model="startActive"
+                      v-model="item.grade"
                       void-color="#eee"
                       color="rgb(234, 122, 47)"
                       readonly
                     />
                   </p>
-                  <p class="hmwCP2">好</p>
+                  <p class="hmwCP2">{{item.content}}</p>
                 </div>
-                <div class="hmwPL-right">2020-07-15 21:32</div>
+                <div class="hmwPL-right">{{item.created_at | filterTime}}</div>
               </li>
             </ul>
           </li>
@@ -185,12 +188,27 @@ export default {
       listDate: [], //详情数据
       listInfo: [], //详情标题
       listTeacher: [], //老师数据
+      listPJData:[],//评价数据
     };
   },
   // 计算属性
   computed: {},
   // 侦听器
   watch: {},
+  filters:{
+    filterTime(val){
+       let date = new Date(val*1000);
+      let y = date.getFullYear();
+      let m = (date.getMonth() + 1)>9?(date.getMonth() + 1):'0'+(date.getMonth() + 1);
+      let d = date.getDate()>9?date.getDate():'0'+date.getDate();
+      let h = date.getHours()>9?date.getHours():'0'+date.getHours();
+      let mm = date.getMinutes()>9?date.getMinutes():'0'+date.getMinutes();
+      let s = date.getSeconds()>9?date.getSeconds():'0'+date.getSeconds();
+
+      let time = `${y}-${m}-${d} ${h}:${mm}:${s}`;
+      return time;
+    }
+  },
   // 组件方法
   methods: {
     //   nav是否显示判断事件
@@ -262,10 +280,14 @@ export default {
     hmwStudyJump() {
       if (this.listInfo.is_buy == 0 && this.listInfo.price == 0) {
         this.$ClientAPI
+<<<<<<< HEAD
           .baoming({
             shop_id: this.listInfo.id,
             type: 5,
           })
+=======
+          .LIJIBAOMING({ shop_id: this.listInfo.id, type: 5 })
+>>>>>>> 73834af059337585d28c218db7bc83f682236ed6
           .then((res) => {
             console.log(res);
             if (res.data.code == 200) {
@@ -276,6 +298,12 @@ export default {
               Toast.success(res.data.msg);
               clearTimeout(time);
             }, 1000);
+<<<<<<< HEAD
+=======
+          })
+          .catch((err) => {
+            console.log(err);
+>>>>>>> 73834af059337585d28c218db7bc83f682236ed6
           });
       } else if (this.listInfo.is_buy == 1) {
         this.$router.push({
@@ -283,6 +311,16 @@ export default {
           query: { id: this.listInfo.id },
         });
       } else if (this.listInfo.is_buy == 0 && this.listInfo.price != 0) {
+<<<<<<< HEAD
+=======
+        this.$router.push({
+          path: "/confirmOrder",
+          query: {
+            id: this.listInfo.id,
+          },
+        });
+
+>>>>>>> 73834af059337585d28c218db7bc83f682236ed6
         Toast.success("请先购买课程");
       }
 
@@ -384,7 +422,7 @@ export default {
       this.$ClientAPI
         .courseInfo(this.$route.query.id)
         .then((res) => {
-          // console.log(res.data.data);
+          console.log(res.data.data);
           this.listDate = res.data.data;
           this.listInfo = res.data.data.info;
           this.listTeacher = res.data.data.teachers;
@@ -403,16 +441,33 @@ export default {
     // 获取一下数据
     this.getDetails();
 
-    //   评价接口
-    var obj = {
-      teacher_id: sessionStorage.getItem("teacherId"),
+    // //   老师评价接口
+    // var obj = {
+    //   teacher_id: sessionStorage.getItem("teacherId"),
+    //   limit: 10,
+    //   page: 1,
+    // };
+    // this.$ClientAPI
+    //   .PINGJIA(obj)
+    //   .then((res) => {
+    //     // console.log(res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+      // console.log(this.$route.query.id);
+    // 课程评价
+    var strObj = {
+      id: this.$route.query.id,
       limit: 10,
       page: 1,
     };
     this.$ClientAPI
-      .PINGJIA(obj)
+      .KCpingLun(strObj)
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data.data.list);
+        this.listPJData = res.data.data.list
       })
       .catch((err) => {
         console.log(err);
@@ -483,6 +538,27 @@ body > div,
   border-bottom: 0.01rem solid #eee;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+.waw_empty_img_box{
+  width: 100%;
+  height: 12rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.waw_empty_img_box img{
+  width: 60% !important;
+  height: 8rem!important;
+}
+.waw_empty_img_box p{
+  width: 100%;
+  height: 2rem;
+  font-size: 0.7rem;
+  color: gray;
+  display: inline-flex;
+  justify-content: center;
   align-items: center;
 }
 .hmw-center {

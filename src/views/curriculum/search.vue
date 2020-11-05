@@ -1,12 +1,5 @@
 <template>
   <div>
-    <!-- <div class="search_header">
-          <p @click="goto"><img src="../../assets/curriculum/fanhui.png"></p>
-          <p class="search_header_input"><input placeholder="请输入内容" v-model="kw" @input="change"></p>
-          <p @click="goto" v-if="isShow">取消</p>
-          <p @click="search" v-if="!isShow">搜索</p>
-      </div> -->
-
     <van-nav-bar :placeholder="true">
       <template #title>
         <div>
@@ -14,6 +7,8 @@
             v-model="value"
             shape="round"
             placeholder="请输入搜索关键词"
+            @keydown.enter="search"
+            @input="change"
           />
         </div>
       </template>
@@ -23,37 +18,139 @@
       <template #right>
         <div @click="onSearch">
           <small v-show="value.length == 0">取消</small>
-          <small v-show="value.length > 0">搜索</small>
+          <small v-show="value.length > 0" @click="search">搜索</small>
         </div>
       </template>
     </van-nav-bar>
+    <!-- 搜索数据渲染 -->
+    <KCsearch v-show="!isShow" :selectList = "selectList"></KCsearch>
 
-    <h4 class="history_search">
-      历史搜索
-      <span class="history_search_delete"
-        ><img src="../../assets/curriculum/shanchu.png"
-      /></span>
-    </h4>
-    <!-- 搜索历史 -->
-    <div></div>
+
+    <!-- 历史搜索模块 -->
+    <div v-show="isShow">
+      <h4 class="history_search">
+        历史搜索
+        <span class="history_search_delete" @click="del"
+          ><img src="../../assets/curriculum/shanchu.png"
+        /></span>
+      </h4>
+      <!-- 搜索历史 -->
+      <div class="searchList">
+        <p
+          v-for="(item, index) in searchList"
+          :key="index"
+          @click="addValue(item)"
+        >
+          {{ item }}
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import KCsearch from "../../components/kecheng/KCsearch"
 export default {
+  components:{
+    KCsearch
+  },
   data() {
     return {
       value: "",
+      searchList: [],
+      selectList: [],
+      isShow: true,
     };
   },
+  mounted() {
+    // 获取搜索历史
+    let searchList = localStorage.searchList;
+    if (searchList) {
+      this.searchList = JSON.parse(searchList);
+    }
+  },
   methods: {
-    onSearch() {
-        if(this.value.length>0){
-            console.log(111);
-            this.value ="";
-        }else{
-            this.onClickBack();
+    // 搜索
+    search() {
+      var obj = {
+        limit: 10,
+        page: 1,
+        course_type: 0,
+        keywords: this.value,
+      };
+      // 拿端口数据
+      this.$ClientAPI.ClassSearch({ obj }).then((res) => {
+        console.log(res.data.data.list);
+        this.list = res.data.data.list;
+
+        this.selectList = [];
+        this.list.map((item) => {
+          if (item.title.trim().includes(this.value.trim())) {
+            this.selectList.push(item);
+          }
+        });
+        console.log(this.selectList);
+      });
+      //判断数据是否相同
+      var flag = false;
+      this.searchList.map((item) => {
+        if (item == this.value) {
+          flag = true;
         }
+      });
+      if (!flag) {
+        this.searchList.push(this.value);
+        localStorage.searchList = JSON.stringify(this.searchList);
+      }
+      // this.searchList.push(this.value.trim());
+      // localStorage.searchList = JSON.stringify(this.searchList);
+    },
+    //input框数据更改
+    change() {
+      var obj = {
+        limit: 10,
+        page: 1,
+        course_type: 0,
+        keywords: this.value,
+      };
+
+      // 拿端口数据
+      this.$ClientAPI.ClassSearch({ obj }).then((res) => {
+        console.log(res.data.data.list);
+        this.list = res.data.data.list;
+
+        this.selectList = [];
+        this.list.map((item) => {
+          if (item.title.trim().includes(this.value.trim())) {
+            this.selectList.push(item);
+          }
+        });
+        // console.log(this.selectList);
+      });
+
+      if (this.value.length == 0) {
+        this.isShow = true;
+      } else {
+        this.isShow = false;
+      }
+    },
+    // 删除搜索记录
+    del() {
+      this.searchList = [];
+      localStorage.searchList = JSON.stringify(this.searchList);
+    },
+    //点击搜索历史
+    addValue(item) {
+      this.value = item;
+      this.change()
+    },
+    onSearch() {
+      if (this.value.length > 0) {
+        // console.log(111);
+        this.value = "";
+      } else {
+        this.onClickBack();
+      }
     },
     onClickBack() {
       this.$router.go(-1);
@@ -100,4 +197,22 @@ export default {
 .history_search_delete {
   float: right;
 }
+/* 搜索历史页面 */
+.searchList {
+  width: 96%;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.searchList p {
+  background: #eee;
+  border-radius: 0.2rem;
+  margin: 0.25rem 0.3rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+
 </style>

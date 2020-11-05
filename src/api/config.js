@@ -11,7 +11,7 @@ const urlType = {
         // 特色课数据获取
         courseBasis: "/api/app/courseBasis",
         //特色课内容获取
-        contentCollect: "/api/app/myStudy/2",
+        contentCollect: "/api/app/myStudy/",
         // 登录接口
         LOGIN: "/api/app/login",
         // 课程详情数据获取
@@ -30,18 +30,27 @@ const urlType = {
         keChengShouCang:"/api/app/collect",
         //课程取消收藏
         KeChengHiden:"/api/app/collect/cancel/",
+        // 立即报名
+        baoming:"/api/app/order/downOrder",
+        // 确认订单
+        querenorder:"/api/app/order/shopInfo",
+        // 获取学习的记录
+        xuexijilu:"/api/app/myStudy/course/",
         //老师关注与取消关注    
         TeacherShowOrHiden:"/api/app/teacher/collect/",
-
-        // 个人信息获取
+        // 我的学习评论
+        mycomment:"/api/app/myStudy/comment",
+        // 个人信息获取（我的学习）
         PersonMessage:"/api/app/userInfo",
         // 个人信息修改
         UserChange:"/api/app/user",
         // 获取年级和学科数据
-        Attribute:"/app/module/attribute",
-
+        Attribute:"/app/module/attribute/1",
+        // 获取所在城市
+        sonArea:"/api/app/sonArea/0",
         // 我的页面里面的取消关注
         TeacherHide:"/api/app/collect/cancel/",
+<<<<<<< HEAD
         // 报名
         BAOMING:"/api/app/order/downOrder",
         // 学习
@@ -53,6 +62,18 @@ const urlType = {
         // 头像
         // GRXX:"/api/app/user",
         TOXIANG:"/api/app/public/img",
+=======
+        // 课程搜索
+        ClassSearch:"/api/app/courseBasis",
+        // 学习视频
+        studyVideo:"/api/app/getPlayToken/video_id=",
+        // 课程评论
+        kechengPinLun:"/api/app/courseComment",
+        // 消息通知
+        msg:"/api/app/message/classifyMessage",
+        // 收到消息通知
+        getMsg:"/api/app/message/getMessage",
+>>>>>>> 73834af059337585d28c218db7bc83f682236ed6
     },
     type: {
         GET: "get",
