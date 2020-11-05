@@ -66,9 +66,9 @@
     <van-popup v-model="show">
         <div class="home_pop">
             <div class="home_rate"><span>星级：</span><van-rate v-model="value" /></div>
-            <div class="home_textarea"><span>内容：</span><textarea></textarea></div>
+            <div class="home_textarea"><span>内容：</span><textarea v-model="text"></textarea></div>
             <div class="home_button">
-                <van-button type="warning">发布</van-button>
+                <van-button type="warning" @click="fabu">发布</van-button>
             </div>
         </div>
     </van-popup>
@@ -91,12 +91,16 @@ export default {
       active: 0,
       show:false,//默认隐藏
       value:5,//默认评星数
+      text:''
     };
   },
   // 计算属性
   computed: {},
   // 侦听器
   watch: {},
+  mounted(){
+
+  },
   // 组件方法
   methods: {
     //   导航部分事件
@@ -115,6 +119,17 @@ export default {
           position:"center"
       })
     },
+    fabu(){
+    this.$ClientAPI.pinglun({
+      content: this.text.value,
+      course_id: this.$route.query.collect_id,
+      grade: 5,
+      type: 1,
+    }).then(res=>{
+      console.log(res);
+      localStorage.setItem("text",text)
+    })
+    }
   },
 };
 </script>

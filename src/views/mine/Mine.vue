@@ -20,7 +20,7 @@
             <button class="button" @click="toyueke">去约课</button>
           </div>
           <van-grid clickable :column-num="3">
-            <van-grid-item to="/curriculum">
+            <van-grid-item to="/xuexi">
               <template #default>
                 <p class="main_cant">0.00</p>
                 <p class="main_title">我的特色课</p>

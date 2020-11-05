@@ -42,7 +42,17 @@ const urlType = {
 
         // 我的页面里面的取消关注
         TeacherHide:"/api/app/collect/cancel/",
-
+        // 报名
+        BAOMING:"/api/app/order/downOrder",
+        // 学习
+        XUEXI:"/api/app/myStudy/course/",
+        // 评论
+          PINGLUN:"/api/app/myStudy/comment",
+        //   我的学习
+        WDXX:"/api/app/myStudy/",
+        // 头像
+        // GRXX:"/api/app/user",
+        TOXIANG:"/api/app/public/img",
     },
     type: {
         GET: "get",

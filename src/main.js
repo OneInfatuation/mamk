@@ -9,6 +9,10 @@ import ClientAPI from "./api/index";//引入封装的api
 Vue.prototype.$ClientAPI = ClientAPI;//全局注册
 Vue.config.productionTip = false;
 
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI);
 new Vue({
   router,
   store,

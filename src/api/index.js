@@ -85,8 +85,24 @@ const ClientAPI = {
     // 我的页面里面的取消关注
     TeacherGZHide(params){
         return requset(urlType.type.PUT,urlType.url.TeacherHide+params+"/2")
-    }
-
+    },
+    // 立即报名
+    baoming(params){
+        return requset(urlType.type.POST,urlType.url.BAOMING,params)
+    },
+    // 评论
+    pinglun(params){
+        return requset(urlType.type.POST,urlType.url.PINGLUN,params)
+    },
+    xuexi(params){
+        return requset(urlType.type.GET,urlType.url.XUEXI,params)
+    },
+    wdxx(){
+        return requset(urlType.type.GET,urlType.url.WDXX)
+    },
+    // grxx(params){
+    //     return requset(urlType.type.PUT,urlType.url.GRXX,params)
+    // }
 
 }
 export default ClientAPI;

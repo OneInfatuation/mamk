@@ -79,3 +79,5 @@ function post(url, params) {
 function put(url,params){
   return instance.put(url, params);
 }
+// 封装OPTIONS请求
+
