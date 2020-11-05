@@ -89,16 +89,25 @@
                       ele.title
                     }}
                   </p>
-                  <div>
-                    <img :src="ele.cover_img" alt="" class="Home_course_img" />
-                    <p>{{ ele.teachers_list[0].teacher_name }}</p>
+                  <div class="waw_baiming">
+                    <div class="waw_baoing">
+                      <img
+                        :src="ele.cover_img"
+                        alt=""
+                        class="Home_course_img"
+                      />
+                      <p>{{ ele.teachers_list[0].teacher_name }}</p>
+                    </div>
+                    <div class="waw_right_img" v-show="ele.has_buy == 1">
+                      <img src="../../assets/baoming/baoming.jpg" />
+                    </div>
                   </div>
 
                   <p class="hmwJPfoot">
                     <span class="Home_course_title"
                       >{{ ele.sales_num }}人已报名
                       <span class="Home_course_p_title"
-                        >￥{{ ele.total_periods }}</span
+                        >￥{{ ele.price == 0 ? "免费" : ele.price }}</span
                       ></span
                     >
                   </p>
@@ -125,20 +134,27 @@
                       element.title
                     }}
                   </p>
-                  <div>
-                    <img
-                      :src="element.cover_img"
-                      alt=""
-                      class="Home_course_img"
-                    />
-                    <p>{{ element.teachers_list[0].teacher_name }}</p>
+                  <div class="waw_baiming">
+                    <div class="waw_baoing">
+                      <img
+                        :src="element.cover_img"
+                        alt=""
+                        class="Home_course_img"
+                      />
+                      <p>{{ element.teachers_list[0].teacher_name }}</p>
+                    </div>
+                    <div class="waw_right_img" v-show="element.has_buy == 1">
+                      <img src="../../assets/baoming/baoming.jpg" />
+                    </div>
                   </div>
 
                   <p class="hmwJPfoot">
                     <span class="Home_course_title"
                       >{{ element.sales_num }}人已报名
                       <span class="Home_course_p_title"
-                        >￥{{ element.total_periods }}</span
+                        >￥{{
+                          element.price == 0 ? "免费" : element.price
+                        }}</span
                       ></span
                     >
                   </p>
@@ -261,7 +277,7 @@ export default {
     hmwJumpXQ(item) {
       // console.log(item);
       sessionStorage.removeItem("teacherId");
-       sessionStorage.setItem("teacherId",item.teachers_list[0].id)
+      sessionStorage.setItem("teacherId", item.teachers_list[0].id);
       this.$router.push({
         path: "/curriculumDetails",
         query: {
@@ -381,7 +397,7 @@ section {
 .Home_course {
   /* box-sizing: border-box; */
   width: 81%;
-  height: 7.2rem;
+  height: 8.2rem;
   background: #fff;
   margin-left: 5%;
   margin-top: 1rem;
@@ -456,5 +472,20 @@ section {
 .home_hidden {
   width: 100%;
   height: 3vh;
+}
+.waw_baiming {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.waw_baoing {
+  width: 50%;
+  display: inline-flex;
+  align-items: center;
+}
+.waw_right_img img {
+  width: 80%;
+  height: 100%;
 }
 </style>

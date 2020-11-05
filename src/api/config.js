@@ -11,7 +11,7 @@ const urlType = {
         // 特色课数据获取
         courseBasis: "/api/app/courseBasis",
         //特色课内容获取
-        contentCollect: "/api/app/myStudy/2",
+        contentCollect: "/api/app/myStudy/",
         // 登录接口
         LOGIN: "/api/app/login",
         // 课程详情数据获取
@@ -40,7 +40,7 @@ const urlType = {
         TeacherShowOrHiden:"/api/app/teacher/collect/",
         // 我的学习评论
         mycomment:"/api/app/myStudy/comment",
-        // 个人信息获取
+        // 个人信息获取（我的学习）
         PersonMessage:"/api/app/userInfo",
         // 个人信息修改
         UserChange:"/api/app/user",
@@ -51,8 +51,15 @@ const urlType = {
         // 我的页面里面的取消关注
         TeacherHide:"/api/app/collect/cancel/",
         // 课程搜索
-        ClassSearch:"/api/app/courseBasis"
-
+        ClassSearch:"/api/app/courseBasis",
+        // 学习视频
+        studyVideo:"/api/app/getPlayToken/video_id=",
+        // 课程评论
+        kechengPinLun:"/api/app/courseComment",
+        // 消息通知
+        msg:"/api/app/message/classifyMessage",
+        // 收到消息通知
+        getMsg:"/api/app/message/getMessage",
     },
     type: {
         GET: "get",

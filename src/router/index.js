@@ -349,11 +349,50 @@ const routes = [{
     component: () => import('../views/home/StudyVideo.vue'),
   },
   {
-    path: "/mystudylist", //仿真模考页面
-    name: "MystudyList",
-    component: () => import('../views/mine/mystudy/mystudyList.vue'),
+    path: "/myStudy", //我的学习页面
+    name: "MyStudy",
+    component: () => import('../views/mine/mystudy/MyStudy.vue'),
   },
-
+  {
+    path: "/kcTongzhi", //消息通知页面
+    name: "KcTongzhi",
+    component: () => import('../views/mine/Message/tongzhi/KcTongzhi.vue'),
+    meta:{
+      navTitle:"消息通知"
+    }
+  },
+  {
+    path: "/xtTongzhi", //系统通知页面
+    name: "XtTongzhi",
+    component: () => import('../views/mine/Message/tongzhi/XtTongzhi.vue'),
+    meta:{
+      navTitle:"系统通知"
+    }
+  },
+  {
+    path: "/ddTongzhi", //订单通知页面
+    name: "DdTongzhi",
+    component: () => import('../views/mine/Message/tongzhi/DdTongzhi.vue'),
+    meta:{
+      navTitle:"订单通知"
+    }
+  },
+  {
+    path: "/ykTongzhi", //约课通知页面
+    name: "YkTongzhi",
+    component: () => import('../views/mine/Message/tongzhi/YkTongzhi.vue'),
+    meta:{
+      navTitle:"约课通知"
+    }
+  },
+  {
+    path: "/ksTongzhi", //考试通知页面
+    name: "KsTongzhi",
+    component: () => import('../views/mine/Message/tongzhi/KsTongzhi.vue'),
+    meta:{
+      navTitle:"考试通知"
+    }
+  },
 ]
 const router = new VueRouter({
   mode: 'history',
