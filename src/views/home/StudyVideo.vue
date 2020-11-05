@@ -2,13 +2,13 @@
   <div>
     <div class="nav">
       <div class="nav1" @click="back"><img src="../../assets/curriculum/fanhui.png" /></div>
-      <div class="nav2">自主招生冲刺讲座qqqqqqqqqqqqqqqqqqqq</div>
+      <div class="nav2">自主招生冲刺讲座</div>
       <div class="nav3"></div>
     </div>
     <!-- 视频 -->
     <div style="width:100vw;height:3rem">
-      <video width="100%" controls>
-        <source src="movie.mp4" type="video/mp4" />
+      <video width="100%" controls autoplay>
+        <source src="https://v.youku.com/v_show/id_XMzQ3OTQ4Njc0NA==.html" type="video/mp4" />
       </video>
     </div>
   </div>
@@ -17,8 +17,13 @@
 <script>
 export default {
   mounted() {
-    console.log(this.$route.query.id);
-    // this.$axios.get("https://www.365msmk.com/api/app/getPlayToken/video_id="+)
+    console.log(this.$route.query.videoId);
+    console.log(this.$route.query.kcId);
+    // this.$ClientAPI.myStydyVideo(this.$route.query.videoId,this.$route.query.kcId).then(res=>{
+    //   console.log(res);
+    // }).catch(err=>{
+    //   console.log(err);
+    // })
   },
   methods:{
       back(){

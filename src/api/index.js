@@ -79,8 +79,8 @@ const ClientAPI = {
         return requset(urlType.type.POST,urlType.url.mycomment,params);
     },
     // 个人信息获取
-    PersonMessage(){
-        return requset(urlType.type.GET,urlType.url.PersonMessage)
+    PersonMessage(params){
+        return requset(urlType.type.GET,urlType.url.PersonMessage,params)
     },
     // 个人信息修改
     UserChange(){
@@ -105,5 +105,22 @@ const ClientAPI = {
     QueRenDdan(params){//确认订单
         return requset(urlType.type.POST,urlType.url.querenorder,params);
     },
+    // 学习视频
+    myStydyVideo(params,id){//
+        // console.log(urlType.url.studyVideo+params+"/course_id="+id);
+        return requset(urlType.type.POST,urlType.url.studyVideo+params+"course_id="+id);
+    },
+    myStyduQk(params){//我的学习
+        return requset(urlType.type.GET,urlType.url.contentCollect+params);
+    },
+    KCpingLun(params){//课程评论
+        return requset(urlType.type.POST,urlType.url.kechengPinLun,params);
+    },
+    GetMessage(){//消息通知
+        return requset(urlType.type.POST,urlType.url.msg);
+    },
+    getMessageSend(params){
+        return requset(urlType.type.POST,urlType.url.getMsg,params);
+    }
 }
 export default ClientAPI;
