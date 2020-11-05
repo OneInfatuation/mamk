@@ -97,7 +97,7 @@
       <div class="waw_popup_box">
         <div class="waw_popup_wrapper">
           <p>拍照</p>
-          <p>从手机相册选择</p>
+          <p @click="iphonePhoto">从手机相册选择</p>
           <p @click="onClickHide">取消</p>
         </div>
       </div>
@@ -132,9 +132,11 @@
 
     <!-- 学校弹出层 -->
     <van-popup v-model="showClass" position="bottom" :style="{ height: '45%' }">
-
-
-      
+      <div class="Class_select_list">
+        <div>取消</div>
+        <div>确认</div>
+      </div>
+      <div class="Class_select_list_message"></div>
     </van-popup>
   </div>
 </template>
@@ -150,7 +152,7 @@ export default {
       nickName: "", //姓名
       sex: localStorage.getItem("sex") || "男", //性别
       time: localStorage.getItem("time") || "2000-10-10", //日期
-      Address: localStorage.getItem("Address") || "请选择你的地址", //地址
+      Address: localStorage.getItem("Address") || "黑龙江省 哈尔滨市 阿城区", //地址
       subject: JSON.parse(localStorage.getItem("result")) || ["语文"],
       showImg: false, //图片修改（默认隐藏）
       showTime: false, //日期修改（默认隐藏）
@@ -166,12 +168,14 @@ export default {
         province_list: {
           110000: "北京市",
           120000: "天津市",
+          130000: "黑龙江省",
         },
         city_list: {
           110100: "北京市",
           110200: "县",
           120100: "天津市",
           120200: "县",
+          130100: "哈尔滨市",
         },
         county_list: {
           110101: "东城区",
@@ -183,6 +187,7 @@ export default {
           120103: "河西区",
           120104: "南开区",
           120105: "河北区",
+          130101: "阿城区",
           // ....
         },
       },
@@ -194,15 +199,14 @@ export default {
       console.log(res.data.data);
       this.PersonMessage = res.data.data;
     });
-    
-    
+
     // 获取所在城市
-    let person = this.PersonMessage
-    console.log(person)
-    this.Address = `${person.province_name}
-                     ${person.city_name} 
-                     ${person.district_name}`;
-    // localStorage.setItem("Address", this.Address);                 
+    let person = this.PersonMessage;
+    console.log(person);
+    // this.Address = `${person.province_name}
+    //                  ${person.city_name}
+    //                  ${person.district_name}`;
+    // localStorage.setItem("Address", this.Address);
 
     this.$ClientAPI.sonArea().then((res) => {
       this.area = res.data.data;
@@ -306,6 +310,10 @@ export default {
       //点击从选年级
       this.showClass = true;
     },
+    // 从手机相册选取
+    iphonePhoto(){
+
+    }
   },
 };
 </script>
@@ -447,5 +455,19 @@ export default {
 }
 .van-picker__toolbar {
   width: 100%;
+}
+
+// 学校弹出层样式
+.Class_select_list {
+  width: 100vw;
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #eb6100;
+  border-bottom: 1px solid rgba(238, 238, 238, 0.5);
+}
+.Class_select_list div {
+  margin: 0.5rem 0.4rem;
 }
 </style>
