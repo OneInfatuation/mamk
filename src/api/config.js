@@ -45,8 +45,9 @@ const urlType = {
         // 个人信息修改
         UserChange:"/api/app/user",
         // 获取年级和学科数据
-        Attribute:"/app/module/attribute",
-
+        Attribute:"/app/module/attribute/1",
+        // 获取所在城市
+        sonArea:"/api/app/sonArea/0",
         // 我的页面里面的取消关注
         TeacherHide:"/api/app/collect/cancel/",
         // 课程搜索

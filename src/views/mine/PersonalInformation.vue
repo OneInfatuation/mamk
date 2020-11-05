@@ -21,7 +21,7 @@
           <div>昵称</div>
           <div class="waw_user_box">
             <div>
-              <span>{{ PersonMessage.nickname }}</span>
+              <span>{{ nickName }}</span>
             </div>
             <van-icon
               name="arrow"
@@ -51,7 +51,7 @@
         <div class="waw_person">
           <div>出生日期</div>
           <div class="waw_time_box">
-            <span>{{ time }}</span>
+            <span>{{ time | timeYears }}</span>
             <van-icon name="arrow" color="lightgray" @click="onClickTime" />
           </div>
         </div>
@@ -123,7 +123,8 @@
       :style="{ height: '45%' }"
     >
       <van-area
-        :area-list="areaList"
+        :columns-placeholder="['请选择', '请选择', '请选择']"
+        :area-list="arealist"
         @cancel="onClickCancel"
         @confirm="onClickConfirm"
       />
@@ -131,6 +132,9 @@
 
     <!-- 学校弹出层 -->
     <van-popup v-model="showClass" position="bottom" :style="{ height: '45%' }">
+
+
+      
     </van-popup>
   </div>
 </template>
@@ -143,10 +147,10 @@ export default {
   data() {
     return {
       PersonMessage: {}, //获取个人信息
+      nickName: "", //姓名
       sex: localStorage.getItem("sex") || "男", //性别
       time: localStorage.getItem("time") || "2000-10-10", //日期
-      Address:
-        localStorage.getItem("Address") || "内蒙古自治区 呼和浩特市 武川县", //地址
+      Address: localStorage.getItem("Address") || "请选择你的地址", //地址
       subject: JSON.parse(localStorage.getItem("result")) || ["语文"],
       showImg: false, //图片修改（默认隐藏）
       showTime: false, //日期修改（默认隐藏）
@@ -155,7 +159,10 @@ export default {
       minDate: new Date(1980, 0, 1),
       maxDate: new Date(2025, 10, 1),
       currentDate: new Date(1980, 0, 1),
-      areaList: {
+      area: [],
+      areaObj: {},
+      areaObj2: {},
+      arealist: {
         province_list: {
           110000: "北京市",
           120000: "天津市",
@@ -184,19 +191,43 @@ export default {
   mounted() {
     // 获取个人信息
     this.$ClientAPI.PersonMessage().then((res) => {
-      // console.log(res.data.data)
+      console.log(res.data.data);
       this.PersonMessage = res.data.data;
     });
+    
+    
+    // 获取所在城市
+    let person = this.PersonMessage
+    console.log(person)
+    this.Address = `${person.province_name}
+                     ${person.city_name} 
+                     ${person.district_name}`;
+    // localStorage.setItem("Address", this.Address);                 
 
-    // 获取年级与学科 
-    // this.$ClientAPI.Attribute().then((res)=>{
-    //   console.log(res)
-    // })
+    this.$ClientAPI.sonArea().then((res) => {
+      this.area = res.data.data;
+      // console.log(res.data.data);
+      this.areaObj = { ...this.area };
+      console.log(this.areaObj);
+
+      for (var i = 0; i < this.areaObj.length; i++) {
+        let obj = {
+          index: i,
+          id: id,
+          province_list: {
+            id: area_name,
+          },
+        };
+        this.areaObj2.push(obj);
+      }
+      // console.log(this.areaObj2);
+    });
 
     var Nick = localStorage.getItem("value"); //读取昵称
     if (Nick) {
       this.nickName = Nick;
     }
+
     var mobile = localStorage.getItem("mobile"); //读取手机号
     if (mobile) {
       this.user = mobile;
@@ -204,6 +235,11 @@ export default {
     var sex = localStorage.getItem("sex"); //读取性别
     if (sex) {
       this.sex = sex;
+    }
+
+    var Time = localStorage.getItem("time"); //读取昵称
+    if (Time) {
+      this.time = Time;
     }
   },
   methods: {
@@ -217,9 +253,12 @@ export default {
     },
     onClickChangeNickname() {
       //点击跳转修改昵称页面
-      this.$router.push({ path: "/nickname", query:{
-        name:this.PersonMessage.nickname
-      }});
+      this.$router.push({
+        path: "/nickname",
+        query: {
+          name: this.PersonMessage.nickname,
+        },
+      });
     },
     onClickChangeSex() {
       //点击跳转页面改变性别

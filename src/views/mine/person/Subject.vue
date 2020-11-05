@@ -3,7 +3,7 @@
     <NavTitle @onChangeCheck="onChangeCheck"></NavTitle>
     <div class="waw_sub_box">
       <div class="waw_sub">
-        <van-checkbox-group v-model="result" @change="onChangeCheck">
+        <van-checkbox-group v-model="result">
           <van-checkbox shape="square" name="语文">语文</van-checkbox>
           <van-checkbox shape="square" name="数学">数学</van-checkbox>
           <van-checkbox shape="square" name="英语">英语</van-checkbox>
