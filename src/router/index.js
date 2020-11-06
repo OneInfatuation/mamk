@@ -75,6 +75,14 @@ const routes = [{
     }
   },
   {
+    path: "/setPassword", //设置密码
+    name: "setPassword",
+    component: () => import('../views/login/SetPassword'),
+    meta: {
+      navTitle: "设置密码"
+    }
+  },
+  {
     path: "/register", //注册页面
     name: "Register",
     component: () => import('../views/login/register.vue'),
@@ -272,7 +280,7 @@ const routes = [{
     component: () => import('../views/mine/passwordSet/passwordSet.vue'),
   },
   {
-    path: "/kechengdd", //设置页面
+    path: "/kechengdd", //课程订单
     name: "Kechengdd",
     component: () => import('../views/mine/Kechengdd.vue'),
     meta: {

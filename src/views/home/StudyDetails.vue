@@ -29,7 +29,11 @@
         </div>
         <!-- 列表部分 -->
         <ul>
-          <div :key="index" v-for="(item, index) in list" @click="gotoVideo(item.video_id,listID.course_id)">
+          <div
+            :key="index"
+            v-for="(item, index) in list"
+            @click="gotoVideo(item.video_id, listID.course_id)"
+          >
             <li>
               <p>
                 <span class="hmwS2">{{ item.periods_title }}</span>
@@ -100,26 +104,35 @@ export default {
     return {
       //    底部导航
       active: 0,
-      show:false,//默认隐藏
-      value:5,//默认评星数
-      text:'',
+      show: false, //默认隐藏
+      value: 5, //默认评星数
+      text: "",
       show: false, //默认隐藏
       value: 5, //默认评星数
       list: [], //学习内容
       listID: [], //获取id
-      PLvalue:"",//评论内容
+      PLvalue: "", //评论内容
     };
   },
   mounted() {
-    this.getWatch();
+    // this.getWatch();
+    this.$ClientAPI
+      .myStudy(this.$route.query.id)
+      .then((res) => {
+        console.log(res.data);
+        // console.log(res.data.data.periods);
+        this.list = res.data.data.periods;
+        this.listID = res.data.data.course;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
   // 计算属性
   computed: {},
   // 侦听器
   watch: {},
-  mounted(){
-
-  },
+  mounted() {},
   // 组件方法
   methods: {
     //   导航部分事件
@@ -150,10 +163,10 @@ export default {
         .myStudentComment(obj)
         .then((res) => {
           console.log(res.data.code);
-          if(res.data.code==200){
-            Toast.success("评论成功")
-          }else{
-            Toast(res.data.msg)
+          if (res.data.code == 200) {
+            Toast.success("评论成功");
+          } else {
+            Toast(res.data.msg);
           }
         })
         .catch((err) => {
@@ -167,43 +180,34 @@ export default {
         position: "center",
       });
     },
-    fabu(){
-    this.$ClientAPI.pinglun({
-      content: this.text.value,
-      course_id: this.$route.query.collect_id,
-      grade: 5,
-      type: 1,
-    }).then(res=>{
-      console.log(res);
-      localStorage.setItem("text",text)
-    })},
-    getWatch() {
-      //获取观看数据
+    fabu() {
       this.$ClientAPI
-        .myStudy(this.$route.query.id)
-        .then((res) => {
-          console.log(res.data);
-          // console.log(res.data.data.periods);
-          this.list = res.data.data.periods;
-          this.listID = res.data.data.course;
+        .pinglun({
+          content: this.text.value,
+          course_id: this.$route.query.collect_id,
+          grade: 5,
+          type: 1,
         })
-        .catch((err) => {
-          console.log(err);
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem("text", text);
         });
     },
+    getWatch() {
+      //获取观看数据
+    },
     // 跳转视频页
-    gotoVideo(videoId,kcId){
-        this.$router.push({
-          path:"/studyvideo",
-          query:{
-            videoId,
-            kcId,
-          }
-        })
-    }
+    gotoVideo(videoId, kcId) {
+      this.$router.push({
+        path: "/studyvideo",
+        query: {
+          videoId,
+          kcId,
+        },
+      });
+    },
   },
-}
-
+};
 </script>
 <style scoped>
 * {
