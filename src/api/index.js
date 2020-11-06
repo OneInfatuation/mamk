@@ -143,8 +143,13 @@ const ClientAPI = {
     getMessageSend(params){
         return requset(urlType.type.POST,urlType.url.getMsg,params);
     },
+<<<<<<< HEAD
     geRenpinglun(params){
         return requset(urlType.type.POST,urlType.url.GERENXIAOXI,params)
+=======
+    otoCourse(params){
+        return requset(urlType.type.GET,urlType.url.otoCourse,{params});
+>>>>>>> c06c49df6c55632df40b638be6e1517240c10c94
     }
 }
 export default ClientAPI;

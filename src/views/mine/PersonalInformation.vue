@@ -85,11 +85,17 @@
         <!-- 年级 -->
         <div class="waw_person">
           <div>年级</div>
+<<<<<<< HEAD
           <div class="waw_class_box">
             <div>小学一年级</div>
             <van-icon name="arrow" color="lightgray" @click="onClickClass" >
               
             </van-icon>
+=======
+          <div class="waw_class_box" @click="showPicker = true">
+            <div>{{ valueClass }}</div>
+            <van-icon name="arrow" color="lightgray" />
+>>>>>>> c06c49df6c55632df40b638be6e1517240c10c94
           </div>
         </div>
       </div>
@@ -135,8 +141,18 @@
     </van-popup>
 
     <!-- 学校弹出层 -->
+<<<<<<< HEAD
     <van-popup v-model="showClass" position="bottom" :style="{ height: '45%' }">
       <van-area title="标题" :area-list="areaList" />
+=======
+    <van-popup v-model="showPicker" round position="bottom">
+      <van-picker
+        show-toolbar
+        :columns="columns"
+        @cancel="showPicker = false"
+        @confirm="onConfirms"
+      />
+>>>>>>> c06c49df6c55632df40b638be6e1517240c10c94
     </van-popup>
   </div>
 </template>
@@ -154,6 +170,7 @@ export default {
       time: localStorage.getItem("time") || "2000-10-10", //日期
       Address: localStorage.getItem("Address") || "黑龙江省 哈尔滨市 阿城区", //地址
       subject: JSON.parse(localStorage.getItem("result")) || ["语文"],
+      valueClass: localStorage.getItem("valueClass") || "请选择你的年级",//年级
       showImg: false, //图片修改（默认隐藏）
       showTime: false, //日期修改（默认隐藏）
       showAddress: false, //修改地址（默认隐藏）
@@ -191,6 +208,22 @@ export default {
           // ....
         },
       },
+      // 年级信息
+      showPicker: false,
+      columns: [
+        "小学一年级",
+        "小学二年级",
+        "小学三年级",
+        "小学四年级",
+        "小学五年级",
+        "小学六年级",
+        "初一",
+        "初二",
+        "初三",
+        "高一",
+        "高二",
+        "高三",
+      ],
     };
   },
   mounted() {
@@ -329,14 +362,14 @@ console.log(res);
       //点击学科
       this.$router.push("/subject");
     },
-    onClickClass() {
-      //点击从选年级
-      this.showClass = true;
-    },
     // 从手机相册选取
-    iphonePhoto(){
-
-    }
+    iphonePhoto() {},
+    // 年纪选择器
+    onConfirms(valueClass) {
+      this.valueClass = valueClass;
+      localStorage.setItem("valueClass", this.valueClass);
+      this.showPicker = false;
+    },
   },
 };
 </script>

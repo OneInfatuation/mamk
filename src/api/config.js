@@ -71,7 +71,12 @@ const urlType = {
         msg:"/api/app/message/classifyMessage",
         // 收到消息通知
         getMsg:"/api/app/message/getMessage",
+<<<<<<< HEAD
         GERENXIAOXI:"/api/app/feedback",
+=======
+        // 一对一辅导
+        otoCourse:"/api/app/otoCourse"
+>>>>>>> c06c49df6c55632df40b638be6e1517240c10c94
     },
     type: {
         GET: "get",
