@@ -76,6 +76,8 @@ const urlType = {
         // 上传图片
         shangchuanImg:"/api/app/public/img",
         GERENXIAOXI:"/api/app/feedback",//意见反馈
+        
+        GERENXIAOXI:"/api/app/feedback",
         // 一对一辅导
         otoCourse:"/api/app/otoCourse"
     },

@@ -132,7 +132,6 @@
     >
       <van-picker
         show-toolbar
-        :columns="columns"
         @cancel="showPicker = false"
         @confirm="onConfirms"
       />

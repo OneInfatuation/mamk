@@ -1,6 +1,10 @@
 <template>
   <div>
-    <van-nav-bar title="我的学习" left-arrow @click-left="onClickLeft" />
+    <van-nav-bar title="我的学习" left-arrow @click-left="onClickLeft" >
+      <template #right>
+          <img src="../../../assets/rili.png" width="25rem" @click="gotoStudyTime">
+      </template>
+    </van-nav-bar>
     <div>
       <van-tabs v-model="active" @change="OnChangeItem">
         <van-tab
@@ -136,6 +140,10 @@ export default {
           console.log(err);
         });
     },
+    // 跳转到学习日历
+    gotoStudyTime(){
+      this.$router.push("/study-calendar")
+    }
   },
 };
 </script>

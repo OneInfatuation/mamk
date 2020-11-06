@@ -167,5 +167,11 @@ const ClientAPI = {
         });
     },
 
+    geRenpinglun(params){
+        return requset(urlType.type.POST,urlType.url.GERENXIAOXI,params)
+    },
+    otoCourse(params){
+        return requset(urlType.type.GET,urlType.url.otoCourse,{params});
+    }
 }
 export default ClientAPI;

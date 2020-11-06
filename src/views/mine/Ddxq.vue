@@ -48,9 +48,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 body {
-  background: rgba(238, 238, 238, 0.733);
+  background: rgba(238, 238, 238, 0.835);
 }
 .details_top {
   height: 6rem;
