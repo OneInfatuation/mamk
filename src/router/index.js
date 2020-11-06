@@ -182,7 +182,7 @@ const routes = [{
     path: "/confirmOrder", //确认订单
     name: "ConfirmOrder",
     component: () => import('../views/home/ConfirmOrder.vue'),
-    meta:{
+    meta: {
       navTitle: "确认订单"
     }
   },
@@ -344,7 +344,8 @@ const routes = [{
     }
   },
 
-      {
+      
+  {
     path: "/studyvideo", //仿真模考页面
     name: "StudyVideo",
     component: () => import('../views/home/StudyVideo.vue'),
@@ -358,40 +359,40 @@ const routes = [{
     path: "/kcTongzhi", //消息通知页面
     name: "KcTongzhi",
     component: () => import('../views/mine/Message/tongzhi/KcTongzhi.vue'),
-    meta:{
-      navTitle:"消息通知"
+    meta: {
+      navTitle: "消息通知"
     }
   },
   {
     path: "/xtTongzhi", //系统通知页面
     name: "XtTongzhi",
     component: () => import('../views/mine/Message/tongzhi/XtTongzhi.vue'),
-    meta:{
-      navTitle:"系统通知"
+    meta: {
+      navTitle: "系统通知"
     }
   },
   {
     path: "/ddTongzhi", //订单通知页面
     name: "DdTongzhi",
     component: () => import('../views/mine/Message/tongzhi/DdTongzhi.vue'),
-    meta:{
-      navTitle:"订单通知"
+    meta: {
+      navTitle: "订单通知"
     }
   },
   {
     path: "/ykTongzhi", //约课通知页面
     name: "YkTongzhi",
     component: () => import('../views/mine/Message/tongzhi/YkTongzhi.vue'),
-    meta:{
-      navTitle:"约课通知"
+    meta: {
+      navTitle: "约课通知"
     }
   },
   {
     path: "/ksTongzhi", //考试通知页面
     name: "KsTongzhi",
     component: () => import('../views/mine/Message/tongzhi/KsTongzhi.vue'),
-    meta:{
-      navTitle:"考试通知"
+    meta: {
+      navTitle: "考试通知"
     }
   },
 ]

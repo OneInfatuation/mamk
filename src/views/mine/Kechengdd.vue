@@ -20,8 +20,8 @@
             <span class="zmy_sp3">交易完成</span>
           </p>
           <ul class="zmy_p2">
-            <li>{{item.title}}</li>
-            <li class="zmy_time">时间：{{item.created_at | timeFilter }}</li>
+            <li class="zmy_title">{{item.title}}</li>
+            <li class="zmy_time">时间：{{item.created_at | times }}</li>
             <li class="zmy_time">
               <span>实付款</span>
               <img
@@ -47,8 +47,8 @@
             <span class="zmy_sp3">交易完成</span>
           </p>
           <ul class="zmy_p2">
-            <li>{{item.title}}</li>
-            <li class="zmy_time">时间：{{item.created_at | timeFilter }}</li>
+            <li class="zmy_title">{{item.title}}</li>
+            <li class="zmy_time">时间：{{item.created_at | times }}</li>
             <li class="zmy_time">
               <span>实付款</span>
               <img
@@ -85,13 +85,13 @@ export default {
   mounted(){
     this.kechenglist()
   },
-    filters: {
-    timeFilter(value) {
-      var date = new Date(value * 1000);
-      var str = `${date.getHours()}时${date.getMinutes()}分${date.getSeconds()}分，${date.getFullYear()}年`;
-      return str;
-    },
-  },
+    // filters: {
+    // timeFilter(value) {
+    //   var date = new Date(value * 1000);
+    //   var str = `${date.getHours()}时${date.getMinutes()}分${date.getSeconds()}分，${date.getFullYear()}年`;
+    //   return str;
+    // },
+  // },
   
   methods: {
     onClickLeft(){
@@ -148,17 +148,17 @@ z-index: 99999;
 .zmy_order {
   margin-top: 2rem;
   width: 95%;
-  height: 10rem;
+  height:8rem;
   margin: 0 auto;
 margin-top: 1.5rem;
   // border: 1px solid #eee;
-  box-shadow: 0px 0px 4px rgb(175, 172, 172);
+  box-shadow: 0px 0px 4px rgb(211, 208, 208);
   border-radius: 5px;
   .zmy_p1 {
     width: 95%;
     margin: 0 auto;
     height: 2rem;
-    border-bottom: 1px solid rgb(168, 165, 165);
+    border-bottom: 1px solid rgba(168, 165, 165, 0.507);
     .zmy_sp2 {
       font-size: 0.15rem;
       // margin-top: 0.2rem;
@@ -190,5 +190,10 @@ margin-top: 1.5rem;
 }
 .yiyi-wei{
   height: 2rem;
+}
+.zmy_title{
+  margin-top: 0.4rem;
+  font-size: 0.5rem;
+  color: rgb(46, 44, 44);
 }
 </style>
