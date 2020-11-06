@@ -136,7 +136,6 @@
     <van-popup v-model="showPicker" round position="bottom">
       <van-picker
         show-toolbar
-        :columns="columns"
         @cancel="showPicker = false"
         @confirm="onConfirms"
       />
@@ -332,6 +331,12 @@ console.log(res);
     },
     onClickChangeAddress() {
       //点击修改地址
+      this.$axios.get("https://www.365msmk.com/api/app/sonArea/0").then((res)=>{
+        console.log(res)
+      })
+
+
+
       this.showAddress = true;
     },
     onClickCancel() {

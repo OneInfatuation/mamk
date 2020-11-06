@@ -9,7 +9,12 @@
 
     <!-- 上课时间 -->
     <div v-show="isShowTime">
-      上课时间
+      <van-calendar
+        title="日历"
+        :poppable="false"
+        :show-confirm="false"
+        :style="{ height: '500px' }"
+      />
       <!-- 按钮 -->
       <div class="buttonlist">
         <button class="submit">重置</button>
@@ -41,7 +46,9 @@
         "
       >
         <p>只看</p>
-        <div>已关注 上过课的</div>
+        <div>
+          <input type="checkbox" />已关注 <input type="checkbox" />上过课的
+        </div>
       </div>
       <!-- 性别 -->
       <div class="teacherSex">
