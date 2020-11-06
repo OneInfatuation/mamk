@@ -97,6 +97,24 @@ const ClientAPI = {
     TeacherGZHide(params){
         return requset(urlType.type.PUT,urlType.url.TeacherHide+params+"/2")
     },
+    // 立即报名
+    baoming(params){
+        return requset(urlType.type.POST,urlType.url.BAOMING,params)
+    },
+    // 评论
+    pinglun(params){
+        return requset(urlType.type.POST,urlType.url.PINGLUN,params)
+    },
+    xuexi(params){
+        return requset(urlType.type.GET,urlType.url.XUEXI,params)
+    },
+    wdxx(){
+        return requset(urlType.type.GET,urlType.url.WDXX)
+    },
+    // grxx(params){
+    //     return requset(urlType.type.PUT,urlType.url.GRXX,params)
+    // }
+
     // 课程搜索
     ClassSearch(params){
         return requset(urlType.type.GET,urlType.url.ClassSearch,{params})
@@ -125,8 +143,13 @@ const ClientAPI = {
     getMessageSend(params){
         return requset(urlType.type.POST,urlType.url.getMsg,params);
     },
+<<<<<<< HEAD
+    geRenpinglun(params){
+        return requset(urlType.type.POST,urlType.url.GERENXIAOXI,params)
+=======
     otoCourse(params){
         return requset(urlType.type.GET,urlType.url.otoCourse,{params});
+>>>>>>> c06c49df6c55632df40b638be6e1517240c10c94
     }
 }
 export default ClientAPI;

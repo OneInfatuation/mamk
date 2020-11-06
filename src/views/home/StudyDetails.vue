@@ -100,6 +100,9 @@ export default {
     return {
       //    底部导航
       active: 0,
+      show:false,//默认隐藏
+      value:5,//默认评星数
+      text:'',
       show: false, //默认隐藏
       value: 5, //默认评星数
       list: [], //学习内容
@@ -114,6 +117,9 @@ export default {
   computed: {},
   // 侦听器
   watch: {},
+  mounted(){
+
+  },
   // 组件方法
   methods: {
     //   导航部分事件
@@ -161,6 +167,16 @@ export default {
         position: "center",
       });
     },
+    fabu(){
+    this.$ClientAPI.pinglun({
+      content: this.text.value,
+      course_id: this.$route.query.collect_id,
+      grade: 5,
+      type: 1,
+    }).then(res=>{
+      console.log(res);
+      localStorage.setItem("text",text)
+    })},
     getWatch() {
       //获取观看数据
       this.$ClientAPI
@@ -186,7 +202,8 @@ export default {
         })
     }
   },
-};
+}
+
 </script>
 <style scoped>
 * {

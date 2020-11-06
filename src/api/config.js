@@ -50,6 +50,17 @@ const urlType = {
         sonArea:"/api/app/sonArea/0",
         // 我的页面里面的取消关注
         TeacherHide:"/api/app/collect/cancel/",
+        // 报名
+        BAOMING:"/api/app/order/downOrder",
+        // 学习
+        XUEXI:"/api/app/myStudy/course/",
+        // 评论
+          PINGLUN:"/api/app/myStudy/comment",
+        //   我的学习
+        WDXX:"/api/app/myStudy/",
+        // 头像
+        // GRXX:"/api/app/user",
+        TOXIANG:"/api/app/public/img",
         // 课程搜索
         ClassSearch:"/api/app/courseBasis",
         // 学习视频
@@ -60,8 +71,12 @@ const urlType = {
         msg:"/api/app/message/classifyMessage",
         // 收到消息通知
         getMsg:"/api/app/message/getMessage",
+<<<<<<< HEAD
+        GERENXIAOXI:"/api/app/feedback",
+=======
         // 一对一辅导
         otoCourse:"/api/app/otoCourse"
+>>>>>>> c06c49df6c55632df40b638be6e1517240c10c94
     },
     type: {
         GET: "get",

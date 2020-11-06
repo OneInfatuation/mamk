@@ -8,6 +8,7 @@
           <!--头像  -->
           <div class="waw_img_title">头像</div>
           <div class="waw_img_box">
+            <!-- 动态渲染头像 -->
             <img :src="PersonMessage.avatar" />
             <van-icon
               name="arrow"
@@ -84,9 +85,17 @@
         <!-- 年级 -->
         <div class="waw_person">
           <div>年级</div>
+<<<<<<< HEAD
+          <div class="waw_class_box">
+            <div>小学一年级</div>
+            <van-icon name="arrow" color="lightgray" @click="onClickClass" >
+              
+            </van-icon>
+=======
           <div class="waw_class_box" @click="showPicker = true">
             <div>{{ valueClass }}</div>
             <van-icon name="arrow" color="lightgray" />
+>>>>>>> c06c49df6c55632df40b638be6e1517240c10c94
           </div>
         </div>
       </div>
@@ -96,9 +105,10 @@
     <van-popup v-model="showImg" position="bottom" :style="{ height: '30%' }">
       <div class="waw_popup_box">
         <div class="waw_popup_wrapper">
-          <p>拍照</p>
-          <p @click="iphonePhoto">从手机相册选择</p>
+          <p @click.stop="uploadHeadImg">拍照</p>
+          <p @click.stop="uploadHeadImg">从手机相册选择</p>
           <p @click="onClickHide">取消</p>
+            <input type="file" accept="image/*" @change="handleFile" class="hiddenInput"/>
         </div>
       </div>
     </van-popup>
@@ -131,6 +141,10 @@
     </van-popup>
 
     <!-- 学校弹出层 -->
+<<<<<<< HEAD
+    <van-popup v-model="showClass" position="bottom" :style="{ height: '45%' }">
+      <van-area title="标题" :area-list="areaList" />
+=======
     <van-popup v-model="showPicker" round position="bottom">
       <van-picker
         show-toolbar
@@ -138,6 +152,7 @@
         @cancel="showPicker = false"
         @confirm="onConfirms"
       />
+>>>>>>> c06c49df6c55632df40b638be6e1517240c10c94
     </van-popup>
   </div>
 </template>
@@ -216,6 +231,7 @@ export default {
     this.$ClientAPI.PersonMessage().then((res) => {
       console.log(res.data.data);
       this.PersonMessage = res.data.data;
+
     });
 
     // 获取所在城市
@@ -265,6 +281,28 @@ export default {
     }
   },
   methods: {
+     // 打开图片上传
+    uploadHeadImg: function () {
+      this.$el.querySelector('.hiddenInput').click()
+    },
+    // 将头像显示
+    handleFile: function (e) {
+      let $target = e.target || e.srcElement
+      let file = $target.files[0]
+      var reader = new FileReader()
+      reader.onload = (data) => {
+        let res = data.target || data.srcElement
+        this.PersonMessage.avatar = res.result
+      }
+      reader.readAsDataURL(file)
+      
+        this.$ClientAPI.UserChange({
+avatar:this.PersonMessage.avatar
+  }).then(res=>{
+console.log(res);
+// localStorage.setItem("file",file)
+  })
+    },
     onClickChangeImg() {
       //点击修改图片(显示)
       this.showImg = true;
