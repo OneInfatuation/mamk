@@ -280,6 +280,10 @@ export default {
     hmwStudyJump() {
       if (this.listInfo.is_buy == 0 && this.listInfo.price == 0) {
         this.$ClientAPI
+          .baoming({
+            shop_id: this.listInfo.id,
+            type: 5,
+          })
           .LIJIBAOMING({ shop_id: this.listInfo.id, type: 5 })
           .then((res) => {
             console.log(res);
@@ -310,6 +314,7 @@ export default {
 
         Toast.success("请先购买课程");
       }
+
       document.documentElement.scrollTop = 0;
     },
     // 二维码弹出事件
@@ -412,6 +417,7 @@ export default {
           this.listDate = res.data.data;
           this.listInfo = res.data.data.info;
           this.listTeacher = res.data.data.teachers;
+          // console.log(res.data.data);
         })
         .catch((err) => {
           console.log(err);

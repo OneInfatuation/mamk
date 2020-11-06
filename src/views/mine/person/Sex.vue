@@ -27,7 +27,7 @@ export default {
     };
   },
   mounted() {
-   this.$ClientAPI.PersonMessage().then((res) => {
+    this.$ClientAPI.PersonMessage().then((res) => {
       this.num = res.data.data.sex;
     });
   },
@@ -38,9 +38,10 @@ export default {
     },
     onClickChangeSex() {
       this.$ClientAPI
-        .UserChange({ sex:this.num })
+        .UserChange({ sex: this.num })
         .then((res) => {
           console.log(res.data.code);
+          this.$ClientAPI.PersonMessage().then((res) => {});
         })
         .catch((err) => {
           console.log(err);
@@ -48,7 +49,7 @@ export default {
       this.$router.go(-1);
       this.$ClientAPI.PersonMessage().then((res) => {});
     },
-  }
+  },
 };
 </script>
 <style lang='scss' scoped>

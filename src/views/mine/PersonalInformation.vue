@@ -52,7 +52,7 @@
         <!-- 说在城市 -->
         <div class="waw_person">
           <div class="waw_city_box">所在城市</div>
-          <div class="waw_address_box" @click="onClickChangeAddress">
+          <div class="waw_address_box" @click="onClickCity">
             <div>
               <span
                 >{{ PersonMessage.province_name }}
@@ -78,14 +78,13 @@
         <!-- 年级 -->
         <div class="waw_person">
           <div>年级</div>
-          <div class="waw_class_box" @click="onClickClass">
-            <div>小学一年级</div>
+          <div class="waw_class_box" @click="showPicker = true">
+            <div>{{valueClass}}</div>
             <van-icon name="arrow" color="lightgray" />
           </div>
         </div>
       </div>
     </div>
-
     <!-- 相册弹出层 -->
     <van-popup v-model="showImg" position="bottom" :style="{ height: '30%' }">
       <div class="waw_popup_box">
@@ -117,14 +116,26 @@
       :style="{ height: '45%' }"
     >
       <van-area
-        :area-list="arealist"
-        @cancel="onClickCancel"
+        :area-list="areaList"
+        :value="PersonMessage.district_id + ''"
+        @cancel="showAddress = false"
         @confirm="onClickConfirm"
+        @change="OnChangeCity"
       />
     </van-popup>
 
-    <!-- 学校弹出层 -->
-    <van-popup v-model="showClass" position="bottom" :style="{ height: '45%' }">
+    <!-- 年级弹出层 -->
+    <van-popup
+      v-model="showPicker"
+      position="bottom"
+      :style="{ height: '45%' }"
+    >
+      <van-picker
+        show-toolbar
+        :columns="columns"
+        @cancel="showPicker = false"
+        @confirm="onConfirms"
+      />
     </van-popup>
   </div>
 </template>
@@ -142,79 +153,58 @@ export default {
       time: "", //日期
       Address: localStorage.getItem("Address") || "请选择你的地址", //地址
       subject: JSON.parse(localStorage.getItem("result")) || ["语文"],
+      valueClass: localStorage.getItem("valueClass") || "请选择", //年级
       showImg: false, //图片修改（默认隐藏）
       showTime: false, //日期修改（默认隐藏）
       showAddress: false, //修改地址（默认隐藏）
-      showClass: false, //修改年级（默认隐藏）
+      showPicker: false, //修改年级（默认隐藏）
       minDate: new Date(1980, 0, 1),
       maxDate: new Date(2025, 10, 1),
       currentDate: new Date(1980, 0, 1),
       area: [],
       areaObj: {},
       areaObj2: {},
-      arealist: {
-        province_list: {
-          110000: "北京市",
-          120000: "天津市",
-        },
-        city_list: {
-          110100: "北京市",
-          110200: "县",
-          120100: "天津市",
-          120200: "县",
-        },
-        county_list: {
-          110101: "东城区",
-          110102: "西城区",
-          110105: "朝阳区",
-          110106: "丰台区",
-          120101: "和平区",
-          120102: "河东区",
-          120103: "河西区",
-          120104: "南开区",
-          120105: "河北区",
-          // ....
-        },
+      areaList: {
+        province_list: {},
+        city_list: {},
+        county_list: {},
       },
+      columns: [
+        "小学一年级",
+        "小学二年级",
+        "小学三年级",
+        "小学四年级",
+        "小学五年级",
+        "小学六年级",
+        "初一",
+        "初二",
+        "初三",
+        "高一",
+        "高二",
+        "高三",
+      ],
     };
   },
   mounted() {
     this.getDate();
+    // 获取个人信息
 
     // 学科+年级
     this.$ClientAPI
       .NianClass()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
-
-    // this.$ClientAPI.sonArea().then((res) => {
-    //   this.area = res.data.data;
-    //   // console.log(res.data.data);
-    //   this.areaObj = { ...this.area };
-    //   // console.log(this.areaObj);
-
-    //   for (var i = 0; i < this.areaObj.length; i++) {
-    //     let obj = {
-    //       index: i,
-    //       id: id,
-    //       province_list: {
-    //         id: area_name,
-    //       },
-    //     };
-    //     this.areaObj2.push(obj);
-    //   }
-    //   // console.log(this.areaObj2);
-    // });
   },
+
   methods: {
     getDate() {
       // 获取个人信息
       this.$ClientAPI.PersonMessage().then((res) => {
-        // console.log(res.data.data);
+        console.log(res.data.data);
         this.PersonMessage = res.data.data;
         this.time = this.PersonMessage.birthday;
         var temp = res.data.data;
@@ -281,31 +271,86 @@ export default {
         this.getDate();
         this.showTime = false;
       });
-
-      // console.log(this.time);
     },
-    onClickChangeAddress() {
-      //点击修改地址
+    onClickCity() {
+      //点击显示地址弹层
       this.showAddress = true;
+      this.getCity();
     },
-    onClickCancel() {
-      //隐藏地址
-      this.showAddress = false;
+    OnChangeCity(picker, data, index) {
+      //点击修改省市区
+      switch (index) {
+        // 改变的是最左侧的省份
+        case 0:
+          this.$ClientAPI.sonArea(data[index].code).then((res) => {
+            this.areaList.city_list = this.getChangeCity(res.data.data); //中间市
+            var temp = res.data.data;
+            // console.log(temp);
+            this.$ClientAPI.sonArea(temp[0].id).then((res) => {
+              this.areaList.county_list = this.getChangeCity(res.data.data); //右边区、县
+            });
+          });
+          break;
+        // 改变的是中间的市
+        case 1:
+          this.$ClientAPI.sonArea(data[index].code).then((res) => {
+            this.areaList.county_list = this.getChangeCity(res.data.data); //右边区、县
+          });
+          break;
+      }
+    },
+    getCity() {
+      //封装方法
+      this.$ClientAPI.sonArea(0).then((res) => {
+        // console.log(res.data) ;
+        this.areaList.province_list = this.getChangeCity(res.data.data); //左边省份
+        var temp = res.data.data;
+        this.$ClientAPI.sonArea(this.PersonMessage.province_id?this.PersonMessage.province_id:temp[0].id).then((res) => {
+          this.areaList.city_list = this.getChangeCity(res.data.data); //中间市
+          var str = res.data.data;
+          this.$ClientAPI.sonArea(this.PersonMessage.city_id?this.PersonMessage.city_id:str[0].id).then((res) => {
+            this.areaList.county_list = this.getChangeCity(res.data.data); //右边区、县
+          });
+        });
+      });
+    },
+    getChangeCity(arr) {
+      // 操作转换(转化成vant需要的格式)
+      let obj = {};
+      for (let i = 0; i < arr.length; i++) {
+        obj[arr[i].id] = arr[i].area_name;
+      }
+      return obj;
     },
     onClickConfirm(obj) {
       //点击修改地址
       console.log(obj);
-      this.Address = `${obj[0].name} ${obj[1].name} ${obj[2].name}`;
-      localStorage.setItem("Address", this.Address);
+      this.$ClientAPI
+        .UserChange({
+          city_id: obj[1].code,
+          district_id: obj[2].code,
+          province_id: obj[0].code,
+        })
+        .then((res) => {
+          console.log(res.data.code);
+          this.getDate();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
       this.showAddress = false;
     },
     onClickSubject() {
       //点击学科
       this.$router.push("/subject");
     },
-    onClickClass() {
-      //点击从选年级
-      this.showClass = true;
+    // 年纪选择器
+    onConfirms(valueClass) {
+      this.valueClass = valueClass;
+      // console.log(this.valueClass);
+      localStorage.setItem("valueClass", this.valueClass);
+      this.showPicker = false;
     },
   },
 };
@@ -451,5 +496,19 @@ export default {
 }
 .van-picker__toolbar {
   width: 100%;
+}
+
+// 学校弹出层样式
+.Class_select_list {
+  width: 100vw;
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #eb6100;
+  border-bottom: 1px solid rgba(238, 238, 238, 0.5);
+}
+.Class_select_list div {
+  margin: 0.5rem 0.4rem;
 }
 </style>

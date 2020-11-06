@@ -47,9 +47,20 @@ const urlType = {
         // 获取年级和学科数据
         Attribute:"/app/module/attribute/1",
         // 获取所在城市
-        sonArea:"/api/app/sonArea/0",
+        sonArea:"/api/app/sonArea/",
         // 我的页面里面的取消关注
         TeacherHide:"/api/app/collect/cancel/",
+        // 报名
+        BAOMING:"/api/app/order/downOrder",
+        // 学习
+        XUEXI:"/api/app/myStudy/course/",
+        // 评论
+          PINGLUN:"/api/app/myStudy/comment",
+        //   我的学习
+        WDXX:"/api/app/myStudy/",
+        // 头像
+        // GRXX:"/api/app/user",
+        TOXIANG:"/api/app/public/img",
         // 课程搜索
         ClassSearch:"/api/app/courseBasis",
         // 学习视频
@@ -64,6 +75,9 @@ const urlType = {
         classify:"/api/app/module/attribute/1",
         // 上传图片
         shangchuanImg:"/api/app/public/img",
+        GERENXIAOXI:"/api/app/feedback",//意见反馈
+        // 一对一辅导
+        otoCourse:"/api/app/otoCourse"
     },
     type: {
         GET: "get",
