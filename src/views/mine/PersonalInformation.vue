@@ -135,6 +135,7 @@
     <!-- 学校弹出层 -->
     <van-popup v-model="showPicker" round position="bottom">
       <van-picker
+        :columns="columns"  
         show-toolbar
         @cancel="showPicker = false"
         @confirm="onConfirms"
