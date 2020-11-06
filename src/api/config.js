@@ -71,6 +71,14 @@ const urlType = {
         msg:"/api/app/message/classifyMessage",
         // 收到消息通知
         getMsg:"/api/app/message/getMessage",
+        GERENXIAOXI:"/api/app/feedback",
+        // 一对一辅导
+        otoCourse:"/api/app/otoCourse",
+        // 课程订单
+        KECHENGDINDAN:"/api/app/myOrder",
+        // 课程详情
+        KECHENGXIANGQING:"/api/app/myOrder/detail",
+
         // 学科+年级
         classify:"/api/app/module/attribute/1",
         // 上传图片

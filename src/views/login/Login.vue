@@ -84,7 +84,7 @@ export default {
             message: "登录成功",
             position: "top",
           });
-          this.$router.push("/mine"); //跳转到我的页面
+          this.$router.push("/"); //跳转到首页  
         })
         .catch((err) => {
           console.log(err);

@@ -40,6 +40,9 @@
 
 <script>
 export default {
+  mounted(){
+   
+  },
   methods: {
     onClickLeft() {
       window.history.back();

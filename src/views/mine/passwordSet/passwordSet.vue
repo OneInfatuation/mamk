@@ -21,16 +21,21 @@
           style="float: right; color: orange; font-size: 0.7rem"
           v-show="isShow"
           @click="getMessage"
+          
           >获取验证码</span
         >
         <span
           style="float: right; color: orange; font-size: 0.7rem"
           v-show="!isShow"
-          >{{count}} s </span
-        >
+          >{{ count }} s
+        </span>
       </p>
-      <p><input placeholder="请输入验证码" type="text" v-model="yzMessage"/></p>
-      <p><input placeholder="请输入密码" type="password" v-model="password"/></p>
+      <p>
+        <input placeholder="请输入验证码" type="text" v-model="yzMessage" />
+      </p>
+      <p>
+        <input placeholder="请输入密码" type="password" v-model="password" />
+      </p>
     </div>
 
     <p class="submit_btn"><button @click="btn_true">确定</button></p>
@@ -38,15 +43,16 @@
 </template>
 
 <script>
+import {Toast} from "vant"
 export default {
   data() {
     return {
       isShow: true,
       iphone: "",
-      yzMessage:"",
-      password:"",
-      count:"",
-      timer: null
+      yzMessage: "",
+      password: "",
+      count: "",
+      timer: null,
     };
   },
   methods: {
@@ -62,22 +68,44 @@ export default {
         alert("请正确填写手机号码!", { icon: 5, offset: "200px" });
         return false;
       } else {
+        // 获取验证码
+        this.$ClientAPI
+          .VerificationCode({
+            mobile: this.iphone,
+            sms_type: "getPassword",
+          })
+          .then((res) => {
+            console.log(res);
+            var code = res.data.code;
+            if (code == 200) {
+              Toast.success({
+                message: "验证码已发送",
+                position: "center",
+              });
+              console.log(this.sms_code)
+            } else {
+              // Toast(`${res.data.msg}`);
+
+              // return
+            }
+          });
+
         // 声明时间
-        const TIME_COUNT = 60
-        if(!this.timer){
+        const TIME_COUNT = 60;
+        // 倒计时
+        if (!this.timer) {
           this.count = TIME_COUNT;
           this.isShow = false;
-          this.timer = setInterval(()=>{
-            if(this.count > 0 && this.count <= TIME_COUNT){
-              this.count --
-            }else{
+          this.timer = setInterval(() => {
+            if (this.count > 0 && this.count <= TIME_COUNT) {
+              this.count--;
+            } else {
               this.isShow = true;
               clearInterval(this.timer);
-              this.timer = null
+              this.timer = null;
             }
-          },1000)
+          }, 1000);
         }
-        
       }
     },
     // 确认按钮
@@ -88,17 +116,14 @@ export default {
       if (zz.test(this.iphone) == false) {
         alert("请正确填写手机号码!", { icon: 5, offset: "200px" });
         return false;
-      }else{
-          //验证是否格式正确
-          if(this.yzMessage.trim() =="" && this.password.trim() == ""){
-              alert("格式不正确")
-          }else{
-            // 手机号码是否注册验证
-          }
+      } else {
+        //验证是否格式正确
+        if (this.yzMessage.trim() == "" && this.password.trim() == "") {
+          alert("格式不正确");
+        } else {
+          // 手机号码是否注册验证
+        }
       }
-    
-
-
     },
   },
 };

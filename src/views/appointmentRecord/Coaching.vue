@@ -10,7 +10,6 @@
     <!-- 上课时间 -->
     <div v-show="isShowTime">
       <van-calendar
-        title="日历"
         :poppable="false"
         :show-confirm="false"
         :style="{ height: '500px' }"

@@ -23,8 +23,7 @@
       </template>
     </van-nav-bar>
     <!-- 搜索数据渲染 -->
-    <KCsearch v-show="!isShow" :selectList = "selectList"></KCsearch>
-
+    <KCsearch v-show="!isShow" :selectList="selectList"></KCsearch>
 
     <!-- 历史搜索模块 -->
     <div v-show="isShow">
@@ -49,10 +48,10 @@
 </template>
 
 <script>
-import KCsearch from "../../components/kecheng/KCsearch"
+import KCsearch from "../../components/kecheng/KCsearch";
 export default {
-  components:{
-    KCsearch
+  components: {
+    KCsearch,
   },
   data() {
     return {
@@ -80,16 +79,20 @@ export default {
       };
       // 拿端口数据
       this.$ClientAPI.ClassSearch({ obj }).then((res) => {
-        console.log(res.data.data.list);
+        // console.log(res.data.data.list);
         this.list = res.data.data.list;
 
         this.selectList = [];
         this.list.map((item) => {
           if (item.title.trim().includes(this.value.trim())) {
-            this.selectList.push(item);
+            this.selectList.unshift(item);
+            console.log(this.selectList);
           }
         });
-        console.log(this.selectList);
+
+        // 判断去重
+
+        // console.log(this.selectList);
       });
       //判断数据是否相同
       var flag = false;
@@ -99,7 +102,10 @@ export default {
         }
       });
       if (!flag) {
-        this.searchList.push(this.value);
+        this.searchList.unshift(this.value);
+        if(this.searchList.length >5){
+          this.searchList.splice(5,1)
+        }
         localStorage.searchList = JSON.stringify(this.searchList);
       }
       // this.searchList.push(this.value.trim());
@@ -142,12 +148,12 @@ export default {
     //点击搜索历史
     addValue(item) {
       this.value = item;
-      this.change()
+      this.change();
     },
     onSearch() {
       if (this.value.length > 0) {
         // console.log(111);
-        this.value = "";
+        // this.value = "";
       } else {
         this.onClickBack();
       }
@@ -213,6 +219,4 @@ export default {
   text-align: center;
   font-size: 0.9rem;
 }
-
-
 </style>

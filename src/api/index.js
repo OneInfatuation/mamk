@@ -158,6 +158,19 @@ const ClientAPI = {
     changeImage(params) {
         return requset(urlType.type.POST, urlType.url.shangchuanImg, params);
     },
+    geRenpinglun(params){
+        return requset(urlType.type.POST,urlType.url.GERENXIAOXI,params)},
+    otoCourse(params){
+        return requset(urlType.type.GET,urlType.url.otoCourse,{params});
+    },
+    // 课程订单
+    kechengdingdan(params){
+        return requset(urlType.type.POST,urlType.url.KECHENGDINDAN,params)
+    },
+    // 课程详情
+kechengxiangqing(params){
+    return  requset(urlType.type.POST,urlType.url.KECHENGXIANGQING,params)
+},
     geRenpinglun(params) {//意见反馈
         return requset(urlType.type.POST, urlType.url.GERENXIAOXI, params)
     },

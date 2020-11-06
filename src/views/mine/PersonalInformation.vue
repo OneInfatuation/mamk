@@ -124,6 +124,8 @@
       />
     </van-popup>
 
+    <!-- 学校弹出层 -->
+    <van-popup v-model="showPicker" round position="bottom"></van-popup>
     <!-- 年级弹出层 -->
     <van-popup
       v-model="showPicker"
@@ -131,6 +133,7 @@
       :style="{ height: '45%' }"
     >
       <van-picker
+        :columns="columns"  
         show-toolbar
         @cancel="showPicker = false"
         @confirm="onConfirms"
