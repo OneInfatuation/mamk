@@ -47,7 +47,7 @@ const urlType = {
         // 获取年级和学科数据
         Attribute:"/app/module/attribute/1",
         // 获取所在城市
-        sonArea:"/api/app/sonArea/0",
+        sonArea:"/api/app/sonArea/",
         // 我的页面里面的取消关注
         TeacherHide:"/api/app/collect/cancel/",
         // 报名
@@ -71,6 +71,11 @@ const urlType = {
         msg:"/api/app/message/classifyMessage",
         // 收到消息通知
         getMsg:"/api/app/message/getMessage",
+        // 学科+年级
+        classify:"/api/app/module/attribute/1",
+        // 上传图片
+        shangchuanImg:"/api/app/public/img",
+        GERENXIAOXI:"/api/app/feedback",//意见反馈
         
         GERENXIAOXI:"/api/app/feedback",
         // 一对一辅导

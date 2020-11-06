@@ -216,14 +216,13 @@ export default {
   methods: {
     OnAbout(index) {
       console.log(index);
-      // this.list.splice(index, 1);
     },
     gotoTeacher(id) {
       this.$router.push({
-        path: "/teacher",
-        query: {
-          id,
-        },
+        path:"/teacher",
+        query:{
+          id:196
+        }
       });
     },
     formatDate(date) {

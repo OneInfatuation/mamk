@@ -6,29 +6,26 @@
       <div class="waw_person_wrapper">
         <div class="waw_img">
           <!--头像  -->
+          <input
+            ref="file"
+            type="file"
+            style="display: none"
+            @change="onChangeImage"
+          />
           <div class="waw_img_title">头像</div>
-          <div class="waw_img_box">
-            <!-- 动态渲染头像 -->
+          <div class="waw_img_box" @click="showImg = true">
             <img :src="PersonMessage.avatar" />
-            <van-icon
-              name="arrow"
-              color="lightgray"
-              @click="onClickChangeImg"
-            />
+            <van-icon name="arrow" color="lightgray" />
           </div>
         </div>
         <!-- 名字 -->
         <div class="waw_person">
           <div>昵称</div>
-          <div class="waw_user_box">
+          <div class="waw_user_box" @click="onClickChangeNickname">
             <div>
-              <span>{{ nickName }}</span>
+              <span>{{ PersonMessage.nickname }}</span>
             </div>
-            <van-icon
-              name="arrow"
-              color="lightgray"
-              @click="onClickChangeNickname"
-            />
+            <van-icon name="arrow" color="lightgray" />
           </div>
         </div>
         <!-- 手机号 -->
@@ -39,68 +36,62 @@
         <!-- 性别 -->
         <div class="waw_person">
           <div>性别</div>
-          <div class="waw_sex_box">
+          <div class="waw_sex_box" @click="onClickChangeSex">
             <span>{{ sex }}</span>
-            <van-icon
-              name="arrow"
-              color="lightgray"
-              @click="onClickChangeSex"
-            />
+            <van-icon name="arrow" color="lightgray" />
           </div>
         </div>
         <!-- 出生日期 -->
         <div class="waw_person">
           <div>出生日期</div>
-          <div class="waw_time_box">
-            <span>{{ time | timeYears }}</span>
-            <van-icon name="arrow" color="lightgray" @click="onClickTime" />
+          <div class="waw_time_box" @click="showTime = true">
+            <span>{{ time }}</span>
+            <van-icon name="arrow" color="lightgray" />
           </div>
         </div>
         <!-- 说在城市 -->
         <div class="waw_person">
-          <div>所在城市</div>
-          <div class="waw_address_box">
+          <div class="waw_city_box">所在城市</div>
+          <div class="waw_address_box" @click="onClickCity">
             <div>
-              <span>{{ Address }}</span>
+              <span
+                >{{ PersonMessage.province_name }}
+                {{ PersonMessage.city_name }}
+                {{ PersonMessage.district_name }}</span
+              >
             </div>
-            <van-icon
-              name="arrow"
-              color="lightgray"
-              @click="onClickChangeAddress"
-            />
+            <van-icon name="arrow" color="lightgray" />
           </div>
         </div>
         <!-- 学科 -->
         <div class="waw_person">
           <div>学科</div>
-          <div class="waw_subject_box">
+          <div class="waw_subject_box" @click="onClickSubject">
             <div>
               <span v-for="(item, index) in subject" :key="index">{{
                 item
               }}</span>
             </div>
-            <van-icon name="arrow" color="lightgray" @click="onClickSubject" />
+            <van-icon name="arrow" color="lightgray" />
           </div>
         </div>
         <!-- 年级 -->
         <div class="waw_person">
           <div>年级</div>
           <div class="waw_class_box" @click="showPicker = true">
-            <div>{{ valueClass }}</div>
+            <div>{{valueClass}}</div>
             <van-icon name="arrow" color="lightgray" />
           </div>
         </div>
       </div>
     </div>
-
     <!-- 相册弹出层 -->
     <van-popup v-model="showImg" position="bottom" :style="{ height: '30%' }">
       <div class="waw_popup_box">
         <div class="waw_popup_wrapper">
-          <p @click.stop="uploadHeadImg">拍照</p>
-          <p @click.stop="uploadHeadImg">从手机相册选择</p>
-          <p @click="onClickHide">取消</p>
-            <input type="file" accept="image/*" @change="handleFile" class="hiddenInput"/>
+          <p>拍照</p>
+          <p @click="onClickUpdateImage">从手机相册选择</p>
+          <p @click="showImg = false">取消</p>
         </div>
       </div>
     </van-popup>
@@ -108,7 +99,7 @@
     <!-- 日期弹出层 -->
     <van-popup v-model="showTime" position="bottom" :style="{ height: '45%' }">
       <van-datetime-picker
-        @cancel="onCancel"
+        @cancel="showTime = false"
         @confirm="onConfirm"
         v-model="currentDate"
         type="date"
@@ -125,15 +116,20 @@
       :style="{ height: '45%' }"
     >
       <van-area
-        :columns-placeholder="['请选择', '请选择', '请选择']"
-        :area-list="arealist"
-        @cancel="onClickCancel"
+        :area-list="areaList"
+        :value="PersonMessage.district_id + ''"
+        @cancel="showAddress = false"
         @confirm="onClickConfirm"
+        @change="OnChangeCity"
       />
     </van-popup>
 
-    <!-- 学校弹出层 -->
-    <van-popup v-model="showPicker" round position="bottom">
+    <!-- 年级弹出层 -->
+    <van-popup
+      v-model="showPicker"
+      position="bottom"
+      :style="{ height: '45%' }"
+    >
       <van-picker
         :columns="columns"  
         show-toolbar
@@ -145,58 +141,34 @@
 </template>
 <script>
 import NavTitle from "../../components/navTitle/TitleOnlyBack";
+import { Toast } from "vant";
 export default {
   components: {
     NavTitle,
   },
   data() {
     return {
-      PersonMessage: {}, //获取个人信息
-      nickName: "", //姓名
-      sex: localStorage.getItem("sex") || "男", //性别
-      time: localStorage.getItem("time") || "2000-10-10", //日期
-      Address: localStorage.getItem("Address") || "黑龙江省 哈尔滨市 阿城区", //地址
+      sex: "", //性别
+      PersonMessage: [], //获取个人信息
+      time: "", //日期
+      Address: localStorage.getItem("Address") || "请选择你的地址", //地址
       subject: JSON.parse(localStorage.getItem("result")) || ["语文"],
-      valueClass: localStorage.getItem("valueClass") || "请选择你的年级",//年级
+      valueClass: localStorage.getItem("valueClass") || "请选择", //年级
       showImg: false, //图片修改（默认隐藏）
       showTime: false, //日期修改（默认隐藏）
       showAddress: false, //修改地址（默认隐藏）
-      showClass: false, //修改年级（默认隐藏）
+      showPicker: false, //修改年级（默认隐藏）
       minDate: new Date(1980, 0, 1),
       maxDate: new Date(2025, 10, 1),
       currentDate: new Date(1980, 0, 1),
       area: [],
       areaObj: {},
       areaObj2: {},
-      arealist: {
-        province_list: {
-          110000: "北京市",
-          120000: "天津市",
-          130000: "黑龙江省",
-        },
-        city_list: {
-          110100: "北京市",
-          110200: "县",
-          120100: "天津市",
-          120200: "县",
-          130100: "哈尔滨市",
-        },
-        county_list: {
-          110101: "东城区",
-          110102: "西城区",
-          110105: "朝阳区",
-          110106: "丰台区",
-          120101: "和平区",
-          120102: "河东区",
-          120103: "河西区",
-          120104: "南开区",
-          120105: "河北区",
-          130101: "阿城区",
-          // ....
-        },
+      areaList: {
+        province_list: {},
+        city_list: {},
+        county_list: {},
       },
-      // 年级信息
-      showPicker: false,
       columns: [
         "小学一年级",
         "小学二年级",
@@ -214,89 +186,65 @@ export default {
     };
   },
   mounted() {
+    this.getDate();
     // 获取个人信息
-    this.$ClientAPI.PersonMessage().then((res) => {
-      console.log(res.data.data);
-      this.PersonMessage = res.data.data;
 
-    });
-
-    // 获取所在城市
-    let person = this.PersonMessage;
-    console.log(person);
-    // this.Address = `${person.province_name}
-    //                  ${person.city_name}
-    //                  ${person.district_name}`;
-    // localStorage.setItem("Address", this.Address);
-
-    this.$ClientAPI.sonArea().then((res) => {
-      this.area = res.data.data;
-      // console.log(res.data.data);
-      this.areaObj = { ...this.area };
-      console.log(this.areaObj);
-
-      for (var i = 0; i < this.areaObj.length; i++) {
-        let obj = {
-          index: i,
-          id: id,
-          province_list: {
-            id: area_name,
-          },
-        };
-        this.areaObj2.push(obj);
-      }
-      // console.log(this.areaObj2);
-    });
-
-    var Nick = localStorage.getItem("value"); //读取昵称
-    if (Nick) {
-      this.nickName = Nick;
-    }
-
-    var mobile = localStorage.getItem("mobile"); //读取手机号
-    if (mobile) {
-      this.user = mobile;
-    }
-    var sex = localStorage.getItem("sex"); //读取性别
-    if (sex) {
-      this.sex = sex;
-    }
-
-    var Time = localStorage.getItem("time"); //读取昵称
-    if (Time) {
-      this.time = Time;
-    }
+    // 学科+年级
+    this.$ClientAPI
+      .NianClass()
+      .then((res) => {
+        // console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
+
   methods: {
-     // 打开图片上传
-    uploadHeadImg: function () {
-      this.$el.querySelector('.hiddenInput').click()
+    getDate() {
+      // 获取个人信息
+      this.$ClientAPI.PersonMessage().then((res) => {
+        console.log(res.data.data);
+        this.PersonMessage = res.data.data;
+        this.time = this.PersonMessage.birthday;
+        var temp = res.data.data;
+
+        if (temp.sex == 0) {
+          this.sex = "男";
+        } else if (temp.sex == 1) {
+          this.sex = "女";
+        } else if (temp.sex == 3) {
+          this.sex = "保密";
+        }
+      });
     },
-    // 将头像显示
-    handleFile: function (e) {
-      let $target = e.target || e.srcElement
-      let file = $target.files[0]
-      var reader = new FileReader()
-      reader.onload = (data) => {
-        let res = data.target || data.srcElement
-        this.PersonMessage.avatar = res.result
-      }
-      reader.readAsDataURL(file)
-      
-        this.$ClientAPI.UserChange({
-avatar:this.PersonMessage.avatar
-  }).then(res=>{
-console.log(res);
-// localStorage.setItem("file",file)
-  })
+    onClickUpdateImage() {
+      //点击上传图片
+      this.$refs.file.click();
     },
-    onClickChangeImg() {
-      //点击修改图片(显示)
-      this.showImg = true;
-    },
-    onClickHide() {
-      //点击隐藏（图片）
-      this.showImg = false;
+    onChangeImage() {
+      //当input中文件发生变化是触发
+      let formData = new FormData();
+      formData.append("file", event.target.files[0]);
+      this.$ClientAPI
+        .changeImage(formData)
+        .then((res) => {
+          // console.log(res.data.data.path);
+          this.$ClientAPI
+            .UserChange({ avatar: res.data.data.path })
+            .then((res) => {
+              // console.log(res);
+              this.getDate();
+              this.showImg = false;
+            });
+          var time = null;
+          time = setTimeout(() => {
+            Toast.success("修改头像成功");
+          }, 1000);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     onClickChangeNickname() {
       //点击跳转修改昵称页面
@@ -311,14 +259,6 @@ console.log(res);
       //点击跳转页面改变性别
       this.$router.push("/sex");
     },
-    onClickTime() {
-      //点击修改时间
-      this.showTime = true;
-    },
-    onCancel() {
-      //点击修改时间里面的取消
-      this.showTime = false;
-    },
     onConfirm(value) {
       //点击修改时间里面的确认
       console.log(value);
@@ -326,40 +266,89 @@ console.log(res);
       var m = value.getMonth() + 1;
       var d = value.getDate() > 9 ? value.getDate() : "0" + value.getDate();
       this.time = `${y}-${m}-${d}`;
-      localStorage.setItem("time", this.time);
-      this.showTime = false;
-      // console.log(this.time);
+      this.$ClientAPI.UserChange({ birthday: this.time }).then((res) => {
+        console.log(res);
+        this.getDate();
+        this.showTime = false;
+      });
     },
-    onClickChangeAddress() {
-      //点击修改地址
-      this.$axios.get("https://www.365msmk.com/api/app/sonArea/0").then((res)=>{
-        console.log(res)
-      })
-
-
-
+    onClickCity() {
+      //点击显示地址弹层
       this.showAddress = true;
+      this.getCity();
     },
-    onClickCancel() {
-      //隐藏地址
-      this.showAddress = false;
+    OnChangeCity(picker, data, index) {
+      //点击修改省市区
+      switch (index) {
+        // 改变的是最左侧的省份
+        case 0:
+          this.$ClientAPI.sonArea(data[index].code).then((res) => {
+            this.areaList.city_list = this.getChangeCity(res.data.data); //中间市
+            var temp = res.data.data;
+            // console.log(temp);
+            this.$ClientAPI.sonArea(temp[0].id).then((res) => {
+              this.areaList.county_list = this.getChangeCity(res.data.data); //右边区、县
+            });
+          });
+          break;
+        // 改变的是中间的市
+        case 1:
+          this.$ClientAPI.sonArea(data[index].code).then((res) => {
+            this.areaList.county_list = this.getChangeCity(res.data.data); //右边区、县
+          });
+          break;
+      }
+    },
+    getCity() {
+      //封装方法
+      this.$ClientAPI.sonArea(0).then((res) => {
+        // console.log(res.data) ;
+        this.areaList.province_list = this.getChangeCity(res.data.data); //左边省份
+        var temp = res.data.data;
+        this.$ClientAPI.sonArea(this.PersonMessage.province_id?this.PersonMessage.province_id:temp[0].id).then((res) => {
+          this.areaList.city_list = this.getChangeCity(res.data.data); //中间市
+          var str = res.data.data;
+          this.$ClientAPI.sonArea(this.PersonMessage.city_id?this.PersonMessage.city_id:str[0].id).then((res) => {
+            this.areaList.county_list = this.getChangeCity(res.data.data); //右边区、县
+          });
+        });
+      });
+    },
+    getChangeCity(arr) {
+      // 操作转换(转化成vant需要的格式)
+      let obj = {};
+      for (let i = 0; i < arr.length; i++) {
+        obj[arr[i].id] = arr[i].area_name;
+      }
+      return obj;
     },
     onClickConfirm(obj) {
       //点击修改地址
       console.log(obj);
-      this.Address = `${obj[0].name} ${obj[1].name} ${obj[2].name}`;
-      localStorage.setItem("Address", this.Address);
+      this.$ClientAPI
+        .UserChange({
+          city_id: obj[1].code,
+          district_id: obj[2].code,
+          province_id: obj[0].code,
+        })
+        .then((res) => {
+          console.log(res.data.code);
+          this.getDate();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
       this.showAddress = false;
     },
     onClickSubject() {
       //点击学科
       this.$router.push("/subject");
     },
-    // 从手机相册选取
-    iphonePhoto() {},
     // 年纪选择器
     onConfirms(valueClass) {
       this.valueClass = valueClass;
+      // console.log(this.valueClass);
       localStorage.setItem("valueClass", this.valueClass);
       this.showPicker = false;
     },
@@ -445,6 +434,9 @@ console.log(res);
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
+}
+.waw_city_box {
+  width: 30%;
 }
 .waw_address_box {
   width: 90%;

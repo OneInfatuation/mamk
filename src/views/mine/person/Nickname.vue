@@ -19,16 +19,25 @@ export default {
   },
   data() {
     return {
-      value: this.$route.query.name, //昵称，默认为admin
+      value: this.$route.query.name, //昵称，
     };
   },
   methods: {
     onClickRight() {
       //点击保存更改昵称
-      // this.$ClientAPI.UserChange().then((res) => {
-      //  });    
-       localStorage.setItem("value", this.value);
+      this.$ClientAPI
+        .UserChange({ nickname: this.value })
+        .then((res) => {
+          console.log(res.data.code);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       this.$router.go(-1);
+      this.getUser();
+    },
+    getUser() {
+      this.$ClientAPI.PersonMessage().then((res) => {});
     },
   },
 };

@@ -19,12 +19,12 @@
           </p>
           <p class="waw_sex">男<span>30教龄</span></p>
         </div>
-        <p @click="onClickShow" v-show="isShow==2">
+        <p @click="onClickShow" v-show="isShow == 2">
           <van-button class="vant_button_box" round type="info"
             >关注</van-button
           >
         </p>
-        <p @click="onClickShow" v-show="isShow==1">
+        <p @click="onClickShow" v-show="isShow == 1">
           <span>已关注</span>
         </p>
       </div>
@@ -45,9 +45,7 @@
             </li>
             <li>
               <span>老师简介</span>
-              <font
-                >　{{teacherList.introduction}}</font
-              >
+              <font>　{{ teacherList.introduction }}</font>
             </li>
           </ul>
         </van-tab>
@@ -117,16 +115,16 @@ export default {
           this.getTeacher();
           if (res.data.data.flag == 2) {
             var tiem = null;
-            tiem = setTimeout(()=>{
+            tiem = setTimeout(() => {
               Toast("取消关注");
-               clearTimeout(tiem)
-            },1000)
+              clearTimeout(tiem);
+            }, 1000);
           } else if (res.data.data.flag == 1) {
-           var strTiem = null;
-            strTiem = setTimeout(()=>{
-               Toast("已关注");
-               clearTimeout(strTiem);
-            },1000)
+            var strTiem = null;
+            strTiem = setTimeout(() => {
+              Toast("已关注");
+              clearTimeout(strTiem);
+            }, 1000);
           }
         })
         .catch((err) => {
@@ -135,6 +133,7 @@ export default {
     },
     getTeacher() {
       //获取讲师详情
+
       this.$ClientAPI
         .Teacher(this.$route.query.id)
         .then((res) => {
@@ -359,23 +358,23 @@ export default {
     height: 100%;
   }
 }
-.span_title{
+.span_title {
   font-size: 0.7rem;
   color: gray;
 }
-.waw_jiaoling{
+.waw_jiaoling {
   font-size: 0.7rem;
   color: orange;
   margin-left: 5%;
 }
-.waw_sex{
-    font-size: 0.7rem;
-    color: gray;
+.waw_sex {
+  font-size: 0.7rem;
+  color: gray;
 }
-.waw_sex span{
+.waw_sex span {
   margin-left: 5%;
 }
-.waw_div_title{
+.waw_div_title {
   width: 60%;
   margin-left: 5%;
 }

@@ -7,11 +7,10 @@
           <div class="toxian">
             <div class="toxian_box">
               <!-- 头像 -->
-              <van-image round width="3rem" height="3rem" :src="this.avatar"  @click="onClickLogin"/>
+              <van-image round width="3rem" height="3rem" :src="avatar"  @click="onClickLogin"/>
               <!-- 用户名 -->
               <div @click="onClickLogin">
-                <span v-show="user.length <= 0">登录 / 注册</span>
-                <span v-show="user.length > 0">{{ user }}</span>
+                <span>{{ user }}</span>
               </div>
             </div>
             <!-- 约课 -->
@@ -264,6 +263,7 @@ export default {
     this.$ClientAPI.PersonMessage().then((res) => {
       console.log(res);
       this.avatar = res.data.data.avatar;
+      this.user = res.data.data.nickname;
     });
 
     this.$ClientAPI
