@@ -60,6 +60,8 @@ const urlType = {
         msg:"/api/app/message/classifyMessage",
         // 收到消息通知
         getMsg:"/api/app/message/getMessage",
+        // 一对一辅导
+        otoCourse:"/api/app/otoCourse"
     },
     type: {
         GET: "get",

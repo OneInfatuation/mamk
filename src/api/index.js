@@ -124,6 +124,9 @@ const ClientAPI = {
     },
     getMessageSend(params){
         return requset(urlType.type.POST,urlType.url.getMsg,params);
+    },
+    otoCourse(params){
+        return requset(urlType.type.GET,urlType.url.otoCourse,{params});
     }
 }
 export default ClientAPI;

@@ -7,7 +7,7 @@
           <div class="toxian">
             <div class="toxian_box">
               <!-- 头像 -->
-              <van-image round width="3rem" height="3rem" :src="this.avatar" />
+              <van-image round width="3rem" height="3rem" :src="this.avatar"  @click="onClickLogin"/>
               <!-- 用户名 -->
               <div @click="onClickLogin">
                 <span v-show="user.length <= 0">登录 / 注册</span>
