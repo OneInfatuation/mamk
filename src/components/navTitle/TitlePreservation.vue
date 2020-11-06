@@ -28,7 +28,7 @@ export default {
       //点击保存更改昵称
       this.$emit("onClickRight");
       this.$emit("onClickChangeSex");
-      this.$emit("onChangeCheck")
+      this.$emit("onChangeCheck");
     },
   },
 };

@@ -83,8 +83,8 @@ const ClientAPI = {
         return requset(urlType.type.GET,urlType.url.PersonMessage,params)
     },
     // 个人信息修改
-    UserChange(){
-        return requset(urlType.type.PUT,urlType.url.UserChange)
+    UserChange(params){
+        return requset(urlType.type.PUT,urlType.url.UserChange,params)
     },
     // 学科与年级数据获取
     Attribute(){
@@ -122,8 +122,15 @@ const ClientAPI = {
     GetMessage(){//消息通知
         return requset(urlType.type.POST,urlType.url.msg);
     },
-    getMessageSend(params){
+    getMessageSend(params){//消息分类通知
         return requset(urlType.type.POST,urlType.url.getMsg,params);
+    },
+    NianClass(){//年级+学科
+        return requset(urlType.type.GET,urlType.url.classify);
+    },
+    // 上传图片
+    changeImage(params){
+        return requset(urlType.type.POST,urlType.url.shangchuanImg,params);
     }
 }
 export default ClientAPI;

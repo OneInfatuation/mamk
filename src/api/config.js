@@ -60,6 +60,10 @@ const urlType = {
         msg:"/api/app/message/classifyMessage",
         // 收到消息通知
         getMsg:"/api/app/message/getMessage",
+        // 学科+年级
+        classify:"/api/app/module/attribute/1",
+        // 上传图片
+        shangchuanImg:"/api/app/public/img",
     },
     type: {
         GET: "get",
