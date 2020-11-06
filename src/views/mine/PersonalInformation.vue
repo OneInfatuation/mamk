@@ -224,6 +224,8 @@ export default {
     onChangeImage() {
       //当input中文件发生变化是触发
       let formData = new FormData();
+      console.log(formData);
+      console.log(event);
       formData.append("file", event.target.files[0]);
       this.$ClientAPI
         .changeImage(formData)

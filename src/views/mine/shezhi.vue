@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import NavTitle from '../../components/navTitle/TitleOnlyBack'
+import NavTitle from '../../components/navTitle/TitleOnlyBack';
 export default {
 components:{
     NavTitle
