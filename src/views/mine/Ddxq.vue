@@ -40,6 +40,13 @@
 
 <script>
 export default {
+  mounted(){
+    this.$ClientAPI.kechengxiangqing({
+      order_id:this.$route.query.id
+    }).then(res=>{
+      console.log(res);
+    })
+  },
   methods: {
     onClickLeft() {
       window.history.back();

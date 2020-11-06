@@ -343,12 +343,7 @@ const routes = [{
       navTitle: "仿真模考"
     }
   },
-  {
-    path: "/xuexi", //仿真模考页面
-    name: "Xuexi",
-    component: () => import('../views/xuexi/Xuexi.vue'),
-    meta: {
-      navTitle: "我的学习"}},
+
       {
     path: "/studyvideo", //仿真模考页面
     name: "StudyVideo",

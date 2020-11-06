@@ -1,18 +1,27 @@
 <template>
   <div>
-    <NavTitle></NavTitle>
-    <van-tabs v-model="active">
+    <div class="zmy_nav">
+<van-nav-bar
+  title="课程订单"
+>
+<template #left>
+    <van-icon name="arrow-left" size="18" @click="onClickLeft" />
+  </template>
+</van-nav-bar>
+    </div>
+    <div class="zmy_list">
+    <van-tabs v-model="active" @click="onClick">
       <van-tab title="全部订单">
         <div class="c"></div>
         <!-- 跳转订单详情 -->
-        <div class="zmy_order" @click="godingdan">
+        <div class="zmy_order" @click="godingdan" v-for="(item,index) in listkecheng" :key="index">
           <p class="zmy_p1">
-            <span class="zmy_sp2">订单编号：2020071713544868021</span>
+            <span class="zmy_sp2">订单编号：{{item.order_number}}</span>
             <span class="zmy_sp3">交易完成</span>
           </p>
           <ul class="zmy_p2">
-            <li>李老师18号20号地理大课堂开课了</li>
-            <li class="zmy_time">时间：220.07.17 13.54</li>
+            <li>{{item.title}}</li>
+            <li class="zmy_time">时间：{{item.created_at | timeFilter }}</li>
             <li class="zmy_time">
               <span>实付款</span>
               <img
@@ -32,14 +41,14 @@
         />
       </van-tab>
       <van-tab title="已完成">
-        <div class="zmy_order" @click="godingdan">
+           <div class="zmy_order" @click="godingdan(item.id)" v-for="(item,index) in listkecheng" :key="index">
           <p class="zmy_p1">
-            <span class="zmy_sp2">订单编号：2020071713544868021</span>
+            <span class="zmy_sp2">订单编号：{{item.order_number}}</span>
             <span class="zmy_sp3">交易完成</span>
           </p>
           <ul class="zmy_p2">
-            <li>李老师18号20号地理大课堂开课了</li>
-            <li class="zmy_time">时间：220.07.17 13.54</li>
+            <li>{{item.title}}</li>
+            <li class="zmy_time">时间：{{item.created_at | timeFilter }}</li>
             <li class="zmy_time">
               <span>实付款</span>
               <img
@@ -47,9 +56,6 @@
                 alt=""
               />
               <span class="span">0</span>
-            </li>
-            <li>
-              <button class="zmy_btn">加入学习</button>
             </li>
           </ul>
         </div>
@@ -63,31 +69,79 @@
       </van-tab>
     </van-tabs>
   </div>
+  <div class="yiyi-wei"></div>
+  </div>
 </template>
 
 <script>
-import NavTitle from "../../components/navTitle/TitleOnlyBack";
 export default {
-  components: {
-    NavTitle,
-  },
+ 
   data() {
     return {
       active: 0,
+      listkecheng:[],
     };
   },
+  mounted(){
+    this.kechenglist()
+  },
+    filters: {
+    timeFilter(value) {
+      var date = new Date(value * 1000);
+      var str = `${date.getHours()}时${date.getMinutes()}分${date.getSeconds()}分，${date.getFullYear()}年`;
+      return str;
+    },
+  },
+  
   methods: {
+    onClickLeft(){
+      this.$router.push("/mine")
+    },
     // 跳转订单详情
-    godingdan() {
+    godingdan(id) {
       this.$router.push({
         path: "/ddxq",
+       query: { id }
       });
+    },
+    onClick(name, title) {
+      // Toast(title);
+    this.kechenglist()
+
+    },
+    kechenglist(){
+this.$ClientAPI.kechengdingdan({
+        limit: 10,
+        order_status: this.active,
+        order_type: 2,
+        page: 1
+    }).then(res=>{
+      console.log(res.data.data.list);
+      this.listkecheng=res.data.data.list
+    })
     },
   },
 };
 </script>
 
 <style lang='scss' scoped>
+.zmy_nav{
+  width: 100%;
+  height: 8vh;
+  background: #fff;
+  .van-nav-bar{
+position: fixed;
+width: 100%;
+top:0px;
+background: #fff;
+z-index: 99999;
+  // // height: 8vh;
+}
+}
+
+// .zmy_list{
+//   height: 92vh;
+// }
 .c {
   margin-top: 1rem;
 }
@@ -96,6 +150,7 @@ export default {
   width: 95%;
   height: 10rem;
   margin: 0 auto;
+margin-top: 1.5rem;
   // border: 1px solid #eee;
   box-shadow: 0px 0px 4px rgb(175, 172, 172);
   border-radius: 5px;
@@ -132,5 +187,8 @@ export default {
       }
     }
   }
+}
+.yiyi-wei{
+  height: 2rem;
 }
 </style>
