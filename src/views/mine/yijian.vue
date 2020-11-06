@@ -16,13 +16,16 @@
     </div>
 </div>
  <div style="margin: 16px;">
-   <van-button type="warning" size="large">立即兑换</van-button>
+   <van-button type="warning" size="large"  @click="ontijiao">提交</van-button>
   </div>
   </div>
 </template>
 
 <script>
-import NavTitle from '../../components/navTitle/TitleOnlyBack'
+import NavTitle from '../../components/navTitle/TitleOnlyBack';
+import Vue from "vue";
+import { Toast } from "vant"; //引入文字提示
+Vue.use(Toast);
 export default {
 components:{
     NavTitle
@@ -31,6 +34,24 @@ data(){
   return {
     message:""
   }
+},
+  methods:{
+ontijiao(){
+  this.$ClientAPI.geRenpinglun({content:this.message}).then(res=>{
+    console.log(res);
+    
+ 
+    if (res.data.code==200) {
+           Toast("反馈成功");
+          }
+           })
+            var tiem = null;
+            tiem = setTimeout(()=>{
+               this.$router.push("/mine")
+               clearTimeout(tiem)
+            },3000)
+            
+}
 }
 }
 

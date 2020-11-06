@@ -280,14 +280,11 @@ export default {
     hmwStudyJump() {
       if (this.listInfo.is_buy == 0 && this.listInfo.price == 0) {
         this.$ClientAPI
-<<<<<<< HEAD
           .baoming({
             shop_id: this.listInfo.id,
             type: 5,
           })
-=======
           .LIJIBAOMING({ shop_id: this.listInfo.id, type: 5 })
->>>>>>> 73834af059337585d28c218db7bc83f682236ed6
           .then((res) => {
             console.log(res);
             if (res.data.code == 200) {
@@ -298,12 +295,9 @@ export default {
               Toast.success(res.data.msg);
               clearTimeout(time);
             }, 1000);
-<<<<<<< HEAD
-=======
           })
           .catch((err) => {
             console.log(err);
->>>>>>> 73834af059337585d28c218db7bc83f682236ed6
           });
       } else if (this.listInfo.is_buy == 1) {
         this.$router.push({
@@ -311,8 +305,6 @@ export default {
           query: { id: this.listInfo.id },
         });
       } else if (this.listInfo.is_buy == 0 && this.listInfo.price != 0) {
-<<<<<<< HEAD
-=======
         this.$router.push({
           path: "/confirmOrder",
           query: {
@@ -320,7 +312,6 @@ export default {
           },
         });
 
->>>>>>> 73834af059337585d28c218db7bc83f682236ed6
         Toast.success("请先购买课程");
       }
 

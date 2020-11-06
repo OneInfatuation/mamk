@@ -71,21 +71,12 @@
     </van-tabbar>
 
     <van-popup v-model="show">
-<<<<<<< HEAD
-        <div class="home_pop">
-            <div class="home_rate"><span>星级：</span><van-rate v-model="value" /></div>
-            <div class="home_textarea"><span>内容：</span><textarea v-model="text"></textarea></div>
-            <div class="home_button">
-                <van-button type="warning" @click="fabu">发布</van-button>
-            </div>
-=======
       <div class="home_pop">
         <div class="home_rate">
           <span>星级：</span><van-rate v-model="value" />
         </div>
         <div class="home_textarea">
           <span>内容：</span><textarea v-model="PLvalue"></textarea>
->>>>>>> 73834af059337585d28c218db7bc83f682236ed6
         </div>
         <div class="home_button">
           <van-button type="warning" @click="onClickFB">发布</van-button>
@@ -109,17 +100,14 @@ export default {
     return {
       //    底部导航
       active: 0,
-<<<<<<< HEAD
       show:false,//默认隐藏
       value:5,//默认评星数
-      text:''
-=======
+      text:'',
       show: false, //默认隐藏
       value: 5, //默认评星数
       list: [], //学习内容
       listID: [], //获取id
       PLvalue:"",//评论内容
->>>>>>> 73834af059337585d28c218db7bc83f682236ed6
     };
   },
   mounted() {
@@ -179,7 +167,6 @@ export default {
         position: "center",
       });
     },
-<<<<<<< HEAD
     fabu(){
     this.$ClientAPI.pinglun({
       content: this.text.value,
@@ -189,8 +176,7 @@ export default {
     }).then(res=>{
       console.log(res);
       localStorage.setItem("text",text)
-    })
-=======
+    })},
     getWatch() {
       //获取观看数据
       this.$ClientAPI
@@ -214,10 +200,10 @@ export default {
             kcId,
           }
         })
->>>>>>> 73834af059337585d28c218db7bc83f682236ed6
     }
   },
-};
+}
+
 </script>
 <style scoped>
 * {

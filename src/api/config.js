@@ -50,7 +50,6 @@ const urlType = {
         sonArea:"/api/app/sonArea/0",
         // 我的页面里面的取消关注
         TeacherHide:"/api/app/collect/cancel/",
-<<<<<<< HEAD
         // 报名
         BAOMING:"/api/app/order/downOrder",
         // 学习
@@ -62,7 +61,6 @@ const urlType = {
         // 头像
         // GRXX:"/api/app/user",
         TOXIANG:"/api/app/public/img",
-=======
         // 课程搜索
         ClassSearch:"/api/app/courseBasis",
         // 学习视频
@@ -73,7 +71,7 @@ const urlType = {
         msg:"/api/app/message/classifyMessage",
         // 收到消息通知
         getMsg:"/api/app/message/getMessage",
->>>>>>> 73834af059337585d28c218db7bc83f682236ed6
+        GERENXIAOXI:"/api/app/feedback",
     },
     type: {
         GET: "get",

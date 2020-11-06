@@ -2,13 +2,14 @@
   <div class="guanzhu_html">
     <NavTitle></NavTitle>
     <!-- 跳转讲师详情 -->
+    <!-- 判断一下  如果 guanzhuList.length小于等于0 就显示这个空状态-->
     <div class="waw_empty" v-show="guanzhuList.length<=0">
       <div class="waw_img_box">
         <img src="https://wap.365msmk.com/img/empty.0d284c2e.png" />
         <p>暂无关注</p>
       </div>
     </div>
-
+<!-- 如果guanzhuList.length大于零的话 就显示内容 -->
     <div class="waw_box" v-show="guanzhuList.length>0">
       <div
         class="box"
@@ -63,6 +64,7 @@ export default {
     this.getGuanZhu(); //调用封装
   },
   methods: {
+    // 点击取消关注  调用取消关注接口  把id传进去
     offAbout(id) {
       //点击取消收藏
       this.$ClientAPI
@@ -70,12 +72,14 @@ export default {
         .then((res) => {
           console.log(res.data);
           //  this.guanzhuList = res.data;
+          // 当取消操作完成以后  再调用一下关注接口，更新视口
           this.getGuanZhu(); //调用封装
         })
         .catch((err) => {
           console.log(err);
         });
     },
+
     gotoTeacher(id) {
       //点击跳转到讲师详情
       this.$router.push({ path: "/teacher", query: { id } });

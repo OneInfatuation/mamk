@@ -344,13 +344,12 @@ const routes = [{
     }
   },
   {
-<<<<<<< HEAD
     path: "/xuexi", //仿真模考页面
     name: "Xuexi",
     component: () => import('../views/xuexi/Xuexi.vue'),
     meta: {
-      navTitle: "我的学习"
-=======
+      navTitle: "我的学习"}},
+      {
     path: "/studyvideo", //仿真模考页面
     name: "StudyVideo",
     component: () => import('../views/home/StudyVideo.vue'),
@@ -398,7 +397,6 @@ const routes = [{
     component: () => import('../views/mine/Message/tongzhi/KsTongzhi.vue'),
     meta:{
       navTitle:"考试通知"
->>>>>>> 73834af059337585d28c218db7bc83f682236ed6
     }
   },
 ]

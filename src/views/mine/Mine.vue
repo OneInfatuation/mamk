@@ -18,11 +18,7 @@
             <button class="button" @click="toyueke">去约课</button>
           </div>
           <van-grid clickable :column-num="3">
-<<<<<<< HEAD
-            <van-grid-item to="/xuexi">
-=======
             <van-grid-item to="/myStudy">
->>>>>>> 73834af059337585d28c218db7bc83f682236ed6
               <template #default>
                 <!-- 特色课跳转 -->
                 <p class="main_cant">{{strNum}}</p>

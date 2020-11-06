@@ -97,7 +97,6 @@ const ClientAPI = {
     TeacherGZHide(params){
         return requset(urlType.type.PUT,urlType.url.TeacherHide+params+"/2")
     },
-<<<<<<< HEAD
     // 立即报名
     baoming(params){
         return requset(urlType.type.POST,urlType.url.BAOMING,params)
@@ -116,7 +115,6 @@ const ClientAPI = {
     //     return requset(urlType.type.PUT,urlType.url.GRXX,params)
     // }
 
-=======
     // 课程搜索
     ClassSearch(params){
         return requset(urlType.type.GET,urlType.url.ClassSearch,{params})
@@ -144,7 +142,9 @@ const ClientAPI = {
     },
     getMessageSend(params){
         return requset(urlType.type.POST,urlType.url.getMsg,params);
+    },
+    geRenpinglun(params){
+        return requset(urlType.type.POST,urlType.url.GERENXIAOXI,params)
     }
->>>>>>> 73834af059337585d28c218db7bc83f682236ed6
 }
 export default ClientAPI;

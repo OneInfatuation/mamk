@@ -8,6 +8,7 @@
           <!--头像  -->
           <div class="waw_img_title">头像</div>
           <div class="waw_img_box">
+            <!-- 动态渲染头像 -->
             <img :src="PersonMessage.avatar" />
             <van-icon
               name="arrow"
@@ -98,13 +99,8 @@
     <van-popup v-model="showImg" position="bottom" :style="{ height: '30%' }">
       <div class="waw_popup_box">
         <div class="waw_popup_wrapper">
-<<<<<<< HEAD
           <p @click.stop="uploadHeadImg">拍照</p>
           <p @click.stop="uploadHeadImg">从手机相册选择</p>
-=======
-          <p>拍照</p>
-          <p @click="iphonePhoto">从手机相册选择</p>
->>>>>>> 73834af059337585d28c218db7bc83f682236ed6
           <p @click="onClickHide">取消</p>
             <input type="file" accept="image/*" @change="handleFile" class="hiddenInput"/>
         </div>
@@ -140,15 +136,7 @@
 
     <!-- 学校弹出层 -->
     <van-popup v-model="showClass" position="bottom" :style="{ height: '45%' }">
-<<<<<<< HEAD
       <van-area title="标题" :area-list="areaList" />
-=======
-      <div class="Class_select_list">
-        <div>取消</div>
-        <div>确认</div>
-      </div>
-      <div class="Class_select_list_message"></div>
->>>>>>> 73834af059337585d28c218db7bc83f682236ed6
     </van-popup>
   </div>
 </template>
