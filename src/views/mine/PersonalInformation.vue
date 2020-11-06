@@ -85,17 +85,9 @@
         <!-- 年级 -->
         <div class="waw_person">
           <div>年级</div>
-<<<<<<< HEAD
-          <div class="waw_class_box">
-            <div>小学一年级</div>
-            <van-icon name="arrow" color="lightgray" @click="onClickClass" >
-              
-            </van-icon>
-=======
           <div class="waw_class_box" @click="showPicker = true">
             <div>{{ valueClass }}</div>
             <van-icon name="arrow" color="lightgray" />
->>>>>>> c06c49df6c55632df40b638be6e1517240c10c94
           </div>
         </div>
       </div>
@@ -141,10 +133,6 @@
     </van-popup>
 
     <!-- 学校弹出层 -->
-<<<<<<< HEAD
-    <van-popup v-model="showClass" position="bottom" :style="{ height: '45%' }">
-      <van-area title="标题" :area-list="areaList" />
-=======
     <van-popup v-model="showPicker" round position="bottom">
       <van-picker
         show-toolbar
@@ -152,7 +140,6 @@
         @cancel="showPicker = false"
         @confirm="onConfirms"
       />
->>>>>>> c06c49df6c55632df40b638be6e1517240c10c94
     </van-popup>
   </div>
 </template>
