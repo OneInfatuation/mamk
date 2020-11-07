@@ -81,7 +81,7 @@ export default {
           localStorage.setItem("token", token); //保存token
           localStorage.setItem("value", "admin");
           Toast.success({
-            message: "登录成功",
+            message: "成功登录到首页",
             position: "top",
           });
           this.$router.push("/"); //跳转到首页  
