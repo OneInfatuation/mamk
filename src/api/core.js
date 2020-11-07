@@ -1,23 +1,27 @@
-import axios from "axios";//引入axios模块
+import axios from "axios"; //引入axios模块
 import urlType from "./config";
 // import Vue from 'vue';
-import { Toast } from 'vant';
-import {Guid} from "./guid";
+import {
+  Toast
+} from 'vant';
+import {
+  Guid
+} from "./guid";
 
 var id = localStorage.getItem("deviceid");
 let deviceid = null;
-if(id){
+if (id) {
   deviceid = id
-}else{
+} else {
   deviceid = Guid.NewGuid().ToString("D");
 }
-localStorage.setItem("deviceid",deviceid)
+localStorage.setItem("deviceid", deviceid)
 
 // 创建实例
 const instance = axios.create({
-  baseURL: 'http://120.53.31.103:84',//公用路径
+  baseURL: 'http://120.53.31.103:84', //公用路径
   // baseURL: 'https://www.365msmk.com',//公用路径
-  timeout: 6000,//设置超时时间
+  timeout: 6000, //设置超时时间
   // headers: { 'X-Custom-Header': 'foobar' }//设置请求头
 });
 
@@ -25,33 +29,33 @@ const instance = axios.create({
 //   拦截器
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
-    // 在发送请求之前做些什么
-    Toast.loading({
-      duration:0,
-      message: '加载中...',
-      forbidClick: true,
-    });
-    var token = localStorage.getItem("token");
-    if(token){
-      config.headers.authorization = `Bearer ${token}`;
-    }
-    config.headers.deviceid = deviceid;
-    config.headers.devicetype = "H5";
-    return config;
-  }, function (error) {
-    // 对请求错误做些什么
-    return Promise.reject(error);
+  // 在发送请求之前做些什么
+  Toast.loading({
+    duration: 0,
+    message: '加载中...',
+    forbidClick: true,
   });
+  var token = localStorage.getItem("token");
+  if (token) {
+    config.headers.authorization = `Bearer ${token}`;
+  }
+  config.headers.deviceid = deviceid;
+  config.headers.devicetype = "H5";
+  return config;
+}, function (error) {
+  // 对请求错误做些什么
+  return Promise.reject(error);
+});
 
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
-    // 对响应数据做点什么
-    Toast.clear();
-    return response;
-  }, function (error) {
-    // 对响应错误做点什么
-    return Promise.reject(error);
-  });
+  // 对响应数据做点什么
+  Toast.clear();
+  return response;
+}, function (error) {
+  // 对响应错误做点什么
+  return Promise.reject(error);
+});
 
 //   判断是get请求还是post请求
 export function requset(type, url, params) {
@@ -61,7 +65,9 @@ export function requset(type, url, params) {
     case urlType.type.POST:
       return post(url, params);
     case urlType.type.PUT:
-      return put(url, params);  
+      return put(url, params);
+    case urlType.type.DELETE:
+      return deletes(url, params);
   }
 }
 
@@ -77,8 +83,10 @@ function post(url, params) {
 }
 
 //封装put请求
-function put(url,params){
+function put(url, params) {
   return instance.put(url, params);
 }
-// 封装OPTIONS请求
-
+// 封装delete请求
+function deletes(url, params) {
+  return instance.delete(url, params);
+}

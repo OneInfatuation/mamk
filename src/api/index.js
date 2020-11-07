@@ -131,6 +131,10 @@ const ClientAPI = {
     myStudy(params) {
         return requset(urlType.type.GET, urlType.url.xuexijilu + params);
     },
+    // 移出学习记录
+    deleteMyStudy(params){
+        return requset(urlType.type.DELETE, urlType.url.xuexijilu + params);
+    },
     QueRenDdan(params) { //确认订单
         return requset(urlType.type.POST, urlType.url.querenorder, params);
     },

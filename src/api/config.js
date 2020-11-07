@@ -92,7 +92,8 @@ const urlType = {
     type: {
         GET: "get",
         POST: "post",
-        PUT:"put"
+        PUT:"put",
+        DELETE:"delete"
     }
 }
 export default urlType;

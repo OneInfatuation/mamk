@@ -284,7 +284,6 @@ export default {
             shop_id: this.listInfo.id,
             type: 5,
           })
-          .LIJIBAOMING({ shop_id: this.listInfo.id, type: 5 })
           .then((res) => {
             console.log(res);
             if (res.data.code == 200) {
