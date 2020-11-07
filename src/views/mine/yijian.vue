@@ -53,7 +53,7 @@ export default {
 
 <style lang='scss' scoped>
 .box {
-  margin-top: 2rem;
+  margin-top: 3rem;
   width: 100%;
   height: 7rem;
   .boxs {

@@ -18,7 +18,7 @@
     </Select>
     <div style="width: 100%; height: 6rem; background: whitesmoke"></div>
     <!-- 展示数据 -->
-    <div class="waw_vant_list">
+    <div class="waw_vant_list">d
       <div class="waw_vant_list_wrapper"></div>
       <van-list
         v-model="loading"
