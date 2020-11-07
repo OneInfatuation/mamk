@@ -115,12 +115,12 @@ export default {
     };
   },
   mounted() {
-    // this.getWatch();
+    console.log(this.$route.query.id);
     this.$ClientAPI
       .myStudy(this.$route.query.id)
       .then((res) => {
         console.log(res.data);
-        // console.log(res.data.data.periods);
+        console.log(res.data.data.periods);
         this.list = res.data.data.periods;
         this.listID = res.data.data.course;
       })
@@ -132,7 +132,6 @@ export default {
   computed: {},
   // 侦听器
   watch: {},
-  mounted() {},
   // 组件方法
   methods: {
     //   导航部分事件
@@ -175,10 +174,25 @@ export default {
     },
     hmwDian() {
       //点击移出列表
-      Toast.success({
-        message: "移出成功",
-        position: "center",
-      });
+      this.$ClientAPI
+        .deleteMyStudy(this.$route.query.id)
+        .then((res) => {
+          console.log(res);
+          if (res.data.code == 200) {
+            Toast.success({
+              message: "移出成功",
+              position: "center",
+            });
+            var time = null;
+            time=setTimeout(()=>{
+              this.$router.push("/myStudy");
+              clearTimeout(time)
+            },2000)
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     fabu() {
       this.$ClientAPI
@@ -192,9 +206,6 @@ export default {
           console.log(res);
           localStorage.setItem("text", text);
         });
-    },
-    getWatch() {
-      //获取观看数据
     },
     // 跳转视频页
     gotoVideo(videoId, kcId) {
